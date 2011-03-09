@@ -113,7 +113,12 @@ width:295px;
 </c:if>
 
 <c:if test="${sessionScope.pessoa != null}">
-	<c:redirect url="index!events.java"></c:redirect>
+	Olá ${sessionScope.pessoa.nome}, seja bem vindo(a).<br>
+	Utilize os menus que foram habilitados na parte superior da tela para navegar no Sistema. <br>
+	Qualquer dúvida ou problema entre em contato com o CQI na sala 13 ou pelo e-mail intranetfgs@gmail.com.<br>
+	Atenciosamente.
+	 
+	 
 </c:if>
 </body>
 </html>

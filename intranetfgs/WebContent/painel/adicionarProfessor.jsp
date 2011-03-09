@@ -165,7 +165,7 @@ width:295px;
 							Senha: 		<s:password  id="senha"     name="professorNovoParams.senha"    ></s:password>
 							E-mail:		<s:textfield id="email"     name="professorNovoParams.email"    ></s:textfield><br></br>
 							<div id="lilocal"><h1><a href="#" onclick="javascript:inserirregras()">Inserir Regras</a></h1></div>
-							<div id="lilocal2" style="display:none;"><h1><a href="#" onclick="javascript:esconderregras()">Esconder Regras</a></h1>+++</div>
+							<div id="lilocal2" style="display:none;"><h1><a href="#" onclick="javascript:esconderregras()">Esconder Regras</a></h1></div>
 							<div  id="divregras" style="display:none;">
 								<br><br>
 								<b>Regras</b>

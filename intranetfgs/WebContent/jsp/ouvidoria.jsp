@@ -18,12 +18,12 @@ float:left;
 width:340px;
 }
 
-#ouvidoriaEmailParams.email {background:transparent url(../images/ico_mail.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#ouvidoriaEmailParams.nome {background:transparent url(../images/ico_user.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#ouvidoriaEmailParams.telefone {background:transparent url(../images/icon_phone.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#ouvidoriaEmailParams.matricula {background:transparent url(../images/ico_user.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#ouvidoriaEmailParams.curso {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 22px;}
-#ouvidoriaEmailParams.mensagem {background:transparent  no-repeat 2% 50%; padding:2px 14px 2px 0;}
+#email {background:transparent url(../images/ico_mail.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
+#nome {background:transparent url(../images/ico_user.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
+#telefone {background:transparent url(../images/icon_phone.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
+#matricula {background:transparent url(../images/ico_user.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
+#curso {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 22px;}
+#mensagem {background:transparent  no-repeat 2% 50%; padding:2px 14px 2px 0;}
 
 
 
@@ -40,11 +40,11 @@ width:295px;
 </style>
 <script type="text/javascript">
  function restartTrs(){
-	document.getElementById("ouvidoriaEmailParams.nome").style.backgroundColor = "transparent";
- 	document.getElementById("ouvidoriaEmailParams.email").style.backgroundColor = "transparent";
-	document.getElementById("ouvidoriaEmailParams.telefone").style.backgroundColor = "transparent";
- 	document.getElementById("ouvidoriaEmailParams.matricula").style.backgroundColor = "transparent";
- 	document.getElementById("ouvidoriaEmailParams.mensagem").style.backgroundColor = "transparent";
+	document.getElementById("nome").style.backgroundColor = "transparent";
+ 	document.getElementById("email").style.backgroundColor = "transparent";
+	document.getElementById("telefone").style.backgroundColor = "transparent";
+ 	document.getElementById("matricula").style.backgroundColor = "transparent";
+ 	document.getElementById("mensagem").style.backgroundColor = "transparent";
  }
 
  function restartMensagemErro(){
@@ -60,27 +60,27 @@ width:295px;
          var erro = false;
          //validar nome
          if (d.nome.value == ""){
-	           document.getElementById("ouvidoriaEmailParams.nome").style.backgroundColor = "#FF6A6A";
+	           document.getElementById("nome").style.backgroundColor = "#FF6A6A";
                    d.nome.focus();
                    erro = true;
          }
          //validar telefone
          if (d.telefone.value == ""){
-                  document.getElementById("ouvidoriaEmailParams.telefone").style.backgroundColor = "#FF6A6A";
+                  document.getElementById("telefone").style.backgroundColor = "#FF6A6A";
                   d.telefone.focus();
                   erro = true;
          }
 
        //validar matricula
          if (d.matricula.value == ""){
-                  document.getElementById("ouvidoriaEmailParams.matricula").style.backgroundColor = "#FF6A6A";
+                  document.getElementById("matricula").style.backgroundColor = "#FF6A6A";
                   d.matricula.focus();
                   erro = true;
          }
 
          //validar mensagem
          if (d.mensagem.value == ""){
-                  document.getElementById("ouvidoriaEmailParams.mensagem").style.backgroundColor = "#FF6A6A";
+                  document.getElementById("mensagem").style.backgroundColor = "#FF6A6A";
                   d.matricula.focus();
                   erro = true;
          }
@@ -89,7 +89,7 @@ width:295px;
 
          //validar email
          if (d.email.value == ""){
-                   document.getElementById("ouvidoriaEmailParams.email").style.backgroundColor = "#FF6A6A";
+                   document.getElementById("email").style.backgroundColor = "#FF6A6A";
                    d.email.focus();
                    erro = true;
          }
@@ -99,7 +99,7 @@ width:295px;
          parte2 = d.email.value.indexOf(".");
          parte3 = d.email.value.length;
          if (!(parte1 >= 3 && parte2 >= 6 && parte3 >= 9)) {
-                   document.getElementById("ouvidoriaEmailParams.email").style.backgroundColor = "#FF6A6A";
+                   document.getElementById("email").style.backgroundColor = "#FF6A6A";
                    document.getElementById("email2_ocultos").style.display = "inline";
                    d.email.focus();
                    erro = true;
@@ -151,12 +151,12 @@ Antes de nos enviar sua manifestação leia estes lembretes:<br>
 							<table>
 								<tr>
 									<td>
-										<s:text name="Nome:"/><br><br><s:textfield id="ouvidoriaEmailParams.nome" name="ouvidoriaEmailParams.nome" ></s:textfield>
-										<s:text name="Email:"/><br><br><s:textfield id="ouvidoriaEmailParams.email" name="ouvidoriaEmailParams.email" ></s:textfield>
-										<s:text name="Telefone:"/><br><br><s:textfield id="ouvidoriaEmailParams.telefone" name="ouvidoriaEmailParams.telefone" ></s:textfield><br>
-										<s:text name="Matricula:"/><br><br><s:textfield id="ouvidoriaEmailParams.matricula" name="ouvidoriaEmailParams.matricula" ></s:textfield><br>
-										<s:text name="Curso:"/><br><br><sx:autocompleter headerKey=""   headerValue=""  id="ouvidoriaEmailParams.curso" name="ouvidoriaEmailParams.cursoId" list="cursos" listValue="nome" listKey="id"/><br><br>
-										<s:text name="Mensagem:"/><br><br><s:textarea id="ouvidoriaEmailParams.mensagem" name="ouvidoriaEmailParams.mensagem"  cssStyle="width: 230px;height:170"></s:textarea><br>
+										<s:text name="Nome:"/><br><br><s:textfield id="nome" name="ouvidoriaEmailParams.nome" ></s:textfield>
+										<s:text name="Email:"/><br><br><s:textfield id="email" name="ouvidoriaEmailParams.email" ></s:textfield>
+										<s:text name="Telefone:"/><br><br><s:textfield id="telefone" name="ouvidoriaEmailParams.telefone" ></s:textfield><br>
+										<s:text name="Matricula:"/><br><br><s:textfield id="matricula" name="ouvidoriaEmailParams.matricula" ></s:textfield><br>
+										<s:text name="Curso:"/><br><br><sx:autocompleter headerKey=""   headerValue=""  id="curso" name="ouvidoriaEmailParams.cursoId" list="cursos" listValue="nome" listKey="id"/><br><br>
+										<s:text name="Mensagem:"/><br><br><s:textarea id="mensagem" name="ouvidoriaEmailParams.mensagem"  cssStyle="width: 230px;height:170"></s:textarea><br>
 										<s:submit align="left" value="Enviar"></s:submit>
 									</td>
 								</tr>

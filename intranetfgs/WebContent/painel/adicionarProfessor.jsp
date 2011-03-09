@@ -159,11 +159,11 @@ width:295px;
 					
 					<div id="contact-form">
 						<s:form action="/painel/professor!save.java">
-							Nome: 		<s:textfield id="nome"      name="professor.nome"     ></s:textfield>
-							Matrícula:  <s:textfield id="matricula" name="professor.matricula"></s:textfield>			
-							Login: 		<s:textfield id="login"     name="professor.login"    ></s:textfield>
-							Senha: 		<s:password  id="senha"     name="professor.senha"    ></s:password>
-							E-mail:		<s:textfield id="email"     name="professor.email"    ></s:textfield><br></br>
+							Nome: 		<s:textfield id="nome"      name="professorNovoParams.nome"     ></s:textfield>
+							Matrícula:  <s:textfield id="matricula" name="professorNovoParams.matricula"></s:textfield>			
+							Login: 		<s:textfield id="login"     name="professorNovoParams.login"    ></s:textfield>
+							Senha: 		<s:password  id="senha"     name="professorNovoParams.senha"    ></s:password>
+							E-mail:		<s:textfield id="email"     name="professorNovoParams.email"    ></s:textfield><br></br>
 							<div id="lilocal"><h1><a href="#" onclick="javascript:inserirregras()">Inserir Regras</a></h1></div>
 							<div id="lilocal2" style="display:none;"><h1><a href="#" onclick="javascript:esconderregras()">Esconder Regras</a></h1>+++</div>
 							<div  id="divregras" style="display:none;">
@@ -177,7 +177,7 @@ width:295px;
 												<c:out value="<tr>" escapeXml="false"></c:out>
 											</c:if>
 												<tr>
-										  			<td><s:checkbox name="checkBoxSelecionados" fieldValue="%{id}" id="rule.id" >${rule.nome}</s:checkbox></td>
+										  			<td><s:checkbox name="professorNovoParams.rules" fieldValue="%{nome}" id="rule.id" >${rule.nome}</s:checkbox></td>
 										  		</tr>
 											<c:if test="${cont > 4}">
 												<c:out value="</tr>" escapeXml="false"></c:out>

@@ -10,10 +10,11 @@ import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.mail.EnviarEmail;
 import br.edu.gamaesouza.intranet.params.impl.OuvidoriaEmailParams;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
+import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class SendMailAction extends ActionSupport {
+public class OuvidoriaAction extends ActionSupport {
 
 	private static final long serialVersionUID = 3053722020213888951L;
 	private List<Curso> cursos = new ArrayList<Curso>();
@@ -34,6 +35,7 @@ public class SendMailAction extends ActionSupport {
 	public String execute() {		
 		try{		
 			enviarEmail.sendMailToOuvidoria( ouvidoriaEmailParams.getData() );
+			ouvidoriaEmailParams = (OuvidoriaEmailParams) SpringUtil.getBean("ouvidoriaEmailParams");
 			addActionMessage("Mensagem enviada com sucesso!");
 		}catch(IntranetException e){
 			addActionError("Ocorreu um erro ao se conectar com o servidor de email.");

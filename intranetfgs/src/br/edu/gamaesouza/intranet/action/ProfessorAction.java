@@ -2,15 +2,17 @@ package br.edu.gamaesouza.intranet.action;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Professor;
 import br.edu.gamaesouza.intranet.bean.Rule;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
+import br.edu.gamaesouza.intranet.params.impl.ProfessorNovoParams;
 import br.edu.gamaesouza.intranet.security.UserData;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ProfessorAction extends ActionSupport {
@@ -24,6 +26,8 @@ public class ProfessorAction extends ActionSupport {
 
 	@Autowired private Professor professor;
 	
+	@Autowired private ProfessorNovoParams professorNovoParams;
+	
 	private List<Professor> professores = new ArrayList<Professor>();
 	private List<Rule> rules = new ArrayList<Rule>();
 	private List<Rule> allRules = new ArrayList<Rule>();
@@ -35,12 +39,9 @@ public class ProfessorAction extends ActionSupport {
 
 		UserData.grantAccess(RULE_PROFESSOR_SALVA);
 			try {
-				professor.setRegras(rules);
-				pessoaDAO.save(professor);
-
-				professor = (Professor) SpringUtil.getBean("professor");
-
+				pessoaDAO.save(professorNovoParams.getProfessor());
 				addActionMessage("Professor adicionado com sucesso.");
+				professorNovoParams = (ProfessorNovoParams) SpringUtil.getBean("professorNovoParams");
 			} catch (Exception e) {
 				addActionMessage("Ocorreu um erro ao tentar adicionar o Professor.");
 			}
@@ -155,6 +156,14 @@ public class ProfessorAction extends ActionSupport {
 
 	public void setRulesParam(List<String> paramRules) {
 		this.rulesParam = paramRules;
+	}
+
+	public ProfessorNovoParams getProfessorNovoParams() {
+		return professorNovoParams;
+	}
+
+	public void setProfessorNovoParams(ProfessorNovoParams professorNovoParams) {
+		this.professorNovoParams = professorNovoParams;
 	}
 	
 	

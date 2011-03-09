@@ -56,7 +56,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 			turnos = FormUtil.getTurnosList();
 
 			
-			disciplinasLetivas = disciplinaDAO.getDisciplinaLetiva(ano, semestre,turno);
+			disciplinasLetivas = disciplinaDAO.getDisciplinasLetivas(ano, semestre,turno);
 		} catch (IntranetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

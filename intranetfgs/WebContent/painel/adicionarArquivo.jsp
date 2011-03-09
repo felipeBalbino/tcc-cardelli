@@ -46,7 +46,7 @@ width:295px;
 <script type="text/javascript">
 
 function buscarDisciplinas(semestre,ano,turno) {    
-	         location.href = "upload!buscarDisciplinas.java?ano="+ano+"&semestre=" +semestre+"&turno=" +turno ;
+	         location.href = "upload!buscarDisciplinasProfessor.java?ano="+ano+"&semestre=" +semestre+"&turno=" +turno ;
 	      
 }
 

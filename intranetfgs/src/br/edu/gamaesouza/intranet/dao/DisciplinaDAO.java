@@ -16,6 +16,7 @@ import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.Disciplina;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
+import br.edu.gamaesouza.intranet.bean.Professor;
 import br.edu.gamaesouza.intranet.other.CustomSession;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaSearchParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaSearchParams;
@@ -180,13 +181,32 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 		}
 	}
 	
-	public List<DisciplinaLetiva> getDisciplinaLetiva(Integer ano, Integer semestre, String turno)throws IntranetException{
+	public List<DisciplinaLetiva> getDisciplinasLetivas(Integer ano, Integer semestre, String turno)throws IntranetException{
 		this.session = CustomSession.getSession();
 		Criteria c = session.createCriteria(DisciplinaLetiva.class);
 		
 		c.add(Restrictions.eq("ano", ano));
 		c.add(Restrictions.eq("semestre", semestre));
 		c.add(Restrictions.eq("turno", turno));
+		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<DisciplinaLetiva> disciplinasLetivas = c.list();
+		this.session.close();
+		return disciplinasLetivas;
+		
+		
+	}
+	
+	public List<DisciplinaLetiva> getDisciplinasLetivas(Integer ano, Integer semestre, String turno,Pessoa pessoa)throws IntranetException{
+		this.session = CustomSession.getSession();
+		Professor professor = (Professor) pessoa;
+		
+		String query = "From DisciplinaLetiva where ano = " + ano + " AND semestre = " + semestre + " AND turno = '" + turno + "' AND professor.nome = '" + professor.getNome() + "'";
+		
+		System.out.println(query);
+		
+		Query c = session.createQuery(query);
+		
+	
 		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		List<DisciplinaLetiva> disciplinasLetivas = c.list();
 		this.session.close();

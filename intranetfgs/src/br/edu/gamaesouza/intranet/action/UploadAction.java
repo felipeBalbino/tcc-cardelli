@@ -169,7 +169,7 @@ public class UploadAction extends ActionSupport {
 		turnos = FormUtil.getTurnosList();
 
 		
-		disciplinasLetivas = disciplinaDAO.getDisciplinaLetiva(ano, semestre,turno);
+		disciplinasLetivas = disciplinaDAO.getDisciplinasLetivas(ano, semestre,turno);
 		
 		
 		for(DisciplinaLetiva dl : disciplinasLetivas){
@@ -181,6 +181,25 @@ public class UploadAction extends ActionSupport {
 		return prepare();
 		
 	}
+	
+	public String buscarDisciplinasProfessor() throws Exception{
+		semestres = FormUtil.getSemestresList();
+		turnos = FormUtil.getTurnosList();
+
+		
+		disciplinasLetivas = disciplinaDAO.getDisciplinasLetivas(ano, semestre,turno,UserData.getLoggedUser());
+		
+		
+		for(DisciplinaLetiva dl : disciplinasLetivas){
+			System.out.println(dl.getId() + " " + dl.getDisciplina().getNome());
+		}
+		
+		System.out.println(disciplinasLetivas.size() + " TAMANHO");
+		
+		return prepare();
+		
+	}
+	
 
 	public String lista() {
 		UserData.grantAccess(RULE_UPLOAD_LISTA);

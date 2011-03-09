@@ -137,16 +137,16 @@ if(i == j) $(this).hide('slow');
 						<s:form action="/painel/noticia!altera.java" >
 						<s:hidden id="noticia.id" name="noticia.id" value="%{id}" />
 							<div class="conteudo">
-								<table>
+								<table width="100%">
 								
 									<tr>
-										<td><b>Titulo:</b> <s:textfield cssStyle="width:125%"  id="titulo" name="noticia.title" value="%{title}" onkeypress="contarCaracterestitulo(this.value,30,'sprestante2')"/></td>
+										<td><b>Titulo:</b> <s:textfield cssStyle="width:100%"  id="titulo" name="noticia.title" value="%{title}" onkeypress="contarCaracterestitulo(this.value,30,'sprestante2')"/></td>
 										
 									</tr>
 							
 									<tr><td><span id="sprestante2" style="font-family:Georgia;"></span></td><tr>
 									<tr>
-										<td><b>Mensagem:</b> <s:textarea cssStyle="width:125%; height:200px;" id="mensagem" name="noticia.mensagem" value="%{mensagem}" onkeypress="mostrarResultado(this.value,200,'spcontando');contarCaracteres(this.value,140,'sprestante')"> </s:textarea></td>
+										<td><b>Mensagem:</b> <s:textarea cssStyle="width:100%; height:200px;" id="mensagem" name="noticia.mensagem" value="%{mensagem}" onkeypress="mostrarResultado(this.value,200,'spcontando');contarCaracteres(this.value,140,'sprestante')"> </s:textarea></td>
 									<tr>
 									
 									<tr>

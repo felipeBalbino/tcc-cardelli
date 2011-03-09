@@ -2,7 +2,7 @@ package br.edu.gamaesouza.intranet.action;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,8 +22,6 @@ import com.opensymphony.xwork2.ActionSupport;
 public class CursoAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
-	private final Logger logger = Logger.getLogger("CursoAction");
-	
 	private static final String MSG_CURSO_NOVO_SUCESSO = "Curso cadastrado com sucesso!";
 	private static final String MSG_CURSO_NOVO_FAILURE = "Ocorreu um erro interno no servidor. Não foi possível cadastrar o curso.";
 	private static final String MSG_CURSO_DELETA_SUCESSO = "Curso deletado com sucesso!";

@@ -6,19 +6,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import br.edu.gamaesouza.intranet.bean.Arquivo;
-import br.edu.gamaesouza.intranet.bean.Curso;
+
 import br.edu.gamaesouza.intranet.bean.Disciplina;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
 import br.edu.gamaesouza.intranet.bean.Professor;
-import br.edu.gamaesouza.intranet.dao.CursoDAO;
+
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaNovoParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaSearchParams;
-import br.edu.gamaesouza.intranet.params.impl.DisciplinaSearchParams;
+
 import br.edu.gamaesouza.intranet.security.UserData;
-import br.edu.gamaesouza.intranet.utils.ArquivoUtil;
+
 import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
@@ -34,7 +33,6 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	private static final String RULE_DISCIPLINA_LETIVA_ALTERA = "RULE_DISCIPLINA_LETIVA_ALTERA";
 	private static final String RULE_DISCIPLINA_LETIVA_DELETE = "RULE_DISCIPLINA_LETIVA_DELETE";
 
-	//alterar
 	private Integer id;
 	private Integer materia;
 	private Integer professorid;

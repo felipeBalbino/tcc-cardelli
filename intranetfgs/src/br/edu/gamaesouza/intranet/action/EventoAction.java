@@ -1,13 +1,13 @@
 package br.edu.gamaesouza.intranet.action;
 
-import java.util.Calendar;
+
 import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Evento;
-import br.edu.gamaesouza.intranet.bean.Professor;
+
 import br.edu.gamaesouza.intranet.dao.EventoDAO;
 import br.edu.gamaesouza.intranet.params.impl.EventoAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.EventoDeletaParams;

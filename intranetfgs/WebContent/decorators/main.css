@@ -1,0 +1,303 @@
+@CHARSET "UTF-8";
+
+body {
+	background-image : url("../images/bg_header.gif");
+	background-repeat: repeat-x;
+	background-color : #ffffff; 
+	margin-top       : -20px;
+	margin-left		 : 0px;
+	margin			 : 0px; 	
+}
+
+hr {
+	text-align			:left;
+	border-bottom		: 0.5px;
+	border-style		: dotted;	
+	border-bottom-color	: #FFFFFF;
+}
+
+* {
+	font-family	: verdana;
+	font-size	: 11px;	
+}
+
+div#link a {
+	color: #000FED;
+}
+
+div#link a:HOVER {
+	color			: #000FED;
+	border-bottom	:1px;
+	border-style	: line;
+}
+
+div#topmenu table tr#menu td {
+	border-bottom		: 1px;
+	border-left			: 0px;
+	border-right		: 0px;
+	border-top			: 0px;
+	border-bottom-color	: olive; ;
+	border-bottom-style	: dotted; ;
+	background-image	: url("../images/menu_bg.jpg");
+	font-size			: 14px;
+}
+
+div#topmenu table tr#menu td a {
+
+	color: #FFFFFF;	
+	
+}	
+div#topmenu table tr#menu {
+	background-image: url("../images/menu_bg.jpg");
+}
+
+a {
+	border-bottom	: 0px;
+	border-style	: none;
+	text-decoration	: none;
+	color			: black;	
+}
+
+div#content table#contenttable {
+	border			: 0px;
+	border-style	: dotted;
+	border-color	: olive; ;
+	background-color: #FFFFFF;
+	font-size		: 14px;
+}
+
+table#all{
+	margin-top: 10px;	
+}
+
+div#content table#contenttablelogo {
+	border		: 0px;
+	border-style: dotted;
+	border-color: olive;
+	valign		: top;
+	font-size	: 14px;
+	margin-top	: -10px;
+	margin-left	: 10px;
+}
+
+table#tablemiddle {
+	margin-top: 20px;
+}
+
+table#footer {
+	background-image	: url("../images/bg_footer.gif");
+	background-repeat	: repeat-x;
+	border-style		: dotted;
+	border				: 1px;
+	border-color		: #000000;	
+}
+
+table#footer tr td * {
+	color:#FFFFFF;
+}
+
+#navbar {
+	background	: url(pic/bg.png) repeat-x;
+	height		: 29px;
+	line-height	: 29px;
+}
+
+/*------ Reset CSS Properties ------ */
+#navbar ul, #navbar li,
+#navbar form,
+#navbar button {
+	border		:0; 
+	margin		:0;
+	padding		:0; 
+	list-style	:none;
+}
+
+#navbar li a{
+	margin			:0 6px;
+	text-decoration	:none;
+	color			:#FFFFFF;
+	font-weight		:bold;
+	border-bottom	:dotted 1px #000000;
+}
+
+#sddm
+{	margin			: 0;
+	padding			: 0;
+	z-index			: 30;
+	vertical-align	: middle;}
+
+#sddm li{	
+	margin			: 0;
+	padding			: 0;
+	list-style		: none;
+	float			: left;
+	font			: bold 11px arial;
+	vertical-align	:middle;
+}
+
+#sddm li a
+{	
+	display			: block;
+	margin			: 0 1px 0 0;
+	padding			: 4px 10px;
+	width			: 90px;
+	vertical-align	: middle;
+	background		: #004725;
+	color			: #FFF;
+	text-align		: center;
+	text-decoration	: none
+}
+
+#sddm li a:hover
+{
+	background	: #BBD893;
+	color		: #004725
+}
+
+#sddm div
+{	
+	position	: absolute;
+	visibility	: hidden;
+	margin		: 0;
+	padding		: 0;
+	background	: #F1F4ED;
+	border		: 1px solid #004b1e
+}
+
+#sddm div a{	
+	position		: relative;
+	display			: block;
+	margin			: 0;
+	padding			: 5px 10px;
+	width			: auto;
+	white-space		: nowrap;
+	text-align		: left;
+	text-decoration	: none;
+	background		: #F1F4ED;
+	color			: #004725;
+	font			: 11px arial
+}
+
+#sddm div a:hover{	background: #BBD893;
+		color: #004725}
+
+
+
+#jsddm
+{	
+	margin		: 0;
+	margin-left	: 0%;
+	margin-top	: 0px;
+	padding		: 0;
+	text-align	: center;
+}
+	
+
+#jsddm li
+{	
+	float		: left;
+	list-style	: none;
+	font		: 12px Tahoma, Arial
+}
+
+#jsddm li a
+{	
+		display			: block;
+		background-image: url("../images/menu_bg.jpg");
+		padding			: 8px 0px;
+		text-align		: center;
+		valign			: middle;
+		text-decoration	: none;
+		border-right	: 1px solid white;
+		width			: 120px;
+		color			: #EAFFED;
+		white-space		: nowrap
+}
+
+#jsddm li a:hover
+{	
+	background: #24313C
+}
+		
+#jsddm li ul
+{	
+	margin		: 0;
+	padding		: 0;
+	position	: absolute;
+	visibility	: hidden;
+	border-top	: 1px solid white;
+	width		:180px;
+}
+	
+#jsddm li ul li{	
+	float	: none;
+	width	: 180px;
+	display	: inline
+}
+			
+#jsddm li ul li a{	
+	width		: auto;
+	background	: #A9C251;
+	color		: #24313C
+}
+			
+#jsddm li ul li a:hover{	
+	background: #8EA344
+}
+						
+#sddm2
+{	
+	margin	: 0;
+	padding	: 0;
+	z-index	: 30;
+}
+
+#sddm2 li
+{	
+	margin		: 0;
+	padding		: 0;
+	list-style	: none;
+	float		: right;
+	font		: bold 11px arial
+}
+
+#sddm2 li a
+{	
+	display			: block;
+	margin			: 0 1px 0 0;
+	padding			: 0px 10px;
+	width			: 60px;
+	color			: #FFF;
+	text-align		: center;
+	text-decoration	: none}
+
+
+
+#sddm2 div{	
+	position: absolute;
+	visibility: hidden;
+	margin: 0;
+	padding: 0;
+	width: 150px;
+	background: #FFFFFF;
+	border: 1px solid #004b1e}
+
+#sddm2 div a{	
+	
+	position		: relative;
+	display			: block;
+	margin			: 0;
+	padding			: 5px 10px;
+	width			: auto;
+	white-space		: nowrap;
+	text-align		: left;
+	text-decoration	: none;
+	background		: #FFFFFF;
+	color			: #000000;
+	font			: 11px arial
+}
+
+#sddm2 div a:hover{	
+	background	: #BBD893;
+	color		: #FFF
+}			

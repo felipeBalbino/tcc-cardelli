@@ -167,13 +167,13 @@ function restartTrs(){
 	
 	<div id="divalvo" style="display:none;">
 		Publico Alvo: 
-			<s:textarea cssStyle="width:80%; height:200px;" name="eventoNovoParams.publicoAlvo" id="alvo"></s:textarea>
+			<s:textarea cssStyle="width:80%; height:50px;" name="eventoNovoParams.publicoAlvo" id="alvo"></s:textarea>
 		<br>
 	</div>
 	
 	<div id="divobs" style="display:none;">
 		Obs: 
-		<s:textarea cssStyle="width:80%; height:200px;" name="eventoNovoParams.observacoes" id="obs" ></s:textarea>
+		<s:textarea cssStyle="width:80%; height:80px;" name="eventoNovoParams.observacoes" id="obs" ></s:textarea>
 	</div>
 	<br></br>
 	<s:submit align="left" value="Enviar"></s:submit>

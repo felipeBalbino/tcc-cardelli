@@ -47,7 +47,7 @@
 			method="{1}">
 
 			<result name="notlogged">/jsp/login.jsp</result>
-			<result name="logged">/jsp/login.jsp</result>
+			<result name="logged">/jsp/index!events.java</result>
 			<result name="login">/jsp/login.jsp</result>
 			<result name="senha">/painel/trocarsenha.jsp</result>
 			<result name="register">/jsp/register.jsp</result>

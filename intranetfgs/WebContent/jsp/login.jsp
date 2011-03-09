@@ -113,7 +113,7 @@ width:295px;
 </c:if>
 
 <c:if test="${sessionScope.pessoa != null}">
-Você já está logado.
+	<c:redirect url="index!events.java"></c:redirect>
 </c:if>
 </body>
 </html>

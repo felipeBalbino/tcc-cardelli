@@ -54,7 +54,7 @@ public class Evento implements Serializable {
 	@Transient
 	private String publicoAlvoComQuebra;
 	
-
+	
 	
 	public Integer getId() {
 		return id;

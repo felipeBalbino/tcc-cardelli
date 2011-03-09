@@ -116,7 +116,7 @@ if(i == j) $(this).hide('slow');
 										<td>Disciplina:<br><sx:autocompleter headerKey="-1" headerValue=""  id="materia" list="disciplinas" name="disciplina.id"  listKey="id" listValue="nome" /><br></td>
 										<td>Professor:<br><sx:autocompleter headerKey="-1" headerValue=""  id="professor" list="professores" name="professor.id"  listKey="id" listValue="nome" /><br></td>
 												
-										<td><s:submit align="left" value="Adicionar"></s:submit></td>
+										<td><s:submit align="left" value="Alterar"></s:submit></td>
 										
 												
 										

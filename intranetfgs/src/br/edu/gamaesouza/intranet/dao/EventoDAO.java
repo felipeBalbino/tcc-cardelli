@@ -59,6 +59,7 @@ public class EventoDAO {
 	public List<Evento> getAll() throws IntranetException{
 		session = CustomSession.getSession();
 		Criteria c = session.createCriteria(Evento.class);	
+		c.addOrder(Order.desc("title"));
 		List<Evento> eventos = (List<Evento>)c.list();
 		session.close();
 		return eventos;

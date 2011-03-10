@@ -73,13 +73,27 @@ if(i == j) $(this).hide('slow');
 							<div class="conteudo">
 								<table>
 									<tr>
-										<td><b>CoordenaÃ§Ã£o:</b> <s:property escapeHtml="false" value="coordenacao" /></td>
+										<td><b>Coordenação:</b> <s:property escapeHtml="false" value="coordenacao" /></td>
 									</tr>
 					
 									
 									<tr>
-										<td><b>InÃ­cio:</b> <s:date name="datahoraInicio" format="dd/MM/yyyy HH:mm" /> - <b>Fim:</b> <s:date name="datahoraFim" format="dd/MM/yy HH:mm" /></td>
+										<td>
+											<b>Horário:</b> 
+											<s:date name="datahoraInicio" format="HH:mm" />
+											 <b> às </b> 
+											<s:date name="datahoraFim" format="HH:mm" />
+										</td>
 									</tr>	
+									<tr>
+										<td>
+											<b>Dia(s):</b> 
+											<s:date name="datahoraInicio" format="dd/MM/yyyy" />
+											 <b> ao </b> 
+											<s:date name="datahoraFim" format="dd/MM/yyyy" />
+										</td>
+									</tr>	
+									
 									
 					
 									<c:if test="${local != ''}">

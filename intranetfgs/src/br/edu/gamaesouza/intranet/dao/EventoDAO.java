@@ -7,8 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
-
-import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.Evento;
 import br.edu.gamaesouza.intranet.other.CustomSession;
 import br.edu.gamaesouza.intranet.utils.IntranetException;

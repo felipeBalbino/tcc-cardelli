@@ -121,7 +121,7 @@ public class CursoDAO extends GenericDAO<Curso> {
 
 	public List<Disciplina> getDisciplinaListByStringList(List<String> paramRules) throws IntranetException{
 			
-			List<Disciplina> disciplinas = new ArrayList();
+			List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 			
 			for(String rule : paramRules){
 				disciplinas.add(disciplinaDAO.getDisciplinaByNome(rule));

@@ -18,7 +18,7 @@ padding:17px 0px 0 39px;
 float:left;
 width:340px;
 }
-
+#curso {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
 #email {background:transparent url(../images/ico_mail.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
 #email2 {background:transparent url(../images/ico_mail.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
 #login {background:transparent url(../images/profile_ico_transparent.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
@@ -152,6 +152,25 @@ width:295px;
 		}	
 	}
 
+ function Numero(e)
+ {
+	 navegador = /msie/i.test(navigator.userAgent);
+	 if (navegador)
+	 	var tecla = event.keyCode;
+	 else
+	 	var tecla = e.which;
+	 if(tecla > 47 && tecla < 58) // numeros de 0 a 9
+		 return true;
+	 else
+	 {
+	 if (tecla != 8) // backspace
+	 return false;
+	 else
+	 return true;
+	 }
+ }
+
+  
 </script>
 
 
@@ -195,10 +214,10 @@ width:295px;
 		
 							Curso:<br><sx:autocompleter  headerKey=""  headerValue=""  id="curso" name="alunoNovoParams.cursoId" list="cursos" listValue="nome" listKey="id"/><br>
 							Nome Completo: <s:textfield id="nome" name="alunoNovoParams.nome"></s:textfield><br>
-							Matrícula: <s:textfield  id="matricula" name="alunoNovoParams.matricula"></s:textfield><br>
+							Matrícula: <s:textfield  onKeyPress="return Numero(event);"  id="matricula" name="alunoNovoParams.matricula"></s:textfield><br>
 							Email: <s:textfield id="email" name="alunoNovoParams.email" ></s:textfield><br>
 							Confirmar Email: <s:textfield id="email2" name="aluno.email"></s:textfield><br>
-							Login: <s:textfield id="login" name="alunoNovoParams.login" onkeypress="contarCaracteres(this.value,8,'spcontando')"></s:textfield><br>
+							Login: <s:textfield id="login" name="alunoNovoParams.login" onKeyPress="contarCaracteres(this.value,8,'spcontando')"></s:textfield><br>
 							Senha: <s:password id="senha" name="alunoNovoParams.senha"></s:password><br>
 							Confirmar Senha: <s:password id="senha2"></s:password><br>
 							

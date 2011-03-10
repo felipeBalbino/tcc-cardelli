@@ -95,8 +95,8 @@ public class AlunoNovoParams implements AlunoParams {
 		this.cursoId = cursoId;
 	}
 
-	public void setMatricula(Integer matricula) {
-		this.matricula = matricula;
+	public void setMatricula(String matricula) {
+		this.matricula = Integer.parseInt(matricula);
 	}
 
 	public Integer getMatricula() {

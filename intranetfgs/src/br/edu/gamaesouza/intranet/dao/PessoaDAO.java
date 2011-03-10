@@ -54,6 +54,21 @@ public class PessoaDAO {
 
 	}
 	
+	public Boolean validarMatricula(Integer matricula) throws IntranetException {
+		Session session = CustomSession.getSession();
+		Criteria c = session.createCriteria(Pessoa.class);
+		c.add(Restrictions.eq("matricula", matricula));
+		
+		Pessoa pessoa =(Pessoa) c.uniqueResult();
+		
+		if(pessoa == null){
+			return false;
+		}else{
+			return true;
+		}
+
+	}
+	
 	
 	
 	

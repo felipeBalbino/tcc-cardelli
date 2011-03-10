@@ -173,6 +173,16 @@ public class PessoaDAO {
 		
 	}
 	
+	public Pessoa getPessoaByEmail(String id)throws IntranetException{
+		Session session = CustomSession.getSession();
+		Criteria c = session.createCriteria(Pessoa.class);
+		c.add(Restrictions.eq("email", id));
+		Pessoa pessoa = (Pessoa) c.uniqueResult();
+			session.close();
+		return pessoa;
+		
+	}
+	
 	public Professor getProfessorById(Integer id)throws IntranetException{
 		Session session = CustomSession.getSession();
 		Criteria c = session.createCriteria(Professor.class);

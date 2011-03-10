@@ -24,6 +24,7 @@ import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.bean.Rule;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
+import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.utils.ContextUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.vo.OuvidoriaVO;
@@ -31,6 +32,7 @@ import br.edu.gamaesouza.intranet.vo.OuvidoriaVO;
 public class EnviarEmail {
 
 	@Autowired private DisciplinaDAO disciplinaDAO;	
+	@Autowired private PessoaDAO pessoaDAO;
 	private EmailConfiguration configuration;
 	
 	public void sendMailToOuvidoria(OuvidoriaVO ouvidoriaVO) throws IntranetException{
@@ -229,7 +231,54 @@ public class EnviarEmail {
 		
 	}
 	
+public void sendEmailWithLoginAndPassword(String email) throws IntranetException,Exception {
+		
+		configuration = new GmailConfiguration();
+
+		Pessoa pessoa = pessoaDAO.getPessoaByEmail(email);
+		
+		if(pessoa == null){
+			throw new Exception("E-Mail não cadastrado");
+		}
+
+		Session session = Session.getInstance(configuration.getConfiguration(), configuration.getAuth());
+
+		MimeMessage message = new MimeMessage(session);
+		try {
+			message.setFrom(new InternetAddress("intranetfgs@gmail.com", "Intranet FGS"));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
+					email, "Intranet FGS"));
+		} catch (Exception e) {
+			throw new IntranetException(e.getMessage());
+		
+		}
+		
+		
+		
+		
+		String msgBody = "";
+		msgBody = msgBody + "Prezado "+ pessoa.getNome() + ", segue abaixo seus dados cadastrais.<br><br>" ;
+		msgBody =  msgBody + "<b>Login: </b>" + pessoa.getLogin() + "<br>" ;
+		msgBody =  msgBody + "<b>Senha: </b>" + pessoa.getSenha() + "<br>" ;
 	
+        msgBody = msgBody + "<br></br>";
+        msgBody = msgBody + "Intranet FGS <br></br> Desenvolvido pelo Centro de Qualidade da Informação.";
+		
+			
+			
+		try {
+			message.setSubject("Recuperar Senha @intranetfgs");
+			message.setContent(msgBody, "text/html");
+			Transport.send(message);
+		} catch (MessagingException e) {
+			throw new IntranetException(e.getMessage());
+		}
+		
+
+		
+		
+		
+	}
 	
 
 }

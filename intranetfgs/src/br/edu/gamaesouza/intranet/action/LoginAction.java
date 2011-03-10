@@ -1,17 +1,20 @@
 package br.edu.gamaesouza.intranet.action;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
+import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
+import br.edu.gamaesouza.intranet.mail.EnviarEmail;
 import br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 
@@ -42,6 +45,7 @@ public class LoginAction extends ActionSupport {
 	@Autowired private AlunoNovoParams alunoNovoParams ;
 	@Autowired private PessoaDAO pessoaDAO;
 	@Autowired private CursoDAO cursoDAO;
+	@Autowired private EnviarEmail enviarEmail;
 	
 	
 
@@ -147,6 +151,20 @@ public class LoginAction extends ActionSupport {
 			return "senha";
 		
 
+		}
+		
+		public String recuperarSenha(){
+			try {
+				enviarEmail.sendEmailWithLoginAndPassword(email);
+				addActionMessage("Seu login e sua senha foram enviados para o e-mail digitado");
+			}catch(IntranetException e){
+				addActionMessage("Ocorreu um erro interno no Servidor. Um e-mail foi enviado ao administrador reportando o erro.");
+			}catch(Exception e){
+				addActionMessage("E-mail não cadastrado no Sistema");
+			}
+			
+			return "login";
+			
 		}
 	
 	public String getLogin() {

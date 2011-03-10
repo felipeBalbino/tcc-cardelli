@@ -20,7 +20,7 @@ float:left;
 width:340px;
 }
 
-#login {background:transparent url(../images/profile_ico_transparent.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
+#email {background:transparent url(../images/profile_ico_transparent.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
 #senha {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
 
 
@@ -79,7 +79,7 @@ width:295px;
 
 <s:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Intranet - Faculdade Gama & Souza | Login</title>
+<title>Intranet - Faculdade Gama & Souza | Recuperar Senha</title>
 </head>
 <body>
 <c:if test="${sessionScope.pessoa == null}">
@@ -94,8 +94,7 @@ width:295px;
 						</h3>
 						<p>Aréa reservada aos alunos e professores da faculdade Gama e Souza.<br>
 							<img src="../images/alert-ico.gif"> Lembre-se: sua senha de acesso é secreta; não a informe a ninguém.
-	A FGS jamais solicitará sua senha por e-mail ou por telefone. <br><br> Primeira vez? <a href="../jsp/log!prepare.java" style="color:red;"><b>Registre-se</b></a> 
-	<br><br> Perdeu sua senha? <a href="../jsp/recuperarSenha.jsp" style="color:red;"><b>Clique aqui<b></b></a> 
+	A FGS jamais solicitará sua senha por e-mail ou por telefone. <br><br> Primeira vez? <a href="../jsp/log!prepare.java" style="color:red;"><b>Registre-se<b></b></a> 
 						</p>
 						<div id="login_ocultos" style="display:none;color:red;"><p align="center">Campo login é requirido.</p></div>
 						<div id="senha_ocultos" style="display:none;color:red"><p align="center">Campo senha é requirido.</p></div>
@@ -103,23 +102,13 @@ width:295px;
 					</div>	
 					<br><br>
 					<div id="contact-form">
-						<s:form method="post" action="../jsp/log!in.java">
-							Login: <s:textfield name="login" id="login"></s:textfield>
-							Senha: <s:password name="senha" id="senha"></s:password>
-							<sx:submit align="left" value="Entrar" label="Log in"></sx:submit>
+						<s:form method="post" action="../jsp/log!recuperarSenha.java">
+							E-Mail: <s:textfield name="email" id="email"></s:textfield>
+							<sx:submit align="left" value="Entrar" label="RecuperarSenha"></sx:submit>
 						</s:form>
 					</div>		
 		</div>
 				
-</c:if>
-
-<c:if test="${sessionScope.pessoa != null}">
-	Olá ${sessionScope.pessoa.nome}, seja bem vindo(a).<br><br>
-	Utilize os menus que foram habilitados na parte superior da tela para navegar no Sistema. <br><br>
-	Qualquer dúvida ou problema entre em contato com o CQI na sala 13 ou pelo e-mail intranetfgs@gmail.com.<br><br><br>
-	Att. Equipe CQI
-	 
-	 
 </c:if>
 </body>
 </html>

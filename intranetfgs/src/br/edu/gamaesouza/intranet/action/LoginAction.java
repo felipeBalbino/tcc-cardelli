@@ -20,7 +20,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport {
 	
-	private static final String MSG_LOGIN_DADOS_INVALIDOS = "Dados inválidos.";
+	private static final String MSG_LOGIN_DADOS_INVALIDOS = "Dados inválidos, email ou senha atual não conferem.";
 	private static final String MSG_REGISTRO_SUCESSO = "Registrado com sucesso, insira seu login e senha registrados anteriormente.";
 	private static final String MSG_ALTERA_SENHA_SUCESSO = "Senha editada com sucesso.";
 	
@@ -34,6 +34,7 @@ public class LoginAction extends ActionSupport {
 	private String senha;
 	private String email;
 	private String novaSenha;
+	private String senhaAtual;
 	
 	private Pessoa pessoa; 
 	private List<Curso> cursos = new ArrayList<Curso>();
@@ -124,7 +125,7 @@ public class LoginAction extends ActionSupport {
 				Map<String, Object> sessao = ActionContext.getContext().getSession();
 				Pessoa pessoa = (Pessoa) sessao.get("pessoa");
 				
-				if(email.equals(pessoa.getEmail()) && pessoa != null){
+				if(email.equals(pessoa.getEmail()) && senhaAtual.equals(pessoa.getSenha()) && pessoa != null){
 					pessoa.setSenha(novaSenha);
 					pessoaDAO.update(pessoa);
 					sessao.put("pessoa", pessoa);
@@ -205,6 +206,22 @@ public class LoginAction extends ActionSupport {
 	}
 	public void setAlunoNovoParams(AlunoNovoParams alunoNovoParams) {
 		this.alunoNovoParams = alunoNovoParams;
+	}
+
+
+
+
+
+	public void setSenhaAtual(String senhaAtual) {
+		this.senhaAtual = senhaAtual;
+	}
+
+
+
+
+
+	public String getSenhaAtual() {
+		return senhaAtual;
 	}
 
 }

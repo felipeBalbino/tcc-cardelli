@@ -116,6 +116,7 @@ width:295px;
 					<div id="contact-form">
 					<s:form name="senha" method="post" action="../jsp/log!senha.java" onSubmit="return validaForm()">
 						Email: <s:textfield id="email" name="email"></s:textfield>
+						Senha Atual: <s:password id="senha" name="senhaAtual"></s:password>
 						Nova Senha: <s:password id="senha" name="novaSenha"></s:password>
 						<sx:submit align="left" value="Alterar" label="Log in"></sx:submit>
 					</s:form>

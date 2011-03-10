@@ -44,7 +44,7 @@ if(i == j) $(this).hide('slow');
 <table width="100%">
 	<tr>
 		<td><b>Eventos</b><hr></td>
-		<td><b>Notícias</b><hr></td>
+		<td><b>NotÃ­cias</b><hr></td>
 	</tr>
 	
 	<tr>
@@ -56,8 +56,8 @@ if(i == j) $(this).hide('slow');
 							<table width="100%" bgcolor="#FAFAD2">
 								<tr>
 									<td width="1%"><img src="../images/event_icon.png" /></td>
-									<td width="91%" style="font-size: 10px;font-weight:bold"> <s:property  value="title" /> </td>
-									<td width="8%" align="right"><a class="exibir"><img src="../images/open.png" /></a><a  class="ocultar"><img src="../images/close.png" /></a></td>	
+									<td width="88%" style="font-size: 10px;font-weight:bold"> <s:property  value="title" /> </td>
+									<td width="11%" align="right"><a class="exibir"><img src="../images/open.png" /></a><a  class="ocultar"><img src="../images/close.png" /></a></td>	
 								</tr>					
 							</table>
 						</td>
@@ -73,12 +73,12 @@ if(i == j) $(this).hide('slow');
 							<div class="conteudo">
 								<table>
 									<tr>
-										<td><b>Coordenação:</b> <s:property escapeHtml="false" value="coordenacao" /></td>
+										<td><b>CoordenaÃ§Ã£o:</b> <s:property escapeHtml="false" value="coordenacao" /></td>
 									</tr>
 					
 									
 									<tr>
-										<td><b>Início:</b> <s:date name="datahoraInicio" format="dd/MM/yyyy HH:mm" /> - <b>Fim:</b> <s:date name="datahoraFim" format="dd/MM/yy HH:mm" /></td>
+										<td><b>InÃ­cio:</b> <s:date name="datahoraInicio" format="dd/MM/yyyy HH:mm" /> - <b>Fim:</b> <s:date name="datahoraFim" format="dd/MM/yy HH:mm" /></td>
 									</tr>	
 									
 					
@@ -90,7 +90,7 @@ if(i == j) $(this).hide('slow');
 									
 									<c:if test="${publicoAlvoComQuebra != ''}">
 									<tr>	
-										<td><b>Público Alvo: </b><s:property escapeHtml="false" value="publicoAlvoComQuebra" /></td>	
+										<td><b>PÃºblico Alvo: </b><s:property escapeHtml="false" value="publicoAlvoComQuebra" /></td>	
 									</tr>
 									</c:if>
 					

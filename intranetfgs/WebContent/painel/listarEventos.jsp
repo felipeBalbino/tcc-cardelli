@@ -87,10 +87,12 @@ if(i == j) $(this).hide('slow');
 					<tr>
 						<td>
 						<s:form action="/painel/evento!altera.java">
-						<s:hidden id="eventoAlteraParams.id" name="evento.id" value="%{id}"></s:hidden>
+						
 							<div class="conteudo">
 								<table>
-								
+									<tr>
+										<td><s:hidden name="eventoAlteraParams.id" id="id" value="%{id}"></s:hidden></td>
+									</tr>
 									<tr>
 										<td><b>Titulo:</b> <s:textfield id="eventoAlteraParams.title" name="eventoAlteraParams.title" value="%{title}" /></td>
 									</tr>

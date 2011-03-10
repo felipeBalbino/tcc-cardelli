@@ -112,6 +112,36 @@ width:295px;
 		}
 }
 
+ function mascara(o,f){
+	 
+	  v_obj=o;
+	 
+	  v_fun=f;
+	 
+	  setTimeout("execmascara()",1);
+	 
+	 }
+	 
+	 
+	 
+	 function execmascara(){
+	 
+	  v_obj.value=v_fun(v_obj.value);
+	 
+	 } 
+	 
+ function Telefone(v){
+	 
+	  v=v.replace(/\D/g,""); //Remove tudo o que nÃ£o Ã© dÃ­gito
+	 
+	  v=v.replace(/^(\d\d)(\d{4})(\d{4})/g,"($1)$2-$3");//Coloca parÃªnteses em volta dos dois primeiros dÃ­gitos
+	 
+	  return v;
+	 
+	 } 
+
+
+
 </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -151,12 +181,12 @@ Antes de nos enviar sua manifestação leia estes lembretes:<br>
 							<table>
 								<tr>
 									<td>
-										<s:text name="Nome:"/><br><br><s:textfield id="nome" name="ouvidoriaEmailParams.nome" ></s:textfield>
-										<s:text name="Email:"/><br><br><s:textfield id="email" name="ouvidoriaEmailParams.email" ></s:textfield>
-										<s:text name="Telefone:"/><br><br><s:textfield id="telefone" name="ouvidoriaEmailParams.telefone" ></s:textfield><br>
-										<s:text name="Matricula:"/><br><br><s:textfield id="matricula" name="ouvidoriaEmailParams.matricula" ></s:textfield><br>
-										<s:text name="Curso:"/><br><br><sx:autocompleter headerKey=""   headerValue=""  id="curso" name="ouvidoriaEmailParams.cursoId" list="cursos" listValue="nome" listKey="id"/><br><br>
-										<s:text name="Mensagem:"/><br><br><s:textarea id="mensagem" name="ouvidoriaEmailParams.mensagem"  cssStyle="width: 230px;height:170"></s:textarea><br>
+										<s:text name="Nome:"/><s:textfield id="nome" name="ouvidoriaEmailParams.nome" ></s:textfield><br>
+										<s:text name="Email:"/><s:textfield id="email" name="ouvidoriaEmailParams.email" ></s:textfield><br>
+										<s:text name="Telefone:"/><i style="color:gray;">(21)2222-2222</i><s:textfield id="telefone" onkeypress="mascara(this,Telefone)" maxlength="14"  name="ouvidoriaEmailParams.telefone" ></s:textfield><br>
+										<s:text name="Matricula:"/><br><s:textfield id="matricula" name="ouvidoriaEmailParams.matricula" ></s:textfield><br>
+										<s:text name="Curso:"/><br><sx:autocompleter headerKey=""   headerValue=""  id="curso" name="ouvidoriaEmailParams.cursoId" list="cursos" listValue="nome" listKey="id"/><br>
+										<s:text name="Mensagem:"/><s:textarea id="mensagem" name="ouvidoriaEmailParams.mensagem"  cssStyle="width: 230px;height:170"></s:textarea><br>
 										<s:submit align="left" value="Enviar"></s:submit>
 									</td>
 								</tr>

@@ -89,6 +89,8 @@ public class LoginAction extends ActionSupport {
 					addActionMessage("Login já existente em nossa base.");	
 						if (pessoaDAO.validarEmail(alunoNovoParams.getEmail()))
 							addActionMessage("Email já existente em nossa base.");
+						if (alunoNovoParams.getLogin().length() > 8)
+							addActionMessage("Login do Usu�rio precisar tem menos de 8 caracteres.");
 				}else{
 					pessoaDAO.saveAluno(alunoNovoParams.getAluno());
 					addActionMessage(MSG_REGISTRO_SUCESSO);

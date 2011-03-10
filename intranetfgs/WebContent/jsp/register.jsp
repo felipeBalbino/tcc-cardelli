@@ -143,6 +143,15 @@ width:295px;
 		}
 }
 
+ function contarCaracteres(box,valor,campospan){
+		var conta = valor - box.length;
+		document.getElementById(campospan).innerHTML = "Você ainda pode digitar " + conta + " caracteres no campo Login";
+		if(box.length >= valor){
+			document.getElementById(campospan).innerHTML = "";
+			document.getElementById("login").value = document.getElementById("login").value.substr(0,valor);
+		}	
+	}
+
 </script>
 
 
@@ -176,7 +185,8 @@ width:295px;
 							<div id="email2_ocultos" style="display:none;color:red"><p align="center">Campo email com caracteres invalidos.</p></div>
 							<div id="senha_nao_confere" style="display:none;color:red"><p align="center">As senhas necessitam ser iguais no campo senha e confirmar senha.</p></div>
 							<div id="email_nao_confere" style="display:none;color:red"><p align="center">Os emails necessitam ser iguais no campo email e confirmar email.</p></div>
-							<b style="color:red;align:center;"><s:actionmessage/></b>
+							<p align="center"><span id="spcontando" style="font-family:Georgia;color:red;"></span></p><br /><br>
+							<div style="color:red;align:center;"><s:actionmessage/></div>
 						</strong>
 					</div>	
 					
@@ -188,7 +198,7 @@ width:295px;
 							Matrícula: <s:textfield  id="matricula" name="alunoNovoParams.matricula"></s:textfield><br>
 							Email: <s:textfield id="email" name="alunoNovoParams.email" ></s:textfield><br>
 							Confirmar Email: <s:textfield id="email2" name="aluno.email"></s:textfield><br>
-							Login: <s:textfield id="login" name="alunoNovoParams.login"></s:textfield><br>
+							Login: <s:textfield id="login" name="alunoNovoParams.login" onkeypress="contarCaracteres(this.value,8,'spcontando')"></s:textfield><br>
 							Senha: <s:password id="senha" name="alunoNovoParams.senha"></s:password><br>
 							Confirmar Senha: <s:password id="senha2"></s:password><br>
 							

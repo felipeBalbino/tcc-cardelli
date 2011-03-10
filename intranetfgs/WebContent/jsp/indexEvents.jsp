@@ -76,23 +76,29 @@ if(i == j) $(this).hide('slow');
 										<td><b>Coordenação:</b> <s:property escapeHtml="false" value="coordenacao" /></td>
 									</tr>
 					
+									
 									<tr>
 										<td><b>Início:</b> <s:date name="datahoraInicio" format="dd/MM/yyyy HH:mm" /> - <b>Fim:</b> <s:date name="datahoraFim" format="dd/MM/yy HH:mm" /></td>
 									</tr>	
+									
 					
-									<tr>
-										<td><b>Local: </b><s:property escapeHtml="false" value="local" /></td>
-									</tr>
-					
+									<c:if test="${local != ''}">
+										<tr>
+											<td><b>Local: </b><s:property escapeHtml="false" value="local" /></td>
+										</tr>
+									</c:if>
+									
+									<c:if test="${publicoAlvoComQuebra != ''}">
 									<tr>	
 										<td><b>Público Alvo: </b><s:property escapeHtml="false" value="publicoAlvoComQuebra" /></td>	
 									</tr>
+									</c:if>
 					
+									<c:if test="${obsComQuebra != ''}">
 									<tr>
-	
 										<td><b>Obs: </b><s:property escapeHtml="false" value="obsComQuebra" /></td>
-										
 									</tr>
+									</c:if>
 								</table>
 							</div>
 						
@@ -135,6 +141,7 @@ if(i == j) $(this).hide('slow');
 					
 								</table>
 							</div>
+						
 						
 						</td>
 					</tr>

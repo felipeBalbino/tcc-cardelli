@@ -111,6 +111,16 @@
 		</param-value>	
 	</context-param>
 	
+	<context-param>
+		<param-name>systemMail</param-name>
+		<param-value>intranetfgs@gmail.com</param-value>	
+	</context-param>
+	
+	<context-param>
+		<param-name>systemMailPassword</param-name>
+		<param-value>qwe123qwe123</param-value>	
+	</context-param>
+	
 	
 	
 

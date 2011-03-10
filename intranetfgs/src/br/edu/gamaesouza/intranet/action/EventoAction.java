@@ -65,7 +65,7 @@ public class EventoAction extends ActionSupport {
 				eventoDAO.save(eventoNovoParams.getEvento());
 				eventoNovoParams = (EventoNovoParams) SpringUtil.getBean("eventoNovoParams");
 				addActionMessage(MSG_EVENTO_NOVO_SUCESSO);
-			} catch (Exception e) {
+			} catch (IntranetException e) {
 				addActionMessage(MSG_EVENTO_NOVO_FAILURE);
 			}
 
@@ -81,7 +81,7 @@ public class EventoAction extends ActionSupport {
 				eventoDAO.merge(eventoAlteraParams.getEvento());
 				eventoAlteraParams = (EventoAlteraParams) SpringUtil.getBean("eventoAlteraParams");
 				addActionMessage(MSG_EVENTO_ALTERA_SUCESSO);
-			} catch (Exception e) {
+			} catch (IntranetException e) {
 				addActionMessage(MSG_EVENTO_ALTERA_FAILURE);
 			}
 

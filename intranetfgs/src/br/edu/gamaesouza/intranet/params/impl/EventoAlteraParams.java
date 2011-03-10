@@ -2,8 +2,11 @@ package br.edu.gamaesouza.intranet.params.impl;
 
 import java.util.Calendar;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.edu.gamaesouza.intranet.bean.Evento;
 import br.edu.gamaesouza.intranet.bean.Professor;
+import br.edu.gamaesouza.intranet.dao.EventoDAO;
 import br.edu.gamaesouza.intranet.params.EventoParams;
 import br.edu.gamaesouza.intranet.security.UserData;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
@@ -11,13 +14,15 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 public class EventoAlteraParams implements EventoParams{
 
 	private Integer id;
-	private String titulo;
+	private String title;
 	private String coordenacao;
 	private Calendar dataHoraInicio;
 	private Calendar dataHoraFim;
 	private String local;
 	private String publicoAlvo;
 	private String observacoes;
+	
+	@Autowired EventoDAO eventoDAO;
 	
 	@Override
 	public boolean isEmpty() {
@@ -28,7 +33,7 @@ public class EventoAlteraParams implements EventoParams{
 	public Evento getEvento(){
 		Evento evento = (Evento) SpringUtil.getBean("evento");
 			evento.setId(id);
-			evento.setTitle(titulo);
+			evento.setTitle(title);
 			evento.setCoordenacao(coordenacao);
 			evento.setDatahoraInicio(dataHoraInicio);
 			evento.setDatahoraFim(dataHoraFim);
@@ -40,12 +45,12 @@ public class EventoAlteraParams implements EventoParams{
 		return evento;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setTitle(String titulo) {
+		this.title = titulo;
 	}
 
 	public String getCoordenacao() {

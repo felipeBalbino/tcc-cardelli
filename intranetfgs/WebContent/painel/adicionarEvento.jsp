@@ -134,6 +134,7 @@ function restartTrs(){
 				
 				<div id="contact-form">	
 <s:form name="adicionar" onSubmit="return validaForm()" action="/painel/evento!novo.java" >
+	
 
 	Titulo: 
 	<s:textfield cssStyle="width:80%" name="eventoNovoParams.titulo" id="titulo"></s:textfield>
@@ -145,11 +146,11 @@ function restartTrs(){
 	<br>
 	
 	Data / Hora Inicio: 
-	<sx:datetimepicker cssStyle="width:190px" id="inicio" name="eventoNovoParams.dataHoraInicio" displayFormat="dd/MM/yyyy hh:mm" />
+	<sx:datetimepicker cssStyle="width:190px" id="inicio" name="eventoNovoParams.dataHoraInicio" displayFormat="dd/MM/yyyy HH:mm"/>
 	<br>Utilize o formato da data dd/MM/yyyy hh:mm<br><br>
 	
 	Data / Hora Fim: 
-	<sx:datetimepicker  cssStyle="width:190px"  id="final"name="eventoNovoParams.dataHoraFim" displayFormat="dd/MM/yyyy hh:mm" />
+	<sx:datetimepicker  cssStyle="width:190px"  id="final"name="eventoNovoParams.dataHoraFim" displayFormat="dd/MM/yyyy HH:mm"/>
 	<br>Utilize o formato da data dd/MM/yyyy hh:mm<br><br>
 	
 	<li id="lilocal"><a   href="#" onclick="javascript:inserirlocal()">Inserir Local</a><br><br></li>

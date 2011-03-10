@@ -105,7 +105,7 @@
 
 					<div id="m1" style="text-align: right;width: 98%;" >
 						<ul id="sddm2" style="align: right; width: 100%; margin: 0pt auto;">
-							<li><a href="../jsp/log!out.java">Sair(${sessionScope.pessoa.login})</a></li>
+							<li><a href="../jsp/log!out.java">Sair&nbsp;(${sessionScope.pessoa.login})</a></li>
 							<li><span style="color:#FFFFFF">|</span></li>
 							<li><a href="#" onmouseover="mopen('m3')" onmouseout="mclosetime()">Opções</a>
 								<div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
@@ -121,10 +121,10 @@
 									<% } %>
 									
 									<% if (session.getAttribute("pessoa") instanceof br.edu.gamaesouza.intranet.bean.Aluno){ %>
-										<a href="../painel/disciplinaLetiva!prepare.java">Inscrever-se em <br>Disciplinas</a> 
+										<a href="../painel/disciplinaLetiva!prepare.java">Inscrever-se&nbsp;em <br>Disciplinas</a> 
 									<% } %>
 									
-									<a href="../painel/trocarsenha.jsp">Alterar Senha</a>	
+									<a href="../painel/trocarsenha.jsp">Alterar&nbsp;Senha</a>	
 								</div>
 							</li>
 							<li><span style="color:#FFFFFF">|</span></li>
@@ -150,8 +150,8 @@
 										<li>
 											<a href="#" onmouseover="mopen('m2')" onmouseout="mclosetime()">Links&nbsp;Úteis</a>
 											<div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
-												<a href="../jsp/biblioteca.jsp">Bibliotecas Virtuais / Digitais</a> 
-												<a href="../jsp/revistasletras.jsp">Revistas de Letras / Digitais</a>
+												<a href="../jsp/biblioteca.jsp">Bibliotecas Virtuais&nbsp;/&nbsp;Digitais</a> 
+												<a href="../jsp/revistasletras.jsp">Revistas de Letras&nbsp;/&nbsp;Digitais</a>
 											</div>
 										</li>
 										<li><a href="../jsp/nossahistoria.jsp">História</a></li>

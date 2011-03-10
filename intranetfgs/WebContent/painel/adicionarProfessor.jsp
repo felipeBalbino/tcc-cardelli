@@ -40,6 +40,7 @@ width:295px;
 
 
 <script type="text/javascript">
+
  function restartTrs(){
 	document.getElementById("nome").style.backgroundColor = "transparent";
  	document.getElementById("email").style.backgroundColor = "transparent";
@@ -126,6 +127,24 @@ width:295px;
          	return false;
 		}
 }
+ 
+ function selecionar_tudo(){
+	 document.getElementById("ocultartudo").style.display = "inline";
+	 document.getElementById("selecionartudo").style.display = "none";
+	   for (i=0;i<document.f1.elements.length;i++)
+	      if(document.f1.elements[i].type == "checkbox")
+	         document.f1.elements[i].checked=1
+	} 
+ 
+ function deselecionar_tudo(){
+	 document.getElementById("ocultartudo").style.display = "none";
+	 document.getElementById("selecionartudo").style.display = "inline";
+	   for (i=0;i<document.f1.elements.length;i++)
+	      if(document.f1.elements[i].type == "checkbox")
+	         document.f1.elements[i].checked=0
+	} 
+
+	
 
 </script>
 
@@ -158,7 +177,7 @@ width:295px;
 					</div>	
 					
 					<div id="contact-form">
-						<s:form action="/painel/professor!save.java">
+						<s:form name="f1" action="/painel/professor!save.java">
 							Nome: 		<s:textfield id="nome"      name="professorNovoParams.nome"     ></s:textfield>
 							Matrícula:  <s:textfield id="matricula" name="professorNovoParams.matricula"></s:textfield>			
 							Login: 		<s:textfield id="login"     name="professorNovoParams.login"    ></s:textfield>
@@ -170,7 +189,11 @@ width:295px;
 								<br><br>
 								<b>Regras</b>
 								<hr width="100%">
-								<table>
+								<div style="text-align: right;">
+									<div id="selecionartudo" class="selecionartudo" ><a style="color:#666666;cursor:pointer;" onclick="selecionar_tudo()" >Marcar Todas</a></div>
+									<div id="ocultartudo" class="ocultartudo"><a style="cursor:pointer;color:#666666;" onclick="deselecionar_tudo()" >Desmarcar Todas</a></div>
+								</div>
+								<table id="f1">
 									<c:set value="0" var="cont"></c:set>
 										<s:iterator value="rules" status="st" var="rule">
 											<c:if test="${cont == 0}">
@@ -191,5 +214,11 @@ width:295px;
 					</s:form>
 			</div>					
 </div>
+
+<!-- Necessário para Ocular Inicialmente a div Ocultar tudo -->
+<script type="text/javascript">
+	document.getElementById("ocultartudo").style.display = "none";
+</script>
+
 </body>
 </html>

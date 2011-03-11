@@ -3,26 +3,16 @@ package br.edu.gamaesouza.intranet.action;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import java.util.List;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
-
-
-
-
 import br.edu.gamaesouza.intranet.bean.Arquivo;
 import br.edu.gamaesouza.intranet.bean.Disciplina;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
-
 import br.edu.gamaesouza.intranet.bean.Professor;
 import br.edu.gamaesouza.intranet.dao.ArquivoDAO;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
-
 import br.edu.gamaesouza.intranet.mail.EnviarEmail;
 import br.edu.gamaesouza.intranet.security.UserData;
-
 import br.edu.gamaesouza.intranet.utils.ArquivoUtil;
 import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
@@ -40,20 +30,16 @@ public class UploadAction extends ActionSupport {
 	private static final String RULE_UPLOAD_LISTA = "RULE_UPLOAD_LISTA";
 	private static final String RULE_UPLOAD_DELETA = "RULE_UPLOAD_DELETA";
 	
-	@Autowired private Arquivo arquivo;
+	
 	private Integer materia;
 	private Integer semestre;
-	
 	private Integer idarquivo;
-	
-
 	private Integer ano =  Calendar.getInstance().get(Calendar.YEAR);
 	private Integer id;
 	private String turno;
 	
 	private List<Arquivo> arquivos;
 	private List<Disciplina> disciplinas;
-	
 	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
 	private List<Integer> anos  = new ArrayList<Integer>();
 	private List<Integer> semestres = new ArrayList<Integer>();
@@ -62,16 +48,14 @@ public class UploadAction extends ActionSupport {
 	@Autowired private ArquivoDAO arquivoDAO;
 	@Autowired private DisciplinaDAO disciplinaDAO;
 	@Autowired private EnviarEmail enviarEmail;
-	
+	@Autowired private Arquivo arquivo;
 	
 	public String prepare() throws Exception {
-		
 		setAnos(FormUtil.getAnosList(1));
 		setSemestres(FormUtil.getSemestresList());
 		disciplinas = disciplinaDAO.getAll();
 		setTurnos(FormUtil.getTurnosList());
 		return "adicionarArquivo";
-		
 	}
 	
 	

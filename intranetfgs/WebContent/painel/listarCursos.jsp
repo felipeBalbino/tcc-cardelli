@@ -63,7 +63,7 @@ if(i == j) $(this).hide('slow');
 			<td><s:textfield name="cursoSearchParams.cursoNome" id="cursoSearchParams.cursoNome"></s:textfield></td>
 			<td>Disciplina:</td>
 			<td><sx:autocompleter id="cursoSearchParams.disciplinaNome" name="cursoSearchParams.disciplinaNome" list="allDisciplinas" listValue="nome" listKey="nome" headerKey="" headerValue=""></sx:autocompleter></td>
-			<td><s:submit></s:submit></td>
+			<td><s:submit value="Pesquisar"></s:submit></td>
 		</tr>
 	</table>  
 	 

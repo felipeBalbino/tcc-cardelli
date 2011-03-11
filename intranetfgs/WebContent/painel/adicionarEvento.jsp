@@ -110,9 +110,6 @@ function restartTrs(){
 </head>
 <body>
 
-<s:actionmessage/>
-
-
 <div id="experience" >
 					<div id="explanation">
 						<h3>
@@ -127,8 +124,8 @@ function restartTrs(){
 	Clique em OK, feche a janela com a tela Inserir arquivo e continue a criar ou a alterar a sua matéria.
 	
 </p>
-						<div id="mensagem_ocultos" style="display:none;color:red;"><p align="center">O(s) Campo(s) em vermelhor é(são) requirido(s).</p></div>
-						
+						<div id="mensagem_ocultos" style="display:none;color:red;"><p align="center">O(s) Campo(s) em vermelhor é(são) requerido(s).</p></div>
+						<div style="color:red;"><p align="center"><s:actionmessage/></p></div>
 					</div>	
 				
 				<div id="contact-form">	

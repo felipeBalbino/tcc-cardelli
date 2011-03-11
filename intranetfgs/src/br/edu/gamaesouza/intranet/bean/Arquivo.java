@@ -3,8 +3,6 @@ package br.edu.gamaesouza.intranet.bean;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Calendar;
-
-import javax.activation.FileDataSource;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

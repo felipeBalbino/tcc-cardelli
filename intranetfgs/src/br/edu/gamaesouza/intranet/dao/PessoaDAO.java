@@ -97,7 +97,6 @@ public class PessoaDAO {
 	public void save(Professor professor) throws IntranetException{
 		Session session = CustomSession.getSession();
 		session.save(professor);
-		
 		Transaction transaction = session.beginTransaction();
 		transaction.commit();
 		session.close();

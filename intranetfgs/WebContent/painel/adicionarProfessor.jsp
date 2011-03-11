@@ -72,7 +72,7 @@ width:295px;
  function validaForm(){
 	 restartTrs();
          restartMensagemErro();
-         d = document.registra;
+         d = document.f1;
          var erro = false;
          //validar nome
          if (d.nome.value == ""){
@@ -103,12 +103,6 @@ width:295px;
                    d.email.focus();
                    erro = true;
          }
-
-         if (d.email2.value == ""){
-             document.getElementById("email2").style.backgroundColor = "#FF6A6A";
-             d.email.focus();
-             erro = true;
-   }
 
          //validar email(verificar caracteres)
          parte1 = d.email.value.indexOf("@");
@@ -177,7 +171,7 @@ width:295px;
 					</div>	
 					
 					<div id="contact-form">
-						<s:form name="f1" action="/painel/professor!save.java">
+						<s:form name="f1" action="/painel/professor!save.java" onSubmit="return validaForm()">
 							Nome: 		<s:textfield id="nome"      name="professorNovoParams.nome"     ></s:textfield>
 							Matrícula:  <s:textfield id="matricula" name="professorNovoParams.matricula"></s:textfield>			
 							Login: 		<s:textfield id="login"     name="professorNovoParams.login"    ></s:textfield>
@@ -209,8 +203,9 @@ width:295px;
 									  		<c:set value="${cont + 1}" var="cont"></c:set>
 										</s:iterator>
 								</table>
-								<s:submit></s:submit>
+								
 							</div>
+							<s:submit></s:submit>
 					</s:form>
 			</div>					
 </div>

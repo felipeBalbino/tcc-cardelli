@@ -20,8 +20,7 @@ float:left;
 width:340px;
 }
 
-#email {background:transparent url(../images/profile_ico_transparent.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-#senha {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
+#email {background:transparent url(../images/ico_mail.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
 
 
 
@@ -38,39 +37,45 @@ width:295px;
 </style>
 <script type="text/javascript">
  function restartTrs(){
-	document.getElementById("login").style.backgroundColor = "transparent";
- 	document.getElementById("senha").style.backgroundColor = "transparent";
+	document.getElementById("email").style.backgroundColor = "transparent";
  }
 
  function restartMensagemErro(){
-                   document.getElementById("login_ocultos").style.display = "none";
-		  		   document.getElementById("senha_ocultos").style.display = "none";
+		  document.getElementById("email_ocultos").style.display = "none";
+		  document.getElementById("email2_ocultos").style.display = "none";
 
  }
 
  function validaForm(){
 	 restartTrs();
          restartMensagemErro();
-         d = document.ouvidoria;
+         d = document.recover;
          var erro = false;
-         //validar login
-         if (d.login.value == ""){
-	           document.getElementById("login").style.backgroundColor = "#FF6A6A";
-                   d.login.focus();
+
+         //validar email
+         if (d.email.value == ""){
+                   document.getElementById("email").style.backgroundColor = "#FF6A6A";
+                   d.email.focus();
                    erro = true;
          }
-         //validar senha
-         if (d.senha.value == ""){
-                  document.getElementById("senha").style.backgroundColor = "#FF6A6A";
-                  d.senha.focus();
-                  erro = true;
+
+
+         //validar email(verificar caracteres)
+         parte1 = d.email.value.indexOf("@");
+         parte2 = d.email.value.indexOf(".");
+         parte3 = d.email.value.length;
+         if (!(parte1 >= 3 && parte2 >= 6 && parte3 >= 9)) {
+                   document.getElementById("email").style.backgroundColor = "#FF6A6A";
+                   document.getElementById("email2_ocultos").style.display = "inline";
+                   d.email.focus();
+                   erro = true;
          }
 
          
 		if (erro != true) {
          	return true;
 		}else{
-			document.getElementById("mensagem_ocultos").style.display = "inline";
+			document.getElementById("email_ocultos").style.display = "inline";
          	return false;
 		}
 }
@@ -89,22 +94,23 @@ width:295px;
 					<div id="explanation">
 						<h3>
 							<strong>
-								Efetue seu login para poder acessar a área restrita do Sistema.
+								Esqueceu a sua senha?
 							</strong>
 						</h3>
-						<p>Aréa reservada aos alunos e professores da faculdade Gama e Souza.<br>
-							<img src="../images/alert-ico.gif"> Lembre-se: sua senha de acesso é secreta; não a informe a ninguém.
+						<p>Para redefinir a senha, digite o endereço de e-mail que você usava para acessar o sistema anteriormente.<br> Um email será enviado para este email com instruções de acesso.<br>
+							<br><br><img src="../images/alert-ico.gif"> Lembre-se: sua senha de acesso é secreta; não a informe a ninguém.
 	A FGS jamais solicitará sua senha por e-mail ou por telefone. <br><br> Primeira vez? <a href="../jsp/log!prepare.java" style="color:red;"><b>Registre-se<b></b></a> 
 						</p>
-						<div id="login_ocultos" style="display:none;color:red;"><p align="center">Campo login é requirido.</p></div>
-						<div id="senha_ocultos" style="display:none;color:red"><p align="center">Campo senha é requirido.</p></div>
+							<div id="email_ocultos" style="display:none;color:red"><p align="center">Campo email é requerido.</p></div>
+							<div id="email2_ocultos" style="display:none;color:red"><p align="center">Campo email com caracteres invalidos.</p></div>
+							
 						
 					</div>	
 					<br><br>
 					<div id="contact-form">
-						<s:form method="post" action="../jsp/log!recuperarSenha.java">
-							E-Mail: <s:textfield name="email" id="email"></s:textfield>
-							<sx:submit align="left" value="Entrar" label="RecuperarSenha"></sx:submit>
+						<s:form name="recover" method="post" action="../jsp/log!recuperarSenha.java" onSubmit="return validaForm()">
+							Endereço de e-mail: <s:textfield name="email" id="email"></s:textfield>
+							<sx:submit align="left" value="Redefinir" label="RecuperarSenha"></sx:submit>
 						</s:form>
 					</div>		
 		</div>

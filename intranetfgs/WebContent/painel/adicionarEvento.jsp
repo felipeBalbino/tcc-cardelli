@@ -21,7 +21,6 @@ width:340px;
 
 #titulo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
 #coorden {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-
 #inicio {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
 #final {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
 #local {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}

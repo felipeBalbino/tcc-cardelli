@@ -33,13 +33,7 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	private static final String RULE_DISCIPLINA_LETIVA_ALTERA = "RULE_DISCIPLINA_LETIVA_ALTERA";
 	private static final String RULE_DISCIPLINA_LETIVA_DELETE = "RULE_DISCIPLINA_LETIVA_DELETE";
 
-	private Integer id;
-	private Integer materia;
-	private Integer professorid;
-	private Integer semestre;
-	private String turno;
-	private Integer ano =  Calendar.getInstance().get(Calendar.YEAR);
-	
+	private Integer id;	
 	
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	private List<Integer> anos  = new ArrayList<Integer>();
@@ -110,15 +104,12 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	public String alterar() throws Exception{
 		UserData.grantAccess(RULE_DISCIPLINA_LETIVA_ALTERA);
 		try {
-			Disciplina disc = disciplinaDAO.getDisciplinaById(disciplina.getId());
-			disciplinaLetiva.setDisciplina(disc);
-			disciplinaLetiva.setSemestre( semestre );
-			disciplinaLetiva.setTurno( turno );
-			disciplinaLetiva.setAno( ano );
-			disciplinaLetiva.setId( id );
+			disciplinaLetiva = disciplinaDAO.getDisciplinaLetivaById(id);
 			disciplinaLetiva.setProfessor(pessoaDao.getProfessorById(professor.getId()));
 			disciplinaDAO.updateDisciplinaLetiva(disciplinaLetiva);	
+			
 			disciplinaLetiva = (DisciplinaLetiva) SpringUtil.getBean("disciplinaLetiva");
+			
 			addActionMessage("Disciplina Letiva alterada com sucesso");
 		} catch (IntranetException e1) {
 			// TODO Falta Implementar
@@ -142,45 +133,7 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	}
 	
 
-	public Integer getMateria() {
-		return materia;
-	}
-
-
-	public void setMateria(Integer materia) {
-		this.materia = materia;
-	}
-
-
-	public Integer getSemestre() {
-		return semestre;
-	}
-
-
-	public void setSemestre(Integer semestre) {
-		this.semestre = semestre;
-	}
-
-
-	public String getTurno() {
-		return turno;
-	}
-
-
-	public void setTurno(String turno) {
-		this.turno = turno;
-	}
-
-
-	public Integer getAno() {
-		return ano;
-	}
-
-
-	public void setAno(Integer ano) {
-		this.ano = ano;
-	}
-
+	
 
 	public DisciplinaLetiva getDisciplinaLetiva() {
 		return disciplinaLetiva;
@@ -300,15 +253,6 @@ public class DisciplinaLetivaAction extends ActionSupport{
 		return pessoaDao;
 	}
 	
-	
-	public Integer getProfessorid() {
-		return professorid;
-	}
-
-
-	public void setProfessorid( Integer professorid ) {
-		this.professorid = professorid;
-	}
 
 
 	public Professor getProfessor() {

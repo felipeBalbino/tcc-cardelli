@@ -83,9 +83,7 @@ public class ProfessorAction extends ActionSupport {
 				addActionMessage("Professor deletada com sucesso");
 				
 			} catch (Exception e) {
-				
 				addActionMessage("Não foi possivel deletar o professor, ocorreu um erro interno no Servidor");
-				
 			}
 			return lista();
 	

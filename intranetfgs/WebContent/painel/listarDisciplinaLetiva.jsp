@@ -110,16 +110,12 @@ if(i == j) $(this).hide('slow');
 								<table>		
 									<tr>
 										<td><s:hidden name="id" id="id" value="%{id}"></s:hidden></td>
-										<td>Ano: <s:property  value="%{ano}" /><br></td>
-										<td>Turno:<br><sx:autocompleter  headerKey="-1"  headerValue=""  id="turno" name="turno" list="turnos" /><br></td>
-										<td>Semestre:<br><sx:autocompleter  headerKey="-1"  headerValue="" id="semestre" name="semestre" list="semestres" /><br></td>
-										<td>Disciplina:<br><sx:autocompleter headerKey="-1" headerValue=""  id="materia" list="disciplinas" name="disciplina.id"  listKey="id" listValue="nome" /><br></td>
-										<td>Professor:<br><sx:autocompleter headerKey="-1" headerValue=""  id="professor" list="professores" name="professor.id"  listKey="id" listValue="nome" /><br></td>
-												
+									</tr>
+									<tr>	
+										<td>Professor:<br><sx:autocompleter headerKey="-1" headerValue=""  id="professor" list="professores" name="professor.id"  listKey="id" listValue="nome" /><br></td>	
+									</tr>	
+									<tr>
 										<td><s:submit align="left" value="Alterar"></s:submit></td>
-										
-												
-										
 									</tr>	
 											
 								</table>

@@ -160,7 +160,8 @@ public class LoginAction extends ActionSupport {
 			}catch(IntranetException e){
 				addActionMessage("Ocorreu um erro interno no Servidor. Um e-mail foi enviado ao administrador reportando o erro.");
 			}catch(Exception e){
-				addActionMessage("E-mail não cadastrado no Sistema");
+				addActionMessage("E-mail não confere com nenhum email cadastrado em nosso base.");
+				return "recuperar";
 			}
 			
 			return "login";

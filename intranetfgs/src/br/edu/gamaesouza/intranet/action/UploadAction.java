@@ -185,16 +185,7 @@ public class UploadAction extends ActionSupport {
 	public String buscarDisciplinasProfessor() throws Exception{
 		semestres = FormUtil.getSemestresList();
 		turnos = FormUtil.getTurnosList();
-
-		
 		disciplinasLetivas = disciplinaDAO.getDisciplinasLetivas(ano, semestre,turno,UserData.getLoggedUser());
-		
-		
-		for(DisciplinaLetiva dl : disciplinasLetivas){
-			System.out.println(dl.getId() + " " + dl.getDisciplina().getNome());
-		}
-		
-		System.out.println(disciplinasLetivas.size() + " TAMANHO");
 		
 		return prepare();
 		

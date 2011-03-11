@@ -76,7 +76,7 @@
 </head>
 <body>
 
-	<table width="100%" align="center">
+	<table width="97%" align="center">
 		<tr>
 			<td>
 				<div id="content">
@@ -88,7 +88,7 @@
 					</table>
 
 				<c:if test="${sessionScope.pessoa == null}">
-					<div id="m1" style="text-align: right">
+					<div id="m1" style="text-align: right;width: 98%;" >
 						<ul id="sddm2" style="align: right; width: 100%; margin: 0pt auto;">	
 							<li><a href="../jsp/log!prepare.java">Registrar</a></li>
 							<li><span style="color:#FFFFFF">|</span></li>
@@ -101,8 +101,6 @@
 				</c:if> 
 		
 				<c:if test="${sessionScope.pessoa != null}">
-
-
 					<div id="m1" style="text-align: right;width: 98%;" >
 						<ul id="sddm2" style="align: right; width: 100%; margin: 0pt auto;">
 							<li><a href="../jsp/log!out.java">Sair&nbsp;(${sessionScope.pessoa.login})</a></li>

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import javax.activation.FileDataSource;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.servlet.ServletContext;
+
+import org.apache.struts2.ServletActionContext;
 
 @Entity
 @Table
@@ -129,10 +133,10 @@ public class Arquivo implements Serializable {
 	}
 
 	public long getUploadFileSize() {
-		   String caminho = "arquivos\\"+url;
-		   File f = new File(caminho);  
-		   System.out.println(f.getAbsolutePath()); 
-		   return f.length();
+		   ServletContext sContext = ServletActionContext.getServletContext();  
+	 	   String diretorio = sContext.getRealPath("/arquivos");
+	 	   File fds = new File(diretorio + "\\" +url); 
+		   return fds.length();
 	}
 	
 }

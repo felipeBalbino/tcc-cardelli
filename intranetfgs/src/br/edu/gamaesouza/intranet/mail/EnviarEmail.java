@@ -10,10 +10,14 @@ import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Part;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.servlet.ServletContext;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,8 +138,7 @@ public class EnviarEmail {
 	
 	public void sendArquivoPeloAluno( Arquivo arquivo, String fileName, Pessoa aluno) throws Throwable{
 
-		configuration = new GmailConfiguration();
-	
+				configuration = new GmailConfiguration();
 				Session session = Session.getInstance(configuration.getConfiguration(), configuration.getAuth());				
 				MimeMessage message = new MimeMessage(session);
 				message.setFrom(new InternetAddress("intranetfgs@gmail.com", "Intranet FGS"));
@@ -143,7 +146,7 @@ public class EnviarEmail {
 	
 				
 				String mensagem = "Prezado "+aluno.getNome()
-					+ "Arquivo da intranet da FGS, enviado de um dos computadores da instituiçaso.";
+					+ ",<br>Arquivo em anexo da intranet da FGS, enviado de um dos computadores da instituição.";
 				String emailContent = "<b>Enviado por </b>" + aluno.getNome();
 				emailContent = emailContent + "<br>";
 				emailContent = emailContent + "<br>";
@@ -153,24 +156,42 @@ public class EnviarEmail {
 				emailContent = emailContent + mensagem;
 				emailContent = emailContent + "<br>";
 				emailContent = emailContent + "<br>";
-				emailContent = emailContent + "<br>";
-				emailContent = emailContent + "<br>";
 				emailContent = emailContent + "Não responda este email, ele foi gerado automaticamente.";
 				emailContent = emailContent + "<br>";
 				emailContent = emailContent + "Att. Equipe CQI";
 					
-				// Cria um novo objeto para cada arquivo, e anexa o arquivo
-					            
-					            FileDataSource fds =   new FileDataSource("/arquivos/"+arquivo.getUrl());
-					            message.setDataHandler(new DataHandler(fds));
-					            message.setFileName(fds.getName());
-					 
-				 
-				message.setSubject("Intranet FGS - Email com Arquivo ");
-				message.setContent(emailContent, "text/html");
-	
-				
-				Transport.send(message);
+
+		 		message.setSubject("Intranet FGS - Email com Arquivo ");  
+		   
+		         MimeMultipart mpRoot = new MimeMultipart("mixed");  
+		         MimeMultipart mpContent = new MimeMultipart("alternative");  
+		         MimeBodyPart contentPartRoot = new MimeBodyPart();  
+		         contentPartRoot.setContent(mpContent);  
+		         mpRoot.addBodyPart(contentPartRoot);  
+		           
+		           
+		         //enviando html  
+		         MimeBodyPart mbp2 = new MimeBodyPart();  
+		         mbp2.setContent(emailContent, "text/html");  
+		         mpContent.addBodyPart(mbp2);  
+		           
+		         
+		        ServletContext sContext = ServletActionContext.getServletContext();  
+		 		String diretorio = sContext.getRealPath("/arquivos");
+		 		
+		         //enviando anexo  
+		         MimeBodyPart mbp3 = new MimeBodyPart();  
+		         FileDataSource fds = new FileDataSource(diretorio + "\\" +arquivo.getUrl());
+		         mbp3.setDisposition(Part.ATTACHMENT);  
+		         mbp3.setDataHandler(new DataHandler(fds));  
+		         mbp3.setFileName(arquivo.getUrl());  
+		           
+		         mpRoot.addBodyPart(mbp3);  
+		           
+		         message.setContent(mpRoot);  
+		         message.saveChanges();  
+		   
+		         Transport.send(message);  
 			
 	    
 	}

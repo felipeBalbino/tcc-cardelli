@@ -97,7 +97,7 @@ public class EnviarEmail {
 					+ ", <br> o professor " + professor.getNome() 
 					+ " adicionou um novo documento em sua disciplina " +  dl.getDisciplina().getNome() 
 					+ " intitulado " + fileName +".<br>" 
-					+ "Para obter o arquivo acesse a intranet da FGS em um dos computadores da instituiÃ§Ã£o.";
+					+ "Para obter o arquivo acesse a intranet da FGS em um dos computadores da instituição.";
 				
 				String emailContent = "<b>Enviado por </b>" + professor.getNome();
 				emailContent = emailContent + "<br>";
@@ -117,7 +117,7 @@ public class EnviarEmail {
 				emailContent = emailContent + "<br>";
 				emailContent = emailContent + "<br>";
 				emailContent = emailContent + "<br>";
-				emailContent = emailContent + "NÃ£o responda este email, ele foi gerado automaticamente.";
+				emailContent = emailContent + "Não responda este email, ele foi gerado automaticamente.";
 				emailContent = emailContent + "<br>";
 				emailContent = emailContent + "Att. Equipe CQI";
 					

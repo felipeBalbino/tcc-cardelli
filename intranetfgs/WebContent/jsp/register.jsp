@@ -192,8 +192,8 @@ width:295px;
 
 						</p>
 						<strong>
-							<div id="mensagem_ocultos" style="display:none;color:red;"><p align="center">O(s) Campo(s) em vermelhor Ã©(sÃ£o) requirido(s).</p></div>
-							<div id="email_ocultos" style="display:none;color:red"><p align="center">Campo email Ã© requirido.</p></div>
+							<div id="mensagem_ocultos" style="display:none;color:red;"><p align="center">O(s) Campo(s) em vermelhor é(são) requerido(s).</p></div>
+							<div id="email_ocultos" style="display:none;color:red"><p align="center">Campo email é requerido.</p></div>
 							<div id="email2_ocultos" style="display:none;color:red"><p align="center">Campo email com caracteres invalidos.</p></div>
 							<div id="senha_nao_confere" style="display:none;color:red"><p align="center">As senhas necessitam ser iguais no campo senha e confirmar senha.</p></div>
 							<div id="email_nao_confere" style="display:none;color:red"><p align="center">Os emails necessitam ser iguais no campo email e confirmar email.</p></div>

@@ -129,7 +129,7 @@ public class UploadAction extends ActionSupport {
 				try {
 					enviarEmail.sendMailToAluno( dl , fileName, UserData.getLoggedUser() );
 				} catch ( Throwable e ) {
-					System.out.println("NÃ£o foi possÃ­vel enviar emails para os alunos");
+					System.out.println("Não foi possível enviar emails para os alunos");
 				}			
 			
 			
@@ -152,7 +152,7 @@ public class UploadAction extends ActionSupport {
 				try {
 					enviarEmail.sendArquivoPeloAluno( arquivo, fileName, UserData.getLoggedUser() );
 				} catch ( Throwable e ) {
-					System.out.println("NÃ£o foi possÃ­vel enviar emails para os alunos");
+					System.out.println("Não foi possível enviar emails para os alunos");
 				}			
 			
 			

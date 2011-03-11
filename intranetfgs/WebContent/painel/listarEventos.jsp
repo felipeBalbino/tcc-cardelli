@@ -121,8 +121,8 @@ if(i == j) $(this).hide('slow');
 							<table width="100%" bgcolor="#FAFAD2">
 								<tr>
 									<td width="1%"><img src="../images/event_icon.png" /></td>
-									<td width="91%" style="font-size: 10px;font-weight:bold"> <s:property  value="title" /> </td>
-									<td width="8%" align="right">
+									<td width="88%" style="font-size: 10px;font-weight:bold"> <s:property  value="title" /> </td>
+									<td width="11%" align="right">
 										<a title="Exibir evento" class="exibir">
 											<img src="../images/open.png" />
 										</a>

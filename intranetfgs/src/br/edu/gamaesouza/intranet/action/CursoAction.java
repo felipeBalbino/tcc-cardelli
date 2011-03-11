@@ -28,7 +28,7 @@ public class CursoAction extends ActionSupport {
 	private static final String MSG_CURSO_DELETA_INSUCESSO = "Ocorreu um erro interno no servidor. Não foi possível deletar o curso.";
 	
 	private static final String MSG_CURSO_ALTERA_SUCESSO = "Curso alterado com sucesso!";
-	private static final String MSG_CURSO_ALTERA_FAILURE = "Ocorreu um erro interno no servidor. NÃ£o foi possível alterar o curso.";
+	private static final String MSG_CURSO_ALTERA_FAILURE = "Ocorreu um erro interno no servidor. Não foi possível alterar o curso.";
 
 	private static final String RULE_CURSO_NOVO = "RULE_CURSO_NOVO";
 	private static final String RULE_CURSO_LISTA = "RULE_CURSO_LISTA";

@@ -44,7 +44,7 @@ if(i == j) $(this).hide('slow');
 <table width="100%">
 	<tr>
 		<td><b>Eventos</b><hr></td>
-		<td><b>NotÃ­cias</b><hr></td>
+		<td><b>Notícias</b><hr></td>
 	</tr>
 	
 	<tr>
@@ -104,7 +104,7 @@ if(i == j) $(this).hide('slow');
 									
 									<c:if test="${publicoAlvoComQuebra != ''}">
 									<tr>	
-										<td><b>PÃºblico Alvo: </b><s:property escapeHtml="false" value="publicoAlvoComQuebra" /></td>	
+										<td><b>Publico Alvo: </b><s:property escapeHtml="false" value="publicoAlvoComQuebra" /></td>	
 									</tr>
 									</c:if>
 					
@@ -133,8 +133,8 @@ if(i == j) $(this).hide('slow');
 							<table width="100%" bgcolor="#FAFAD2">
 								<tr>
 									<td width="1%"><img src="../images/news_icon.png" /></td>
-									<td width="91%" style="font-size: 10px;font-weight:bold"> <s:property  value="title" /> </td>
-									<td width="8%" align="right"><a class="exibir"><img src="../images/open.png" /></a><a  class="ocultar"><img src="../images/close.png" /></a></td>	
+									<td width="88%" style="font-size: 10px;font-weight:bold"> <s:property  value="title" /> </td>
+									<td width="11%" align="right"><a class="exibir"><img src="../images/open.png" /></a><a  class="ocultar"><img src="../images/close.png" /></a></td>	
 								</tr>					
 							</table>
 						</td>

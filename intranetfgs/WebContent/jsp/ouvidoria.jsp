@@ -132,9 +132,9 @@ width:295px;
 	 
  function Telefone(v){
 	 
-	  v=v.replace(/\D/g,""); //Remove tudo o que nÃ£o Ã© dÃ­gito
+	  v=v.replace(/\D/g,""); 
 	 
-	  v=v.replace(/^(\d\d)(\d{4})(\d{4})/g,"($1)$2-$3");//Coloca parÃªnteses em volta dos dois primeiros dÃ­gitos
+	  v=v.replace(/^(\d\d)(\d{4})(\d{4})/g,"($1)$2-$3");
 	 
 	  return v;
 	 

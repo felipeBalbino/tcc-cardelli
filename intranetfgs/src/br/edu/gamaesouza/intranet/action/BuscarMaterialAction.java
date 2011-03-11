@@ -89,7 +89,7 @@ public class BuscarMaterialAction extends ActionSupport {
 				try {
 					enviarEmail.sendArquivoPeloAluno( arquivo, fileName, UserData.getLoggedUser() );
 				} catch ( Throwable e ) {
-					System.out.println("NÃ£o foi possível enviar emails para os alunos");
+					System.out.println("Não foi possível enviar emails para os alunos");
 				}			
 			
 			

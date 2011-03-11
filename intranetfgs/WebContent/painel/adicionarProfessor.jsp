@@ -169,9 +169,9 @@ width:295px;
 
 						</p>
 						<strong>
-							<div id="mensagem_ocultos" style="display:none;color:red;"><p align="center">O(s) Campo(s) em vermelhor Ã©(sÃ£o) requirido(s).</p></div>
-							<div id="email_ocultos" style="display:none;color:red"><p align="center">Campo email Ã© requirido.</p></div>
-							<div id="email2_ocultos" style="display:none;color:red"><p align="center">Campo email com caracteres invalidos.</p></div>
+							<div id="mensagem_ocultos" style="display:none;color:red;"><p align="center">O(s) Campo(s) em vermelho(s) é(são) requerido(s).</p></div>
+							<div id="email_ocultos" style="display:none;color:red"><p align="center">Campo email é requerido.</p></div>
+							<div id="email2_ocultos" style="display:none;color:red"><p align="center">Campo email com caracteres inválidos.</p></div>
 							<b style="color:red;align:center;"><s:actionmessage/></b>
 						</strong>
 					</div>	

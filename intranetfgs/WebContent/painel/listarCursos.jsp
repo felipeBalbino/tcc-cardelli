@@ -83,11 +83,11 @@ if(i == j) $(this).hide('slow');
 							<img src="../images/event_icon.png" />
 						</td>
 						
-						<td width="91%" style="font-size: 10px; font-weight: bold">
+						<td width="88%" style="font-size: 10px; font-weight: bold">
 							<s:property value="nome" />
 						</td>
 					
-						<td width="8%" align="right">
+						<td width="11%" align="right">
 							<a title="Exibir evento" class="exibir"> 
 								<img src="../images/open.png" /> 
 							</a> 

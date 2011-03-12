@@ -7,34 +7,42 @@
 <head>
 <style type="text/css">
 #experience { 
-padding:30px; 
-position:relative;
-padding:17px 0px 0 39px;
+	padding:30px; 
+	position:relative;
+	padding:17px 0px 0 39px;
 }
-
 
 #explanation { 
-float:left;
-width:340px;
+	float:left;
+	width:340px;
 }
 
-
-#namearquivo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#arquivo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#semestre {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-#turno {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-#materia {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-
-
-
-
-
+#namearquivo {
+	background:transparent no-repeat 2% 50%; 
+	padding:2px 0px 2px 0px;
+}
+#arquivo {
+	background:transparent no-repeat 2% 50%; 
+	padding:2px 0px 2px 0px;
+}
+#semestre {
+	background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; 
+	padding:2px 0px 2px 25px;
+}
+#turno {
+	background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; 
+	padding:2px 0px 2px 25px;
+}
+#materia {
+	background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; 
+	padding:2px 0px 2px 25px;
+}
  
 #contact-form { 
-border-left:1px solid #313b45; 
-margin-left:370px; 
-padding-left:30px; 
-width:295px; 
+	border-left:1px solid #313b45; 
+	margin-left:370px; 
+	padding-left:30px; 
+	width:295px; 
 }
 
 
@@ -46,10 +54,9 @@ width:295px;
 <script type="text/javascript">
 
 function buscarDisciplinas(semestre,ano,turno) {    
-	         location.href = "upload!buscarDisciplinasProfessor.java?ano="+ano+"&semestre=" +semestre+"&turno=" +turno ;
+	location.href = "upload!buscarDisciplinasProfessor.java?ano="+ano+"&semestre=" +semestre+"&turno=" +turno ;
 	      
 }
-
 
 function restartTrs(){
 	document.getElementById("namearquivo").style.backgroundColor = "transparent";
@@ -103,10 +110,7 @@ function restartTrs(){
                   d.materia.focus();
                   erro = true;
          }
-         
 
-
-         
 		if (erro != true) {
 			document.getElementById("mensagem_carregando").style.display = "inline";
          	return true;
@@ -131,30 +135,26 @@ function restartTrs(){
 						</strong>
 						</h3>
 						<p> 
-    Na tela Criar matéria ou Editar matéria, clique no ícone Inserir arquivo, disponível nos campos Imagem de índice, Resumo e Texto da matéria.
-    Numa nova janela, será exibida a tela Inserir arquivo com a lista de todos os arquivos existentes no banco de dados do Publique!. Se o arquivo desejado ainda não estiver listado, clique em Enviar novo. A tela Enviar arquivo será exibida.
- 	Clique em OK, feche a janela com a tela Inserir arquivo e continue a criar ou a alterar a sua matéria.
-	Clique em OK, feche a janela com a tela Inserir arquivo e continue a criar ou a alterar a sua matéria.
-	
-</p>
+						    Na tela Criar matéria ou Editar matéria, clique no ícone Inserir arquivo, disponível nos campos Imagem de índice, Resumo e Texto da matéria.
+						    Numa nova janela, será exibida a tela Inserir arquivo com a lista de todos os arquivos existentes no banco de dados do Publique!. Se o arquivo desejado ainda não estiver listado, clique em Enviar novo. A tela Enviar arquivo será exibida.
+						 	Clique em OK, feche a janela com a tela Inserir arquivo e continue a criar ou a alterar a sua matéria.
+							Clique em OK, feche a janela com a tela Inserir arquivo e continue a criar ou a alterar a sua matéria.
+						</p>
 						<div id="mensagem_ocultos" style="display:none;color:red;"><p align="center">O(s) Campo(s) em vermelhor é(são) requirido(s).</p></div>
 						<div id="mensagem_carregando" style="display:none;color:red;"><p align="center">O arquivo esta sendo enviado para o servidor<br>O tempo de envio é relativo ao tamanho do arquivo.<br><img src="../images/load.gif"></p></div>
 						
 					</div>	
 					
 					<div id="contact-form">
-<s:form name="adicionar" onSubmit="return validaForm()" action="/painel/upload!send.java" enctype="multipart/form-data" method="post">
-
-	Ano: <s:property  value="%{ano}" /><br>
-	Turno:<br><sx:autocompleter onchange="javascript:buscarDisciplinas(semestre.value,'%{ano}',this.value)" headerKey="-1"  headerValue=""  id="turno" name="turno" list="turnos" /><br>
-	Semestre:<br><sx:autocompleter onchange="javascript:buscarDisciplinas(this.value,'%{ano}',turno.value)" headerKey="-1"  headerValue="" id="semestre" name="semestre" list="semestres" /><br>
-	Disciplina:<br><sx:autocompleter headerKey="-1" headerValue=""  id="materia" list="disciplinasLetivas" name="materia" value="materia" listKey="disciplina.id" listValue="disciplina.nome" /><br>
-	Nome do Arquivo:<br><s:textfield id="namearquivo" name="arquivo.nome"></s:textfield><br>
-	Arquivo:<br><s:file id="arquivo" name="arquivo.upload"></s:file><br>
-			
-	<s:submit align="left"></s:submit>
-
-</s:form>
+					<s:form name="adicionar" onSubmit="return validaForm()" action="/painel/upload!send.java" enctype="multipart/form-data" method="post">
+						Ano: 				<s:property  value="%{ano}" /><br>
+						Turno:			<br><sx:autocompleter onchange="javascript:buscarDisciplinas(semestre.value,'%{ano}',this.value)" headerKey="-1"  headerValue=""  id="turno" name="turno" list="turnos" /><br>
+						Semestre:		<br><sx:autocompleter onchange="javascript:buscarDisciplinas(this.value,'%{ano}',turno.value)" headerKey="-1"  headerValue="" id="semestre" name="semestre" list="semestres" /><br>
+						Disciplina:		<br><sx:autocompleter headerKey="-1" headerValue=""  id="materia" list="disciplinasLetivas" name="materia" value="materia" listKey="disciplina.id" listValue="disciplina.nome" /><br>
+						Nome do Arquivo:<br><s:textfield id="namearquivo" name="arquivo.nome"></s:textfield><br>
+						Arquivo:		<br><s:file 	 id="arquivo" 	  name="arquivo.upload"></s:file><br>	
+						<s:submit align="left"></s:submit>
+					</s:form>
 </div>		
 		</div>
 </body>

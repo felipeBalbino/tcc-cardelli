@@ -2,6 +2,7 @@ package br.edu.gamaesouza.intranet.bean;
 
 import java.io.File;
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,6 +46,9 @@ public class Arquivo implements Serializable {
 	
 	@Transient
     private String uploadFileName;
+	
+	@Transient
+    private String uploadFileSize;
     
 	@Transient
 	private String uploadContentType;
@@ -127,14 +131,24 @@ public class Arquivo implements Serializable {
 		this.dataEnvio = dataEnvio;
 	}
 
-	public void setUploadFileSize(long uploadFileSize) {
-	}
-
-	public long getUploadFileSize() {
-		   ServletContext sContext = ServletActionContext.getServletContext();  
-	 	   String diretorio = sContext.getRealPath("/arquivos");
-	 	   File fds = new File(diretorio + "\\" +url); 
-		   return fds.length();
-	}
+	public String getUploadFileSize() {
+	    double BASE = 1024, KB = BASE, MB = KB*BASE, GB = MB*BASE;
+	    DecimalFormat df = new DecimalFormat("#.##");
+	    
+	    ServletContext sContext = ServletActionContext.getServletContext();  
+		String diretorio = sContext.getRealPath("/arquivos");
+		File fds = new File(diretorio + "\\" +url); 
+	    	
+	    if(fds.length() >= GB) {
+	         return df.format(fds.length()/GB) + " GB";
+	    }
+	    if(fds.length() >= MB) {
+	         return df.format(fds.length()/MB) + " MB";
+	    }
+	    if(fds.length() >= KB) {
+	         return df.format(fds.length()/KB) + " KB";
+	    }
+	    	return "" + (int)fds.length() + " bytes";
+		}
 	
 }

@@ -16,7 +16,9 @@ import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.mail.EnviarEmail;
 import br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams;
+import br.edu.gamaesouza.intranet.params.impl.EventoAlteraParams;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
+import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -133,10 +135,14 @@ public class LoginAction extends ActionSupport {
 				Map<String, Object> sessao = ActionContext.getContext().getSession();
 				Pessoa pessoa = (Pessoa) sessao.get("pessoa");
 				
-				if(email.equals(pessoa.getEmail()) && senhaAtual.equals(pessoa.getSenha()) && pessoa != null){
+				if(email.equals(pessoa.getEmail()) && 
+				   senhaAtual.equals(pessoa.getSenha()) && 
+				   pessoa != null){
+					
 					pessoa.setSenha(novaSenha);
-					pessoaDAO.update(pessoa);
+					pessoaDAO.merge(pessoa);
 					sessao.put("pessoa", pessoa);
+					pessoa = (Pessoa) SpringUtil.getBean("pessoa");
 					addActionMessage(MSG_ALTERA_SENHA_SUCESSO);
 					
 				}else{
@@ -144,8 +150,7 @@ public class LoginAction extends ActionSupport {
 				
 				}
 			} catch (IntranetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				addActionMessage(MSG_LOGIN_DADOS_INVALIDOS);
 			}
 			
 			return "senha";

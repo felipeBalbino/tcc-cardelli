@@ -21,8 +21,8 @@ width:340px;
 }
 
 #email {background:transparent url(../images/ico_mail.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#senha {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-
+#senhaAtual {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
+#novaSenha {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
 
  
 #contact-form { 
@@ -37,7 +37,8 @@ width:295px;
 
 <script type="text/javascript">
  function restartTrs(){
-	document.getElementById("senha").style.backgroundColor = "transparent";
+	document.getElementById("senhaAtual").style.backgroundColor = "transparent";
+	document.getElementById("novaSenha").style.backgroundColor = "transparent";
  	document.getElementById("email").style.backgroundColor = "transparent";
  }
 
@@ -54,11 +55,17 @@ width:295px;
          d = document.senha;
          var erro = false;
          //validar senha
-         if (d.senha.value == ""){
-                   document.getElementById("senha").style.backgroundColor = "#FF6A6A";
-                   d.senha.focus();
+         if (d.senhaAtual.value == ""){
+                   document.getElementById("senhaAtual").style.backgroundColor = "#FF6A6A";
+                   d.senhaAtual.focus();
                    erro = true;
          }
+
+         if (d.novaSenha.value == ""){
+             document.getElementById("novaSenha").style.backgroundColor = "#FF6A6A";
+             d.novaSenha.focus();
+             erro = true;
+   		}
 
 
          //validar email
@@ -94,8 +101,7 @@ width:295px;
 </head>
 <body>
 
-	<s:actionmessage />
-	<s:actionerror/>
+	
 	
 		
 			<div id="experience">
@@ -105,19 +111,20 @@ width:295px;
 						Alterar senha
 						</strong>
 						</h3>
-						<p>Clique no menu ao lado. Digite a email atual, a nova senha, e clique em "Alterar". <br>Por segurança, recomendamos que você mude sua senha a cada dois meses.</p>
+						<p>Digite o email atual a nova senha, e clique em "Alterar". <br>Por segurança, recomendamos que você mude sua senha a cada dois meses.</p>
 						
 						<div id="mensagem_ocultos" style="display:none;color:red;"><p align="center">O(s) Campo(s) em vermelhor é(são) requirido(s).</p></div>
 						<div id="email_ocultos" style="display:none;color:red"><p align="center">Campo email é requirido.</p></div>
 						<div id="email2_ocultos" style="display:none;color:red"><p align="center">Campo email com caracteres invalidos.</p></div>
-						
+						<div style="color:red"><p align="center"><s:actionmessage /></p></div>
+						<div style="color:red"><p align="center"><s:actionerror/></p></div>
 					</div>	
 					
 					<div id="contact-form">
 					<s:form name="senha" method="post" action="../jsp/log!senha.java" onSubmit="return validaForm()">
 						Email: <s:textfield id="email" name="email"></s:textfield>
-						Senha Atual: <s:password id="senha" name="senhaAtual"></s:password>
-						Nova Senha: <s:password id="senha" name="novaSenha"></s:password>
+						Senha Atual: <s:password id="senhaAtual" name="senhaAtual"></s:password>
+						Nova Senha: <s:password id="novaSenha" name="novaSenha"></s:password>
 						<sx:submit align="left" value="Alterar" label="Log in"></sx:submit>
 					</s:form>
 </div>		

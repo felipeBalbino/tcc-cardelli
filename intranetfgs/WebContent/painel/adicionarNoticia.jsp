@@ -44,38 +44,7 @@ width:295px;
                    document.getElementById("mensagem_ocultos").style.display = "none";
  }
  
- function contarCaracteres(box,valor,campospan){
-		var conta = valor - box.length;
-		document.getElementById(campospan).innerHTML = "Você ainda pode digitar " + conta + " caracteres";
-		if(box.length >= valor){
-			document.getElementById(campospan).innerHTML = "Você não pode mais digitar..";
-			document.getElementById("mensagem").value = document.getElementById("mensagem").value.substr(0,valor);
-		}	
-	}
 
- function contarCaracterestitulo(box,valor,campospan){
-		var conta = valor - box.length;
-		document.getElementById(campospan).innerHTML = "";
-		if(box.length >= valor){
-			document.getElementById(campospan).innerHTML = "Você não pode mais digitar - (Limite 30 caracteres).";
-			document.getElementById("titulo").value = document.getElementById("titulo").value.substr(0,valor);
-		}	
-	}
-	
- function mostrarResultado(box,num_max,campospan){
- 	var contagem_carac = box.length;
- 	if (contagem_carac != 0){
- 		document.getElementById(campospan).innerHTML = contagem_carac + " caracteres digitados";
- 		if (contagem_carac == 1){
- 			document.getElementById(campospan).innerHTML = contagem_carac + " caracter digitado";
- 		}
- 		if (contagem_carac >= num_max){
- 			document.getElementById(campospan).innerHTML = "Limite de caracteres excedido!";
- 		}
- 	}else{
- 		document.getElementById(campospan).innerHTML = "Ainda não temos nada digitado..";
- 	}
- }
  
  function validaForm(){
 	 restartTrs();
@@ -130,10 +99,7 @@ O sistema permite que as informações enviadas sejam armazenadas de forma segur
 						<s:form action="/painel/noticia!save.java" onSubmit="return validaForm()" name="adicionar">
 							Titulo: <s:textfield cssStyle="width:80%" name="noticia.title" id="titulo" onkeypress="contarCaracterestitulo(this.value,30,'sprestante2')"></s:textfield>
 							<span id="sprestante2" style="font-family:Georgia;"></span><br>
-							Mensagem: <s:textarea cssStyle="width:80%; height:200px;" name="noticia.mensagem" id="mensagem" onkeypress="mostrarResultado(this.value,500,'spcontando');contarCaracteres(this.value,500,'sprestante')"></s:textarea>
-							
-							<span id="spcontando" style="font-family:Georgia;">Ainda não temos nada digitado..</span><br />
-							<span id="sprestante" style="font-family:Georgia;"></span>
+							Mensagem: <s:textarea cssStyle="width:80%; height:200px;" name="noticia.mensagem" id="mensagem" ></s:textarea>
 							
 							<s:submit align="left"></s:submit>
 						</s:form>

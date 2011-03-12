@@ -153,7 +153,7 @@ function restartTrs(){
 						Disciplina:		<br><sx:autocompleter headerKey="-1" headerValue=""  id="materia" list="disciplinasLetivas" name="materia" value="materia" listKey="disciplina.id" listValue="disciplina.nome" /><br>
 						Nome do Arquivo:<br><s:textfield id="namearquivo" name="arquivo.nome"></s:textfield><br>
 						Arquivo:		<br><s:file 	 id="arquivo" 	  name="arquivo.upload"></s:file><br>	
-						<s:submit align="left"></s:submit>
+						<s:submit align="left" value="Adicionar"></s:submit>
 					</s:form>
 </div>		
 		</div>

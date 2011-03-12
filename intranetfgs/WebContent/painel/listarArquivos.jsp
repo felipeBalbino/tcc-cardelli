@@ -36,7 +36,7 @@ function deletar(id){
 		<tr>
 		
 			<td><b>Nome do Arquivo</b></td>
-			<td><b>Tamanho(Kb)</b></td>
+			<td><b>Tamanho</b></td>
 			<td><b>Matéria</b></td>
 			<td><b>Turno</b></td>
 			<td><b>Data de Envio</b></td>

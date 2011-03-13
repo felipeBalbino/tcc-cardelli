@@ -1,6 +1,7 @@
 package br.edu.gamaesouza.intranet.bean;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.*;
@@ -27,6 +28,9 @@ public class Pessoa implements Serializable {
 	private Integer matricula;
 
 	private String senha;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar dataUltimoAcesso;
 	
 	@Column(unique = true, nullable = false)
 	private String email;
@@ -97,6 +101,14 @@ public class Pessoa implements Serializable {
 
 	public Integer getMatricula() {
 		return matricula;
+	}
+
+	public void setDataUltimoAcesso(Calendar dataUltimoAcesso) {
+		this.dataUltimoAcesso = dataUltimoAcesso;
+	}
+
+	public Calendar getDataUltimoAcesso() {
+		return dataUltimoAcesso;
 	}
 
 	

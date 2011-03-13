@@ -66,7 +66,7 @@ public class EventoAction extends ActionSupport {
 				eventoNovoParams = (EventoNovoParams) SpringUtil.getBean("eventoNovoParams");
 				addActionMessage(MSG_EVENTO_NOVO_SUCESSO);
 			} catch (IntranetException e) {
-				addActionMessage(MSG_EVENTO_NOVO_FAILURE);
+				addActionError(MSG_EVENTO_NOVO_FAILURE);
 			}
 
 			return lista();
@@ -82,7 +82,7 @@ public class EventoAction extends ActionSupport {
 				eventoAlteraParams = (EventoAlteraParams) SpringUtil.getBean("eventoAlteraParams");
 				addActionMessage(MSG_EVENTO_ALTERA_SUCESSO);
 			} catch (IntranetException e) {
-				addActionMessage(MSG_EVENTO_ALTERA_FAILURE);
+				addActionError(MSG_EVENTO_ALTERA_FAILURE);
 			}
 
 			return lista();
@@ -97,7 +97,7 @@ public class EventoAction extends ActionSupport {
 				eventoDeletaParams = (EventoDeletaParams) SpringUtil.getBean("eventoDeletaParams");
 				addActionMessage(MSG_EVENTO_DELETA_SUCESSO);
 			} catch (Exception e) {
-				addActionMessage(MSG_EVENTO_DELETA_INSUCESSO);
+				addActionError(MSG_EVENTO_DELETA_INSUCESSO);
 			}
 		
 			return lista();

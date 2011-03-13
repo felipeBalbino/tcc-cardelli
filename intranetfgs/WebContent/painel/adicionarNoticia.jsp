@@ -78,7 +78,6 @@ width:295px;
 <title>Intranet - Faculdade Gama & Souza | Adicionar Nova Notícia</title>
 </head>
 <body>
-<s:actionmessage/>
 <div id="experience" >
 					<div id="explanation">
 						<h3>
@@ -91,8 +90,19 @@ width:295px;
 O sistema permite que as informações enviadas sejam armazenadas de forma segura e sigilosa e são essenciais para o devido encaminhamento das demandas e demais comunicações junto aos órgãos responsáveis facilitando um retorno satisfatório das questões apresentadas.
 <br>
 </p>
-						<div id="mensagem_ocultos" style="display:none;color:red;"><p align="center">O(s) Campo(s) em vermelhor é(são) requirido(s).</p></div>
+						<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O(s) Campo(s) em vermelhor é(são) requerido(s).</p></div>
+						<br>
+						<s:if test="hasActionMessages()">
+							<div class="welcome" >
+  							 	<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
+  							</div> 			
+						</s:if>
 						
+						<s:if test="hasActionErrors()">
+							 <div class="errors">
+  							 	<s:actionerror cssStyle="color:red;background-image : url('../images/imgErro.gif');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
+  							</div> 
+						</s:if>
 					</div>	
 					
 					<div id="contact-form">

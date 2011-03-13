@@ -121,32 +121,7 @@ public class UploadAction extends ActionSupport {
 		
 	}
 	
-	public String enviaremail() {
 
-		Arquivo arquivo;
-		try {
-			arquivo = arquivoDAO.getArquivoById(idarquivo);
-			String fileName = arquivo.getNome();
-			addActionMessage("Arquivo enviado com sucesso");
-						
-			arquivo = (Arquivo) SpringUtil.getBean("arquivo");
-			
-			//enviar email dd arquivo para pessoa logada
-		
-				try {
-					enviarEmail.sendArquivoPeloAluno( arquivo, fileName, UserData.getLoggedUser() );
-				} catch ( Throwable e ) {
-					System.out.println("Não foi possível enviar emails para os alunos");
-				}			
-			
-			
-				return lista();
-		} catch (Exception e1) {
-			return lista();
-		}
-		
-	
-}
 	
 	public String buscarDisciplinas() throws Exception{
 		semestres = FormUtil.getSemestresList();

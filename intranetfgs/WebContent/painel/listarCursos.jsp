@@ -54,8 +54,18 @@ if(i == j) $(this).hide('slow');
 <br>
 <b>Filtros de Pesquisa</b>
 <hr></hr>
-<s:actionmessage/>
-<s:actionerror/>
+
+						<s:if test="hasActionMessages()">
+							<div class="welcome" >
+  							 	<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
+  							</div> 			
+						</s:if>
+						
+						<s:if test="hasActionErrors()">
+							 <div class="errors">
+  							 	<s:actionerror cssStyle="color:red;background-image : url('../images/imgErro.gif');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
+  							</div> 
+						</s:if>
 <s:form action="/painel/curso!lista.java">
 	<table>
 		<tr>

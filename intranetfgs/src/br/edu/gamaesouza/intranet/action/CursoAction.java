@@ -67,7 +67,7 @@ public class CursoAction extends ActionSupport {
 				cursoDAO.save(cursoNovoParams.getCurso());
 				addActionMessage(MSG_CURSO_NOVO_SUCESSO);
 			} catch (IntranetException e) {
-				addActionMessage(MSG_CURSO_NOVO_FAILURE);
+				addActionError(MSG_CURSO_NOVO_FAILURE);
 			}
 		
 		return execute();
@@ -80,7 +80,7 @@ public class CursoAction extends ActionSupport {
 				cursoDAO.merge(cursoAlteraParams.getCurso());
 				addActionMessage(MSG_CURSO_ALTERA_SUCESSO);
 			} catch (IntranetException e) {
-				addActionMessage(MSG_CURSO_ALTERA_FAILURE);
+				addActionError(MSG_CURSO_ALTERA_FAILURE);
 			}
 		
 		return lista();
@@ -104,7 +104,7 @@ public class CursoAction extends ActionSupport {
 			cursoDAO.delete(cursoDeletaParams.getCurso());
 			addActionMessage(MSG_CURSO_DELETA_SUCESSO);
 		} catch (IntranetException e) {
-			addActionMessage(MSG_CURSO_DELETA_INSUCESSO);
+			addActionError(MSG_CURSO_DELETA_INSUCESSO);
 		}
 	
 		return lista();

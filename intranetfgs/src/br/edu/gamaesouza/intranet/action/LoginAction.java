@@ -62,11 +62,6 @@ public class LoginAction extends ActionSupport {
 		
 		
 	}
-	
-	
-
-	
-	
 		public String in() {
 
 			Pessoa pessoa = null;
@@ -78,7 +73,7 @@ public class LoginAction extends ActionSupport {
 			}
 
 			if (pessoa == null) {
-				addActionMessage(MSG_LOGIN_DADOS_INVALIDOS);
+				addActionError(MSG_LOGIN_DADOS_INVALIDOS);
 				return "login";
 			} else {
 				Map<String, Object> mapaSessao = ActionContext.getContext().getSession();
@@ -92,13 +87,13 @@ public class LoginAction extends ActionSupport {
 			try {
 				
 				if(pessoaDAO.validarLogin(alunoNovoParams.getLogin())){
-					addActionMessage("Login já existente em nossa base.");	
+					addActionError("Login já existente em nossa base.");	
 					if (pessoaDAO.validarEmail(alunoNovoParams.getEmail()))
-						addActionMessage("Email já existente em nossa base.");
+						addActionError("Email já existente em nossa base.");
 					if (alunoNovoParams.getLogin().length() > 8)
-						addActionMessage("Login do Usuário precisar tem menos de 8 caracteres.");
+						addActionError("Login do Usuário precisar tem menos de 8 caracteres.");
 					if(pessoaDAO.validarMatricula(alunoNovoParams.getMatricula()))
-						addActionMessage("Matrícula já existente em nossa base.");
+						addActionError("Matrícula já existente em nossa base.");
 				}else{
 					pessoaDAO.saveAluno(alunoNovoParams.getAluno());
 					addActionMessage(MSG_REGISTRO_SUCESSO);
@@ -146,11 +141,11 @@ public class LoginAction extends ActionSupport {
 					addActionMessage(MSG_ALTERA_SENHA_SUCESSO);
 					
 				}else{
-					addActionMessage(MSG_LOGIN_DADOS_INVALIDOS);
+					addActionError(MSG_LOGIN_DADOS_INVALIDOS);
 				
 				}
 			} catch (IntranetException e) {
-				addActionMessage(MSG_LOGIN_DADOS_INVALIDOS);
+				addActionError(MSG_LOGIN_DADOS_INVALIDOS);
 			}
 			
 			return "senha";
@@ -163,9 +158,9 @@ public class LoginAction extends ActionSupport {
 				enviarEmail.sendEmailWithLoginAndPassword(email);
 				addActionMessage("Seu login e sua senha foram enviados para o e-mail digitado");
 			}catch(IntranetException e){
-				addActionMessage("Ocorreu um erro interno no Servidor. Um e-mail foi enviado ao administrador reportando o erro.");
+				addActionError("Ocorreu um erro interno no Servidor. Um e-mail foi enviado ao administrador reportando o erro.");
 			}catch(Exception e){
-				addActionMessage("E-mail não confere com nenhum email cadastrado em nosso base.");
+				addActionError("E-mail não confere com nenhum email cadastrado em nosso base.");
 				return "recuperar";
 			}
 			

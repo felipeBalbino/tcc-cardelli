@@ -172,11 +172,6 @@ width:295px;
 <title>Intranet - Faculdade Gama & Souza | Login</title>
 </head>
 <body>
-
-
-	
-	<s:actionerror/>
-	
 		
 			<div id="experience">
 					<div id="explanation">
@@ -192,12 +187,22 @@ width:295px;
 
 						</p>
 						<strong>
-							<div id="mensagem_ocultos" style="display:none;color:red;"><p align="center">O(s) Campo(s) em vermelhor é(são) requerido(s).</p></div>
-							<div id="email_ocultos" style="display:none;color:red"><p align="center">Campo email é requerido.</p></div>
-							<div id="email2_ocultos" style="display:none;color:red"><p align="center">Campo email com caracteres invalidos.</p></div>
-							<div id="senha_nao_confere" style="display:none;color:red"><p align="center">As senhas necessitam ser iguais no campo senha e confirmar senha.</p></div>
-							<div id="email_nao_confere" style="display:none;color:red"><p align="center">Os emails necessitam ser iguais no campo email e confirmar email.</p></div>
-							<div style="color:red;align:center;"><s:actionmessage/></div>
+							<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O(s) Campo(s) em vermelhor é(são) requerido(s).</p></div>
+							<div id="email_ocultos" style="display:none;color:red"><p><img src="../images/imgErro.gif"/>  Campo email é requerido.</p></div>
+							<div id="email2_ocultos" style="display:none;color:red"><p><img src="../images/imgErro.gif"/>  Campo email com caracteres invalidos.</p></div>
+							<div id="senha_nao_confere" style="display:none;color:red"><p><img src="../images/imgErro.gif"/>  As senhas necessitam ser iguais no campo senha e confirmar senha.</p></div>
+							<div id="email_nao_confere" style="display:none;color:red"><p><img src="../images/imgErro.gif"/>  Os emails necessitam ser iguais no campo email e confirmar email.</p></div>
+							<s:if test="hasActionMessages()">
+							<div class="welcome" >
+  							 	<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
+  							</div> 			
+						</s:if>
+						
+						<s:if test="hasActionErrors()">
+							 <div class="errors">
+  							 	<s:actionerror cssStyle="color:red;background-image : url('../images/imgErro.gif');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
+  							</div> 
+						</s:if>
 						</strong>
 					</div>	
 					

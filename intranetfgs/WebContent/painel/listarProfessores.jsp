@@ -135,10 +135,20 @@ if(i == j) $(this).hide('slow');
 <b>Professores</b>
 <hr></hr>
 <strong>
-		<div id="mensagem_ocultos" style="display:none;color:red;"><p align="center">O(s) Campo(s) em vermelho(s) é(são) requerido(s).</p></div>
-		<div id="email_ocultos" style="display:none;color:red"><p align="center">Campo email é requerido.</p></div>
-		<div id="email2_ocultos" style="display:none;color:red"><p align="center">Campo email com caracteres inválidos.</p></div>
-		<b style="color:red;align:center;"><s:actionmessage/></b>
+		<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O(s) Campo(s) em vermelho(s) é(são) requerido(s).</p></div>
+		<div id="email_ocultos" style="display:none;color:red"><p><img src="../images/imgErro.gif"/>  Campo email é requerido.</p></div>
+		<div id="email2_ocultos" style="display:none;color:red"><p><img src="../images/imgErro.gif"/>  Campo email com caracteres inválidos.</p></div>
+		<s:if test="hasActionMessages()">
+							<div class="welcome" >
+  							 	<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
+  							</div> 			
+						</s:if>
+						
+						<s:if test="hasActionErrors()">
+							 <div class="errors">
+  							 	<s:actionerror cssStyle="color:red;background-image : url('../images/imgErro.gif');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
+  							</div> 
+						</s:if>
 </strong>
 <table width="100%">
 				<s:iterator value="professores" var="professor">

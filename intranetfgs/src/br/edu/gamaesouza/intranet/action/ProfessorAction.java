@@ -43,7 +43,7 @@ public class ProfessorAction extends ActionSupport {
 				addActionMessage("Professor adicionado com sucesso.");
 				professorNovoParams = (ProfessorNovoParams) SpringUtil.getBean("professorNovoParams");
 			} catch (Exception e) {
-				addActionMessage("Ocorreu um erro ao tentar adicionar o Professor.");
+				addActionError("Ocorreu um erro ao tentar adicionar o Professor.");
 			}
 
 			return lista();
@@ -52,24 +52,17 @@ public class ProfessorAction extends ActionSupport {
 	}
 	
 	public String editar() {
-
 		UserData.grantAccess(RULE_PROFESSOR_ALTERA);
 		try {
-			
 			professor.setRegras(pessoaDAO.getRuleListByStringList(rulesParam));
 			pessoaDAO.merge(professor);
-			
-
 			professor = (Professor) SpringUtil.getBean("professor");
 
 			addActionMessage("Professor alterado com sucesso.");
 		} catch (Exception e) {
-			addActionMessage("Ocorreu um erro ao tentar alterar o Professor.");
+			addActionError("Ocorreu um erro ao tentar alterar o Professor.");
 		}
-
 		return lista();
-		
-
 	}
 	public String delete() {
 
@@ -83,7 +76,7 @@ public class ProfessorAction extends ActionSupport {
 				addActionMessage("Professor deletada com sucesso");
 				
 			} catch (Exception e) {
-				addActionMessage("Não foi possivel deletar o professor, ocorreu um erro interno no Servidor");
+				addActionError("Não foi possivel deletar o professor, ocorreu um erro interno no Servidor");
 			}
 			return lista();
 	

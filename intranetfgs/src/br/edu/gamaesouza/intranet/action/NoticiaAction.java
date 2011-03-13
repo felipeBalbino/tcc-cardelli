@@ -56,7 +56,7 @@ public class NoticiaAction extends ActionSupport {
 				
 			} catch (Exception e) {
 				
-				addActionMessage("Não foi possivel adicionar a notícia, ocorreu um erro interno no Servidor");
+				addActionError("Não foi possivel adicionar a notícia, ocorreu um erro interno no Servidor");
 
 			}
 
@@ -79,7 +79,7 @@ public class NoticiaAction extends ActionSupport {
 				
 			} catch (Exception e) {
 				
-				addActionMessage("Não foi possivel alterar a notícia, ocorreu um erro interno no Servidor");
+				addActionError("Não foi possivel alterar a notícia, ocorreu um erro interno no Servidor");
 
 			}
 
@@ -100,7 +100,7 @@ public class NoticiaAction extends ActionSupport {
 				
 			} catch (Exception e) {
 				
-				addActionMessage("Não foi possivel deletar a notícia, ocorreu um erro interno no Servidor");
+				addActionError("Não foi possivel deletar a notícia, ocorreu um erro interno no Servidor");
 				
 			}
 			return lista();

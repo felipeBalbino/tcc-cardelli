@@ -74,23 +74,14 @@ public class DisciplinaAction extends ActionSupport{
 	
 	public String novo() throws Exception {
 		UserData.grantAccess(RULE_DISCIPLINA_NOVO);
-	
-			
-			cursos = cursoDAO.getAll();
-
-		
-
+		cursos = cursoDAO.getAll();
 		return "adicionarMateria";
 		
 	}
 	
 	public String save() throws Exception{
-		
-		
 		UserData.grantAccess(RULE_DISCIPLINA_SALVA);
-			
-			
-			disciplina.setCursos(cursoDAO.getAllCursosByNome(cursosParam));
+		disciplina.setCursos(cursoDAO.getAllCursosByNome(cursosParam));
 		
 			try{
 				disciplinaDAO.save(disciplina);
@@ -100,14 +91,12 @@ public class DisciplinaAction extends ActionSupport{
 				
 				addActionMessage("Disciplina Adicionada com Sucesso!");
 			}catch(Exception e){
-				addActionMessage("Erro ao adicionar a disciplina!");
+				addActionError("Erro ao adicionar a disciplina!");
 				throw new Exception(e);
 			}
 		
 			return "adicionarMateria";
-			
-		
-		
+
 	}
 	
 	public String delete() {
@@ -132,10 +121,8 @@ public class DisciplinaAction extends ActionSupport{
 								"   Professor:"+letiva.getProfessor().getNome());
 					}
 				}
-			} catch (Exception e) {
-				
-				addActionMessage("Não foi possivel deletar o disciplina, ocorreu um erro interno no Servidor");
-				
+			} catch (Exception e) {	
+				addActionError("Não foi possivel deletar o disciplina, ocorreu um erro interno no Servidor");
 			}
 			return lista();
 	

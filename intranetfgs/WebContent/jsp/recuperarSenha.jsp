@@ -88,8 +88,6 @@ width:295px;
 </head>
 <body>
 <c:if test="${sessionScope.pessoa == null}">
-	<s:actionmessage />
-	<s:actionerror/>
 			<div id="experience" >
 					<div id="explanation">
 						<h3>
@@ -101,9 +99,20 @@ width:295px;
 							<br><br><img src="../images/alert-ico.gif"> Lembre-se: sua senha de acesso é secreta; não a informe a ninguém.
 	A FGS jamais solicitará sua senha por e-mail ou por telefone. <br><br> Primeira vez? <a href="../jsp/log!prepare.java" style="color:red;"><b>Registre-se<b></b></a> 
 						</p>
-							<div id="email_ocultos" style="display:none;color:red"><p align="center">Campo email é requerido.</p></div>
-							<div id="email2_ocultos" style="display:none;color:red"><p align="center">Campo email com caracteres invalidos.</p></div>
-							
+							<div id="email_ocultos" style="display:none;color:red"><p><img src="../images/imgErro.gif"/>  Campo email é requerido.</p></div>
+							<div id="email2_ocultos" style="display:none;color:red"><p><img src="../images/imgErro.gif"/>  Campo email com caracteres invalidos.</p></div>
+							<br>
+							<s:if test="hasActionMessages()">
+							<div class="welcome" >
+  							 	<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
+  							</div> 			
+						</s:if>
+						
+						<s:if test="hasActionErrors()">
+							 <div class="errors">
+  							 	<s:actionerror cssStyle="color:red;background-image : url('../images/imgErro.gif');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
+  							</div> 
+						</s:if>
 						
 					</div>	
 					<br><br>

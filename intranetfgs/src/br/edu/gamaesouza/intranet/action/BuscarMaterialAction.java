@@ -80,18 +80,14 @@ public class BuscarMaterialAction extends ActionSupport {
 
 		Arquivo arquivo;
 		try {
-			arquivo = arquivoDAO.getArquivoById(idarquivo);
-			String fileName = arquivo.getNome();
-			addActionMessage("Arquivo enviado com sucesso");
-									
+			arquivo = arquivoDAO.getArquivoById(idarquivo);						
 			//enviar email dd arquivo para pessoa logada
 		
 				try {
-					enviarEmail.sendArquivoPeloAluno( arquivo, fileName, UserData.getLoggedUser() );
+					enviarEmail.sendArquivoPeloAluno( arquivo, arquivo.getNome(), UserData.getLoggedUser() );
 				} catch ( Throwable e ) {
-					System.out.println("Não foi possível enviar emails para os alunos");
+					addActionError("Não foi possível enviar o email");
 				}			
-			
 			
 				return carregaFiltrosPesquisa();
 		} catch (Exception e1) {

@@ -121,7 +121,6 @@ public class PessoaDAO {
 	
 	public void merge(Pessoa pessoa)throws IntranetException {
 		Session session = CustomSession.getSession();
-		
 		Transaction transaction = session.beginTransaction();
 		session.merge(pessoa);
 		transaction.commit();

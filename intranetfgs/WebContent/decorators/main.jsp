@@ -178,7 +178,7 @@
 	<table align="center" width="100%" height="30" id="footer" cellspacing="3">
 		<tr>
 			<td>
-			<center>© 2010 - 2011 . Faculdade Gama & Souza</center>
+			<center>©2011 . Faculdade Gama & Souza ( Versão 1.0-beta )</center>
 			</td>
 		</tr>
 	</table>

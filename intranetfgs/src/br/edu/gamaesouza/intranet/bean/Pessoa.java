@@ -109,8 +109,12 @@ public class Pessoa implements Serializable {
 	}
 
 	public String getDataUltimoAcesso() {
-	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		return "- Último acesso em: "+sdf.format(dataUltimoAcesso.getTime());
+		if (dataUltimoAcesso != null){
+		    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+			return "- Último acesso em: "+sdf.format(dataUltimoAcesso.getTime());
+		}else{
+			return "";
+		}
 	}
 
 	

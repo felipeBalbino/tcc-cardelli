@@ -2,7 +2,6 @@ package br.edu.gamaesouza.intranet.action;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -77,17 +76,8 @@ public class LoginAction extends ActionSupport {
 				addActionError(MSG_LOGIN_DADOS_INVALIDOS);
 				return "login";
 			} else {
-				
-				try {
-					pessoa.setDataUltimoAcesso(Calendar.getInstance());
-					pessoaDAO.merge(pessoa);
-					pessoa = pessoaDAO.getPessoa(login, senha);
-				} catch (IntranetException e) {
-					e.printStackTrace();
-				}
 				Map<String, Object> mapaSessao = ActionContext.getContext().getSession();
 				mapaSessao.put("pessoa", pessoa);
-				
 				return "logged";
 			}
 

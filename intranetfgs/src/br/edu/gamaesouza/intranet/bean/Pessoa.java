@@ -1,6 +1,7 @@
 package br.edu.gamaesouza.intranet.bean;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -107,8 +108,9 @@ public class Pessoa implements Serializable {
 		this.dataUltimoAcesso = dataUltimoAcesso;
 	}
 
-	public Calendar getDataUltimoAcesso() {
-		return dataUltimoAcesso;
+	public String getDataUltimoAcesso() {
+	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		return "- Último acesso em: "+sdf.format(dataUltimoAcesso.getTime());
 	}
 
 	

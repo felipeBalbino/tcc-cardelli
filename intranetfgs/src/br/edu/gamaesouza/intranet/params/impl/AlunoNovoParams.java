@@ -2,6 +2,8 @@ package br.edu.gamaesouza.intranet.params.impl;
 
 
 
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Aluno;
@@ -39,7 +41,7 @@ public class AlunoNovoParams implements AlunoParams {
 		aluno.setEmail(email);
 		aluno.setNome(nome);
 		aluno.setMatricula(matricula);
-		
+		aluno.setDataUltimoAcesso(Calendar.getInstance());
 		Curso curso = (Curso) SpringUtil.getBean("curso");
 		try {
 			curso = cursoDAO.getCursoById(cursoId);

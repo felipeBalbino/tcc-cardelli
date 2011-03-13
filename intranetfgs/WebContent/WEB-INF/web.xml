@@ -121,7 +121,9 @@
 		<param-value>qwe123qwe123</param-value>	
 	</context-param>
 	
-	
+	<listener>
+		<listener-class>br.edu.gamaesouza.intranet.utils.SessionListen</listener-class>
+	</listener>
 	
 
 </web-app>

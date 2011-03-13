@@ -120,7 +120,11 @@ public class CursoDAO extends GenericDAO<Curso> {
 	}
 
 	public List<Disciplina> getDisciplinaListByStringList(List<String> paramRules) throws IntranetException{
-			
+		// Caso o usuário não selecione nenhuma disciplina
+		if(paramRules == null || paramRules.isEmpty()){
+			return new ArrayList<Disciplina>();
+		}
+		
 			List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 			
 			for(String rule : paramRules){

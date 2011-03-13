@@ -6,11 +6,13 @@ import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import br.edu.gamaesouza.intranet.bean.Aluno;
+import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.Noticia;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.bean.Professor;
@@ -188,6 +190,18 @@ public class PessoaDAO {
 		Professor professor =(Professor) c.uniqueResult();
 			session.close();
 		return professor;
+		
+	}
+	
+	public List<Aluno> getAlunosByCurso(Curso curso)throws IntranetException{
+		Session session = CustomSession.getSession();
+		String query = "FROM Aluno a where a.curso.id = " + curso.getId();
+		
+		Query c = session.createQuery(query);
+		
+		List<Aluno> alunos = c.list();
+			session.close();
+		return alunos;
 		
 	}
 

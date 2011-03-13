@@ -1,4 +1,4 @@
-INSERT INTO Pessoa VALUES  (1,"admin@admin.com","admin",00000000,"Administrador","admin");
+INSERT INTO Pessoa VALUES  (1,"00/00/0000 00:00","admin@admin.com","admin",00000000,"Administrador","admin");
 INSERT INTO Professor VALUES  (1);
 INSERT INTO Rule VALUES (1,"RULE_CURSO_NOVO");
 INSERT INTO Rule VALUES (2,"RULE_CURSO_LISTA");

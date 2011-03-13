@@ -6,10 +6,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.Disciplina;
 import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
+import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.params.impl.CursoAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.CursoDeletaParams;
 import br.edu.gamaesouza.intranet.params.impl.CursoNovoParams;
@@ -48,6 +50,7 @@ public class CursoAction extends ActionSupport {
 	@Autowired private CursoDeletaParams cursoDeletaParams;
 	@Autowired private CursoDAO cursoDAO;
 	@Autowired private DisciplinaDAO disciplinaDAO;
+	@Autowired private PessoaDAO pessoaDAO;
 
 	
 	public String execute(){
@@ -101,8 +104,15 @@ public class CursoAction extends ActionSupport {
 		
 		UserData.grantAccess(RULE_CURSO_DELETA);
 		try {
-			cursoDAO.delete(cursoDeletaParams.getCurso());
-			addActionMessage(MSG_CURSO_DELETA_SUCESSO);
+			Curso curso = cursoDeletaParams.getCurso();
+			List<Aluno> alunos = pessoaDAO.getAlunosByCurso(curso);
+			if(alunos.isEmpty()){
+				cursoDAO.delete(curso);
+				addActionMessage(MSG_CURSO_DELETA_SUCESSO);
+			}else{
+				addActionMessage("Não é possível deletar este curso porque existem alunos cadastrados nele.");
+			}
+			
 		} catch (IntranetException e) {
 			addActionError(MSG_CURSO_DELETA_INSUCESSO);
 		}

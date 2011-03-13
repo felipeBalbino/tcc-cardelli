@@ -43,15 +43,15 @@ public class DisciplinaAction extends ActionSupport{
 	@Autowired private CursoDAO cursoDAO;
 	@Autowired private DisciplinaDAO disciplinaDAO;
 	
-	public String alterar() throws IntranetException {
+	public String alterar() {
 		UserData.grantAccess(RULE_DISCIPLINA_ALTERA);
-	
+				
+			try {
+				disciplina.setCursos(cursoDAO.getCursoListByStringList(cursosParam,disciplina));
+				disciplinaDAO.merge(disciplina);
+				disciplina = (Disciplina) SpringUtil.getBean("disciplina");
+			} catch (IntranetException e) {}
 			
-			disciplina.setCursos(cursoDAO.getCursoListByStringList(cursosParam,disciplina));
-			disciplinaDAO.merge(disciplina);
-			disciplina = (Disciplina) SpringUtil.getBean("disciplina");
-
-		
 		return lista();
 		
 	}
@@ -64,17 +64,19 @@ public class DisciplinaAction extends ActionSupport{
 			try {
 				disciplinas = disciplinaDAO.getAllByParams(disciplinaSearchParams);
 				allCursos = cursoDAO.getAll();
-			} catch (IntranetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			} catch (IntranetException e) {}
+			
 			return "disciplinas";
 		
 	}
 	
-	public String novo() throws Exception {
+	public String novo() {
 		UserData.grantAccess(RULE_DISCIPLINA_NOVO);
-		cursos = cursoDAO.getAll();
+		
+		try {
+			cursos = cursoDAO.getAll();
+		} catch (IntranetException e) {}
+		
 		return "adicionarMateria";
 		
 	}
@@ -90,9 +92,8 @@ public class DisciplinaAction extends ActionSupport{
 				checkBoxSelecionados = new Integer[]{};
 				
 				addActionMessage("Disciplina Adicionada com Sucesso!");
-			}catch(Exception e){
+			}catch(IntranetException e){
 				addActionError("Erro ao adicionar a disciplina!");
-				throw new Exception(e);
 			}
 		
 			return "adicionarMateria";
@@ -113,15 +114,15 @@ public class DisciplinaAction extends ActionSupport{
 				}else{
 					addActionMessage("Não foi possivel deletar esta disciplina, existe(m) "+disciplinasLetivas.size()+" Disciplina(s) letiva(s) vincula(s) a essa disciplina.");	
 					for(DisciplinaLetiva letiva : disciplinasLetivas) {
-						addActionMessage("Id:"+letiva.getId()+
-								"   Turno:"+letiva.getTurno()+
-								"   Ano:"+letiva.getAno()+
-								"   Semestre:"+letiva.getSemestre()+
-								"   Disciplina:"+letiva.getDisciplina().getNome()+
-								"   Professor:"+letiva.getProfessor().getNome());
+						addActionMessage("Id: "+letiva.getId()+
+								"   Turno: "+letiva.getTurno()+
+								"   Ano: "+letiva.getAno()+
+								"   Semestre: "+letiva.getSemestre()+
+								"   Disciplina: "+letiva.getDisciplina().getNome()+
+								"   Professor: "+letiva.getProfessor().getNome());
 					}
 				}
-			} catch (Exception e) {	
+			} catch (IntranetException e) {	
 				addActionError("Não foi possivel deletar o disciplina, ocorreu um erro interno no Servidor");
 			}
 			return lista();

@@ -55,5 +55,22 @@ public class Disciplina implements Serializable {
 	public void setCursos(List<Curso> cursos) {
 		this.cursos = cursos;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Disciplina disciplina = null;
+		if (obj instanceof Disciplina){
+			disciplina = (Disciplina) obj;
+		}else{
+			return false;
+		}
+		
+		if (this.getId().equals(disciplina.getId())){
+			return true;
+		}else{
+			return false;
+		}
 
+	}
+	
 }

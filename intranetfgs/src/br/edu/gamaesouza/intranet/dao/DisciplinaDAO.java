@@ -67,21 +67,30 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 	
 	
 	public void deleteDisciplina(Disciplina disciplina) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
 		
+		// Pego a sessão para carregar a lista de cursos
+		session = CustomSession.getSession();
 		String query = "SELECT c FROM Curso c left join c.disciplinas d WHERE d.id = " + disciplina.getId();
 		Query c = session.createQuery(query);
 		List<Curso> cursos = c.list();
 		
+		// Fecho a Sessão que carrega a lista de cursos
+		this.session.close();
 		
 		for(Curso curso : cursos){
+			// Pego a sessão para fazer update neste curso
+			session = CustomSession.getSession();
+			transaction = session.beginTransaction();
 			
 			curso.getDisciplinas().remove(disciplina);
-			cursoDAO.merge(curso);
-			
+			cursoDAO.update(curso);
+			transaction.commit();	
+			// Fecho a sessão para fazer update neste curso
+			this.session.close();
 		}
-		
+		session = CustomSession.getSession();
+		transaction = session.beginTransaction();
+		disciplina.setCursos(null);
 		session.delete(disciplina);
 		transaction.commit();	
 		session.flush();

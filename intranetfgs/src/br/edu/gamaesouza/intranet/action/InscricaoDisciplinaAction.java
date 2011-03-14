@@ -81,7 +81,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 				
 				return prepare();
 		
-		}catch(Exception ex){
+		}catch(IntranetException ex){
 			addActionError(MSG_MARCA_DISCIPLINA);
 			return prepare();
 		}
@@ -110,7 +110,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 		disciplinasLetivasCadastradas = disciplinaDAO.getDisciplinaLetivaByUser(UserData.getLoggedUser());
 		return "SUCCESS";
 		
-		}catch(Exception e){
+		}catch(IntranetException e){
 			addActionError(MSG_NENHUMA_DISCIPLINA);
 			return prepare();
 		}

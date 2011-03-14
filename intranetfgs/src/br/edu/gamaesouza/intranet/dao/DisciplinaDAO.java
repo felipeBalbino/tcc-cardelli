@@ -58,6 +58,7 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 		
 		Criteria c = session.createCriteria(DisciplinaLetiva.class);
 		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		c.addOrder(Order.desc("id"));
 		List<DisciplinaLetiva> ds =  c.list();
 		
 		session.close();
@@ -352,8 +353,10 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 			
 		}
 		
+		query = query + " ORDER BY d.nome ASC";
 		Query hibernateQuery = session.createQuery(query);
 		hibernateQuery.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		
 		List<Disciplina> ds =  hibernateQuery.list();
 		
 		session.close();

@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.Curso;
@@ -28,6 +29,8 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 	private CustomSession customSession;
 	private Session session;
 	private Transaction transaction;
+	
+	@Autowired private CursoDAO cursoDAO;
 	
 	public DisciplinaDAO() {
 		
@@ -66,6 +69,19 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 	public void deleteDisciplina(Disciplina disciplina) throws IntranetException{
 		session = CustomSession.getSession();
 		transaction = session.beginTransaction();
+		
+		String query = "SELECT c FROM Curso c left join c.disciplinas d WHERE d.id = " + disciplina.getId();
+		Query c = session.createQuery(query);
+		List<Curso> cursos = c.list();
+		
+		
+		for(Curso curso : cursos){
+			
+			curso.getDisciplinas().remove(disciplina);
+			cursoDAO.merge(curso);
+			
+		}
+		
 		session.delete(disciplina);
 		transaction.commit();	
 		session.flush();

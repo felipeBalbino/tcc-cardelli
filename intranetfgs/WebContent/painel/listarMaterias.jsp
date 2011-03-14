@@ -39,7 +39,7 @@ if(i == j) $(this).hide('slow');
 
  	function del(codigo) {    
 	     if (confirm('Excluir a disciplina?')) {    
-	         location.href = "../painel/materia!delete.java?disciplina.id="+ codigo;
+	         location.href = "../painel/materia!delete.java?disciplinaDeletaParams.id="+ codigo;
 	     }  
 	 }
 	

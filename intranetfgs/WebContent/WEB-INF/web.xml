@@ -107,7 +107,7 @@
 	<context-param>
 		<param-name>developers</param-name>
 		<param-value>
-			gabrielcastilho.cardelli@gmail.com,phellipe86@gmail.com,bruno.rota@datasun.com.br
+			gabrielcastilho.cardelli@gmail.com,phellipe86@gmail.com
 		</param-value>	
 	</context-param>
 	

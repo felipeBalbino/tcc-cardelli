@@ -10,6 +10,7 @@ import br.edu.gamaesouza.intranet.bean.Disciplina;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
 import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
+import br.edu.gamaesouza.intranet.params.impl.DisciplinaDeletaParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaSearchParams;
 import br.edu.gamaesouza.intranet.security.UserData;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
@@ -42,6 +43,7 @@ public class DisciplinaAction extends ActionSupport{
 	@Autowired private Curso curso;
 	@Autowired private CursoDAO cursoDAO;
 	@Autowired private DisciplinaDAO disciplinaDAO;
+	@Autowired private DisciplinaDeletaParams disciplinaDeletaParams;
 	
 	public String alterar() {
 		UserData.grantAccess(RULE_DISCIPLINA_ALTERA);
@@ -104,10 +106,11 @@ public class DisciplinaAction extends ActionSupport{
 
 		UserData.grantAccess(RULE_DISCIPLINA_DELETE);
 		List<DisciplinaLetiva> disciplinasLetivas = null;
+		Disciplina disciplina = null;
 			try {
-				disciplinasLetivas = disciplinaDAO.getDisciplinaLetivaByIdTheDisciplina( this.disciplina.getId() );
+				disciplina = disciplinaDeletaParams.getDisciplina();
+				disciplinasLetivas = disciplinaDAO.getDisciplinaLetivaByIdTheDisciplina(disciplina.getId());
 				if(disciplinasLetivas.isEmpty()) {
-					Disciplina disciplina = disciplinaDAO.getDisciplinaById( this.disciplina.getId() );
 					disciplinaDAO.deleteDisciplina(disciplina);
 					disciplina = (Disciplina) SpringUtil.getBean("disciplina");
 					addActionMessage("Disciplina deletada com sucesso");
@@ -207,6 +210,18 @@ public class DisciplinaAction extends ActionSupport{
 			DisciplinaSearchParams disciplinaSearchParams) {
 		this.disciplinaSearchParams = disciplinaSearchParams;
 	}
+
+
+	public DisciplinaDeletaParams getDisciplinaDeletaParams() {
+		return disciplinaDeletaParams;
+	}
+
+
+	public void setDisciplinaDeletaParams(
+			DisciplinaDeletaParams disciplinaDeletaParams) {
+		this.disciplinaDeletaParams = disciplinaDeletaParams;
+	}
+	
 	
 	
 	

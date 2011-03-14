@@ -133,13 +133,16 @@ function restartTrs(){
 						</strong>
 						</h3>
 						<p> 
-						    Na tela Criar matéria ou Editar matéria, clique no ícone Inserir arquivo, disponível nos campos Imagem de índice, Resumo e Texto da matéria.
-						    Numa nova janela, será exibida a tela Inserir arquivo com a lista de todos os arquivos existentes no banco de dados do Publique!. Se o arquivo desejado ainda não estiver listado, clique em Enviar novo. A tela Enviar arquivo será exibida.
-						 	Clique em OK, feche a janela com a tela Inserir arquivo e continue a criar ou a alterar a sua matéria.
-							Clique em OK, feche a janela com a tela Inserir arquivo e continue a criar ou a alterar a sua matéria.
+						    Você pode criar novos arquivos em qualquer programa e dar a cada um deles um nome significativo para ajudá-lo a organizar seu trabalho.<br>
+						    Selecione ao lado o arquivo que você gostaria de enviar em seu computador ou rede local, não esquece de selecionar com exatidão o turno, semestre e disciplina letiva.
 						</p>
+						<strong>
+						Tamanho máximo do seu upload: 200MB
+						</strong>
 						<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O(s) Campo(s) em vermelhor é(são) requerido(s).</p></div>
-						<div id="mensagem_carregando" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O arquivo esta sendo enviado para o servidor<br>O tempo de envio é relativo ao tamanho do arquivo.<br><img src="../images/load.gif"></p></div>
+						<br>
+						<br>
+						<div id="mensagem_carregando" style="display:none;color:red;"><p align="center"> O arquivo esta sendo enviado para o servidor<br>O tempo de envio é relativo ao tamanho do arquivo.<br><img src="../images/load.gif"></p></div>
 						<br>
 						<s:if test="hasActionMessages()">
 							<div class="welcome" >
@@ -162,6 +165,7 @@ function restartTrs(){
 						Disciplina:		<br><sx:autocompleter headerKey="-1" headerValue=""  id="materia" list="disciplinasLetivas" name="materia" value="materia" listKey="disciplina.id" listValue="disciplina.nome" /><br>
 						Nome do Arquivo:<br><s:textfield id="namearquivo" name="arquivo.nome"></s:textfield><br>
 						Arquivo:		<br><s:file 	 id="arquivo" 	  name="arquivo.upload"></s:file><br>	
+											
 						<s:submit align="left" value="Adicionar"></s:submit>
 					</s:form>
 </div>		

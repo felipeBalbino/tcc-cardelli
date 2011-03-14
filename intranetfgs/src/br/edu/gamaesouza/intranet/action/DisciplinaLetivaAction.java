@@ -34,6 +34,7 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	private static final String RULE_DISCIPLINA_LETIVA_DELETE = "RULE_DISCIPLINA_LETIVA_DELETE";
 
 	private Integer id;	
+	private Integer ano;	
 	
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	private List<Integer> anos  = new ArrayList<Integer>();
@@ -53,6 +54,7 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	public String prepare()  {
 		UserData.grantAccess(RULE_DISCIPLINA_LETIVA_LISTA);
 		try {
+			setAno(FormUtil.getAnoAtual());
 			setAnos(FormUtil.getAnosList(1));
 			setSemestres(FormUtil.getSemestresList());
 			setTurnos(FormUtil.getTurnosList());
@@ -270,6 +272,16 @@ public class DisciplinaLetivaAction extends ActionSupport{
 
 	public DisciplinaLetivaNovoParams getDisciplinaLetivaNovoParams() {
 		return disciplinaLetivaNovoParams;
+	}
+
+
+	public void setAno(Integer ano) {
+		this.ano = ano;
+	}
+
+
+	public Integer getAno() {
+		return ano;
 	}
 
 	

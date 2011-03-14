@@ -26,6 +26,8 @@ public class ArquivoUtil {
 			fileName += ".doc";
 		}else if((arquivo.getUploadContentType().contains("pdf"))){
 			fileName += ".pdf";
+		}else if((arquivo.getUploadContentType().contains("exe"))){
+			fileName += ".exe";
 		}else if((arquivo.getUploadContentType().contains("avi"))){
 			fileName += ".avi";
 		}else if((arquivo.getUploadContentType().contains("gif"))){

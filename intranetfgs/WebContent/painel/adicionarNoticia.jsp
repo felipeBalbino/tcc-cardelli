@@ -85,11 +85,15 @@ width:295px;
 						Adicionar Nova Notícia
 						</strong>
 						</h3>
-						<p>Mensagens para a Ouvidoria devem ser enviadas pelo do formulário eletrônico on line disponível ao lado.
-
-O sistema permite que as informações enviadas sejam armazenadas de forma segura e sigilosa e são essenciais para o devido encaminhamento das demandas e demais comunicações junto aos órgãos responsáveis facilitando um retorno satisfatório das questões apresentadas.
-<br>
-</p>
+						<p>
+						Noticias adicionadas aqui, serão visualizadas na página inicial.<br><br>
+						Título:<br>
+						O título da Notícia, pequena descrição da Notícia.<br>
+						Exemplo: Novo Windows 7<br>
+						<br>
+						Mensagem:<br>
+						O conteudo da Notícia.
+						</p>
 						<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O(s) Campo(s) em vermelhor é(são) requerido(s).</p></div>
 						<br>
 						<s:if test="hasActionMessages()">
@@ -107,7 +111,7 @@ O sistema permite que as informações enviadas sejam armazenadas de forma segur
 					
 					<div id="contact-form">
 						<s:form action="/painel/noticia!save.java" onSubmit="return validaForm()" name="adicionar">
-							Titulo: <s:textfield cssStyle="width:80%" name="noticia.title" id="titulo" onkeypress="contarCaracterestitulo(this.value,30,'sprestante2')"></s:textfield>
+							Titulo: <s:textfield cssStyle="width:80%" name="noticia.title" id="titulo" onkeypress="contarCaracterestitulo(this.value,30,'sprestante2')" maxLength="40"></s:textfield>
 							<span id="sprestante2" style="font-family:Georgia;"></span><br>
 							Mensagem: <s:textarea cssStyle="width:80%; height:200px;" name="noticia.mensagem" id="mensagem" ></s:textarea>
 							

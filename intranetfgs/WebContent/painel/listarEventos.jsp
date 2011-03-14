@@ -161,7 +161,7 @@ if(i == j) $(this).hide('slow');
 										<td><s:hidden name="eventoAlteraParams.id" id="id" value="%{id}"></s:hidden></td>
 									</tr>
 									<tr>
-										<td><b>Titulo:</b> <s:textfield cssStyle="width:80%" id="titulo" name="eventoAlteraParams.title" value="%{title}" /></td>
+										<td><b>Titulo:</b> <s:textfield cssStyle="width:80%" id="titulo" name="eventoAlteraParams.title" value="%{title}" maxLength="40" /></td>
 									</tr>
 									
 									<tr>

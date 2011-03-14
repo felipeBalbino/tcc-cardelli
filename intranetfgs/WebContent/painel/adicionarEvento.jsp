@@ -118,12 +118,7 @@ function restartTrs(){
 						</strong>
 						</h3>
 						<p> 
-    Na tela Criar matéria ou Editar matéria, clique no ícone Inserir arquivo, disponível nos campos Imagem de índice, Resumo e Texto da matéria.
-    Numa nova janela, será exibida a tela Inserir arquivo com a lista de todos os arquivos existentes no banco de dados do Publique!. Se o arquivo desejado ainda não estiver listado, clique em Enviar novo. A tela Enviar arquivo será exibida.
- 	Clique em OK, feche a janela com a tela Inserir arquivo e continue a criar ou a alterar a sua matéria.
-	Clique em OK, feche a janela com a tela Inserir arquivo e continue a criar ou a alterar a sua matéria.
-	
-</p>
+						</p>
 						<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O(s) Campo(s) em vermelhor é(são) requerido(s).</p></div>
 						<br>
 						<s:if test="hasActionMessages()">
@@ -140,11 +135,11 @@ function restartTrs(){
 					</div>	
 				
 				<div id="contact-form">	
-<s:form name="adicionar" onSubmit="return validaForm()" action="/painel/evento!novo.java" >
+	<s:form name="adicionar" onSubmit="return validaForm()" action="/painel/evento!novo.java" >
 	
 
 	Titulo: 
-	<s:textfield cssStyle="width:80%" name="eventoNovoParams.titulo" id="titulo"></s:textfield>
+	<s:textfield cssStyle="width:80%" name="eventoNovoParams.titulo" id="titulo" maxLength="40"></s:textfield>
 	
 	<br>
 	

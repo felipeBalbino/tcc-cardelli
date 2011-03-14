@@ -16,44 +16,6 @@
 
 
 </style>
-<script type="text/javascript">
-
- 
- function contarCaracteres(box,valor,campospan){
-		var conta = valor - box.length;
-		document.getElementById(campospan).innerHTML = "Você ainda pode digitar " + conta + " caracteres";
-		if(box.length >= valor){
-			document.getElementById(campospan).innerHTML = "Você não pode mais digitar..";
-			document.getElementById("mensagem").value = document.getElementById("mensagem").value.substr(0,valor);
-		}	
-	}
-
- function contarCaracterestitulo(box,valor,campospan){
-		var conta = valor - box.length;
-		document.getElementById(campospan).innerHTML = "";
-		if(box.length >= valor){
-			document.getElementById(campospan).innerHTML = "Você não pode mais digitar - (Limite 30 caracteres).";
-			document.getElementById("titulo").value = document.getElementById("titulo").value.substr(0,valor);
-		}	
-	}
-	
- function mostrarResultado(box,num_max,campospan){
- 	var contagem_carac = box.length;
- 	if (contagem_carac != 0){
- 		document.getElementById(campospan).innerHTML = contagem_carac + " caracteres digitados";
- 		if (contagem_carac == 1){
- 			document.getElementById(campospan).innerHTML = contagem_carac + " caracter digitado";
- 		}
- 		if (contagem_carac >= num_max){
- 			document.getElementById(campospan).innerHTML = "Limite de caracteres excedido!";
- 		}
- 	}else{
- 		document.getElementById(campospan).innerHTML = "";
- 	}
- }
- 
-
-</script>
 <sx:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Notícias</title>
@@ -149,21 +111,14 @@ if(i == j) $(this).hide('slow');
 								<table width="100%">
 								
 									<tr>
-										<td><b>Titulo:</b> <s:textfield cssStyle="width:100%"  id="titulo" name="noticia.title" value="%{title}" onkeypress="contarCaracterestitulo(this.value,30,'sprestante2')"/></td>
+										<td><b>Titulo:</b> <s:textfield cssStyle="width:30%"  id="titulo" name="noticia.title" value="%{title}" onkeypress="contarCaracterestitulo(this.value,30,'sprestante2')" maxLength="40"/></td>
 										
 									</tr>
 							
 									<tr><td><span id="sprestante2" style="font-family:Georgia;"></span></td><tr>
 									<tr>
-										<td><b>Mensagem:</b> <s:textarea cssStyle="width:100%; height:200px;" id="mensagem" name="noticia.mensagem" value="%{mensagem}" onkeypress="mostrarResultado(this.value,200,'spcontando');contarCaracteres(this.value,140,'sprestante')"> </s:textarea></td>
+										<td><b>Mensagem:</b> <s:textarea cssStyle="width:30%; height:200px;" id="mensagem" name="noticia.mensagem" value="%{mensagem}" > </s:textarea></td>
 									<tr>
-									
-									<tr>
-										<td>
-											<span id="spcontando" style="font-family:Georgia;"></span><br />
-											<span id="sprestante" style="font-family:Georgia;"></span>
-										</td>
-									</tr>
 										
 									<tr>
 										<td><s:submit align="left" value="Alterar"></s:submit></td>

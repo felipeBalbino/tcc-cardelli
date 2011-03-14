@@ -117,11 +117,7 @@ function restartTrs(){
 							</strong>
 						</h3>
 							<p> 
-							    Na tela Criar matéria ou Editar matéria, clique no ícone Inserir arquivo, disponível nos campos Imagem de índice, Resumo e Texto da matéria.
-							    Numa nova janela, será exibida a tela Inserir arquivo com a lista de todos os arquivos existentes no banco de dados do Publique!. Se o arquivo desejado ainda não estiver listado, clique em Enviar novo. A tela Enviar arquivo será exibida.
-							 	Clique em OK, feche a janela com a tela Inserir arquivo e continue a criar ou a alterar a sua matéria.
-								Clique em OK, feche a janela com a tela Inserir arquivo e continue a criar ou a alterar a sua matéria.
-							</p>
+							    </p>
 						<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O(s) Campo(s) em vermelhor é(são) requerido(s).</p></div>
 						<br>
 						<s:if test="hasActionMessages()">
@@ -139,7 +135,7 @@ function restartTrs(){
 					
 					<div id="contact-form">
 						<s:form name="adicionar" onSubmit="return validaForm()" action="/painel/letiva!save.java" enctype="multipart/form-data" method="post">
-							Ano: 			<s:property  value="%{ano}" /><br>
+							Ano: 			<s:property  value="ano" /><br>
 							Turno:		<br><sx:autocompleter  	headerKey="-1"  headerValue=""  id="turno" 		 list="turnos"      name="disciplinaLetivaNovoParams.turno" /><br>
 							Semestre:	<br><sx:autocompleter  	headerKey="-1"  headerValue="" 	id="semestre" 	 list="semestres"   name="disciplinaLetivaNovoParams.semestre" /><br>
 							Disciplina:	<br><sx:autocompleter 	headerKey="-1" 	headerValue=""  id="materia" 	 list="disciplinas" name="disciplinaLetivaNovoParams.materia" 		value="materia" 	listKey="id" listValue="nome" /><br>

@@ -243,14 +243,14 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 	
 	public boolean setPessoaFollowDisciplinhaLetiva(Pessoa pessoa, Integer disciplina , Integer ano, Integer semestre) throws IntranetException{
 		this.session = CustomSession.getSession();
-		String queryVerifySql = "FROM DisciplinaLetiva dl left join fetch dl.aluno aluno WHERE aluno.id = " + pessoa.getId() + " AND dl.disciplina.id =  " + disciplina + " AND dl.ano = " + ano + " AND dl.semestre = " + semestre;
+		String queryVerifySql = "SELECT dl FROM DisciplinaLetiva dl left join fetch dl.aluno aluno WHERE aluno.id = " + pessoa.getId() + " AND dl.disciplina.id =  " + disciplina + " AND dl.ano = " + ano + " AND dl.semestre = " + semestre;
 		Query queryVerify = session.createQuery(queryVerifySql);
 		DisciplinaLetiva dlVerify = (DisciplinaLetiva) queryVerify.uniqueResult();
-		
+		session.close();
 		if(dlVerify == null){
 			
-			
-			String query = "FROM DisciplinaLetiva WHERE ano = " + ano + " AND semestre = " + semestre + " AND disciplina.id = " + disciplina;
+			this.session = CustomSession.getSession();
+			String query = "SELECT dl FROM DisciplinaLetiva dl WHERE ano = " + ano + " AND semestre = " + semestre + " AND disciplina.id = " + disciplina;
 			
 			
 			Query c = session.createQuery(query);
@@ -271,7 +271,7 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 				dl.getAluno().add( (Aluno) pessoa );
 				
 			}
-			
+			session.close();
 			this.session = CustomSession.getSession();
 			transaction = session.beginTransaction();
 			session.update(dl);

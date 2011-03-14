@@ -42,7 +42,7 @@ public class ProfessorAction extends ActionSupport {
 				pessoaDAO.save(professorNovoParams.getProfessor());
 				addActionMessage("Professor adicionado com sucesso.");
 				professorNovoParams = (ProfessorNovoParams) SpringUtil.getBean("professorNovoParams");
-			} catch (Exception e) {
+			} catch (IntranetException e) {
 				addActionError("Ocorreu um erro ao tentar adicionar o Professor.");
 			}
 
@@ -59,7 +59,7 @@ public class ProfessorAction extends ActionSupport {
 			professor = (Professor) SpringUtil.getBean("professor");
 
 			addActionMessage("Professor alterado com sucesso.");
-		} catch (Exception e) {
+		} catch (IntranetException e) {
 			addActionError("Ocorreu um erro ao tentar alterar o Professor.");
 		}
 		return lista();
@@ -75,7 +75,7 @@ public class ProfessorAction extends ActionSupport {
 				professor = (Professor) SpringUtil.getBean("professor");
 				addActionMessage("Professor deletada com sucesso");
 				
-			} catch (Exception e) {
+			} catch (IntranetException e) {
 				addActionError("Não foi possivel deletar o professor, ocorreu um erro interno no Servidor");
 			}
 			return lista();

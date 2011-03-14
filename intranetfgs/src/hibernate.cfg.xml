@@ -10,16 +10,13 @@
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.format_sql">true</property>
-  <property name="hibernate.format_sql">true</property>
-  <property name="c3p0.acquire_increment">10</property>   
- <property name="c3p0.timeout">10000</property>   
- <property name="c3p0.min_size">20</property>   
- <property name="c3p0.max_size">10000</property>   
- <property name="c3p0.max_statements">10</property>   
- <property name="c3p0.idle_test_period">1500</property>  
-  
-  
-    
+  <property name="c3p0.acquire_increment">1</property>
+  <property name="hibernate.connection.pool_size">1000</property>
+  <property name="c3p0.timeout">15</property>
+  <property name="c3p0.min_size">200</property>
+  <property name="c3p0.max_size">10000</property>
+  <property name="c3p0.max_statements">10000</property>
+  <property name="c3p0.idle_test_period">15</property>
   <mapping class="br.edu.gamaesouza.intranet.bean.Noticia"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.Professor"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.Arquivo"/>

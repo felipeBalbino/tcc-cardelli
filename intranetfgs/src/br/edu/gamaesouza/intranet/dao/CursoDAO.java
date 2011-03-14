@@ -8,14 +8,11 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.Disciplina;
-import br.edu.gamaesouza.intranet.bean.Evento;
-import br.edu.gamaesouza.intranet.bean.Rule;
 import br.edu.gamaesouza.intranet.other.CustomSession;
 import br.edu.gamaesouza.intranet.params.impl.CursoSearchParams;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
@@ -137,6 +134,13 @@ public class CursoDAO extends GenericDAO<Curso> {
 
 	public List<Curso> getCursoListByStringList(List<String> cursosParam,Disciplina d) throws IntranetException {
 		List<Curso> cursos = new ArrayList<Curso>();
+		
+		List<Curso> cursosDelete = d.getCursos();
+		
+		for(Curso curso : cursosDelete){
+			curso.getDisciplinas().remove(d);
+			merge(curso);
+		}
 		
 		if(cursosParam != null){
 			

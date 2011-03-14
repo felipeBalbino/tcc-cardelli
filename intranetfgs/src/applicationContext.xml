@@ -68,6 +68,7 @@
 	<bean class="br.edu.gamaesouza.intranet.params.impl.ProfessorNovoParams" id="professorNovoParams"></bean>
 	
 	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaDeletaParams" id="disciplinaDeletaParams"></bean>
+	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaAlteraParams" id="disciplinaAlteraParams"></bean>
 	
 	<!-- Value Objects -->
 	

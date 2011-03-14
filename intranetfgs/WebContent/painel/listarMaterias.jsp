@@ -113,12 +113,14 @@ if(i == j) $(this).hide('slow');
 						<td>
 						<s:form action="/painel/materia!alterar.java">
 							<div class="conteudo">
+							<s:hidden name="disciplinaAlteraParams.id" id="disciplinaAlteraParams.id" value="%{id}"></s:hidden>
+				
 								<table>	
 									<tr>
-										<td>Disciplina:<br><s:textfield value="%{nome}" id="disciplina.nome" name="disciplina.nome"></s:textfield></td>
+										<td>Disciplina:<br><s:textfield value="%{nome}" id="disciplinaAlteraParams.nome" name="disciplinaAlteraParams.nome"></s:textfield></td>
 									</tr>			
 									<tr>
-										<td>Cursos:<br><select id="cursosParam" name="cursosParam" multiple="multiple" size="10" >
+										<td>Cursos:<br><select id="disciplinaAlteraParams.cursos" name="disciplinaAlteraParams.cursos" multiple="multiple" size="10" >
 												<s:iterator value="allCursos">
 													<option ${intranet:containsCurso(cursoDisciplinas,nome)}><s:property value="nome"/></option>
 												</s:iterator>

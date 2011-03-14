@@ -137,17 +137,23 @@ public class CursoDAO extends GenericDAO<Curso> {
 
 	public List<Curso> getCursoListByStringList(List<String> cursosParam,Disciplina d) throws IntranetException {
 		List<Curso> cursos = new ArrayList<Curso>();
-		this.session = CustomSession.getSession();
+		
+		if(cursosParam != null){
+			
 		for(String curso : cursosParam){
 			
-			
+			this.session = CustomSession.getSession();
 			Criteria c = session.createCriteria(Curso.class);	
 			c.add(Restrictions.eq("nome", curso));	
 			Curso cursoTemp = (Curso) c.uniqueResult();
+			
 			cursoTemp.getDisciplinas().add(d);
-			cursos.add(cursoTemp);	
+			cursos.add(cursoTemp);
+			this.session.close();
+			merge(cursoTemp);
 		}
-		this.session.close();
+	
+		}
 		return cursos;
 	}
 

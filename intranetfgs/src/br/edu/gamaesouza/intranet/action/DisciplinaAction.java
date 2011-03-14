@@ -10,6 +10,7 @@ import br.edu.gamaesouza.intranet.bean.Disciplina;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
 import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
+import br.edu.gamaesouza.intranet.params.impl.DisciplinaAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaDeletaParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaSearchParams;
 import br.edu.gamaesouza.intranet.security.UserData;
@@ -44,15 +45,18 @@ public class DisciplinaAction extends ActionSupport{
 	@Autowired private CursoDAO cursoDAO;
 	@Autowired private DisciplinaDAO disciplinaDAO;
 	@Autowired private DisciplinaDeletaParams disciplinaDeletaParams;
+	@Autowired private DisciplinaAlteraParams disciplinaAlteraParams;
 	
 	public String alterar() {
 		UserData.grantAccess(RULE_DISCIPLINA_ALTERA);
 				
 			try {
-				disciplina.setCursos(cursoDAO.getCursoListByStringList(cursosParam,disciplina));
-				disciplinaDAO.merge(disciplina);
+				disciplinaDAO.merge(disciplinaAlteraParams.getDisciplina());
 				disciplina = (Disciplina) SpringUtil.getBean("disciplina");
-			} catch (IntranetException e) {}
+				addActionMessage("Disciplina Alterada com Sucesso!");
+			} catch (IntranetException e) {
+				addActionMessage("Ocorreu um erro ao tentar alterar a disciplina!");
+			}
 			
 		return lista();
 		
@@ -220,6 +224,17 @@ public class DisciplinaAction extends ActionSupport{
 	public void setDisciplinaDeletaParams(
 			DisciplinaDeletaParams disciplinaDeletaParams) {
 		this.disciplinaDeletaParams = disciplinaDeletaParams;
+	}
+
+
+	public DisciplinaAlteraParams getDisciplinaAlteraParams() {
+		return disciplinaAlteraParams;
+	}
+
+
+	public void setDisciplinaAlteraParams(
+			DisciplinaAlteraParams disciplinaAlteraParams) {
+		this.disciplinaAlteraParams = disciplinaAlteraParams;
 	}
 	
 	

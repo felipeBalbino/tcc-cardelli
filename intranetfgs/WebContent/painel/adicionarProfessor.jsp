@@ -155,10 +155,7 @@ width:295px;
 						Adicionar Novo Professor
 						</strong>
 						</h3>
-						<p>We care as much about your users as you do (maybe more), and we are passionate about making sure you get the best possible solution to whatever problems need solving.</p>
-						<p>From web applications to content management, from blogging to podcasting, from desktop to mobile, we've done it all (and we've even written a few books on the subjects).</p>
-						<p>
-						Use our handy contact form to get the discussion the first step towards turning our team into
+						<p>Preencha os campos ao lado para cadastrar um novo professor.
 
 						</p>
 						<strong>

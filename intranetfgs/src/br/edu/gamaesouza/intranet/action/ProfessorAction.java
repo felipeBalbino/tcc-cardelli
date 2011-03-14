@@ -36,18 +36,28 @@ public class ProfessorAction extends ActionSupport {
 	@Autowired private PessoaDAO pessoaDAO;
 
 	public String save() {
-
 		UserData.grantAccess(RULE_PROFESSOR_SALVA);
-			try {
-				pessoaDAO.save(professorNovoParams.getProfessor());
-				addActionMessage("Professor adicionado com sucesso.");
-				professorNovoParams = (ProfessorNovoParams) SpringUtil.getBean("professorNovoParams");
-			} catch (IntranetException e) {
-				addActionError("Ocorreu um erro ao tentar adicionar o Professor.");
-			}
-
-			return lista();
 		
+		try {
+		if(pessoaDAO.validarLogin(professorNovoParams.getLogin())){
+			addActionError("Login já existente em nossa base.");	
+			if (pessoaDAO.validarEmail(professorNovoParams.getEmail()))
+				addActionError("Email já existente em nossa base.");
+			if (professorNovoParams.getLogin().length() > 8)
+				addActionError("Login do Usuário precisar tem menos de 8 caracteres.");
+			if(pessoaDAO.validarMatricula(professorNovoParams.getMatricula()))
+				addActionError("Matrícula já existente em nossa base.");
+		}else{
+			pessoaDAO.save(professorNovoParams.getProfessor());
+			addActionMessage("Professor adicionado com sucesso.");
+			professorNovoParams = (ProfessorNovoParams) SpringUtil.getBean("professorNovoParams");
+		}
+		} catch (IntranetException e) {
+			addActionError("Ocorreu um erro ao tentar adicionar o Professor.");
+		}
+
+		return lista();
+				
 
 	}
 	

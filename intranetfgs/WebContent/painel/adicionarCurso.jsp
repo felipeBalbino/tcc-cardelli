@@ -81,7 +81,7 @@ function restartTrs(){
 						</strong>
 						</h3>
 						<p> 
-						  Use o Menu ao lado para adicionar um curso. 
+						  Use os campos ao lado para adicionar um curso. 
 						</p>
 						<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O Campo Nome em vermelhor é requerido.</p></div>
 						<br>

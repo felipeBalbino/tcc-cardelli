@@ -91,6 +91,11 @@ public class UploadAction extends ActionSupport {
 				arquivoDAO.save(arquivo);
 				
 				addActionMessage("Arquivo enviado com sucesso");
+				try {
+					enviarEmail.sendMailToAluno( dl , fileName, UserData.getLoggedUser() );
+				} catch ( Throwable e ) {
+					System.out.println("Não foi possível enviar emails para os alunos");
+				}	
 			} catch (IntranetException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -103,20 +108,7 @@ public class UploadAction extends ActionSupport {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
-			
-			
-			
-			
-			//enviar email para todos os alunos desta DisciplinaLetiva
-		
-				try {
-					enviarEmail.sendMailToAluno( dl , fileName, UserData.getLoggedUser() );
-				} catch ( Throwable e ) {
-					System.out.println("Não foi possível enviar emails para os alunos");
-				}			
-			
-			
+			}			
 				return lista();
 		
 	}

@@ -82,17 +82,11 @@ public class EnviarEmail {
 	public void sendMailToAluno(DisciplinaLetiva dl, String fileName, Pessoa professor) throws Throwable{
 
 		configuration = new GmailConfiguration();
-		
-			DisciplinaLetiva disAluno = disciplinaDAO.getAlunosByDL(dl.getId());
-			
-			for(Aluno aluno : disAluno.getAluno()){
+			for(Aluno aluno : dl.getAluno()){
 
 				Session session = Session.getInstance(configuration.getConfiguration(), configuration.getAuth());
-				System.out.println(1);
 				MimeMessage message = new MimeMessage(session);
-				System.out.println(2); 	
 				message.setFrom(new InternetAddress("intranetfgs@gmail.com", "Intranet FGS"));
-				System.out.println(3);
 				message.addRecipient(Message.RecipientType.TO, new InternetAddress(
 						aluno.getEmail(), aluno.getNome()));
 	

@@ -63,12 +63,7 @@ public class DisciplinaLetiva implements Serializable {
 	public void setSemestre(Integer semestre) {
 		this.semestre = semestre;
 	}
-	public List<Aluno> getAluno() {
-		return aluno;
-	}
-	public void setAluno(List<Aluno> aluno) {
-		this.aluno = aluno;
-	}
+
 	public void setTurno( String turno ) {
 		this.turno = turno;
 	}
@@ -81,5 +76,12 @@ public class DisciplinaLetiva implements Serializable {
 	public Professor getProfessor() {
 		return professor;
 	}
+	public void setAluno(List<Aluno> aluno) {
+		this.aluno = aluno;
+	}
+	public List<Aluno> getAluno() {
+		return aluno;
+	}
+
 
 }

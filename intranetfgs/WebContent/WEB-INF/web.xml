@@ -92,12 +92,11 @@
 	  <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
 	</filter>
 
-
 	<filter-mapping>
 	  <filter-name>hibernateFilter</filter-name>
 	  <url-pattern>/*</url-pattern> 
 	</filter-mapping>
-	
+
 	<context-param>
 		<param-name>EmailOuvidoria</param-name>
 		<param-value>gabrielcastilho.cardelli@gmail.com</param-value>	

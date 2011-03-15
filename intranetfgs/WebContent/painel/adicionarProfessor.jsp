@@ -146,8 +146,9 @@ width:295px;
 <title>Intranet - Faculdade Gama & Souza | Adicionar Professor</title>
 </head>
 <body>
-
-
+<div id="retorno">
+<img src="../images/arrow_categ.gif"><a href="../painel/professor!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Professores</a>
+</div>
 <div id="experience">
 					<div id="explanation">
 						<h3>

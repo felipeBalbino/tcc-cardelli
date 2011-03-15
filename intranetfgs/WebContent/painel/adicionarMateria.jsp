@@ -70,7 +70,9 @@ function restartTrs(){
 <title>Intranet - Faculdade Gama & Souza | Adicionar Disciplina</title>
 </head>
 <body>
-
+<div id="retorno">
+<img src="../images/arrow_categ.gif"><a href="../painel/materia!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Disciplinas</a>
+</div>
 <div id="experience" >
 					<div id="explanation">
 						<h3>
@@ -79,12 +81,8 @@ function restartTrs(){
 						</strong>
 						</h3>
 						<p> 
-    Na tela Criar matéria ou Editar matéria, clique no ícone Inserir arquivo, disponível nos campos Imagem de índice, Resumo e Texto da matéria.
-    Numa nova janela, será exibida a tela Inserir arquivo com a lista de todos os arquivos existentes no banco de dados do Publique!. Se o arquivo desejado ainda não estiver listado, clique em Enviar novo. A tela Enviar arquivo será exibida.
- 	Clique em OK, feche a janela com a tela Inserir arquivo e continue a criar ou a alterar a sua matéria.
-	Clique em OK, feche a janela com a tela Inserir arquivo e continue a criar ou a alterar a sua matéria.
-	
-</p>
+    					Use o formulário ao lado para cadastrar uma nova disciplina, em um ou mais cursos cadastrados.
+						</p>
 						<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O Campo Disciplina em vermelhor é requerido.</p></div>
 						<br>
 						<s:if test="hasActionMessages()">

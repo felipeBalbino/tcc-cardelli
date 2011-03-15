@@ -82,10 +82,13 @@ public class EnviarEmail {
 	public void sendMailToAluno(DisciplinaLetiva dl, String fileName, Pessoa professor) throws Throwable{
 
 		configuration = new GmailConfiguration();
+		
+			//DisciplinaLetiva disAluno = disciplinaDAO.getAlunosByDL(dl.getId());
+			
 			for(Aluno aluno : dl.getAluno()){
 
 				Session session = Session.getInstance(configuration.getConfiguration(), configuration.getAuth());
-				MimeMessage message = new MimeMessage(session);
+				MimeMessage message = new MimeMessage(session);	
 				message.setFrom(new InternetAddress("intranetfgs@gmail.com", "Intranet FGS"));
 				message.addRecipient(Message.RecipientType.TO, new InternetAddress(
 						aluno.getEmail(), aluno.getNome()));
@@ -95,7 +98,7 @@ public class EnviarEmail {
 					+ ", <br> o professor " + professor.getNome() 
 					+ " adicionou um novo documento em sua disciplina " +  dl.getDisciplina().getNome() 
 					+ " intitulado " + fileName +".<br>" 
-					+ "Para obter o arquivo acesse a intranet da FGS em um dos computadores da instituição.";
+					+ "Para obter o arquivo acesse a intranet da FGS em um dos computadores da instituiÃ§Ã£o.";
 				
 				String emailContent = "<b>Enviado por </b>" + professor.getNome();
 				emailContent = emailContent + "<br>";
@@ -115,7 +118,7 @@ public class EnviarEmail {
 				emailContent = emailContent + "<br>";
 				emailContent = emailContent + "<br>";
 				emailContent = emailContent + "<br>";
-				emailContent = emailContent + "Não responda este email, ele foi gerado automaticamente.";
+				emailContent = emailContent + "NÃ£o responda este email, ele foi gerado automaticamente.";
 				emailContent = emailContent + "<br>";
 				emailContent = emailContent + "Att. Equipe CQI";
 					
@@ -140,7 +143,7 @@ public class EnviarEmail {
 	
 				
 				String mensagem = "Prezado "+aluno.getNome()
-					+ ",<br>Arquivo em anexo da intranet da FGS, enviado de um dos computadores da instituição.";
+					+ ",<br>Arquivo em anexo da intranet da FGS, enviado de um dos computadores da instituiï¿½ï¿½o.";
 				String emailContent = "<b>Enviado por </b>" + aluno.getNome();
 				emailContent = emailContent + "<br>";
 				emailContent = emailContent + "<br>";
@@ -150,7 +153,7 @@ public class EnviarEmail {
 				emailContent = emailContent + mensagem;
 				emailContent = emailContent + "<br>";
 				emailContent = emailContent + "<br>";
-				emailContent = emailContent + "Não responda este email, ele foi gerado automaticamente.";
+				emailContent = emailContent + "Nï¿½o responda este email, ele foi gerado automaticamente.";
 				emailContent = emailContent + "<br>";
 				emailContent = emailContent + "Att. Equipe CQI";
 					
@@ -217,7 +220,7 @@ public class EnviarEmail {
 		
 		String msgBody = "";
 		msgBody = msgBody + "<b>Exception Message : </b>"+ rex.getMessage() + "<br><br>" ;
-		msgBody =  msgBody +  "<hr style='border-bottom:1px;border-style:dotted;border-color:#CCCCCC'><center><h3>Dados do Usuário</h3></center><hr style='border-bottom:1px;border-style:dotted;border-color:#CCCCCC'><table><tr><td>";
+		msgBody =  msgBody +  "<hr style='border-bottom:1px;border-style:dotted;border-color:#CCCCCC'><center><h3>Dados do Usuï¿½rio</h3></center><hr style='border-bottom:1px;border-style:dotted;border-color:#CCCCCC'><table><tr><td>";
 		msgBody =  msgBody + "<b>Id: </b></td><td>" + p.getId() + "</td></tr>" ;
 		msgBody =  msgBody + "<tr><td><b>Nome: </b></td><td>" + p.getNome() + "</td></tr>" ;
 		msgBody =  msgBody + "<tr><td><b>E-mail: </b></td><td>" + p.getEmail() + "</td></tr>" ;
@@ -234,7 +237,7 @@ public class EnviarEmail {
         msgBody = msgBody + "";
         msgBody = msgBody + "<br></br>";
         msgBody = msgBody + "<br></br>";
-        msgBody = msgBody + "Intranet FGS <br></br> Desenvolvido pelo Centro de Qualidade da Informação.";
+        msgBody = msgBody + "Intranet FGS <br></br> Desenvolvido pelo Centro de Qualidade da Informaï¿½ï¿½o.";
 		
 			
 			
@@ -253,7 +256,7 @@ public void sendEmailWithLoginAndPassword(String email) throws IntranetException
 		Pessoa pessoa = pessoaDAO.getPessoaByEmail(email);
 		
 		if(pessoa == null){
-			throw new Exception("E-Mail não cadastrado");
+			throw new Exception("E-Mail nï¿½o cadastrado");
 		}
 
 		Session session = Session.getInstance(configuration.getConfiguration(), configuration.getAuth());
@@ -277,7 +280,7 @@ public void sendEmailWithLoginAndPassword(String email) throws IntranetException
 		msgBody =  msgBody + "<b>Senha: </b>" + pessoa.getSenha() + "<br>" ;
 	
         msgBody = msgBody + "<br></br>";
-        msgBody = msgBody + "Intranet FGS <br></br> Desenvolvido pelo Centro de Qualidade da Informação.";
+        msgBody = msgBody + "Intranet FGS <br></br> Desenvolvido pelo Centro de Qualidade da Informaï¿½ï¿½o.";
 		
 			
 			

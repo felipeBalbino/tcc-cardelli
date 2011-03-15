@@ -109,7 +109,9 @@ function restartTrs(){
 <sx:head/>
 </head>
 <body>
-
+<div id="retorno">
+<img src="../images/arrow_categ.gif"><a href="../painel/evento!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Eventos</a>
+</div>
 <div id="experience" >
 					<div id="explanation">
 						<h3>
@@ -117,7 +119,25 @@ function restartTrs(){
 						Adicionar Novo Evento
 						</strong>
 						</h3>
-						<p> 
+												<p>
+						Eventos adicionadas aqui, serão visualizadas na página inicial.<br><br>
+						<strong>Campos Requeridos</strong><br>
+						<br>
+						Título:<br>
+						O título da evento, pequena descrição da evento.<br>
+						Exemplo: Palestra de Matemática aplicada.<br>
+						<br>
+						Coordenadores do evento.<br>
+						<br>
+						Local do evento<br>
+						Exemplo: Rua Cardoso 103<br>
+						<br>
+						Publico Alvo do evento.<br>
+						Exemplo: Público em geral<br>
+						<br>
+						Observações sobre o evento.<br>
+						Exemplo: Entrada R$15,00<br>
+						<br>
 						</p>
 						<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O(s) Campo(s) em vermelhor é(são) requerido(s).</p></div>
 						<br>
@@ -175,7 +195,7 @@ function restartTrs(){
 	</div>
 	
 	<div id="divobs" style="display:none;">
-		Obs: 
+		Observações: 
 		<s:textarea cssStyle="width:80%; height:80px;" name="eventoNovoParams.observacoes" id="obs" ></s:textarea>
 	</div>
 	<br></br>

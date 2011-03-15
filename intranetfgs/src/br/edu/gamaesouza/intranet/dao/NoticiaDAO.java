@@ -15,16 +15,8 @@ import br.edu.gamaesouza.intranet.utils.IntranetException;
 
 public class NoticiaDAO extends HibernateDaoSupport{
 
-	private CustomSession customSession;
-	private Session session;
-	private Transaction transaction;
-	
 	public void save(Noticia noticia) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.save(noticia);
-		transaction.commit();
-		session.close();
+		getHibernateTemplate().save(noticia);
 	}
 	
 	public List<Noticia> getAllForIndex() throws IntranetException{		
@@ -36,42 +28,27 @@ public class NoticiaDAO extends HibernateDaoSupport{
 	}
 	
 	public List<Noticia> getAll() throws IntranetException{
-		session = CustomSession.getSession();
-		Criteria c = session.createCriteria(Noticia.class);	
-		
+		Criteria c = getSession().createCriteria(Noticia.class);
+		c.addOrder(Order.desc("id"));	
 		List<Noticia> noticias = c.list();
-		
-		session.close();
-		return noticias; 
+		return noticias;
 		
 	}
 	
 	
 	public void update(Noticia noticia) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.merge(noticia);
-		transaction.commit();
-		session.flush();
-		session.close();
+		getHibernateTemplate().merge(noticia);
 	}
 	
 	
 	public void delete(Noticia noticia) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.delete(noticia);
-		transaction.commit();	
-		session.flush();
-		session.close();
+		getHibernateTemplate().delete(noticia);
 	}
 	
 	public Noticia getNoticiaById(Integer id) throws IntranetException{
-		session = CustomSession.getSession();
-		Criteria c = session.createCriteria(Noticia.class);
-		c.add(Restrictions.eq("id", id));
+		Criteria c = getSession().createCriteria(Noticia.class);
+		c.add(Restrictions.eq("id", id));	
 		Noticia noticia = (Noticia) c.uniqueResult();
-		session.close();
 		return noticia;
 		
 	}

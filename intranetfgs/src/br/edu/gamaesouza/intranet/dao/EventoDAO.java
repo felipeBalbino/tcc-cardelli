@@ -7,11 +7,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
 import br.edu.gamaesouza.intranet.bean.Evento;
 import br.edu.gamaesouza.intranet.other.CustomSession;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 
-public class EventoDAO {
+public class EventoDAO extends HibernateDaoSupport {
 	
 	private Session session;
 	private Transaction transaction;
@@ -65,14 +67,11 @@ public class EventoDAO {
 	}
 	
 	public List<Evento> getAllForIndex() throws IntranetException{
-		session = CustomSession.getSession();
-		Criteria c = session.createCriteria(Evento.class);
+		Criteria c = getSession().createCriteria(Evento.class);
 		c.setMaxResults(5);
 		c.addOrder(Order.desc("id"));	
-		List<Evento> eventos = (List<Evento>)c.list();
-		session.close();
-		return eventos;
-		
+		List<Evento> list = c.list();
+		return list;
 	}
 	
 	public Evento getEventoById(Integer id) throws IntranetException{

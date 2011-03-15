@@ -1,16 +1,16 @@
 package br.edu.gamaesouza.intranet.other;
 
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 
 public class CustomSession {
 
-	public static Session getSession() {
-		AnnotationConfiguration configuration  = new AnnotationConfiguration();
-		configuration.configure();
-		
-		SessionFactory sessionFactory = configuration.buildSessionFactory();
+	@Autowired private static HibernateTemplate hibernateTemplate;
+	
+	public static Session getSession() {	
+		SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
 		Session session = sessionFactory.openSession();	
 		return session;
 	}

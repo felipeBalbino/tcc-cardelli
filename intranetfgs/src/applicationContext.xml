@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<context:component-scan base-package="br.edu.gamaesouza.intranet" />
-	
+
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="hibernateProperties">
 			<props>
@@ -18,21 +18,43 @@
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
-
 			</props>
-
-
 		</property>
 	</bean>
-	
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://localhost:3306/intranet</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>dds3@1</value>
+		</property>
+	</bean>
+
 	<!-- DAOs -->
 	<bean class="br.edu.gamaesouza.intranet.dao.ArquivoDAO" id="arquivoDAO"></bean>
 	<bean class="br.edu.gamaesouza.intranet.dao.CursoDAO" id="cursoDAO"></bean>
 	<bean class="br.edu.gamaesouza.intranet.dao.DisciplinaDAO" id="disciplinaDAO"></bean>
-	<bean class="br.edu.gamaesouza.intranet.dao.EventoDAO" id="eventoDAO"></bean>
-	<bean class="br.edu.gamaesouza.intranet.dao.NoticiaDAO" id="noticiaDAO"></bean>
+	<bean class="br.edu.gamaesouza.intranet.dao.EventoDAO" id="eventoDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean class="br.edu.gamaesouza.intranet.dao.NoticiaDAO" id="noticiaDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 	<bean class="br.edu.gamaesouza.intranet.dao.PessoaDAO" id="pessoaDAO"></bean>
-	
+
 	<!-- POJOS -->
 	<bean class="br.edu.gamaesouza.intranet.bean.Aluno" id="aluno"></bean>
 	<bean class="br.edu.gamaesouza.intranet.bean.Arquivo" id="arquivo"></bean>
@@ -44,36 +66,53 @@
 	<bean class="br.edu.gamaesouza.intranet.bean.Pessoa" id="pessoa"></bean>
 	<bean class="br.edu.gamaesouza.intranet.bean.Professor" id="professor"></bean>
 	<bean class="br.edu.gamaesouza.intranet.bean.Rule" id="rule"></bean>
-	
-	<!-- MAIL -->
-	
-	<bean class="br.edu.gamaesouza.intranet.mail.EnviarEmail" id="enviarEmail"></bean>
-	
-	<!-- PARAMS -->
-	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaNovoParams" id="disciplinaLetivaNovoParams"></bean>
-	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaSearchParams" id="disciplinaSearchParams"></bean>
-	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaSearchParams" id="disciplinaLetivaSearchParams"></bean>	
 
-	<bean class="br.edu.gamaesouza.intranet.params.impl.EventoNovoParams" id="eventoNovoParams"></bean>
-	<bean class="br.edu.gamaesouza.intranet.params.impl.EventoAlteraParams" id="eventoAlteraParams"></bean>
-	<bean class="br.edu.gamaesouza.intranet.params.impl.EventoDeletaParams" id="eventoDeletaParams"></bean>
-	<bean class="br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams" id="alunoNovoParams"></bean>
-	
-	<bean class="br.edu.gamaesouza.intranet.params.impl.CursoSearchParams" id="cursoSearchParams"></bean>
-	<bean class="br.edu.gamaesouza.intranet.params.impl.CursoNovoParams"   id="cursoNovoParams"></bean>
-	<bean class="br.edu.gamaesouza.intranet.params.impl.CursoAlteraParams" id="cursoAlteraParams"></bean>
-	<bean class="br.edu.gamaesouza.intranet.params.impl.CursoDeletaParams" id="cursoDeletaParams"></bean>
-	<bean class="br.edu.gamaesouza.intranet.params.impl.OuvidoriaEmailParams" id="ouvidoriaEmailParams"></bean>
-	
-	<bean class="br.edu.gamaesouza.intranet.params.impl.ProfessorNovoParams" id="professorNovoParams"></bean>
-	
-	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaDeletaParams" id="disciplinaDeletaParams"></bean>
-	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaAlteraParams" id="disciplinaAlteraParams"></bean>
-	
+	<!-- MAIL -->
+
+	<bean class="br.edu.gamaesouza.intranet.mail.EnviarEmail" id="enviarEmail"></bean>
+
+	<!-- PARAMS -->
+	<bean
+		class="br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaNovoParams"
+		id="disciplinaLetivaNovoParams"></bean>
+	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaSearchParams"
+		id="disciplinaSearchParams"></bean>
+	<bean
+		class="br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaSearchParams"
+		id="disciplinaLetivaSearchParams"></bean>
+
+	<bean class="br.edu.gamaesouza.intranet.params.impl.EventoNovoParams"
+		id="eventoNovoParams"></bean>
+	<bean class="br.edu.gamaesouza.intranet.params.impl.EventoAlteraParams"
+		id="eventoAlteraParams"></bean>
+	<bean class="br.edu.gamaesouza.intranet.params.impl.EventoDeletaParams"
+		id="eventoDeletaParams"></bean>
+	<bean class="br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams"
+		id="alunoNovoParams"></bean>
+
+	<bean class="br.edu.gamaesouza.intranet.params.impl.CursoSearchParams"
+		id="cursoSearchParams"></bean>
+	<bean class="br.edu.gamaesouza.intranet.params.impl.CursoNovoParams"
+		id="cursoNovoParams"></bean>
+	<bean class="br.edu.gamaesouza.intranet.params.impl.CursoAlteraParams"
+		id="cursoAlteraParams"></bean>
+	<bean class="br.edu.gamaesouza.intranet.params.impl.CursoDeletaParams"
+		id="cursoDeletaParams"></bean>
+	<bean class="br.edu.gamaesouza.intranet.params.impl.OuvidoriaEmailParams"
+		id="ouvidoriaEmailParams"></bean>
+
+	<bean class="br.edu.gamaesouza.intranet.params.impl.ProfessorNovoParams"
+		id="professorNovoParams"></bean>
+
+	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaDeletaParams"
+		id="disciplinaDeletaParams"></bean>
+	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaAlteraParams"
+		id="disciplinaAlteraParams"></bean>
+
 	<!-- Value Objects -->
-	
+
 	<bean class="br.edu.gamaesouza.intranet.vo.OuvidoriaVO" id="ouvidoriaVO"></bean>
-	
-	
+
+
 </beans>
 

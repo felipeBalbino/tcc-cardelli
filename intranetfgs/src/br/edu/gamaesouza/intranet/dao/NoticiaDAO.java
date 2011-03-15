@@ -7,13 +7,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import br.edu.gamaesouza.intranet.bean.Evento;
 import br.edu.gamaesouza.intranet.bean.Noticia;
 import br.edu.gamaesouza.intranet.other.CustomSession;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 
-public class NoticiaDAO {
+public class NoticiaDAO extends HibernateDaoSupport{
 
 	private CustomSession customSession;
 	private Session session;
@@ -27,16 +27,12 @@ public class NoticiaDAO {
 		session.close();
 	}
 	
-	public List<Noticia> getAllForIndex() throws IntranetException{
-		session = CustomSession.getSession();
-		Criteria c = session.createCriteria(Noticia.class);
-		
+	public List<Noticia> getAllForIndex() throws IntranetException{		
+		Criteria c = getSession().createCriteria(Noticia.class);
 		c.setMaxResults(5);
 		c.addOrder(Order.desc("id"));	
 		List<Noticia> noticias = c.list();
-		session.close();
 		return noticias;
-		
 	}
 	
 	public List<Noticia> getAll() throws IntranetException{

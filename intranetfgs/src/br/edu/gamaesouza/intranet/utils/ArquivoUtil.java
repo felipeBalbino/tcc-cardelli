@@ -56,6 +56,10 @@ public class ArquivoUtil {
 			fileName += ".rar";
 		}else if((arquivo.getUploadContentType().contains("xls"))){
 			fileName += ".xls";
+		}else if((arquivo.getUploadContentType().contains("mp3"))){
+			fileName += ".mp3";
+		}else if((arquivo.getUploadContentType().contains("mp4"))){
+			fileName += ".mp4";
 		}else{
 			fileName += ".txt";
 		}	

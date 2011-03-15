@@ -73,32 +73,21 @@ public class UploadAction extends ActionSupport {
 				letiva.setSemestre(semestre);
 				letiva.setAno(ano);
 
-
-				
 				dl = disciplinaDAO.saveOrReturnDisciplinaLetiva(letiva);
-				
-				
-				arquivo.setDisciplinaLetiva(dl);
-
 				fileName = ArquivoUtil.saveFile(arquivo);
-
-				
-
+				arquivo.setDisciplinaLetiva(dl);
 				arquivo.setUrl(fileName);
 				arquivo.setProfessor((Professor)UserData.getLoggedUser());
 				arquivo.setDataEnvio(Calendar.getInstance());
-				
 				arquivoDAO.save(arquivo);
-				
+				enviarEmail.sendMailToAluno( dl , fileName, UserData.getLoggedUser() );
 				addActionMessage("Arquivo enviado com sucesso");
-				try {
-					enviarEmail.sendMailToAluno( dl , fileName, UserData.getLoggedUser() );
-				} catch ( Throwable e ) {
-					System.out.println("Não foi possível enviar emails para os alunos");
-				}	
 			} catch (IntranetException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+			} catch ( Throwable e ) {
+				System.out.println("Email nÃ£o enviado");
+				e.printStackTrace();
 			}finally{
 				arquivo = (Arquivo) SpringUtil.getBean("arquivo");
 				materia = null;

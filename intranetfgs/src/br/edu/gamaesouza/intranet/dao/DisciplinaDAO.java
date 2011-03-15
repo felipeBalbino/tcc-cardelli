@@ -69,24 +69,24 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 	
 	public void deleteDisciplina(Disciplina disciplina) throws IntranetException{
 		
-		// Pego a sessão para carregar a lista de cursos
+		// Pego a sessï¿½o para carregar a lista de cursos
 		session = CustomSession.getSession();
 		String query = "SELECT c FROM Curso c left join c.disciplinas d WHERE d.id = " + disciplina.getId();
 		Query c = session.createQuery(query);
 		List<Curso> cursos = c.list();
 		
-		// Fecho a Sessão que carrega a lista de cursos
+		// Fecho a Sessï¿½o que carrega a lista de cursos
 		this.session.close();
 		
 		for(Curso curso : cursos){
-			// Pego a sessão para fazer update neste curso
+			// Pego a sessï¿½o para fazer update neste curso
 			session = CustomSession.getSession();
 			transaction = session.beginTransaction();
 			
 			curso.getDisciplinas().remove(disciplina);
 			cursoDAO.update(curso);
 			transaction.commit();	
-			// Fecho a sessão para fazer update neste curso
+			// Fecho a sessï¿½o para fazer update neste curso
 			this.session.close();
 		}
 		session = CustomSession.getSession();
@@ -129,6 +129,7 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 		
 	}
 	
+	
 	public Disciplina getDisciplinaById(Integer id) throws IntranetException{
 		
 		this.session = CustomSession.getSession();
@@ -156,6 +157,16 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 	public List<DisciplinaLetiva> getDisciplinaLetivaByIdTheDisciplina(Integer id) throws IntranetException{
 		this.session = CustomSession.getSession();
 		String query = "FROM DisciplinaLetiva dl WHERE disciplina_id = " + id;
+		Query c = session.createQuery(query);
+		List<DisciplinaLetiva> disciplinasLetivas = (List<DisciplinaLetiva>) c.list();
+		this.session.close();
+		return disciplinasLetivas;
+	
+	}
+	
+	public List<DisciplinaLetiva> getDisciplinaLetivaByProfessor(Integer id) throws IntranetException{
+		this.session = CustomSession.getSession();
+		String query = "FROM DisciplinaLetiva dl WHERE professor_id = " + id;
 		Query c = session.createQuery(query);
 		List<DisciplinaLetiva> disciplinasLetivas = (List<DisciplinaLetiva>) c.list();
 		this.session.close();
@@ -310,7 +321,6 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 		Criteria c = session.createCriteria(DisciplinaLetiva.class);
 		c.add(Restrictions.eq("id", id));
 		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-	
 		DisciplinaLetiva disciplinaLetiva = (DisciplinaLetiva) c.uniqueResult();
 		this.session.close();
 		return  disciplinaLetiva;

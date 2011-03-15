@@ -213,7 +213,7 @@ width:295px;
 								</table>
 								
 							</div>
-							<s:submit></s:submit>
+							<s:submit value="Adicionar"></s:submit>
 					</s:form>
 			</div>					
 </div>

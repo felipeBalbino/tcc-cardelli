@@ -63,7 +63,7 @@ if(i == j) $(this).hide('slow');
 			<td><sx:autocompleter name="disciplinaSearchParams.cursoNome" headerKey="" headerValue="" list="allCursos" listValue="nome" listKey="nome">
 				
 			</sx:autocompleter></td>
-			<td><s:submit></s:submit></td>
+			<td><s:submit value="Pesquisar"></s:submit></td>
 		</tr>
 	</table>  
 	

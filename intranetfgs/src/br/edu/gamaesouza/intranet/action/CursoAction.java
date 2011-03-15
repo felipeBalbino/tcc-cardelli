@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.Disciplina;
+import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
 import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
@@ -25,12 +26,12 @@ public class CursoAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 	private static final String MSG_CURSO_NOVO_SUCESSO = "Curso cadastrado com sucesso!";
-	private static final String MSG_CURSO_NOVO_FAILURE = "Ocorreu um erro interno no servidor. Não foi possível cadastrar o curso.";
+	private static final String MSG_CURSO_NOVO_FAILURE = "Ocorreu um erro interno no servidor. Nï¿½o foi possï¿½vel cadastrar o curso.";
 	private static final String MSG_CURSO_DELETA_SUCESSO = "Curso deletado com sucesso!";
-	private static final String MSG_CURSO_DELETA_INSUCESSO = "Ocorreu um erro interno no servidor. Não foi possível deletar o curso.";
+	private static final String MSG_CURSO_DELETA_INSUCESSO = "Ocorreu um erro interno no servidor. Nï¿½o foi possï¿½vel deletar o curso.";
 	
 	private static final String MSG_CURSO_ALTERA_SUCESSO = "Curso alterado com sucesso!";
-	private static final String MSG_CURSO_ALTERA_FAILURE = "Ocorreu um erro interno no servidor. Não foi possível alterar o curso.";
+	private static final String MSG_CURSO_ALTERA_FAILURE = "Ocorreu um erro interno no servidor. Nï¿½o foi possï¿½vel alterar o curso.";
 
 	private static final String RULE_CURSO_NOVO = "RULE_CURSO_NOVO";
 	private static final String RULE_CURSO_LISTA = "RULE_CURSO_LISTA";
@@ -110,7 +111,12 @@ public class CursoAction extends ActionSupport {
 				cursoDAO.delete(curso);
 				addActionMessage(MSG_CURSO_DELETA_SUCESSO);
 			}else{
-				addActionMessage("Não é possível deletar este curso porque existem alunos cadastrados nele.");
+				addActionError("Nï¿½o foi possï¿½vel deletar este curso, "+alunos.size()+" aluno(s) esta(Ã£o) cadastrado(s) nele.");
+				for(Aluno aluno : alunos) {
+					addActionError("Nome: "+aluno.getNome()+
+							" - MatrÃ­cula: "+aluno.getMatricula()+
+							" - Email: "+aluno.getEmail());
+				}
 			}
 			
 		} catch (IntranetException e) {

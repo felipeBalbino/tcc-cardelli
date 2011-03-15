@@ -93,7 +93,11 @@ if(i == j) $(this).hide('slow');
 							<table width="100%" bgcolor="#FAFAD2">
 								<tr>
 									<td width="1%"><img src="../images/event_icon.png" /></td>
-									<td width="91%" style="font-size: 10px;font-weight:bold"> <s:property  value="disciplina.nome" /> - Ano:<s:property  value="ano" /> - Semestre:<s:property  value="semestre" /> - Turno:<s:property  value="turno" /> - Professor:<s:property  value="professor.nome" /></td>
+									<td width="91%" style="font-size: 10px;font-weight:bold"> 
+											<s:property  value="disciplina.nome" />
+										 -   <s:property  value="ano" />.<s:property  value="semestre" />/<s:property  value="turno" />
+										 -   <s:property  value="professor.nome" />
+									</td>
 									<td width="8%" align="right">
 										<a title="Exibir evento" class="exibir">
 											<img src="../images/open.png" />

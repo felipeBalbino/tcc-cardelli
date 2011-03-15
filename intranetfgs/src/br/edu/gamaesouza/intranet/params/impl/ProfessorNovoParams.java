@@ -1,5 +1,6 @@
 package br.edu.gamaesouza.intranet.params.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ public class ProfessorNovoParams implements ProfessorParams {
 		professor.setMatricula(matricula);
 		professor.setNome(nome);
 		professor.setSenha(senha);
+		professor.setDataUltimoAcesso(Calendar.getInstance());
 		professor.setRegras(pessoaDAO.getRuleListByStringList(rules));
 		return professor;
 	}

@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
 import br.edu.gamaesouza.intranet.bean.Professor;
 import br.edu.gamaesouza.intranet.bean.Rule;
+import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.params.impl.ProfessorNovoParams;
 import br.edu.gamaesouza.intranet.security.UserData;
@@ -34,19 +36,20 @@ public class ProfessorAction extends ActionSupport {
 	private List<String> rulesParam = new ArrayList<String>();
 
 	@Autowired private PessoaDAO pessoaDAO;
+	@Autowired private DisciplinaDAO disciplinaDAO;
 
 	public String save() {
 		UserData.grantAccess(RULE_PROFESSOR_SALVA);
 		
 		try {
 		if(pessoaDAO.validarLogin(professorNovoParams.getLogin())){
-			addActionError("Login já existente em nossa base.");	
+			addActionError("Login jï¿½ existente em nossa base.");	
 			if (pessoaDAO.validarEmail(professorNovoParams.getEmail()))
-				addActionError("Email já existente em nossa base.");
+				addActionError("Email jï¿½ existente em nossa base.");
 			if (professorNovoParams.getLogin().length() > 8)
-				addActionError("Login do Usuário precisar tem menos de 8 caracteres.");
+				addActionError("Login do Usuï¿½rio precisar tem menos de 8 caracteres.");
 			if(pessoaDAO.validarMatricula(professorNovoParams.getMatricula()))
-				addActionError("Matrícula já existente em nossa base.");
+				addActionError("Matrï¿½cula jï¿½ existente em nossa base.");
 		}else{
 			pessoaDAO.save(professorNovoParams.getProfessor());
 			addActionMessage("Professor adicionado com sucesso.");
@@ -80,13 +83,23 @@ public class ProfessorAction extends ActionSupport {
 			try {
 				
 				Professor professor = pessoaDAO.getProfessorById( this.professor.getId() );
-				pessoaDAO.deleteProfessor(professor);
-				
-				professor = (Professor) SpringUtil.getBean("professor");
-				addActionMessage("Professor deletada com sucesso");
-				
+				List<DisciplinaLetiva> disciplinasLetivas = disciplinaDAO.getDisciplinaLetivaByProfessor(professor.getId());
+				if(disciplinasLetivas.isEmpty()){
+					pessoaDAO.deleteProfessor(professor);
+					professor = (Professor) SpringUtil.getBean("professor");
+					addActionMessage("Professor deletada com sucesso");
+				}else{
+					addActionError("Nï¿½o foi possivel deletar o professor "+professor.getNome()+", existe(m) "+disciplinasLetivas.size()+" Disciplina(s) letiva(s) vincula(s) a este professor.");
+					for(DisciplinaLetiva letiva : disciplinasLetivas) {
+						addActionError("Turno: "+letiva.getTurno()+
+								" - Ano: "+letiva.getAno()+
+								" - Semestre: "+letiva.getSemestre()+
+								" - Disciplina: "+letiva.getDisciplina().getNome());
+					}
+					addActionError("Desvincule ou delete as disciplinas letivas antes de prosseguir a solicitaÃ§Ã£o.");
+				}	
 			} catch (IntranetException e) {
-				addActionError("Não foi possivel deletar o professor, ocorreu um erro interno no Servidor");
+				addActionError("Nï¿½o foi possivel deletar o professor, ocorreu um erro interno no Servidor");
 			}
 			return lista();
 	
@@ -165,6 +178,14 @@ public class ProfessorAction extends ActionSupport {
 
 	public void setProfessorNovoParams(ProfessorNovoParams professorNovoParams) {
 		this.professorNovoParams = professorNovoParams;
+	}
+
+	public void setDisciplinaDAO( DisciplinaDAO disciplinaDAO ) {
+		this.disciplinaDAO = disciplinaDAO;
+	}
+
+	public DisciplinaDAO getDisciplinaDAO() {
+		return disciplinaDAO;
 	}
 	
 	

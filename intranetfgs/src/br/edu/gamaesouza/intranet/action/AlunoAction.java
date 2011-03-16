@@ -9,6 +9,7 @@ import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
+import br.edu.gamaesouza.intranet.params.impl.AlunoAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams;
 import br.edu.gamaesouza.intranet.security.UserData;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
@@ -18,10 +19,12 @@ public class AlunoAction extends ActionSupport {
 	
 
 	private static final String MSG_REGISTRO_SUCESSO = "Registrado com sucesso.";
+	private static final String MSG_EDITADO_SUCESSO = 	"Editado com sucesso";
 	
 	private static final String RULE_ALUNOS_LISTA = "RULE_ALUNOS_LISTA";
 	private static final String RULE_ALUNOS_SAVE = "RULE_ALUNOS_SAVE";
 	private static final String RULE_ALUNOS_ALTERA = "RULE_ALUNOS_ALTERA";
+
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -29,9 +32,11 @@ public class AlunoAction extends ActionSupport {
 	private List<Curso> cursos = new ArrayList<Curso>();
 	
 	@Autowired private AlunoNovoParams alunoNovoParams ;
+	@Autowired private AlunoAlteraParams alunoAlteraParams ;
 	@Autowired private PessoaDAO pessoaDAO;	
 	@Autowired private CursoDAO cursoDAO;
 	
+
 
 	public String prepare(){
 		try {
@@ -55,7 +60,14 @@ public class AlunoAction extends ActionSupport {
 	}
 	public String editar() {
 		UserData.grantAccess(RULE_ALUNOS_ALTERA);
-
+		try {
+				pessoaDAO.merge( alunoAlteraParams.getAluno() );
+				addActionMessage(MSG_EDITADO_SUCESSO);
+			
+		} catch (IntranetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return lista();
 	}
 		
@@ -104,7 +116,7 @@ public class AlunoAction extends ActionSupport {
 				
 		}
 
-	
+
 	public AlunoNovoParams getAlunoNovoParams() {
 		return alunoNovoParams;
 	}
@@ -128,4 +140,28 @@ public class AlunoAction extends ActionSupport {
 		return cursos;
 	}
 
+
+	public AlunoAlteraParams getAlunoAlteraParams() {
+		return alunoAlteraParams;
+	}
+
+	public void setAlunoAlteraParams( AlunoAlteraParams alunoAlteraParams ) {
+		this.alunoAlteraParams = alunoAlteraParams;
+	}
+
+	public PessoaDAO getPessoaDAO() {
+		return pessoaDAO;
+	}
+
+	public void setPessoaDAO( PessoaDAO pessoaDAO ) {
+		this.pessoaDAO = pessoaDAO;
+	}
+
+	public CursoDAO getCursoDAO() {
+		return cursoDAO;
+	}
+
+	public void setCursoDAO( CursoDAO cursoDAO ) {
+		this.cursoDAO = cursoDAO;
+	}
 }

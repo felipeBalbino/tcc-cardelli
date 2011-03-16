@@ -6,7 +6,7 @@ import javax.persistence.*;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
- * @since 15/03/2010
+ * @since 15/03/2011
  */
 @Entity
 @DiscriminatorValue(value = "ALUNO")

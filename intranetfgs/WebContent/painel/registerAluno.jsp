@@ -171,6 +171,9 @@ width:295px;
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Registrar Aluno</title>
 </head>
+<div id="retorno" align="right">
+<img src="../images/arrow_categ.gif"><a href="../painel/aluno!lista.java" style="color:#FF4500;text-align:right;border-style:none;">Lista de Alunos</a>
+</div>
 <body>
 		
 			<div id="experience">
@@ -204,7 +207,7 @@ width:295px;
 					</div>	
 					
 					<div id="contact-form">
-						<s:form name="registra" method="post" action="../painel/aluno!registrar.java"  onSubmit="return validaForm()">
+						<s:form name="registra" method="post" action="../painel/aluno!alterar.java"  onSubmit="return validaForm()">
 		
 							Curso:<br><sx:autocompleter  headerKey=""  headerValue=""  id="curso" name="alunoNovoParams.cursoId" list="cursos" listValue="nome" listKey="id"/><br>
 							Nome Completo: <s:textfield id="nome" name="alunoNovoParams.nome"></s:textfield><br>

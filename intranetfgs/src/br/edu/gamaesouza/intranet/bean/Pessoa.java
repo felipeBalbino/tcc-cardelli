@@ -9,7 +9,7 @@ import javax.persistence.*;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
- * @since 15/03/2010
+ * @since 15/03/2011
  */
 
 @Entity
@@ -120,7 +120,7 @@ public class Pessoa implements Serializable {
 	public String getDataUltimoAcesso() {
 		if (dataUltimoAcesso != null){
 		    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-			return "- Último acesso em: "+sdf.format(dataUltimoAcesso.getTime());
+			return "- ï¿½ltimo acesso em: "+sdf.format(dataUltimoAcesso.getTime());
 		}else{
 			return "";
 		}

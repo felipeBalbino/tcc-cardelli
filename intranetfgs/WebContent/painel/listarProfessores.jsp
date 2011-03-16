@@ -181,28 +181,28 @@ if(i == j) $(this).hide('slow');
 					<tr>
 						<td>
 						<s:form name="registra" onSubmit="return validaForm()" action="/painel/professor!editar.java" method="get">
-						<s:hidden id="professor.id" name="professor.id" value="%{id}" />
+						<s:hidden id="professor.id" name="professorAlteraParams.id" value="%{id}" />
 							<div class="conteudo">
 								<table width="100%">
 								
 									<tr>
-										<td><b>Nome:</b> <s:textfield id="nome" name="professor.nome" value="%{nome}"  /></td>
+										<td><b>Nome:</b> <s:textfield id="nome" name="professorAlteraParams.nome" value="%{nome}"  /></td>
 									</tr>
 									
 									<tr>
-										<td><b>Matricula:</b> <s:textfield id="matricula" name="professor.matricula" value="%{matricula}"  /></td>
+										<td><b>Matricula:</b> <s:textfield id="matricula" name="professorAlteraParams.matricula" value="%{matricula}"  /></td>
 									</tr>
 									
 									<tr>
-										<td><b>Login:</b> <s:textfield id="login" name="professor.login" value="%{login}"  /></td>
+										<td><b>Login:</b> <s:textfield id="login" name="professorAlteraParams.login" value="%{login}"  /></td>
 									</tr>
 									
 									<tr>
-										<td><b>Senha:</b> <s:textfield id="senha" name="professor.senha" value="%{senha}"  /></td>
+										<td><b>Senha:</b> <s:textfield id="senha" name="professorAlteraParams.senha" value="%{senha}"  /></td>
 									</tr>
 									
 									<tr>
-										<td><b>E-mail:</b> <s:textfield id="email" name="professor.email" value="%{email}"  />  </td>
+										<td><b>E-mail:</b> <s:textfield id="email" name="professorAlteraParams.email" value="%{email}"  />  </td>
 									</tr>
 										
 									<tr>

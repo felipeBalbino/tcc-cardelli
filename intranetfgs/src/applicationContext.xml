@@ -123,6 +123,10 @@
 		id="disciplinaDeletaParams"></bean>
 	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaAlteraParams"
 		id="disciplinaAlteraParams"></bean>
+	<bean class="br.edu.gamaesouza.intranet.params.impl.AlunoAlteraParams"
+		id="alunoAlteraParams"></bean>
+		<bean class="br.edu.gamaesouza.intranet.params.impl.ProfessorAlteraParams"
+		id="professorAlteraParams"></bean>
 
 	<!-- Value Objects -->
 

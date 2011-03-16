@@ -11,6 +11,7 @@ import br.edu.gamaesouza.intranet.bean.Professor;
 import br.edu.gamaesouza.intranet.bean.Rule;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
+import br.edu.gamaesouza.intranet.params.impl.ProfessorAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.ProfessorNovoParams;
 import br.edu.gamaesouza.intranet.security.UserData;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
@@ -30,7 +31,9 @@ public class ProfessorAction extends ActionSupport {
 	@Autowired private Professor professor;
 	
 	@Autowired private ProfessorNovoParams professorNovoParams;
+	@Autowired private ProfessorAlteraParams professorAlteraParams;
 	
+
 	private List<Professor> professores = new ArrayList<Professor>();
 	private List<Rule> rules = new ArrayList<Rule>();
 	private List<Rule> allRules = new ArrayList<Rule>();
@@ -91,16 +94,18 @@ public class ProfessorAction extends ActionSupport {
 	public String editar() {
 		UserData.grantAccess(RULE_PROFESSOR_ALTERA);
 		try {
+			Professor professor = professorAlteraParams.getProfessor();
 			professor.setRegras(pessoaDAO.getRuleListByStringList(rulesParam));
 			pessoaDAO.merge(professor);
 			professor = (Professor) SpringUtil.getBean("professor");
-
-			addActionMessage("Professor alterado com sucesso.");
+			addActionMessage("Professor alterado com sucesso.");	
 		} catch (IntranetException e) {
 			addActionError("Ocorreu um erro ao tentar alterar o Professor.");
 		}
 		return lista();
 	}
+	
+	
 	public String delete() {
 
 		UserData.grantAccess(RULE_PROFESSOR_DELETE);
@@ -210,8 +215,14 @@ public class ProfessorAction extends ActionSupport {
 
 	public DisciplinaDAO getDisciplinaDAO() {
 		return disciplinaDAO;
-	}
-	
-	
+	}	
 
+	
+	public ProfessorAlteraParams getProfessorAlteraParams() {
+		return professorAlteraParams;
+	}
+
+	public void setProfessorAlteraParams( ProfessorAlteraParams professorAlteraParams ) {
+		this.professorAlteraParams = professorAlteraParams;
+	}
 }

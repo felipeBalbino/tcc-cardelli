@@ -21,7 +21,7 @@ import br.edu.gamaesouza.intranet.utils.IntranetException;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
- * @since 15/03/2010
+ * @since 15/03/2011
  */
 public class CursoDAO extends HibernateDaoSupport {
 	
@@ -91,7 +91,7 @@ public class CursoDAO extends HibernateDaoSupport {
 	}
 
 	public List<Disciplina> getDisciplinaListByStringList(List<String> paramRules) throws IntranetException{
-		// Caso o usuário não selecione nenhuma disciplina/
+		// Caso o usuï¿½rio nï¿½o selecione nenhuma disciplina/
 		if(paramRules == null || paramRules.isEmpty()){
 			return new ArrayList<Disciplina>();
 		}
@@ -107,8 +107,8 @@ public class CursoDAO extends HibernateDaoSupport {
 		}
 
 	public List<Curso> getCursoListByStringList(List<String> cursosParam,Disciplina d) throws IntranetException {
-		//TODO Refatorar Método
-		// Esse método precisa ser repensado, ele deleta tudo e adiciona dinovo
+		//TODO Refatorar Mï¿½todo
+		// Esse mï¿½todo precisa ser repensado, ele deleta tudo e adiciona dinovo
 		
 		List<Curso> cursos = new ArrayList<Curso>();	
 		List<Curso> cursosDelete = d.getCursos();

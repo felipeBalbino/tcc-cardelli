@@ -3,6 +3,8 @@ package br.edu.gamaesouza.intranet.bean;
 import java.util.Calendar;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
@@ -16,7 +18,7 @@ import javax.persistence.TemporalType;
 		
 })
 public class HoraAEP extends Hora {
-
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataInicio;
 	

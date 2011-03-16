@@ -27,5 +27,9 @@
   <mapping class="br.edu.gamaesouza.intranet.bean.Aluno"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.Pessoa"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.DisciplinaLetiva"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Hora"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.HoraAEP"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.HoraComplementar"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Ativadade"/>
  </session-factory>
 </hibernate-configuration>

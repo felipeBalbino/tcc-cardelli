@@ -21,7 +21,8 @@ import javax.persistence.OneToOne;
 @NamedQueries(value={
 		@NamedQuery(name="allDLByDisciplinaAnoSemestre",query="SELECT dl FROM DisciplinaLetiva dl WHERE dl.disciplina.id = ?1 AND ano = ?2 AND semestre = ?3"),
 		@NamedQuery(name="allDLByAnoSemestreTurno",query="SELECT dl FROM DisciplinaLetiva dl WHERE dl.ano = ?1 AND semestre = ?2 AND turno = ?3"),
-		@NamedQuery(name="allDLByAnoSemestreTurnoProfessor",query="From DisciplinaLetiva where ano = ?1 AND semestre = ?2 AND turno = ?3 AND professor.nome = ?4")
+		@NamedQuery(name="allDLByAnoSemestreTurnoProfessor",query="From DisciplinaLetiva where ano = ?1 AND semestre = ?2 AND turno = ?3 AND professor.nome = ?4"),
+		@NamedQuery(name="allDLByAlunoDisciplinaAnoSemestre",query="SELECT dl FROM DisciplinaLetiva dl left join fetch dl.aluno aluno WHERE aluno.id = ?1 AND dl.disciplina.id =  ?2 AND dl.ano = ?3 AND dl.semestre = ?4")
 })
 
 

@@ -147,8 +147,7 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		}
 	}
 	
-	public List<DisciplinaLetiva> getDisciplinasLetivas(Integer ano, Integer semestre, String turno)throws IntranetException{
-	
+	public List<DisciplinaLetiva> getDisciplinasLetivas(Integer ano, Integer semestre, String turno)throws IntranetException{	
 		Query query = getSession().getNamedQuery("allDLByAnoSemestreTurno");
 		
 		query.setParameter(1,ano);
@@ -158,76 +157,51 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		List<DisciplinaLetiva> disciplinasLetivas = query.list();
 	
-		return disciplinasLetivas;
-		
-		
+		return disciplinasLetivas;	
 	}
 	
-	public List<DisciplinaLetiva> getDisciplinasLetivas(Integer ano, Integer semestre, String turno,Pessoa pessoa)throws IntranetException{
-		
+	public List<DisciplinaLetiva> getDisciplinasLetivas(Integer ano, Integer semestre, String turno,Pessoa pessoa)throws IntranetException{	
 		Professor professor = (Professor) pessoa;
 		
 		Query c = getSession().getNamedQuery("allDLByAnoSemestreTurnoProfessor");
 		c.setParameter(1, ano);
 		c.setParameter(2, semestre);
 		c.setParameter(3, turno);
-		c.setParameter(4, professor.getNome());
-		
+		c.setParameter(4, professor.getNome());	
 	
 		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		List<DisciplinaLetiva> disciplinasLetivas = c.list();
 	
-		return disciplinasLetivas;
-		
-		
+		return disciplinasLetivas;	
 	}
 	
 	public boolean setPessoaFollowDisciplinhaLetiva(Pessoa pessoa, Integer disciplina , Integer ano, Integer semestre) throws IntranetException{
-	
-		String queryVerifySql = "SELECT dl FROM DisciplinaLetiva dl left join fetch dl.aluno aluno WHERE aluno.id = " + pessoa.getId() + " AND dl.disciplina.id =  " + disciplina + " AND dl.ano = " + ano + " AND dl.semestre = " + semestre;
-		Query queryVerify = getSession().createQuery(queryVerifySql);
+		Query queryVerify = getSession().getNamedQuery("allDLByAlunoDisciplinaAnoSemestre");
+		queryVerify.setParameter(1, pessoa.getId());
+		queryVerify.setParameter(2, disciplina);
+		queryVerify.setParameter(3, ano);
+		queryVerify.setParameter(4, semestre);
+		
+		// Verifica se o Aluno já está inscrito na DisciplinaLetiva
 		DisciplinaLetiva dlVerify = (DisciplinaLetiva) queryVerify.uniqueResult();
 		
 		if(dlVerify == null){
+			Query c = getSession().getNamedQuery("allDLByDisciplinaAnoSemestre");
+			c.setParameter(1, disciplina);
+			c.setParameter(2, ano);
+			c.setParameter(3, semestre);
 			
-		
-			String query = "SELECT dl FROM DisciplinaLetiva dl WHERE ano = " + ano + " AND semestre = " + semestre + " AND disciplina.id = " + disciplina;
-			
-			
-			Query c = getSession().createQuery(query);
-			
-
 			DisciplinaLetiva dl = (DisciplinaLetiva) c.uniqueResult();
 			
-			System.out.println(dl);
 			
-			List<Aluno> alunos = dl.getAluno();
-			
-			if(alunos == null){
-				alunos = new ArrayList<Aluno>();
-				alunos.add((Aluno) pessoa);
-				dl.setAluno( alunos );
-			}else{
-				
-				dl.getAluno().add( (Aluno) pessoa );
-				
-			}
-	
+			dl.getAluno().add((Aluno) pessoa);
 		
-			getSession().update(dl);
+			getHibernateTemplate().update(dl);
 			
-		
 			return false;
-			
 		}else{
-		
 			return true;
-		}
-		
-		
-		
-		
-		
+		}	
 		
 	}
 

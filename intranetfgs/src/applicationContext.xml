@@ -130,8 +130,6 @@
 	<bean class="br.edu.gamaesouza.intranet.params.impl.AlunoSearchParams"
 		id="alunoSearchParams"></bean>
 
-
-AlunoSearchParams
 	<!-- Value Objects -->
 
 	<bean class="br.edu.gamaesouza.intranet.vo.OuvidoriaVO" id="ouvidoriaVO"></bean>

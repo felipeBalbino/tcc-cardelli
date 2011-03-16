@@ -84,9 +84,11 @@ public class PessoaDAO extends HibernateDaoSupport {
 	}
 	
 	public Pessoa getPessoa(String login, String senha) throws IntranetException{
-		Criteria c = getSession().createCriteria(Pessoa.class);
-		c.add(Restrictions.eq("login", login));
-		c.add(Restrictions.eq("senha", senha));
+		
+		
+		Query c = getSession().getNamedQuery("pessoaByLoginSenha");
+		c.setString("login", login);
+		c.setString("senha", senha);
 		
 		Pessoa pessoa = (Pessoa) c.uniqueResult();
 		
@@ -136,32 +138,31 @@ public class PessoaDAO extends HibernateDaoSupport {
 	}
 	
 	public Pessoa getPessoaById(Integer id)throws IntranetException{
-		Criteria c = getSession().createCriteria(Pessoa.class);
-		c.add(Restrictions.eq("id", id));
+		Query c = getSession().getNamedQuery("pessoaById");
+		c.setInteger("id", id);
 		Pessoa pessoa = (Pessoa) c.uniqueResult();
-		return pessoa;
-		
+		return pessoa;	
 	}
 	
 	public Pessoa getPessoaByEmail(String id)throws IntranetException{
-		Criteria c = getSession().createCriteria(Pessoa.class);
-		c.add(Restrictions.eq("email", id));
+		Query c = getSession().getNamedQuery("pessoaById");
+		c.setString("email", id);
 		Pessoa pessoa = (Pessoa) c.uniqueResult();
-		return pessoa;
+		return pessoa;	
 		
 	}
 	
 	public Professor getProfessorById(Integer id)throws IntranetException{
-		Criteria c = getSession().createCriteria(Professor.class);
-		c.add(Restrictions.eq("id", id));
-		Professor professor =(Professor) c.uniqueResult();
-		return professor;
+		Query c = getSession().getNamedQuery("pessoaById");
+		c.setInteger("id", id);
+		Professor pessoa = (Professor) c.uniqueResult();
+		return pessoa;	
 		
 	}
 	
 	public List<Aluno> getAlunosByCurso(Curso curso)throws IntranetException{
-		String query = "FROM Aluno a where a.curso.id = " + curso.getId();
-		Query c = (Query) getSession().createQuery(query);
+		Query c = getSession().getNamedQuery("alunosByCurso");
+		c.setInteger("curso", curso.getId());
 		List<Aluno> alunos = c.list();
 		return alunos;
 		

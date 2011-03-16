@@ -97,7 +97,7 @@ width:295px;
 
 <s:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Intranet - Faculdade Gama & Souza | Trocar Senha</title>
+<title>Intranet - Faculdade Gama & Souza | Buscar Horas AEP e Complementares</title>
 </head>
 <body>
 
@@ -108,7 +108,7 @@ width:295px;
 					<div id="explanation">
 						<h3>
 						<strong>
-						Alterar senha
+						Buscar Horas AEP e Complementares
 						</strong>
 						</h3>
 						<p>Digite o email atual a nova senha, e clique em "Alterar". <br>Por segurança, recomendamos que você mude sua senha a cada dois meses.</p>

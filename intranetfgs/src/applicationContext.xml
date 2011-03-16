@@ -125,9 +125,13 @@
 		id="disciplinaAlteraParams"></bean>
 	<bean class="br.edu.gamaesouza.intranet.params.impl.AlunoAlteraParams"
 		id="alunoAlteraParams"></bean>
-		<bean class="br.edu.gamaesouza.intranet.params.impl.ProfessorAlteraParams"
+	<bean class="br.edu.gamaesouza.intranet.params.impl.ProfessorAlteraParams"
 		id="professorAlteraParams"></bean>
+	<bean class="br.edu.gamaesouza.intranet.params.impl.AlunoSearchParams"
+		id="alunoSearchParams"></bean>
 
+
+AlunoSearchParams
 	<!-- Value Objects -->
 
 	<bean class="br.edu.gamaesouza.intranet.vo.OuvidoriaVO" id="ouvidoriaVO"></bean>

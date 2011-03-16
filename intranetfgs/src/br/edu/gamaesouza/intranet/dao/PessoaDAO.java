@@ -71,6 +71,14 @@ public class PessoaDAO extends HibernateDaoSupport {
 
 	}
 	
+	public Pessoa getAlunoByMatricula(Integer matricula) throws IntranetException {
+		Criteria c = getSession().createCriteria(Pessoa.class);
+		c.add(Restrictions.eq("matricula", matricula));
+		Pessoa pessoa =(Pessoa) c.uniqueResult();
+		return pessoa;
+
+	}
+	
 	public Pessoa getPessoaByMatricula(Integer matricula) throws IntranetException{
 		Criteria c = getSession().createCriteria( Pessoa.class );
 		c.add( Restrictions.eq( "matricula", matricula ) );

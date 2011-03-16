@@ -20,21 +20,19 @@ public class NoticiaDAO extends HibernateDaoSupport{
 	}
 	
 	public List<Noticia> getAllForIndex() throws IntranetException{		
-		Criteria c = getSession().createCriteria(Noticia.class);
-		c.setMaxResults(5);
-		c.addOrder(Order.desc("id"));	
-		List<Noticia> noticias = c.list();
-		return noticias;
+		Criteria allForIndex = getSession().createCriteria(Noticia.class);
+		allForIndex.setMaxResults(5);
+		allForIndex.addOrder(Order.desc("id"));	
+		List<Noticia> notices = allForIndex.list();
+		return notices;
 	}
 	
 	public List<Noticia> getAll() throws IntranetException{
-		Criteria c = getSession().createCriteria(Noticia.class);
-		c.addOrder(Order.desc("id"));	
-		List<Noticia> noticias = c.list();
-		return noticias;
-		
+		Criteria allNotices = getSession().createCriteria(Noticia.class);
+		allNotices.addOrder(Order.desc("id"));	
+		List<Noticia> notices = allNotices.list();
+		return notices;
 	}
-	
 	
 	public void update(Noticia noticia) throws IntranetException{
 		getHibernateTemplate().merge(noticia);
@@ -46,11 +44,10 @@ public class NoticiaDAO extends HibernateDaoSupport{
 	}
 	
 	public Noticia getNoticiaById(Integer id) throws IntranetException{
-		Criteria c = getSession().createCriteria(Noticia.class);
-		c.add(Restrictions.eq("id", id));	
-		Noticia noticia = (Noticia) c.uniqueResult();
-		return noticia;
-		
+		Criteria noticeById = getSession().createCriteria(Noticia.class);
+		noticeById.add(Restrictions.eq("id", id));	
+		Noticia notice = (Noticia) noticeById.uniqueResult();
+		return notice;	
 	}
 	
 }

@@ -30,6 +30,6 @@
   <mapping class="br.edu.gamaesouza.intranet.bean.Hora"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.HoraAEP"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.HoraComplementar"/>
-  <mapping class="br.edu.gamaesouza.intranet.bean.Ativadade"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Atividade"/>
  </session-factory>
 </hibernate-configuration>

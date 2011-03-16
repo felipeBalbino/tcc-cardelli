@@ -1,8 +1,14 @@
 package br.edu.gamaesouza.intranet.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
@@ -19,6 +25,9 @@ public class Aluno extends Pessoa implements Serializable {
 	
 	@OneToOne
 	private Curso curso;
+	
+	@OneToMany
+	private List<Hora> horas;
 
 	public Curso getCurso() {
 		return curso;

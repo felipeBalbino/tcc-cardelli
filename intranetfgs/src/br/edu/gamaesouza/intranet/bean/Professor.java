@@ -12,7 +12,6 @@ import javax.persistence.NamedQuery;
  */
 
 @Entity
-@DiscriminatorValue(value="PROFESSOR")
 @NamedQueries(value={
 		@NamedQuery(name="professorById",query="FROM Professor WHERE id = :id")	
 })

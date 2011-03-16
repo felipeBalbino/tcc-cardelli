@@ -14,7 +14,6 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED) 
-@DiscriminatorColumn(name="service_class",discriminatorType=DiscriminatorType.STRING)
 @NamedQueries(value={
 		@NamedQuery(name="pessoaByLoginSenha",query="FROM Pessoa WHERE login = :login AND senha = :senha"),
 		@NamedQuery(name="pessoaById",query="FROM Pessoa WHERE id = :id"),

@@ -71,6 +71,12 @@ public class PessoaDAO extends HibernateDaoSupport {
 
 	}
 	
+	public Pessoa getPessoaByMatricula(Integer matricula) throws IntranetException{
+		Criteria c = getSession().createCriteria( Pessoa.class );
+		c.add( Restrictions.eq( "matricula", matricula ) );
+		Pessoa pessoa = (Pessoa) c.uniqueResult();
+		return pessoa;
+	}
 	
 	
 	
@@ -130,6 +136,14 @@ public class PessoaDAO extends HibernateDaoSupport {
 		List<Professor> professores = c.list();
 		return professores;
 	}
+	
+	public List<Aluno> getAllAlunos()throws IntranetException{
+		Criteria c = getSession().createCriteria(Aluno.class);
+		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<Aluno> Alunos = c.list();
+		return Alunos;
+	}
+	
 	
 	public List<Rule> getAllRules()throws IntranetException{
 		Criteria c = getSession().createCriteria(Rule.class);

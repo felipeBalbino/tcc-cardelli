@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
+import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.bean.Professor;
 import br.edu.gamaesouza.intranet.bean.Rule;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
@@ -41,20 +42,43 @@ public class ProfessorAction extends ActionSupport {
 	public String save() {
 		UserData.grantAccess(RULE_PROFESSOR_SALVA);
 		
-		try {
+		try{
+		boolean error = false;
+		
+		
 		if(pessoaDAO.validarLogin(professorNovoParams.getLogin())){
-			addActionError("Login j� existente em nossa base.");	
-			if (pessoaDAO.validarEmail(professorNovoParams.getEmail()))
-				addActionError("Email j� existente em nossa base.");
-			if (professorNovoParams.getLogin().length() > 8)
-				addActionError("Login do Usu�rio precisar tem menos de 8 caracteres.");
-			if(pessoaDAO.validarMatricula(professorNovoParams.getMatricula()))
-				addActionError("Matr�cula j� existente em nossa base.");
-		}else{
+			error=true;
+			addActionError("Login j� existente em nossa base.");
+		}
+
+		
+		if (pessoaDAO.validarEmail(professorNovoParams.getEmail())){
+			error=true;
+			addActionError("Email j� existente em nossa base.");
+		}
+				
+		
+		if (professorNovoParams.getLogin().length() > 8){
+			error=true;
+			addActionError("Login do Usu�rio precisar tem menos de 8 caracteres.");
+		}
+				
+		
+		if(pessoaDAO.validarMatricula(professorNovoParams.getMatricula())){
+			error=true;
+			addActionError("Matr�cula j� existente em nossa base.");
+			Pessoa pessoa = pessoaDAO.getPessoaByMatricula( professorNovoParams.getMatricula() );
+			addActionError("Professor: "+pessoa.getNome()+ " - " + "Email: "+pessoa.getEmail()+" - " + "Matricula: "+pessoa.getMatricula());					
+		}
+			
+			
+		if(error == false){
 			pessoaDAO.save(professorNovoParams.getProfessor());
 			addActionMessage("Professor adicionado com sucesso.");
 			professorNovoParams = (ProfessorNovoParams) SpringUtil.getBean("professorNovoParams");
 		}
+
+			
 		} catch (IntranetException e) {
 			addActionError("Ocorreu um erro ao tentar adicionar o Professor.");
 		}

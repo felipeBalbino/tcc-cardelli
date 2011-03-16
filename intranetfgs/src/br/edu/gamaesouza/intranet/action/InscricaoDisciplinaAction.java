@@ -7,11 +7,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
+import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.security.UserData;
 
 import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
+import br.edu.gamaesouza.intranet.bean.Pessoa;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -19,13 +21,16 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static final String MSG_JA_INSCRITO = "Voce já está inscrito nesta disciplina";
+	private static final String MSG_JA_INSCRITO = "Voce jï¿½ estï¿½ inscrito nesta disciplina";
 	
 	private static final String MSG_MARCA_DISCIPLINA = "Marque pelo menos uma Disciplina.";
-	private static final String MSG_DELETA_SUCESSO = "Inscrição deletada com sucesso.";
-	private static final String MSG_NENHUMA_DISCIPLINA = "Você não tem nenhuma disciplina cadastrada.";
+	private static final String MSG_DELETA_SUCESSO = "Inscriï¿½ï¿½o deletada com sucesso.";
+	private static final String MSG_NENHUMA_DISCIPLINA = "Vocï¿½ nï¿½o tem nenhuma disciplina cadastrada.";
 	
 	@Autowired private DisciplinaDAO disciplinaDAO;
+	@Autowired private PessoaDAO pessoaDAO;	
+	
+	private Integer idAluno;
 	
 	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
 	private List<DisciplinaLetiva> disciplinasLetivasCadastradas = new ArrayList<DisciplinaLetiva>();
@@ -34,6 +39,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	private Integer ano =  Calendar.getInstance().get(Calendar.YEAR);
 	private List<Integer> semestres = new ArrayList<Integer>();
 	private List<String> turnos = new ArrayList<String>();
+	private Pessoa pessoa = new Pessoa();
 	
 	
 	private Integer semestre;
@@ -41,10 +47,15 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	private String turno;
 	
 	public String prepare(){
-		
-		semestres = FormUtil.getSemestresList();
-		turnos = FormUtil.getTurnosList();
-		
+		try {
+			disciplinasLetivasCadastradas = disciplinaDAO.getDisciplinaLetivaByUser( idAluno );
+			semestres = FormUtil.getSemestresList();
+			turnos = FormUtil.getTurnosList();
+			pessoa = pessoaDAO.getPessoaById( idAluno );
+		} catch ( IntranetException e ) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return list();
 		
 	}
@@ -54,8 +65,6 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 		try {
 			semestres = FormUtil.getSemestresList();
 			turnos = FormUtil.getTurnosList();
-
-			
 			disciplinasLetivas = disciplinaDAO.getDisciplinasLetivas(ano, semestre,turno);
 		} catch (IntranetException e) {
 			// TODO Auto-generated catch block
@@ -107,7 +116,10 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	public String list(){
 	
 		try{
-		disciplinasLetivasCadastradas = disciplinaDAO.getDisciplinaLetivaByUser(UserData.getLoggedUser());
+		semestres = FormUtil.getSemestresList();
+		turnos = FormUtil.getTurnosList();
+		disciplinasLetivasCadastradas = disciplinaDAO.getDisciplinaLetivaByUser( idAluno );
+		pessoa = pessoaDAO.getPessoaById( idAluno );
 		return "SUCCESS";
 		
 		}catch(IntranetException e){
@@ -190,5 +202,28 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 		return turnos;
 	}
 
+
+	public void setPessoa( Pessoa pessoa ) {
+		this.pessoa = pessoa;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoaDAO( PessoaDAO pessoaDAO ) {
+		this.pessoaDAO = pessoaDAO;
+	}
+
+	public PessoaDAO getPessoaDAO() {
+		return pessoaDAO;
+	}
+	public Integer getIdAluno() {
+		return idAluno;
+	}
+
+	public void setIdAluno( Integer idAluno ) {
+		this.idAluno = idAluno;
+	}
 	
 }

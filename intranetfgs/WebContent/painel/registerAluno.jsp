@@ -169,21 +169,19 @@ width:295px;
 
 <s:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Intranet - Faculdade Gama & Souza | Registro de Aluno</title>
+<title>Intranet - Faculdade Gama & Souza | Registrar Aluno</title>
 </head>
 <body>
 		
 			<div id="experience">
 					<div id="explanation">
 						<h3>
-							<strong>
-								Registrar aluno:
-							</strong>
+						<strong>
+						Registrar Aluno
+						</strong>
 						</h3>
 						<p>
-							<img src="../images/alert-ico.gif"> Lembre-se: sua senha de acesso é secreta; não a informe a ninguém.
-	A FGS jamais solicitará sua senha por e-mail ou por telefone. <br><br> 
-	<br><br> Perdeu sua senha? <a href="../jsp/recuperarSenha.jsp" style="color:red;"><b>Clique aqui<b></b></a> 
+							Área reservado aos coordenadores, para efetuar registro de aluno.
 						</p>
 						<strong>
 							<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O(s) Campo(s) em vermelhor é(são) requerido(s).</p></div>
@@ -206,7 +204,7 @@ width:295px;
 					</div>	
 					
 					<div id="contact-form">
-						<s:form name="registra" method="post" action="../jsp/log!registrar.java"  onSubmit="return validaForm()">
+						<s:form name="registra" method="post" action="../painel/aluno!registrar.java"  onSubmit="return validaForm()">
 		
 							Curso:<br><sx:autocompleter  headerKey=""  headerValue=""  id="curso" name="alunoNovoParams.cursoId" list="cursos" listValue="nome" listKey="id"/><br>
 							Nome Completo: <s:textfield id="nome" name="alunoNovoParams.nome"></s:textfield><br>

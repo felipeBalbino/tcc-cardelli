@@ -25,7 +25,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport {
 	
-	private static final String MSG_LOGIN_DADOS_INVALIDOS = "Dados inválidos, email ou senha atual não conferem.";
+	private static final String MSG_LOGIN_DADOS_INVALIDOS = "Dados invï¿½lidos, email ou senha atual nï¿½o conferem.";
 	private static final String MSG_REGISTRO_SUCESSO = "Registrado com sucesso, insira seu login e senha registrados anteriormente.";
 	private static final String MSG_ALTERA_SENHA_SUCESSO = "Senha editada com sucesso.";
 	
@@ -83,27 +83,43 @@ public class LoginAction extends ActionSupport {
 		}
 		
 		public String registrar() {			
-			try {
+			try {				
+				boolean error = false;
+			
 				
 				if(pessoaDAO.validarLogin(alunoNovoParams.getLogin())){
-					addActionError("Login já existente em nossa base.");	
-					if (pessoaDAO.validarEmail(alunoNovoParams.getEmail()))
-						addActionError("Email já existente em nossa base.");
-					if (alunoNovoParams.getLogin().length() > 8)
-						addActionError("Login do Usuário precisar tem menos de 8 caracteres.");
-					if(pessoaDAO.validarMatricula(alunoNovoParams.getMatricula()))
-						addActionError("Matrícula já existente em nossa base.");
-				}else{
+					error=true;
+					addActionError("Login jï¿½ existente em nossa base.");
+				}
+
+				
+				if (pessoaDAO.validarEmail(alunoNovoParams.getEmail())){
+					error=true;
+					addActionError("Email jï¿½ existente em nossa base.");
+				}
+						
+				
+				if (alunoNovoParams.getLogin().length() > 8){
+					error=true;
+					addActionError("Login do Usuï¿½rio precisar tem menos de 8 caracteres.");
+				}
+						
+				
+				if(pessoaDAO.validarMatricula(alunoNovoParams.getMatricula())){
+					error=true;
+					addActionError("Matrï¿½cula jï¿½ existente em nossa base.");				
+				}
+					
+					
+				if(error == false){
 					pessoaDAO.saveAluno(alunoNovoParams.getAluno());
 					addActionMessage(MSG_REGISTRO_SUCESSO);
-					return "login";
 				}
 			} catch (IntranetException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return prepare();
-				
 				
 		}
 	
@@ -159,7 +175,7 @@ public class LoginAction extends ActionSupport {
 			}catch(IntranetException e){
 				addActionError("Ocorreu um erro interno no Servidor. Um e-mail foi enviado ao administrador reportando o erro.");
 			}catch(Exception e){
-				addActionError("E-mail não confere com nenhum email cadastrado em nosso base.");
+				addActionError("E-mail nï¿½o confere com nenhum email cadastrado em nosso base.");
 				return "recuperar";
 			}
 			

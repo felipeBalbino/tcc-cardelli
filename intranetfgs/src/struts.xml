@@ -79,16 +79,17 @@
 		
 		
 		
-<action name="disciplinaLetiva" class="br.edu.gamaesouza.intranet.action.InscricaoDisciplinaAction" method="{1}" >
+		<action name="disciplinaLetiva" class="br.edu.gamaesouza.intranet.action.InscricaoDisciplinaAction" method="{1}" >
 			<result name="SUCCESS">/painel/inscreverDisciplinaLetiva.jsp</result>			
 		</action>
 
-<action name="curso" class="br.edu.gamaesouza.intranet.action.CursoAction"
+		<action name="curso" class="br.edu.gamaesouza.intranet.action.CursoAction"
 			method="{1}">
 			<result name="adicionarCurso">/painel/adicionarCurso.jsp</result>
 			<result name="cursos">/painel/listarCursos.jsp</result>
 			<result name="login">/jsp/login.jsp</result>
 		</action>
+		
 
 		<action name="materia" class="br.edu.gamaesouza.intranet.action.DisciplinaAction"
 			method="{1}">
@@ -130,6 +131,12 @@
 			<result name="this">/painel/adicionarProfessor.jsp</result>
 			<result name="modificarProfessor">/painel/listarProfessores.jsp</result>
 			<result name="login">/jsp/login.jsp</result>
+		</action>
+		
+		<action name="aluno" class="br.edu.gamaesouza.intranet.action.AlunoAction"
+			method="{1}">
+			<result name="listAlunos">/painel/listarAlunos.jsp</result>
+			<result name="register">/painel/registerAluno.jsp</result>
 		</action>
 
 	</package>

@@ -7,11 +7,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Intranet - Faculdade Gama & Souza | Buscar Material</title>
+<title>Intranet - Faculdade Gama & Souza | Inscrever aluno - Disciplinas letivas</title>
 <script type="text/javascript">
 
-function buscarDisciplinas(semestre,ano,turno) {    
-	         location.href = "disciplinaLetiva!buscarDisciplinas.java?ano="+ano+"&semestre=" +semestre+"&turno=" +turno ;
+function buscarDisciplinas(semestre,ano,turno,id) {    
+    location.href = "disciplinaLetiva!buscarDisciplinas.java?ano="+ano+"&semestre=" +semestre+"&turno=" +turno+"&idAluno=" +id;
 	      
 }
 	function del(codigo) {  
@@ -23,57 +23,56 @@ function buscarDisciplinas(semestre,ano,turno) {
 </script>
 </head>
 <body>
-<b>Inscreve-se em Disciplinas</b>
+<div id="retorno" align="right">
+<img src="../images/arrow_categ.gif"><a href="../painel/aluno!lista.java" style="color:#FF4500;text-align:right;border-style:none;">Lista de Alunos</a>
+</div>
+<b>Inscreve <s:property value="pessoa.nome" /> em Disciplinas letivas</b>
 <hr></hr>
 <div id="search">
-<s:form action="/painel/disciplinaLetiva!salva.java">
-<table cellspacing="10">
-	 	<tr>
-			
-			<td><b>Ano:</b></td>		
-			<td><s:property  value="%{ano}" /></td>	
-			
-			<td><b>Semestre:</b></td>
-			<td><sx:autocompleter onchange="javascript:buscarDisciplinas(this.value,'%{ano}',turno.value)" headerKey="-1"  headerValue=""  id="semestre" name="semestre" list="semestres" /></td>
-			
-			
-			<td><b>Turno:</b></td>
-			<td><sx:autocompleter onchange="javascript:buscarDisciplinas(semestre.value,'%{ano}',this.value)" headerKey="-1"  headerValue=""  id="turno" name="turno" list="turnos" /></td>
-			
-			
-			<td><b>Disciplina:</b></td>
-			<td><sx:autocompleter headerKey="-1" headerValue=""  id="disciplina" list="disciplinasLetivas" name="disciplina" value="disciplina" listKey="disciplina.id" listValue="disciplina.nome" /></td>	
-			<td colspan="1">
-			
-			<s:submit value="Inscrever-se" /></td>
-		</tr>
-		
-	 
-	</table>
-	
-</s:form>
+	<s:form action="/painel/disciplinaLetiva!salva.java">
+		<table cellspacing="10" >
+			<tr>
+				<td>
+					<b>Aluno:</b> <s:property value="pessoa.nome" /><b> - Matrícula:</b> <s:property value="pessoa.matricula" /> <b> - Email:</b> <s:property value="pessoa.email" /><br>
+				</td>
+			</tr>
+		</table>
+		<table cellspacing="10">
+		 	<tr>
+				<td><b>Ano:</b></td>		
+				<td><s:property  value="%{ano}" /></td>	
+				<td><b>Semestre:</b></td>
+				<td><sx:autocompleter onchange="javascript:buscarDisciplinas(this.value,'%{ano}',turno.value,'%{id}')" headerKey="-1"  headerValue=""  id="semestre" name="semestre" list="semestres" /></td>
+				<td><b>Turno:</b></td>
+				<td><sx:autocompleter onchange="javascript:buscarDisciplinas(semestre.value,'%{ano}',this.value,'%{id}')" headerKey="-1"  headerValue=""  id="turno" name="turno" list="turnos" /></td>
+				<td><b>Disciplina:</b></td>
+				<td><sx:autocompleter headerKey="-1" headerValue=""  id="disciplina" list="disciplinasLetivas" name="disciplina" value="disciplina" listKey="disciplina.id" listValue="disciplina.nome" /></td>	
+				<td colspan="1"><s:submit value="Inscrever aluno" /></td>
+			</tr>
+		</table>
+	</s:form>
 </div>
 
-						<s:if test="hasActionMessages()">
-							<div class="welcome" >
-  							 	<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
-  							</div> 			
-						</s:if>
+<s:if test="hasActionMessages()">
+	<div class="welcome" >
+  		<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
+  	</div> 			
+</s:if>
 						
-						<s:if test="hasActionErrors()">
-							 <div class="errors">
-  							 	<s:actionerror cssStyle="color:red;background-image : url('../images/imgErro.gif');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
-  							</div> 
-						</s:if>
+<s:if test="hasActionErrors()">
+	<div class="errors">
+  		<s:actionerror cssStyle="color:red;background-image : url('../images/imgErro.gif');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
+  	</div> 
+</s:if>
 <br>
-<b>Minhas Inscrições</b>
+<b>Disciplinas inscritas de <s:property value="pessoa.nome" /></b>
 <hr></hr>
 <div id="result" >
 
 
 	<table width="100%">
 	
-	
+		
 		<tr>
 		
 			<td><b>id</b></td>

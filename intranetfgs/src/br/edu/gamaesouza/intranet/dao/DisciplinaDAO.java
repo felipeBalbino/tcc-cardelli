@@ -182,7 +182,7 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		queryVerify.setParameter("ano", ano);
 		queryVerify.setParameter("semestre", semestre);
 		
-		// Verifica se o Aluno já está inscrito na DisciplinaLetiva
+		// Verifica se o Aluno jï¿½ estï¿½ inscrito na DisciplinaLetiva
 		DisciplinaLetiva dlVerify = (DisciplinaLetiva) queryVerify.uniqueResult();
 		
 		if(dlVerify == null){
@@ -206,14 +206,13 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 	}
 
 
-	public List<DisciplinaLetiva> getDisciplinaLetivaByUser(Pessoa loggedUser) throws IntranetException{
+	public List<DisciplinaLetiva> getDisciplinaLetivaByUser(Integer id) throws IntranetException{
 		
-		String sql = "FROM DisciplinaLetiva d left join fetch d.aluno aluno WHERE  aluno.id = " + loggedUser.getId();
+		String sql = "FROM DisciplinaLetiva d left join fetch d.aluno aluno WHERE  aluno.id = " + id;
 		
 		Query query = getSession().createQuery(sql);
 		query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		List<DisciplinaLetiva> disciplinasLetivas = (List<DisciplinaLetiva>)query.list();
-		
 		return disciplinasLetivas;
 		
 	}

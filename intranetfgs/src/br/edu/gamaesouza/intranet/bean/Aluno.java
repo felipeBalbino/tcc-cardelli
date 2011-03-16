@@ -9,7 +9,6 @@ import javax.persistence.*;
  * @since 15/03/2011
  */
 @Entity
-@DiscriminatorValue(value = "ALUNO")
 @NamedQueries(value={
 		@NamedQuery(name="alunosByCurso",query="FROM Aluno a where a.curso.id = :curso")
 })

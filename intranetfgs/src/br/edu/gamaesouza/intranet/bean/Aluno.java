@@ -37,4 +37,12 @@ public class Aluno extends Pessoa implements Serializable {
 		this.curso = curso;
 	}
 
+	public List<Hora> getHoras() {
+		return horas;
+	}
+
+	public void setHoras(List<Hora> horas) {
+		this.horas = horas;
+	}
+
 }

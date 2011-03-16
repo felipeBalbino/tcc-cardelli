@@ -133,9 +133,25 @@ if(i == j) $(this).hide('slow');
 	<img border="0" src="../images/novo.jpg" />Novo Aluno</a>
 </div>
 <br>
-<br>
 
-
+<b>Filtros de Pesquisa</b>
+<hr></hr>			
+<s:form action="/painel/aluno!lista.java">
+	<table>
+		<tr>
+			<td>Nome:</td>
+			<td><s:textfield name="alunoSearchParams.nome" id="alunoSearchParams.nome"></s:textfield></td>
+			<td>Email:</td>
+			<td><s:textfield name="alunoSearchParams.email" id="alunoSearchParams.email"></s:textfield></td>
+			<td>Matrícula:</td>
+			<td><s:textfield name="alunoSearchParams.matricula" id="alunoSearchParams.matricula" maxLenght="8"></s:textfield></td>
+			<td><s:submit value="Pesquisar"></s:submit></td>
+		</tr>
+	</table>  
+	 
+	
+	
+</s:form>	
 <b>Alunos</b>
 <hr></hr>
 <strong>

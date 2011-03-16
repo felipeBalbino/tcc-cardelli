@@ -11,6 +11,7 @@ import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.params.impl.AlunoAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams;
+import br.edu.gamaesouza.intranet.params.impl.AlunoSearchParams;
 import br.edu.gamaesouza.intranet.security.UserData;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import com.opensymphony.xwork2.ActionSupport;
@@ -33,6 +34,7 @@ public class AlunoAction extends ActionSupport {
 	
 	@Autowired private AlunoNovoParams alunoNovoParams ;
 	@Autowired private AlunoAlteraParams alunoAlteraParams ;
+	@Autowired private AlunoSearchParams alunoSearchParams;
 	@Autowired private PessoaDAO pessoaDAO;	
 	@Autowired private CursoDAO cursoDAO;
 	
@@ -49,14 +51,9 @@ public class AlunoAction extends ActionSupport {
 	}
 	
 	public String lista() {
-		
 		UserData.grantAccess(RULE_ALUNOS_LISTA);
-		try {
-			setAlunos( pessoaDAO.getAllAlunos() );
-		} catch (IntranetException e) {
-		}
+		setAlunos( pessoaDAO.getAllAlunosByParams(alunoSearchParams) );
 		return "listAlunos";
-		
 	}
 	public String editar() {
 		UserData.grantAccess(RULE_ALUNOS_ALTERA);
@@ -163,5 +160,13 @@ public class AlunoAction extends ActionSupport {
 
 	public void setCursoDAO( CursoDAO cursoDAO ) {
 		this.cursoDAO = cursoDAO;
+	}
+
+	public void setAlunoSearchParams( AlunoSearchParams alunoSearchParams ) {
+		this.alunoSearchParams = alunoSearchParams;
+	}
+
+	public AlunoSearchParams getAlunoSearchParams() {
+		return alunoSearchParams;
 	}
 }

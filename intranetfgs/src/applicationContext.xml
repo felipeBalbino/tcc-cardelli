@@ -8,14 +8,16 @@
 
 	<context:component-scan base-package="br.edu.gamaesouza.intranet" />
 
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource"><ref local="dataSource"/></property>
+		<property name="packagesToScan" value="br.edu.gamaesouza.intranet.bean" />
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+			<!--	<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
 				<prop key="hibernate.connection.username">root</prop>
 				<prop key="hibernate.connection.password">dds3@1</prop>
 				<prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/intranet</prop>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>  -->
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 			</props>
@@ -44,16 +46,29 @@
 	</bean>
 
 	<!-- DAOs -->
-	<bean class="br.edu.gamaesouza.intranet.dao.ArquivoDAO" id="arquivoDAO"></bean>
-	<bean class="br.edu.gamaesouza.intranet.dao.CursoDAO" id="cursoDAO"></bean>
-	<bean class="br.edu.gamaesouza.intranet.dao.DisciplinaDAO" id="disciplinaDAO"></bean>
+	<bean class="br.edu.gamaesouza.intranet.dao.ArquivoDAO" id="arquivoDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean class="br.edu.gamaesouza.intranet.dao.CursoDAO" id="cursoDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean class="br.edu.gamaesouza.intranet.dao.DisciplinaDAO" id="disciplinaDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
 	<bean class="br.edu.gamaesouza.intranet.dao.EventoDAO" id="eventoDAO">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
+	
 	<bean class="br.edu.gamaesouza.intranet.dao.NoticiaDAO" id="noticiaDAO">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
-	<bean class="br.edu.gamaesouza.intranet.dao.PessoaDAO" id="pessoaDAO"></bean>
+	
+	<bean class="br.edu.gamaesouza.intranet.dao.PessoaDAO" id="pessoaDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 
 	<!-- POJOS -->
 	<bean class="br.edu.gamaesouza.intranet.bean.Aluno" id="aluno"></bean>

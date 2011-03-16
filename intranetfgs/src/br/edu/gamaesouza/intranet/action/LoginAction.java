@@ -53,7 +53,7 @@ public class LoginAction extends ActionSupport {
 
 	public String prepare(){
 		try {
-			setCursos( cursoDAO.getAll() );
+			setCursos( cursoDAO.getAllCursos() );
 		} catch ( IntranetException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -68,8 +68,7 @@ public class LoginAction extends ActionSupport {
 			try {
 				pessoa = pessoaDAO.getPessoa(login, senha);
 			} catch (IntranetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
 			}
 
 			if (pessoa == null) {

@@ -63,7 +63,7 @@ public class BuscarMaterialAction extends ActionSupport {
 	
 	private void loadSearchFilters(){
 		try {
-			disciplinas = disciplinaDAO.getAll();
+			disciplinas = disciplinaDAO.getAllDisciplinas();
 			professores = pessoaDAO.getAll();
 			anos= FormUtil.getAnos();
 			semestres = FormUtil.getSemestresList();

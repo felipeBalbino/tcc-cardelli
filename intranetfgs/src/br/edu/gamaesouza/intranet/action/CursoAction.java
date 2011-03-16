@@ -56,7 +56,7 @@ public class CursoAction extends ActionSupport {
 	
 	public String execute(){
 		try {
-			allDisciplinas = disciplinaDAO.getAll();
+			allDisciplinas = disciplinaDAO.getAllDisciplinas();
 		} catch (IntranetException e) {
 			// TODO Falta Implementar
 		}
@@ -94,7 +94,7 @@ public class CursoAction extends ActionSupport {
 		UserData.grantAccess(RULE_CURSO_LISTA);
 			try{
 				cursos = cursoDAO.getAllByParams(cursoSearchParams);
-				allDisciplinas = disciplinaDAO.getAll();
+				allDisciplinas = disciplinaDAO.getAllDisciplinas();
 				return RETURN_CURSO_LISTA;
 			}catch(IntranetException e){	
 				return RETURN_CURSO_LISTA;

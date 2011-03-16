@@ -2,15 +2,15 @@
 package br.edu.gamaesouza.intranet.dao;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.Curso;
@@ -18,253 +18,183 @@ import br.edu.gamaesouza.intranet.bean.Disciplina;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.bean.Professor;
-import br.edu.gamaesouza.intranet.other.CustomSession;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaSearchParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaSearchParams;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 
-public class DisciplinaDAO extends GenericDAO<Disciplina> {
-
-	
-	private CustomSession customSession;
-	private Session session;
-	private Transaction transaction;
+/**
+ * @author Gabriel Cardelli
+ * @author Felipe Balbino
+ * @since 15/03/2010
+ */
+public class DisciplinaDAO extends HibernateDaoSupport {
 	
 	@Autowired private CursoDAO cursoDAO;
 	
-	public DisciplinaDAO() {
-		
+	public List<Disciplina> getAllDisciplinas() throws IntranetException {
+		Criteria getAllDisciplinasCriteria = getSession().createCriteria(Disciplina.class);
+		getAllDisciplinasCriteria.addOrder(Order.asc("nome"));
+		getAllDisciplinasCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<Disciplina> listaTodasDisciplinas =  getAllDisciplinasCriteria.list();
+		return listaTodasDisciplinas;
 	}
 	
-	
-	public List<Disciplina> getAll() throws IntranetException {
-		
-		this.session = CustomSession.getSession();
-		
-		Criteria c = session.createCriteria(Disciplina.class);
-		c.addOrder(Order.asc("nome"));
-		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		List<Disciplina> ds =  c.list();
-		
-		session.close();
-		
-		return ds;
-	}
-	
-
 	public List<DisciplinaLetiva> getAllDisciplinaLetivas() throws IntranetException {
-		
-		this.session = CustomSession.getSession();
-		
-		Criteria c = session.createCriteria(DisciplinaLetiva.class);
-		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		c.addOrder(Order.desc("id"));
-		List<DisciplinaLetiva> ds =  c.list();
-		
-		session.close();
-		
-		return ds;
+		Criteria getAllDisciplinaLeticasCriteria = getSession().createCriteria(DisciplinaLetiva.class);
+		getAllDisciplinaLeticasCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		getAllDisciplinaLeticasCriteria.addOrder(Order.desc("id"));
+		List<DisciplinaLetiva> listaTodasDisciplinasLetivas =  getAllDisciplinaLeticasCriteria.list();	
+		return listaTodasDisciplinasLetivas;
 	}
 	
 	
 	public void deleteDisciplina(Disciplina disciplina) throws IntranetException{
-		
-		// Pego a sess�o para carregar a lista de cursos
-		session = CustomSession.getSession();
 		String query = "SELECT c FROM Curso c left join c.disciplinas d WHERE d.id = " + disciplina.getId();
-		Query c = session.createQuery(query);
-		List<Curso> cursos = c.list();
-		
-		// Fecho a Sess�o que carrega a lista de cursos
-		this.session.close();
+		Query queryCursoByDisciplinaId = getSession().createQuery(query);
+		List<Curso> cursos = queryCursoByDisciplinaId.list();
 		
 		for(Curso curso : cursos){
-			// Pego a sess�o para fazer update neste curso
-			session = CustomSession.getSession();
-			transaction = session.beginTransaction();
-			
 			curso.getDisciplinas().remove(disciplina);
 			cursoDAO.update(curso);
-			transaction.commit();	
-			// Fecho a sess�o para fazer update neste curso
-			this.session.close();
 		}
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		disciplina.setCursos(null);
-		session.delete(disciplina);
-		transaction.commit();	
-		session.flush();
-		this.session.close();
-	}
-	
-	
 
+		disciplina.setCursos(null);
+		getHibernateTemplate().delete(disciplina);
+	}
 	
 	public void save(Disciplina t) throws IntranetException{
-		this.session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.save(t);
+		getHibernateTemplate().save(t);
+		
 		for(Curso curso : t.getCursos()){
 			curso.getDisciplinas().add(t);
-			session.merge(curso);
-		}
-		
-		
-		transaction.commit();
-		session.close();
-		
+			getHibernateTemplate().merge(curso);
+		}	
 	}
 	
 	
-	public Disciplina getDisciplinaByNome(String nome) throws IntranetException{
+	public Disciplina getDisciplinaByNome(String nome) throws IntranetException{	
+		Criteria disciplinaByNome = getSession().createCriteria(Disciplina.class);	
+		disciplinaByNome.add(Restrictions.eq("nome", nome));
 		
-		this.session = CustomSession.getSession();
-		Criteria c = session.createCriteria(Disciplina.class);
-		
-		c.add(Restrictions.eq("nome", nome));
-		Disciplina disciplina = (Disciplina) c.uniqueResult();
-		this.session.close();
-		return disciplina;
-		
+		Disciplina disciplina = (Disciplina) disciplinaByNome.uniqueResult();
+		return disciplina;	
 	}
 	
 	
 	public Disciplina getDisciplinaById(Integer id) throws IntranetException{
+		Criteria disciplinaById = getSession().createCriteria(Disciplina.class);
 		
-		this.session = CustomSession.getSession();
-		Criteria c = session.createCriteria(Disciplina.class);
+		disciplinaById.add(Restrictions.eq("id", id));
+		Disciplina disciplina = (Disciplina) disciplinaById.uniqueResult();
 		
-		c.add(Restrictions.eq("id", id));
-		Disciplina disciplina = (Disciplina) c.uniqueResult();
-		this.session.close();
 		return disciplina;
-		
 	}
 	
 	public DisciplinaLetiva getDisciplinaLetivaById(Integer id) throws IntranetException{
-		
-		this.session = CustomSession.getSession();
-		Criteria c = session.createCriteria(DisciplinaLetiva.class);
+		Criteria disciplinaLetivaById = getSession().createCriteria(DisciplinaLetiva.class);
 	
-		c.add(Restrictions.eq("id", id));
-		DisciplinaLetiva disciplina = (DisciplinaLetiva) c.uniqueResult();
-		this.session.close();
+		disciplinaLetivaById.add(Restrictions.eq("id", id));
+		DisciplinaLetiva disciplina = (DisciplinaLetiva) disciplinaLetivaById.uniqueResult();
+		
 		return disciplina;
 	
 	}
 	
-	public List<DisciplinaLetiva> getDisciplinaLetivaByIdTheDisciplina(Integer id) throws IntranetException{
-		this.session = CustomSession.getSession();
+	public List<DisciplinaLetiva> getDisciplinaLetivaByDisciplinaId(Integer id) throws IntranetException{
 		String query = "FROM DisciplinaLetiva dl WHERE disciplina_id = " + id;
-		Query c = session.createQuery(query);
-		List<DisciplinaLetiva> disciplinasLetivas = (List<DisciplinaLetiva>) c.list();
-		this.session.close();
-		return disciplinasLetivas;
+		Query disciplinaLetivaByDisciplinaId = getSession().createQuery(query);
+		List<DisciplinaLetiva> disciplinasLetivas = (List<DisciplinaLetiva>) disciplinaLetivaByDisciplinaId.list();
 	
+		return disciplinasLetivas;
 	}
 	
 	public List<DisciplinaLetiva> getDisciplinaLetivaByProfessor(Integer id) throws IntranetException{
-		this.session = CustomSession.getSession();
+	
 		String query = "FROM DisciplinaLetiva dl WHERE professor_id = " + id;
-		Query c = session.createQuery(query);
-		List<DisciplinaLetiva> disciplinasLetivas = (List<DisciplinaLetiva>) c.list();
-		this.session.close();
+		Query disciplinaLetivaByProfessor = getSession().createQuery(query);
+		List<DisciplinaLetiva> disciplinasLetivas = (List<DisciplinaLetiva>) disciplinaLetivaByProfessor.list();
+	
 		return disciplinasLetivas;
 	
 	}
 	
 	public void deleteDisciplinaLetiva(DisciplinaLetiva disciplinaLetiva) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.delete(disciplinaLetiva);
-		transaction.commit();	
-		session.flush();
-		this.session.close();
+		getHibernateTemplate().delete(disciplinaLetiva);
 	}
 	
 	public void updateDisciplinaLetiva(DisciplinaLetiva disciplinaLetiva) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.update(disciplinaLetiva);
-		transaction.commit();	
-		session.flush();
-		this.session.close();
+		getHibernateTemplate().update(disciplinaLetiva);
 	}
 
 	
 	public DisciplinaLetiva saveOrReturnDisciplinaLetiva(DisciplinaLetiva dl) throws IntranetException{		
-		this.session = CustomSession.getSession();
-		
-		String query = "FROM DisciplinaLetiva dl WHERE dl.disciplina.id = " + dl.getDisciplina().getId();
-		query = query + " AND ano = " +  dl.getAno();
-		query = query + " AND semestre = " + dl.getSemestre();
-
-		
-		Query c = session.createQuery(query);
+		Query c = getSession().getNamedQuery("allDLByDisciplinaAnoSemestre");
+		c.setParameter(1, dl.getDisciplina().getId());
+		c.setParameter(2, dl.getAno());
+		c.setParameter(3, dl.getSemestre());
 		
 		DisciplinaLetiva disciplinaLetiva = (DisciplinaLetiva) c.uniqueResult();
 		
 		if(disciplinaLetiva != null){
-			this.session.close();
+		
 			return disciplinaLetiva;
 		}else{
-			this.session = CustomSession.getSession();
-			transaction = session.beginTransaction();
-			session.save(dl);
-			transaction.commit();
-			session.close();
+		
+		
+			getHibernateTemplate().save(dl);
+		
 			return dl;
 		}
 	}
 	
 	public List<DisciplinaLetiva> getDisciplinasLetivas(Integer ano, Integer semestre, String turno)throws IntranetException{
-		this.session = CustomSession.getSession();
-		Criteria c = session.createCriteria(DisciplinaLetiva.class);
+	
+		Query query = getSession().getNamedQuery("allDLByAnoSemestreTurno");
 		
-		c.add(Restrictions.eq("ano", ano));
-		c.add(Restrictions.eq("semestre", semestre));
-		c.add(Restrictions.eq("turno", turno));
-		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		List<DisciplinaLetiva> disciplinasLetivas = c.list();
-		this.session.close();
+		query.setParameter(1,ano);
+		query.setParameter(2,semestre);
+		query.setParameter(3,turno);
+		
+		query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<DisciplinaLetiva> disciplinasLetivas = query.list();
+	
 		return disciplinasLetivas;
 		
 		
 	}
 	
 	public List<DisciplinaLetiva> getDisciplinasLetivas(Integer ano, Integer semestre, String turno,Pessoa pessoa)throws IntranetException{
-		this.session = CustomSession.getSession();
+		
 		Professor professor = (Professor) pessoa;
 		
-		String query = "From DisciplinaLetiva where ano = " + ano + " AND semestre = " + semestre + " AND turno = '" + turno + "' AND professor.nome = '" + professor.getNome() + "'";
-		
-		System.out.println(query);
-		
-		Query c = session.createQuery(query);
+		Query c = getSession().getNamedQuery("allDLByAnoSemestreTurnoProfessor");
+		c.setParameter(1, ano);
+		c.setParameter(2, semestre);
+		c.setParameter(3, turno);
+		c.setParameter(4, professor.getNome());
 		
 	
 		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		List<DisciplinaLetiva> disciplinasLetivas = c.list();
-		this.session.close();
+	
 		return disciplinasLetivas;
 		
 		
 	}
 	
 	public boolean setPessoaFollowDisciplinhaLetiva(Pessoa pessoa, Integer disciplina , Integer ano, Integer semestre) throws IntranetException{
-		this.session = CustomSession.getSession();
+	
 		String queryVerifySql = "SELECT dl FROM DisciplinaLetiva dl left join fetch dl.aluno aluno WHERE aluno.id = " + pessoa.getId() + " AND dl.disciplina.id =  " + disciplina + " AND dl.ano = " + ano + " AND dl.semestre = " + semestre;
-		Query queryVerify = session.createQuery(queryVerifySql);
+		Query queryVerify = getSession().createQuery(queryVerifySql);
 		DisciplinaLetiva dlVerify = (DisciplinaLetiva) queryVerify.uniqueResult();
-		session.close();
+		
 		if(dlVerify == null){
 			
-			this.session = CustomSession.getSession();
+		
 			String query = "SELECT dl FROM DisciplinaLetiva dl WHERE ano = " + ano + " AND semestre = " + semestre + " AND disciplina.id = " + disciplina;
 			
 			
-			Query c = session.createQuery(query);
+			Query c = getSession().createQuery(query);
 			
 
 			DisciplinaLetiva dl = (DisciplinaLetiva) c.uniqueResult();
@@ -282,16 +212,15 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 				dl.getAluno().add( (Aluno) pessoa );
 				
 			}
-			session.close();
-			this.session = CustomSession.getSession();
-			transaction = session.beginTransaction();
-			session.update(dl);
-			transaction.commit();
-			session.close();
+	
+		
+			getSession().update(dl);
+			
+		
 			return false;
 			
 		}else{
-			this.session.close();
+		
 			return true;
 		}
 		
@@ -304,43 +233,42 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 
 
 	public List<DisciplinaLetiva> getDisciplinaLetivaByUser(Pessoa loggedUser) throws IntranetException{
-		System.out.println("ID DO CARA: " +  loggedUser.getId());
+		
 		String sql = "FROM DisciplinaLetiva d left join fetch d.aluno aluno WHERE  aluno.id = " + loggedUser.getId();
-		this.session = CustomSession.getSession();
-		Query query = session.createQuery(sql);
+		
+		Query query = getSession().createQuery(sql);
 		query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		List<DisciplinaLetiva> disciplinasLetivas = (List<DisciplinaLetiva>)query.list();
-		this.session.close();
+		
 		return disciplinasLetivas;
 		
 	}
 
 
 	public DisciplinaLetiva getAlunosByDL( Integer id ) throws IntranetException{
-		this.session = CustomSession.getSession();
-		Criteria c = session.createCriteria(DisciplinaLetiva.class);
+	
+		Criteria c = getSession().createCriteria(DisciplinaLetiva.class);
 		c.add(Restrictions.eq("id", id));
 		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		DisciplinaLetiva disciplinaLetiva = (DisciplinaLetiva) c.uniqueResult();
-		this.session.close();
+		
 		return  disciplinaLetiva;
 
 	
 	}
 	
 	public void merge(Disciplina t) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.merge(t);
-		transaction.commit();
-		this.session.close();
+		
+	
+		getHibernateTemplate().merge(t);
+		
 	}
 
 
 	public List<Disciplina> getAllByParams(
 			DisciplinaSearchParams disciplinaSearchParams) {
 			
-		this.session = CustomSession.getSession();
+	
 		boolean operator = false;
 		String query = "FROM Disciplina d left outer join fetch d.cursos curso ";
 		
@@ -364,12 +292,12 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 		}
 		
 		query = query + " ORDER BY d.nome ASC";
-		Query hibernateQuery = session.createQuery(query);
+		Query hibernateQuery = getSession().createQuery(query);
 		hibernateQuery.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		
 		List<Disciplina> ds =  hibernateQuery.list();
 		
-		session.close();
+	
 		
 		return ds;
 	}
@@ -378,8 +306,7 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 	public List<DisciplinaLetiva> getAllByParamsDisciplinaLetiva(
 			DisciplinaLetivaSearchParams disciplinaLetivaSearchParams) {
 			
-		
-		this.session = CustomSession.getSession();
+	
 		boolean operator = false;
 		String query = "FROM DisciplinaLetiva  d left outer join fetch d.disciplina disciplina ";
 		
@@ -420,11 +347,10 @@ public class DisciplinaDAO extends GenericDAO<Disciplina> {
 			
 		}
 		
-		Query hibernateQuery = session.createQuery(query);
+		Query hibernateQuery = getSession().createQuery(query);
 		hibernateQuery.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		List<DisciplinaLetiva> ds =  hibernateQuery.list();
-		
-		session.close();
+	
 		
 		return ds;
 	}

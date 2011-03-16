@@ -69,7 +69,7 @@ public class DisciplinaAction extends ActionSupport{
 			
 			try {
 				disciplinas = disciplinaDAO.getAllByParams(disciplinaSearchParams);
-				allCursos = cursoDAO.getAll();
+				allCursos = cursoDAO.getAllCursos();
 			} catch (IntranetException e) {}
 			
 			return "disciplinas";
@@ -80,7 +80,7 @@ public class DisciplinaAction extends ActionSupport{
 		UserData.grantAccess(RULE_DISCIPLINA_NOVO);
 		
 		try {
-			cursos = cursoDAO.getAll();
+			cursos = cursoDAO.getAllCursos();
 		} catch (IntranetException e) {}
 		
 		return "adicionarMateria";
@@ -93,7 +93,7 @@ public class DisciplinaAction extends ActionSupport{
 		
 			try{
 				disciplinaDAO.save(disciplina);
-				cursos = cursoDAO.getAll();
+				cursos = cursoDAO.getAllCursos();
 				disciplina = (Disciplina) SpringUtil.getBean("disciplina");
 				checkBoxSelecionados = new Integer[]{};
 				
@@ -113,7 +113,7 @@ public class DisciplinaAction extends ActionSupport{
 		Disciplina disciplina = null;
 			try {
 				disciplina = disciplinaDeletaParams.getDisciplina();
-				disciplinasLetivas = disciplinaDAO.getDisciplinaLetivaByIdTheDisciplina(disciplina.getId());
+				disciplinasLetivas = disciplinaDAO.getDisciplinaLetivaByDisciplinaId(disciplina.getId());
 				if(disciplinasLetivas.isEmpty()) {
 					disciplinaDAO.deleteDisciplina(disciplina);
 					disciplina = (Disciplina) SpringUtil.getBean("disciplina");

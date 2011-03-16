@@ -3,16 +3,28 @@ package br.edu.gamaesouza.intranet.bean;
 import java.io.Serializable;
 import java.util.List;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
-
+/**
+ * @author Gabriel Cardelli
+ * @author Felipe Balbino
+ * @since 15/03/2010
+ */
 @Entity
+@NamedQueries(value={
+		@NamedQuery(name="allDLByDisciplinaAnoSemestre",query="SELECT dl FROM DisciplinaLetiva dl WHERE dl.disciplina.id = ?1 AND ano = ?2 AND semestre = ?3"),
+		@NamedQuery(name="allDLByAnoSemestreTurno",query="SELECT dl FROM DisciplinaLetiva dl WHERE dl.ano = ?1 AND semestre = ?2 AND turno = ?3"),
+		@NamedQuery(name="allDLByAnoSemestreTurnoProfessor",query="From DisciplinaLetiva where ano = ?1 AND semestre = ?2 AND turno = ?3 AND professor.nome = ?4")
+})
+
+
 public class DisciplinaLetiva implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

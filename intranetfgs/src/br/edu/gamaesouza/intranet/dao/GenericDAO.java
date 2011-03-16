@@ -10,48 +10,14 @@ import org.hibernate.Transaction;
 import br.edu.gamaesouza.intranet.other.CustomSession;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 
-public class GenericDAO<T> {
+public interface GenericDAO<T> {
+
+	public void save(T t) throws IntranetException;
 	
-	private CustomSession customSession;
-	private Session session;
-	private Transaction transaction;
-	private T t;
+	public void update(T t) throws IntranetException;
 	
-	public GenericDAO() {
-		
-	}
+	public void delete(T t) throws IntranetException;
 	
-	public void save(T t) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.save(t);
-		transaction.commit();
-		session.close();
-	}
-	
-	public void update(T t) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.update(t);
-		transaction.commit();
-		session.close();
-	}
-	
-	public void delete(T t) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.save(t);
-		transaction.commit();
-		session.close();
-	}
-	
-	public List<T> getAll() throws IntranetException{
-		session = CustomSession.getSession();
-		Criteria c = session.createCriteria(t.getClass());
-		
-		List<T> t = c.list();
-		session.close();
-		return t;
-	}
+	public T load(Integer id) throws IntranetException;
 
 }

@@ -25,7 +25,7 @@ public class OuvidoriaAction extends ActionSupport {
 	
 	public String prepare(){
 		try {
-			setCursos( cursoDAO.getAll() );
+			setCursos( cursoDAO.getAllCursos() );
 		} catch ( IntranetException e ) {
 			e.printStackTrace();
 		}

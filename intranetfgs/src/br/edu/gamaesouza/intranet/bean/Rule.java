@@ -1,13 +1,24 @@
 package br.edu.gamaesouza.intranet.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+/**
+ * @author Gabriel Cardelli
+ * @author Felipe Balbino
+ * @since 15/03/2010
+ */
 
 @Entity
-public class Rule {
-	
+@NamedQueries(value={
+		@NamedQuery(name="",query="")
+})
+public class Rule implements Serializable{
 	
 	@Id
 	@GeneratedValue

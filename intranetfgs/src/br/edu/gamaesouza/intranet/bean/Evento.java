@@ -7,12 +7,21 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-
+/**
+ * @author Gabriel Cardelli
+ * @author Felipe Balbino
+ * @since 15/03/2010
+ */
 @Entity
+@NamedQueries(value={
+		@NamedQuery(name="",query="")
+})
 public class Evento implements Serializable {
 
 	private static final long serialVersionUID = 1L;

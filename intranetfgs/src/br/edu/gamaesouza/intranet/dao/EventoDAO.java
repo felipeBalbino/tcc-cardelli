@@ -15,53 +15,41 @@ import br.edu.gamaesouza.intranet.utils.IntranetException;
 
 public class EventoDAO extends HibernateDaoSupport {
 	
-	private Session session;
-	private Transaction transaction;
 	
 	public void save(Evento evento) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.save(evento);
-		transaction.commit();	
-		session.flush();
-		session.close();
+		
+		getHibernateTemplate().save(evento);
+	
 	
 	}
 	
 	public void update(Evento evento) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.update(evento);
-		transaction.commit();
-		session.flush();
-		session.close();
+		
+		getHibernateTemplate().update(evento);
+
+	
 	}
 	
 	public void merge(Evento evento) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.merge(evento);
-		transaction.commit();
-		session.flush();
-		session.close();
+		
+		getHibernateTemplate().merge(evento);
+	
 	}
 	
 	
 	public void delete(Evento evento) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.delete(evento);
-		transaction.commit();	
-		session.flush();
-		session.close();
+	
+		getHibernateTemplate().delete(evento);
+
+		
 	}
 	
 	public List<Evento> getAll() throws IntranetException{
-		session = CustomSession.getSession();
-		Criteria c = session.createCriteria(Evento.class);	
+	
+		Criteria c = getSession().createCriteria(Evento.class);	
 		c.addOrder(Order.desc("title"));
 		List<Evento> eventos = (List<Evento>)c.list();
-		session.close();
+
 		return eventos;
 		
 	}
@@ -75,11 +63,11 @@ public class EventoDAO extends HibernateDaoSupport {
 	}
 	
 	public Evento getEventoById(Integer id) throws IntranetException{
-		session = CustomSession.getSession();
-		Criteria c = session.createCriteria(Evento.class);
+	
+		Criteria c = getSession().createCriteria(Evento.class);
 		c.add(Restrictions.eq("id", id));
 		Evento eventos = (Evento) c.uniqueResult();
-		session.close();
+
 		return eventos;
 		
 	}

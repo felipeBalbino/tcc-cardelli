@@ -1,106 +1,82 @@
 package br.edu.gamaesouza.intranet.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateCallback;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.Disciplina;
-import br.edu.gamaesouza.intranet.other.CustomSession;
 import br.edu.gamaesouza.intranet.params.impl.CursoSearchParams;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 
-public class CursoDAO extends GenericDAO<Curso> {
+/**
+ * @author Gabriel Cardelli
+ * @author Felipe Balbino
+ * @since 15/03/2010
+ */
+public class CursoDAO extends HibernateDaoSupport {
 	
-	private final Logger logger = Logger.getAnonymousLogger();
-	private Session session;
-	private Transaction transaction;
 	@Autowired private DisciplinaDAO disciplinaDAO;
 
-	public CursoDAO() {
-
-	}
-
-	public List<Curso> getAll() throws IntranetException {
-		this.session = CustomSession.getSession();
-		Criteria c = session.createCriteria(Curso.class);
-		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		List<Curso> cursos = c.list();
-		this.session.close();
+	public List<Curso> getAllCursos() throws IntranetException {
+		Criteria allCursos = getSession().createCriteria(Curso.class);
+		allCursos.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<Curso> cursos = allCursos.list();
 		return cursos;
 	}
 
-	public Curso getCursoById(Integer id)throws IntranetException{
-
-		this.session = CustomSession.getSession();
-		Criteria c = session.createCriteria(Curso.class);
-		c.add(Restrictions.eq("id", id));
-		Curso curso = (Curso) c.uniqueResult();
-		this.session.close();
+	public Curso getCursoById(Integer id)throws IntranetException{	
+		Criteria cursoById = getSession().createCriteria(Curso.class);
+		cursoById.add(Restrictions.eq("id", id));
+		Curso curso = (Curso) cursoById.uniqueResult();
 		return curso;
-
 	}
 	
-	public Curso getCursoByNome(String id)throws IntranetException {
-
-		this.session = CustomSession.getSession();
-		Criteria c = session.createCriteria(Curso.class);		
-		
-		c.add(Restrictions.eq("nome", id));
-		Curso curso = (Curso) c.uniqueResult();
-		this.session.close();
+	public Curso getCursoByNome(String id)throws IntranetException {	
+		Criteria cursoByNome = getSession().createCriteria(Curso.class);			
+		cursoByNome.add(Restrictions.eq("nome", id));
+		Curso curso = (Curso) cursoByNome.uniqueResult();
 		return curso;
-
 	}
 
-	public List<Curso> getAllCursosByIds(Integer[] cursosid) throws IntranetException{
-
+	public List<Curso> getAllCursosById(Integer[] cursosid) throws IntranetException{
 		List<Curso> cursos = new ArrayList<Curso>();
-
 		for (int cont = 0; cont < cursosid.length; cont++) {
 			cursos.add(getCursoById(cursosid[cont]));
 		}
-		
-		
 		return cursos;
-
 	}
 	
 	public List<Curso> getAllCursosByNome(List<String> nomesCursos) throws IntranetException{
-
 		List<Curso> cursos = new ArrayList<Curso>();
-
 		for(String nome : nomesCursos){
 			cursos.add(getCursoByNome(nome));
 		}
-
 		return cursos;
-
 	}
 	
-	public void delete(Curso curso) throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.delete(curso);
-		transaction.commit();	
-		session.flush();
-		this.session.close();
+	public void delete(final Curso curso) throws IntranetException{	
+		HibernateCallback callback = new HibernateCallback() {
+	        public Object doInHibernate(Session session) throws HibernateException, SQLException {
+	            Object groupObj = session.load(Curso.class, curso.getId());
+	            session.delete(groupObj);
+	            return null;
+	        }
+	    };	
+		getHibernateTemplate().execute(callback);
 	}
 	
-	public void merge(Curso curso)  throws IntranetException{
-		session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.merge(curso);
-		transaction.commit();
-		session.flush();
-		this.session.close();
+	public void merge(Curso curso)  throws IntranetException{		
+		getHibernateTemplate().merge(curso);
 	}
 	
 	public void deletaDiciplinaCurso(Integer disciplinaId,Integer cursoId) throws IntranetException{
@@ -108,16 +84,14 @@ public class CursoDAO extends GenericDAO<Curso> {
 		Disciplina disciplina = disciplinaDAO.getDisciplinaById(disciplinaId);
 		disciplina.getCursos().remove(curso);
 		curso.getDisciplinas().remove(disciplina);
-		this.session = CustomSession.getSession();
-		transaction = session.beginTransaction();
-		session.update(disciplina);
-		session.update(curso);
-		transaction.commit();
-		this.session.close();
+
+		getHibernateTemplate().update(disciplina);
+		getHibernateTemplate().update(curso);
+
 	}
 
 	public List<Disciplina> getDisciplinaListByStringList(List<String> paramRules) throws IntranetException{
-		// Caso o usuário não selecione nenhuma disciplina
+		// Caso o usuário não selecione nenhuma disciplina/
 		if(paramRules == null || paramRules.isEmpty()){
 			return new ArrayList<Disciplina>();
 		}
@@ -133,8 +107,10 @@ public class CursoDAO extends GenericDAO<Curso> {
 		}
 
 	public List<Curso> getCursoListByStringList(List<String> cursosParam,Disciplina d) throws IntranetException {
-		List<Curso> cursos = new ArrayList<Curso>();
+		//TODO Refatorar Método
+		// Esse método precisa ser repensado, ele deleta tudo e adiciona dinovo
 		
+		List<Curso> cursos = new ArrayList<Curso>();	
 		List<Curso> cursosDelete = d.getCursos();
 		
 		for(Curso curso : cursosDelete){
@@ -144,29 +120,23 @@ public class CursoDAO extends GenericDAO<Curso> {
 		
 		if(cursosParam != null){
 			
-		for(String curso : cursosParam){
-			
-			this.session = CustomSession.getSession();
-			Criteria c = session.createCriteria(Curso.class);	
-			c.add(Restrictions.eq("nome", curso));	
-			Curso cursoTemp = (Curso) c.uniqueResult();
-			
-			cursoTemp.getDisciplinas().add(d);
-			cursos.add(cursoTemp);
-			this.session.close();
-			merge(cursoTemp);
-		}
+			for(String curso : cursosParam){
+				Criteria cursoByNome = getSession().createCriteria(Curso.class);	
+				cursoByNome.add(Restrictions.eq("nome", curso));	
+				Curso cursoTemporario = (Curso) cursoByNome.uniqueResult();			
+				cursoTemporario.getDisciplinas().add(d);
+				cursos.add(cursoTemporario);		
+				merge(cursoTemporario);
+			}
 	
 		}
 		return cursos;
 	}
 
 	public List<Curso> getAllByParams(CursoSearchParams cursoSearchParams) {
-		this.session = CustomSession.getSession();
+	
 		boolean operator = false;
 		String query = "FROM Curso d left outer join fetch d.disciplinas disciplina ";
-		
-		logger.info("Curso Search params is Empty? " + cursoSearchParams.isEmpty());
 		
 		if (!cursoSearchParams.isEmpty()){
 			query =  query + "WHERE ";
@@ -179,21 +149,25 @@ public class CursoDAO extends GenericDAO<Curso> {
 			if(!cursoSearchParams.getCursoNome().equals("")){
 				if(operator){
 					query = query + " AND ";
-				}
-				
-				query = query + "d.nome LIKE '%" + cursoSearchParams.getCursoNome() + "%'";
-				
+				}	
+				query = query + "d.nome LIKE '%" + cursoSearchParams.getCursoNome() + "%'";			
 			}
 			
 		}
 		
-		Query hibernateQuery = session.createQuery(query);
-		hibernateQuery.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		List<Curso> ds =  hibernateQuery.list();
+		Query cursosByParams = getSession().createQuery(query);
+		cursosByParams.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<Curso> cursos =  cursosByParams.list();
 		
-		session.close();
-		
-		return ds;
+		return cursos;
+	}
+
+	public void update(Curso curso) throws IntranetException{
+		getHibernateTemplate().update(curso);		
+	}
+
+	public void save(Curso curso) throws IntranetException{
+		getHibernateTemplate().save(curso);			
 	}
 
 }

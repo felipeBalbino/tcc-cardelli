@@ -11,8 +11,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+/**
+ * @author Gabriel Cardelli
+ * @author Felipe Balbino
+ * @since 15/03/2010
+ */
 @Entity
+@NamedQueries(value={
+		@NamedQuery(name="",query="")
+})
 public class Curso implements Serializable {
 
 	private static final long serialVersionUID = 1L;

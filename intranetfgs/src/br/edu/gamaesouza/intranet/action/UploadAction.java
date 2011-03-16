@@ -53,7 +53,7 @@ public class UploadAction extends ActionSupport {
 	public String prepare() throws Exception {
 		setAnos(FormUtil.getAnosList(1));
 		setSemestres(FormUtil.getSemestresList());
-		disciplinas = disciplinaDAO.getAll();
+		disciplinas = disciplinaDAO.getAllDisciplinas();
 		setTurnos(FormUtil.getTurnosList());
 		return "adicionarArquivo";
 	}
@@ -92,7 +92,7 @@ public class UploadAction extends ActionSupport {
 				arquivo = (Arquivo) SpringUtil.getBean("arquivo");
 				materia = null;
 				try {
-					disciplinas = disciplinaDAO.getAll();
+					disciplinas = disciplinaDAO.getAllDisciplinas();
 				} catch (IntranetException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

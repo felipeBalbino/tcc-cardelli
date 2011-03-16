@@ -6,11 +6,18 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.*;
-
+/**
+ * @author Gabriel Cardelli
+ * @author Felipe Balbino
+ * @since 15/03/2010
+ */
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED) 
-@DiscriminatorColumn(name="service_class",discriminatorType=DiscriminatorType.STRING) 
+@DiscriminatorColumn(name="service_class",discriminatorType=DiscriminatorType.STRING)
+@NamedQueries(value={
+		@NamedQuery(name="",query="")
+})
 public class Pessoa implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

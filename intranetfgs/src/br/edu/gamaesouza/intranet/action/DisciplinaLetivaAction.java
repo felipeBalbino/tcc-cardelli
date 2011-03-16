@@ -58,7 +58,7 @@ public class DisciplinaLetivaAction extends ActionSupport{
 			setAnos(FormUtil.getAnosList(1));
 			setSemestres(FormUtil.getSemestresList());
 			setTurnos(FormUtil.getTurnosList());
-			disciplinas = disciplinaDAO.getAll();
+			disciplinas = disciplinaDAO.getAllDisciplinas();
 			professores = pessoaDao.getAll();
 		} catch (IntranetException e) {
 			// TODO Auto-generated catch block
@@ -76,7 +76,7 @@ public class DisciplinaLetivaAction extends ActionSupport{
 			setAnos(FormUtil.getAnosList(1));
 			setSemestres(FormUtil.getSemestresList());
 			setTurnos(FormUtil.getTurnosList());
-			disciplinas = disciplinaDAO.getAll();
+			disciplinas = disciplinaDAO.getAllDisciplinas();
 			professores = pessoaDao.getAll();
 			disciplinasLetivas = disciplinaDAO.getAllByParamsDisciplinaLetiva(disciplinaLetivaSearchParams);
 		} catch (IntranetException e) {

@@ -19,6 +19,8 @@ import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.bean.Professor;
 import br.edu.gamaesouza.intranet.bean.Rule;
 import br.edu.gamaesouza.intranet.other.CustomSession;
+import br.edu.gamaesouza.intranet.params.impl.AlunoSearchParams;
+import br.edu.gamaesouza.intranet.params.impl.CursoSearchParams;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 
 public class PessoaDAO extends HibernateDaoSupport {
@@ -152,6 +154,40 @@ public class PessoaDAO extends HibernateDaoSupport {
 		return Alunos;
 	}
 	
+	public List<Aluno> getAllAlunosByParams(AlunoSearchParams alunoSearchParams) {
+		
+		boolean operator = false;
+		String query = "SELECT a FROM Aluno a ";
+		
+		if (!alunoSearchParams.isEmpty()){
+			query =  query + "WHERE ";
+			
+			if(! ( alunoSearchParams.getMatricula() == null )){
+				query = query + "matricula = '" + alunoSearchParams.getMatricula() + "'";
+				operator = true;
+			}
+			
+			if(!alunoSearchParams.getNome().equals("")){
+				if(operator){
+					query = query + " AND ";
+				}	
+				query = query + "nome LIKE '%" + alunoSearchParams.getNome() + "%'";	
+				operator = true;
+			}
+			
+			if(!alunoSearchParams.getEmail().equals("")){
+				if(operator){
+					query = query + " AND ";
+				}	
+				query = query + " email LIKE '%" + alunoSearchParams.getEmail() + "%'";			
+			}
+			
+		}
+		
+		Query alunosByParams = getSession().createQuery(query);
+		List<Aluno> alunos =  alunosByParams.list();
+		return alunos;
+	}
 	
 	public List<Rule> getAllRules()throws IntranetException{
 		Criteria c = getSession().createCriteria(Rule.class);

@@ -14,7 +14,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @DiscriminatorValue(value="PROFESSOR")
 @NamedQueries(value={
-		@NamedQuery(name="",query="")
+		@NamedQuery(name="VaziaProfessor",query="FROM Professor")
 })
 public class Professor extends Pessoa implements Serializable {
 

@@ -19,7 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @NamedQueries(value={
-		@NamedQuery(name="",query="")
+		@NamedQuery(name="VaziaDisciplina",query="FROM Disciplina")
 })
 public class Disciplina implements Serializable {
 	

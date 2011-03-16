@@ -25,7 +25,7 @@ import org.apache.struts2.ServletActionContext;
  */
 @Entity
 @NamedQueries(value={
-		@NamedQuery(name="",query="")
+		@NamedQuery(name="VaziaArquivo",query="FROM Arquivo")
 })
 public class Arquivo implements Serializable {
 

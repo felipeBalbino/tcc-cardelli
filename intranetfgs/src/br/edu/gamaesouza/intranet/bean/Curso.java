@@ -20,7 +20,7 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries(value={
-		@NamedQuery(name="",query="")
+		@NamedQuery(name="VaziaCurso",query="FROM Curso")
 })
 public class Curso implements Serializable {
 

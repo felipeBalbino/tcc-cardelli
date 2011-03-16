@@ -16,7 +16,7 @@ import javax.persistence.*;
 @Inheritance(strategy=InheritanceType.JOINED) 
 @DiscriminatorColumn(name="service_class",discriminatorType=DiscriminatorType.STRING)
 @NamedQueries(value={
-		@NamedQuery(name="",query="")
+		@NamedQuery(name="VaziaPessoa",query="FROM Pessoa")
 })
 public class Pessoa implements Serializable {
 	

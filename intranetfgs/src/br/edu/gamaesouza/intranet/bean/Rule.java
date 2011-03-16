@@ -16,7 +16,7 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries(value={
-		@NamedQuery(name="",query="")
+		@NamedQuery(name="VaziaRule",query="FROM Rule")
 })
 public class Rule implements Serializable{
 	

@@ -22,7 +22,7 @@ import javax.persistence.Transient;
  */
 @Entity
 @NamedQueries(value={
-		@NamedQuery(name="",query="")
+		@NamedQuery(name="VaziaNoticia",query="FROM Noticia")
 })
 public class Noticia implements Serializable{
 	

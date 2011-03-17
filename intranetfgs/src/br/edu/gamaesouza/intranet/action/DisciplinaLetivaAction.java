@@ -1,7 +1,6 @@
 package br.edu.gamaesouza.intranet.action;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,7 @@ import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaSearchParams;
 
 import br.edu.gamaesouza.intranet.security.UserData;
 
+import br.edu.gamaesouza.intranet.utils.DiaSemanaEnum;
 import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
@@ -43,7 +43,8 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	private List<String> turnos = new ArrayList<String>();
 	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
 	private List<Professor> professores = new ArrayList<Professor>();
-
+	//private List<DiaSemanaEnum> diaSemana = Arrays.asList(DiaSemanaEnum.values());
+	
 	@Autowired private Horario horario;
 	@Autowired private Professor professor;
 	@Autowired private DisciplinaLetiva disciplinaLetiva;
@@ -295,6 +296,10 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	public Horario getHorario() {
 		return horario;
 	}
+
+
+
+
 
 	
 	

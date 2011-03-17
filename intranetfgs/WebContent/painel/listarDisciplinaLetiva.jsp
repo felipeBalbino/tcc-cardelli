@@ -108,8 +108,11 @@ if(i == j) $(this).hide('slow');
 										<a   title="Deletar evento" href="javascript:del(<s:property value="id" />)">
 											<img border="0" src="../images/lixeira.gif" />
 										</a>
-									</td>	
-									<s:property  value="disciplinaLetiva.horarios.DiaSemana" />
+									</td>
+									
+								<tr>
+									
+									
 								</tr>					
 							</table>
 						</td>
@@ -133,6 +136,13 @@ if(i == j) $(this).hide('slow');
 									</tr>	
 											
 								</table>
+								Horario(s) Cadastrado(s) nessa disciplina<br>
+								<s:iterator value="horarios" var="horario">
+										Dia da Semana:<s:property  value="DiaSemana" /><br>
+										Horario Inicial:<s:property  value="horaInicio" /><br>
+										Horario Final:<s:property  value="horaFim" /><br>
+										<br><br>
+								</s:iterator>
 							</div>
 						</s:form>
 						

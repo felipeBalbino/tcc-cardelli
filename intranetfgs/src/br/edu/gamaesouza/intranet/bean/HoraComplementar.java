@@ -10,8 +10,8 @@ import javax.persistence.OneToOne;
 @Entity
 @NamedQueries(value={
 		
-		@NamedQuery(name="horasComplementaresByAluno",query="SELECT comp FROM HoraComplementar comp left join fetch Atividade a where comp.aluno.id = :aluno"),
-		@NamedQuery(name="horasComplementaresByAlunoAtividade",query="SELECT comp FROM HoraComplementar comp left join fetch Atividade a where comp.aluno.id = :aluno AND a.id = :atividade")
+		@NamedQuery(name="horasComplementaresByAluno",query="SELECT comp FROM HoraComplementar comp where comp.aluno.id = :aluno"),
+		@NamedQuery(name="horasComplementaresByAlunoAtividade",query="SELECT comp FROM HoraComplementar comp  where comp.aluno.id = :aluno AND comp.atividade.id = :atividade")
 		
 })
 public class HoraComplementar extends Hora {

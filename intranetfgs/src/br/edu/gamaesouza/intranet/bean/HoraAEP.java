@@ -13,8 +13,8 @@ import javax.persistence.TemporalType;
 @Entity
 @NamedQueries(value={
 		
-		@NamedQuery(name="horasAEPByAluno",query="SELECT FROM HoraAEP aep where aep.aluno.id = :aluno"),
-		@NamedQuery(name="horasAEPByAlunoAnoSemestre",query="SELECT FROM HoraAEP aep where aep.aluno.id = :aluno AND ano = :ano AND semestre = :semestre")
+		@NamedQuery(name="horasAEPByAluno",query="SELECT aep FROM HoraAEP aep where aep.aluno.id = :aluno"),
+		@NamedQuery(name="horasAEPByAlunoAnoSemestre",query="SELECT aep FROM HoraAEP aep where aep.aluno.id = :aluno AND ano = :ano AND semestre = :semestre")
 		
 })
 public class HoraAEP extends Hora {

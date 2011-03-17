@@ -209,4 +209,8 @@ INSERT INTO DisciplinaLetiva_Aluno VALUES  (2,2);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (1,3);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (2,3);
 INSERT INTO Horario VALUES  (1,"SEGUNDA","12:10:00","12:10:00");
+INSERT INTO Horario VALUES  (2,"TERCA","12:10:00","12:10:00");
+INSERT INTO Horario VALUES  (3,"SEGUNDA","12:10:00","12:10:00");
 INSERT INTO DisciplinaLetiva_Horario VALUES  (1,1);
+INSERT INTO DisciplinaLetiva_Horario VALUES  (1,2);
+INSERT INTO DisciplinaLetiva_Horario VALUES  (2,2);

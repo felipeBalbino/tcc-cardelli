@@ -200,17 +200,25 @@ INSERT INTO Pessoa  (id,email,login,matricula,nome,senha) VALUES  (3,"phellipe86
 INSERT INTO Aluno VALUES  (3,1);
 INSERT INTO Pessoa  (id,email,login,matricula,nome,senha) VALUES  (4,"phellipe@gmail.com","prof",23432446,"professor","123456");
 INSERT INTO Professor VALUES  (4);
+
 INSERT INTO DisciplinaLetiva VALUES  (1,2011,1,"manha",1,4);
 INSERT INTO DisciplinaLetiva VALUES  (2,2011,1,"tarde",2,4);
 INSERT INTO DisciplinaLetiva VALUES  (3,2011,2,"noite",1,4);
 INSERT INTO DisciplinaLetiva VALUES  (4,2011,2,"manha",2,4);
+
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (1,2);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (2,2);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (1,3);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (2,3);
-INSERT INTO Horario VALUES  (1,"SEGUNDA","12:10:00","12:10:00");
-INSERT INTO Horario VALUES  (2,"TERCA","12:10:00","12:10:00");
-INSERT INTO Horario VALUES  (3,"SEGUNDA","12:10:00","12:10:00");
-INSERT INTO DisciplinaLetiva_Horario VALUES  (1,1);
-INSERT INTO DisciplinaLetiva_Horario VALUES  (1,2);
-INSERT INTO DisciplinaLetiva_Horario VALUES  (2,2);
+
+INSERT INTO Horario VALUES(1,"2011","19:40","18:50",1);
+INSERT INTO Horario VALUES(2,"2011","20:40","19:40",1);
+INSERT INTO Horario VALUES(3,"2011","21:40","20:50",1);
+INSERT INTO Horario VALUES(4,"2011","22:40","21:50",1);
+
+INSERT INTO DisciplinaLetiva_Horario VALUES  (1,"SEGUNDA",1,1);
+INSERT INTO DisciplinaLetiva_Horario VALUES  (2,"SEGUNDA",1,1);
+INSERT INTO DisciplinaLetiva_Horario VALUES  (3,"TERCA",2,1);
+
+
+SELECT dl FROM DisciplinaLetiva_Horario dlHorario left join dlHorario.DisciplinaLetiva dl left join dl.horario horario where dl.semestre = 1 and dl.ano = 2011 and dlHorario = "SEGUNDA";

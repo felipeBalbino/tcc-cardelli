@@ -3,6 +3,7 @@ package br.edu.gamaesouza.intranet.bean;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,14 +24,17 @@ public class Horario {
 	@GeneratedValue
 	private Integer id;
 	
-	@Enumerated(EnumType.STRING)
-	private DiaSemanaEnum DiaSemana;
-	
 	@Temporal(TemporalType.TIME)
 	private Date horaInicio;
 	
 	@Temporal(TemporalType.TIME)
 	private Date horaFim;
+	
+	@Column(nullable = false)
+	private Integer ano;
+	
+	@Column(nullable = false)
+	private Integer semestre;
 	
 	public void setId(Integer id) {
 		this.id = id;
@@ -40,13 +44,6 @@ public class Horario {
 		return id;
 	}
 
-	public void setDiaSemana(DiaSemanaEnum diaSemana) {
-		DiaSemana = diaSemana;
-	}
-
-	public DiaSemanaEnum getDiaSemana() {
-		return DiaSemana;
-	}
 
 	public void setHoraInicio(Date horaInicio) {
 		this.horaInicio = horaInicio;
@@ -62,6 +59,22 @@ public class Horario {
 
 	public Date getHoraFim() {
 		return horaFim;
+	}
+
+	public void setAno( Integer ano ) {
+		this.ano = ano;
+	}
+
+	public Integer getAno() {
+		return ano;
+	}
+
+	public void setSemestre( Integer semestre ) {
+		this.semestre = semestre;
+	}
+
+	public Integer getSemestre() {
+		return semestre;
 	}
 
 	

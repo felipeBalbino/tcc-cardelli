@@ -139,6 +139,12 @@
 			<result name="register">/painel/registerAluno.jsp</result>
 		</action>
 		
+		<action name="horario" class="br.edu.gamaesouza.intranet.action.HorarioAction"
+			method="{1}">
+			<result name="novoList">/painel/listarHorarios.jsp</result>
+		</action>
+		
+		
 		<action name="hora" class="br.edu.gamaesouza.intranet.action.HoraAction"
 			method="{1}">
 			<result name="listAEPSuccess"></result>

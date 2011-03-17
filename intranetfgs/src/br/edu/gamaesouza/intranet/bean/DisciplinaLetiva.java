@@ -47,7 +47,7 @@ public class DisciplinaLetiva implements Serializable {
 	@ManyToMany
 	private List<Aluno> aluno;
 	
-	@ManyToMany
+	@OneToMany(targetEntity=DisciplinaLetiva_Horario.class,mappedBy="horario")
 	private List<Horario> horarios;
 	
 	@OneToOne

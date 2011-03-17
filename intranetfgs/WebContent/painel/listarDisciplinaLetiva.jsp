@@ -48,7 +48,10 @@ if(i == j) $(this).hide('slow');
 <div align="right">
 	<a  title="Nova Disciplina Letiva" href="../painel/letiva!prepare.java">
 	<img border="0" src="../images/novo.jpg" />Nova Disciplina Letiva</a>
+	<a  title="Nova Disciplina Letiva" href="../painel/horario!prepare.java">
+	<img border="0" src="../images/novo.jpg" />Alterar Horário das aulas</a>
 </div>
+
 
 <b>Filtros de Pesquisa</b>
 <hr></hr>
@@ -136,12 +139,10 @@ if(i == j) $(this).hide('slow');
 									</tr>	
 											
 								</table>
-								Horario(s) Cadastrado(s) nessa disciplina<br>
+								<hr></hr>
+								<strong>Horario(s) Cadastrado(s) nesta disciplina:</strong><br>
 								<s:iterator value="horarios" var="horario">
-										Dia da Semana:<s:property  value="DiaSemana" /><br>
-										Horario Inicial:<s:property  value="horaInicio" /><br>
-										Horario Final:<s:property  value="horaFim" /><br>
-										<br><br>
+											Dia da Semana: <s:property  value="DiaSemana" /> - Horario Inicial:<s:date format="HH:mm" name="horario.horaInicio" /> / Horario Final:<s:date format="HH:mm" name="horario.horaFim" /><br>
 								</s:iterator>
 							</div>
 						</s:form>

@@ -25,7 +25,7 @@ public class HoraAEP extends Hora {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataFim;
 	
-	private Integer período;
+	private Integer periodo;
 	
 	private Integer ano;
 
@@ -46,13 +46,7 @@ public class HoraAEP extends Hora {
 		this.dataFim = dataFim;
 	}
 
-	public Integer getPeríodo() {
-		return período;
-	}
 
-	public void setPeríodo(Integer período) {
-		this.período = período;
-	}
 
 	public Integer getAno() {
 		return ano;
@@ -60,6 +54,14 @@ public class HoraAEP extends Hora {
 
 	public void setAno(Integer ano) {
 		this.ano = ano;
+	}
+
+	public void setPeriodo(Integer periodo) {
+		this.periodo = periodo;
+	}
+
+	public Integer getPeriodo() {
+		return periodo;
 	}
 	
 }

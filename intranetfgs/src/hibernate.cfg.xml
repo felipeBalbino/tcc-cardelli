@@ -31,5 +31,6 @@
   <mapping class="br.edu.gamaesouza.intranet.bean.HoraAEP"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.HoraComplementar"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.Atividade"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Horario"/>
  </session-factory>
 </hibernate-configuration>

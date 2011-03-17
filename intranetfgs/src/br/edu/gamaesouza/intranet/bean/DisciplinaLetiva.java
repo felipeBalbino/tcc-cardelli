@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -45,6 +46,9 @@ public class DisciplinaLetiva implements Serializable {
 	
 	@ManyToMany
 	private List<Aluno> aluno;
+	
+	@ManyToMany
+	private List<Horario> horarios;
 	
 	@OneToOne
 	private Professor professor;
@@ -94,6 +98,12 @@ public class DisciplinaLetiva implements Serializable {
 	}
 	public List<Aluno> getAluno() {
 		return aluno;
+	}
+	public void setHorarios(List<Horario> horarios) {
+		this.horarios = horarios;
+	}
+	public List<Horario> getHorarios() {
+		return horarios;
 	}
 
 

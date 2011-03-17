@@ -77,6 +77,7 @@
 	<bean class="br.edu.gamaesouza.intranet.bean.Hora" id="hora"></bean>
 	<bean class="br.edu.gamaesouza.intranet.bean.HoraAEP" id="horaAEP"></bean>
 	<bean class="br.edu.gamaesouza.intranet.bean.HoraComplementar" id="horaComplementar"></bean>
+	<bean class="br.edu.gamaesouza.intranet.bean.Horario" id="horario"></bean>
 
 	<!-- MAIL -->
 

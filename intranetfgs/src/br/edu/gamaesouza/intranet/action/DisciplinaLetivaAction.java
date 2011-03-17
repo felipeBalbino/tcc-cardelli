@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Disciplina;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
+import br.edu.gamaesouza.intranet.bean.Horario;
 import br.edu.gamaesouza.intranet.bean.Professor;
 
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
@@ -43,6 +44,7 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
 	private List<Professor> professores = new ArrayList<Professor>();
 
+	@Autowired private Horario horario;
 	@Autowired private Professor professor;
 	@Autowired private DisciplinaLetiva disciplinaLetiva;
 	@Autowired private PessoaDAO pessoaDao;
@@ -282,6 +284,16 @@ public class DisciplinaLetivaAction extends ActionSupport{
 
 	public Integer getAno() {
 		return ano;
+	}
+
+
+	public void setHorario(Horario horario) {
+		this.horario = horario;
+	}
+
+
+	public Horario getHorario() {
+		return horario;
 	}
 
 	

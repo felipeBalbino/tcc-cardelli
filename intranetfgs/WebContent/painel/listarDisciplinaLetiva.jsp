@@ -109,6 +109,7 @@ if(i == j) $(this).hide('slow');
 											<img border="0" src="../images/lixeira.gif" />
 										</a>
 									</td>	
+									<s:property  value="disciplinaLetiva.horarios.DiaSemana" />
 								</tr>					
 							</table>
 						</td>

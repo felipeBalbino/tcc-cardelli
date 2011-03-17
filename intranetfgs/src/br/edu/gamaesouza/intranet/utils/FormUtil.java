@@ -22,6 +22,18 @@ public class FormUtil {
 		return turnos;
 	}
 	
+	public static List<String> getDiasSemana(){
+		List<String> dias = new ArrayList<String>();
+		dias.add("SEGUNDA");
+		dias.add("TERÇA");
+		dias.add("QUARTA");
+		dias.add("QUINTA");
+		dias.add("SEXTA");
+		dias.add("SADADO");
+		dias.add("DOMINGO");
+		return dias;
+	}
+	
 	public static List<Integer> getAnosList(Integer quantidade){
 		Integer ano = Calendar.getInstance().get( Calendar.YEAR );
 		List<Integer> anos = new ArrayList<Integer>();

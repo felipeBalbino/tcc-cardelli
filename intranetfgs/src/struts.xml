@@ -143,6 +143,7 @@
 		<action name="horario" class="br.edu.gamaesouza.intranet.action.HorarioAction"
 			method="{1}">
 			<result name="novoList">/painel/listarHorarios.jsp</result>
+			<result name="listarHorarioDiscplinaLetiva">/painel/listarHorariosDaDisciplinaLetiva.jsp</result>
 		</action>
 		
 		

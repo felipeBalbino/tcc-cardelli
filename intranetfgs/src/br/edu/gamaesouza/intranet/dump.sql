@@ -41,10 +41,6 @@ INSERT INTO Rule VALUES (36,"RULE_LISTA_COMPLEMENTAR");
 INSERT INTO Rule VALUES (37,"RULE_DELETA_COMPLEMENTAR");
 INSERT INTO Rule VALUES (38,"RULE_ALTERA_COMPLEMENTAR");
 INSERT INTO Rule VALUES (39,"RULE_SALVA_COMPLEMENTAR");
-	
-	
-	
-	
 INSERT INTO pessoa_rule VALUES (1,1);
 INSERT INTO pessoa_rule VALUES (1,2);
 INSERT INTO pessoa_rule VALUES (1,3);
@@ -236,9 +232,9 @@ INSERT INTO Horario VALUES(2,"2011","20:40","19:40",1);
 INSERT INTO Horario VALUES(3,"2011","21:40","20:50",1);
 INSERT INTO Horario VALUES(4,"2011","22:40","21:50",1);
 
-INSERT INTO DisciplinaLetiva_Horario VALUES  (1,"SEGUNDA",1,1);
-INSERT INTO DisciplinaLetiva_Horario VALUES  (2,"SEGUNDA",1,1);
-INSERT INTO DisciplinaLetiva_Horario VALUES  (3,"TERCA",2,1);
+INSERT INTO DisciplinaLetivaHorario VALUES  (1,"SEGUNDA",1,1);
+INSERT INTO DisciplinaLetivaHorario VALUES  (2,"SEGUNDA",1,1);
+INSERT INTO DisciplinaLetivaHorario VALUES  (3,"TERCA",2,1);
 
 
-SELECT dl FROM DisciplinaLetiva_Horario dlHorario left join dlHorario.DisciplinaLetiva dl left join dl.horario horario where dl.semestre = 1 and dl.ano = 2011 and dlHorario = "SEGUNDA";
+SELECT dl FROM DisciplinaLetivaHorario dlHorario left join dlHorario.DisciplinaLetiva dl left join dl.horario horario where dl.semestre = 1 and dl.ano = 2011 and dlHorario = "SEGUNDA";

@@ -52,6 +52,14 @@ if(i == j) $(this).hide('slow');
  	function dis(codigo) {       
 	         location.href = "../painel/disciplinaLetiva!list.java?idAluno="+ codigo; 
 	 }
+ 	
+ 	function aep(codigo) {       
+        location.href = "../painel/hora!listaAEP.java?alunoSearchParams.matricula="+ codigo; 
+}
+ 	
+ 	function complementar(codigo) {       
+        location.href = "../painel/hora!listaComplementar.java?alunoSearchParams.matricula="+ codigo; 
+}
 
 
  	function restartTrs(){
@@ -178,13 +186,19 @@ if(i == j) $(this).hide('slow');
 							<table width="100%" bgcolor="#FAFAD2">
 								<tr>
 									<td width="1%"><img src="../images/event_icon.png" /></td>
-									<td width="88%" style="font-size: 10px;font-weight:bold"> <s:property  value="nome" /> </td>
-									<td width="11%" align="right">
+									<td width="80%" style="font-size: 10px;font-weight:bold"> <s:property  value="nome" /> </td>
+									<td width="19%" align="right">
 										<a title="Exibir aluno" class="exibir">
 											<img src="../images/open.png" />
 										</a>
 										<a  title="Ocultar aluno" class="ocultar">
 											<img src="../images/close.png" />
+										</a>
+										<a  title="Exibir e cadastrar Horas AEP" border="30" href="javascript:aep(<s:property value="matricula" />)">
+											<img border="0" src="../images/aep.png" />
+										</a>
+										<a  title="Exibir e cadastrar Horas Complementares" border="30" href="javascript:complementar(<s:property value="matricula" />)">
+											<img border="0" src="../images/complementar.png" />
 										</a>
 										<a  title="Exibir e cadastrar disciplinas do aluno" border="30" href="javascript:dis(<s:property value="id" />)">
 											<img border="0" src="../images/letra-d.gif" />

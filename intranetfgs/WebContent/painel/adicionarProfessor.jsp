@@ -219,17 +219,17 @@ width:295px;
 							Matrícula:  <s:textfield id="matricula" name="professorNovoParams.matricula" maxlength="8"></s:textfield>			
 							Login: 		<s:textfield id="login"     name="professorNovoParams.login"    ></s:textfield>
 							Senha: 		<s:password  id="senha"     name="professorNovoParams.senha"    ></s:password>
-							E-mail:		<s:textfield id="email"     name="professorNovoParams.email"    ></s:textfield><br></br>
+							E-mail:		<s:textfield id="email"     name="professorNovoParams.email"    ></s:textfield><br>
 							<div id="lilocal"><h1><a href="#" onclick="javascript:inserirregras()">Inserir Regras</a></h1></div>
 							<div id="lilocal2" style="display:none;"><h1><a href="#" onclick="javascript:esconderregras()">Esconder Regras</a></h1></div>
 							<div  id="divregras" style="display:none;">
-								<br><br>
+								<br>
 								<b>Regras</b>
 								<hr width="100%">
 								<div style="text-align: right;">
-									<div id="selecionartudo" class="selecionartudo" ><a style="color:#666666;cursor:pointer;" onclick="selecionar_tudo()" >Marcar Todas</a></div><br>
-									<div id="selecionapadraoprofessor" class="selecionarpadraoprofessor" ><a style="color:#666666;cursor:pointer;" onclick="selecionar_padrao_professor()" >Marcar Padrão de Professor</a></div><br>
-									<div id="ocultartudo" class="ocultartudo"><a style="cursor:pointer;color:#666666;" onclick="deselecionar_tudo()" >Desmarcar Todas</a></div>
+									<a id="selecionartudo" style="color:#666666;cursor:pointer;" onclick="selecionar_tudo()" >Marcar Todas</a><br>
+									<a id="selecionapadraoprofessor" style="color:#666666;cursor:pointer;" onclick="selecionar_padrao_professor()" >Marcar Padrão de Professor</a><br>
+									<a id="ocultartudo" style="cursor:pointer;color:#666666;" onclick="deselecionar_tudo()" >Desmarcar Todas</a>
 								</div>
 								<table id="f1">
 									<c:set value="0" var="cont"></c:set>

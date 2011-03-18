@@ -1,6 +1,7 @@
 package br.edu.gamaesouza.intranet.action;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Disciplina;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
+import br.edu.gamaesouza.intranet.bean.DisciplinaLetivaHorario;
 import br.edu.gamaesouza.intranet.bean.Horario;
 import br.edu.gamaesouza.intranet.bean.Professor;
 
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
 import br.edu.gamaesouza.intranet.dao.HorarioDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
+import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaHorarioNovoParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaNovoParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaSearchParams;
 import br.edu.gamaesouza.intranet.params.impl.HorarioNovoParams;
@@ -31,18 +34,21 @@ public class HorarioAction extends ActionSupport{
 
 	private static final long serialVersionUID = 1L;
 	
-	
+	private List<DisciplinaLetivaHorario> disciplinaLetivaHorario = new ArrayList<DisciplinaLetivaHorario>();
 	private List<Horario> horarios = new ArrayList<Horario>();
 	private List<Integer> anos  = new ArrayList<Integer>();
 	private List<Integer> semestres = new ArrayList<Integer>();
 	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
+	private List<DiaSemanaEnum> diasSemana = new ArrayList<DiaSemanaEnum>();
 	
+		
 	private Integer id;
 	
 	@Autowired private Horario horario;
 	@Autowired private HorarioDAO horarioDAO;
 	@Autowired private DisciplinaLetiva disciplinaLetiva;
 	@Autowired private HorarioNovoParams horarioNovoParams;
+	@Autowired private DisciplinaLetivaHorarioNovoParams disciplinaLetivaHorarioNovoParams;
 
 	public String prepare()  {
 		//UserData.grantAccess();
@@ -63,20 +69,37 @@ public class HorarioAction extends ActionSupport{
 	public String save() throws Exception{
 
 	horarioDAO.save(horarioNovoParams.getHorario());
-	addActionMessage("Horário criado com sucesso");
+	addActionMessage("Horï¿½rio criado com sucesso");
 		return prepare();
 	}
 	
 	public String delete() throws Exception{
 		try{
 		horarioDAO.delete( horarioDAO.getHorarioById( id ) );
-		addActionMessage("Horário deletado com sucesso");			
+		addActionMessage("Horï¿½rio deletado com sucesso");			
 	} catch (Exception e) {		
-		addActionError("Nï¿½o foi possivel deletar Horário, ocorreu um erro interno no Servidor");			
+		addActionError("Nï¿½o foi possivel deletar Horï¿½rio, ocorreu um erro interno no Servidor");			
 	}
 		return prepare();
 	}
 	
+	public String listarHorarioPorDisciplinaLetiva() throws Exception{
+		try{
+		setDiasSemana( Arrays.asList(DiaSemanaEnum.values()) );
+		horarios = 	horarioDAO.getAllHorarios();
+		disciplinaLetivaHorario = 	horarioDAO.getAllDisciplinaLetivaHorariosById(id);
+		} catch (Exception e) {		
+			addActionError("Nï¿½o foi possivel listar Horï¿½rios, ocorreu um erro interno no Servidor");			
+		}
+	return "listarHorarioDiscplinaLetiva";
+	}
+	
+	
+	public String saveHorariosEmDisciplinaLetiva() throws Exception{
+		horarioDAO.saveDisciplinaLetivaHorario(disciplinaLetivaHorarioNovoParams.getDisciplinaLetivaHorario());
+		addActionMessage("Horï¿½rio criado com sucesso");
+		return "listarHorarioDiscplinaLetiva";
+	}
 
 	public DisciplinaLetiva getDisciplinaLetiva() {
 		return disciplinaLetiva;
@@ -148,6 +171,30 @@ public class HorarioAction extends ActionSupport{
 
 	public HorarioNovoParams getHorarioNovoParams() {
 		return horarioNovoParams;
+	}
+
+	public void setDisciplinaLetivaHorario( List<DisciplinaLetivaHorario> disciplinaLetivaHorario ) {
+		this.disciplinaLetivaHorario = disciplinaLetivaHorario;
+	}
+
+	public List<DisciplinaLetivaHorario> getDisciplinaLetivaHorario() {
+		return disciplinaLetivaHorario;
+	}
+
+	public void setDiasSemana( List<DiaSemanaEnum> diasSemana ) {
+		this.diasSemana = diasSemana;
+	}
+
+	public List<DiaSemanaEnum> getDiasSemana() {
+		return diasSemana;
+	}
+
+	public void setDisciplinaLetivaHorarioNovoParams( DisciplinaLetivaHorarioNovoParams disciplinaLetivaHorarioNovoParams ) {
+		this.disciplinaLetivaHorarioNovoParams = disciplinaLetivaHorarioNovoParams;
+	}
+
+	public DisciplinaLetivaHorarioNovoParams getDisciplinaLetivaHorarioNovoParams() {
+		return disciplinaLetivaHorarioNovoParams;
 	}
 
 

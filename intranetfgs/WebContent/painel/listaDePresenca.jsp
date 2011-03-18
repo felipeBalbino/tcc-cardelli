@@ -8,7 +8,9 @@
 <html>
 <head>
 <style type="text/css" media="print">
-   #result{display:none}
+   #imprimir, #table,  #table2, #footer, #retorno, #alunoscadastrados{display:none;}
+   
+
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Imprimir lista de presença do Aluno</title>
@@ -30,14 +32,41 @@
   	</div> 
  </s:if>
  
-<b>Alunos cadastrados</b>
+<b id="alunoscadastrados">Alunos cadastrados</b>
 <hr></hr>
-<div id="result" >
-	<table width="100%">
+<div id="result" >		
+	<table width="100%" border=1>
+		<CAPTION>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dias do Mês</CAPTION>
 		<tr>
-			<td><b>Id</b></td>
-			<td><b>Matrícula</b></td>
-			<td><b>Nome Completo</b></td>
+			<th><b>Id</b></th>
+			<th><b>Matrícula</b></th>
+			<th><b>Nome Completo</b></th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			<th>&nbsp;&nbsp;</th>
+			
 			
 		</tr>
 		
@@ -46,13 +75,38 @@
 				<td><s:property value="id"/></td>
 				<td><s:property value="matricula"/></td>	
 				<td><s:property value="nome"/></td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;</td>
 			</tr>
 		</s:iterator>
 	</table>
 	
 </div>
 <div id="result" align="right" >
-	<input align="right" type="button" value="imprimir" onClick="window.print()" id="botao" />
+	<input id="imprimir" align="right" type="button" value="imprimir" onClick="window.print()" id="botao" />
 </div>
 </body>
 </html>

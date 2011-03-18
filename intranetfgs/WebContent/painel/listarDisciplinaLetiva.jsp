@@ -41,8 +41,9 @@ if(i == j) $(this).hide('slow');
 	         location.href = "../painel/letiva!delete.java?disciplinaLetiva.id="+ codigo;
 	     }  
 	 }
+ 	
  	function horario(codigo) {       
-        location.href = "../painel/horario!teste.java?idAluno="+ codigo; 
+        location.href = "../painel/horario!listarHorarioPorDisciplinaLetiva.java?id="+ codigo; 
 	}	
  	function listaPresenca(codigo) {       
         location.href = "../painel/letiva!listaPresenca.java?id="+ codigo; 

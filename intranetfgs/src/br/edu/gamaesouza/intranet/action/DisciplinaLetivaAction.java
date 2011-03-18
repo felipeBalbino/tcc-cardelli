@@ -43,7 +43,7 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	private List<String> turnos = new ArrayList<String>();
 	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
 	private List<Professor> professores = new ArrayList<Professor>();
-	//private List<DiaSemanaEnum> diaSemana = Arrays.asList(DiaSemanaEnum.values());
+	
 	
 	@Autowired private Horario horario;
 	@Autowired private Professor professor;

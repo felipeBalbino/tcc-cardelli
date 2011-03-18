@@ -58,7 +58,7 @@ public class DisciplinaLetivaAction extends ActionSupport{
 		UserData.grantAccess(RULE_DISCIPLINA_LETIVA_LISTA);
 		try {
 			setAno(FormUtil.getAnoAtual());
-			setAnos(FormUtil.getAnosList(1));
+			setAnos(FormUtil.getAnosList(3));
 			setSemestres(FormUtil.getSemestresList());
 			setTurnos(FormUtil.getTurnosList());
 			disciplinas = disciplinaDAO.getAllDisciplinas();
@@ -76,7 +76,7 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	public String lista()  {
 		UserData.grantAccess(RULE_DISCIPLINA_LETIVA_LISTA);
 		try {
-			setAnos(FormUtil.getAnosList(1));
+			setAnos(FormUtil.getAnosList(3));
 			setSemestres(FormUtil.getSemestresList());
 			setTurnos(FormUtil.getTurnosList());
 			disciplinas = disciplinaDAO.getAllDisciplinas();

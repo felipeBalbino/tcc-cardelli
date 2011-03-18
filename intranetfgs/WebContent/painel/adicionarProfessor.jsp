@@ -125,14 +125,49 @@ width:295px;
  function selecionar_tudo(){
 	 document.getElementById("ocultartudo").style.display = "inline";
 	 document.getElementById("selecionartudo").style.display = "none";
+	 document.getElementById("selecionapadraoprofessor").style.display = "none";
 	   for (i=0;i<document.f1.elements.length;i++)
 	      if(document.f1.elements[i].type == "checkbox")
 	         document.f1.elements[i].checked=1
 	} 
+
+ function selecionar_padrao_professor(){
+	 document.getElementById("selecionapadraoprofessor").style.display = "none";
+	 document.getElementById("ocultartudo").style.display = "inline";
+	 document.getElementById("selecionartudo").style.display = "none";
+	   for (i=0;i<document.f1.elements.length;i++)
+	      if(document.f1.elements[i].type == "checkbox")
+		      if(document.f1.elements[i].value == "RULE_ALTERA_AEP" ||
+		    		  document.f1.elements[i].value == "RULE_ALTERA_COMPLEMENTAR" ||
+		    			  document.f1.elements[i].value == "RULE_ALUNOS_ALTERA" ||
+		    				  document.f1.elements[i].value == "RULE_ALUNOS_LISTA" ||
+		    					  document.f1.elements[i].value == "RULE_ALUNOS_SAVE" ||
+		    						  document.f1.elements[i].value == "RULE_CURSO_LISTA" ||
+		    							  document.f1.elements[i].value == "RULE_DELETA_AEP" ||
+		    								  document.f1.elements[i].value == "RULE_DELETA_COMPLEMENTAR" ||
+		    									  document.f1.elements[i].value == "RULE_DISCIPLINA_ALTERA" ||
+		    										  document.f1.elements[i].value == "RULE_DISCIPLINA_DELETE" ||
+		    										  	 document.f1.elements[i].value == "RULE_DISCIPLINA_LETIVA_DELETE" ||
+		    										 	    document.f1.elements[i].value == "RULE_DISCIPLINA_LETIVA_LISTA" ||
+		    										  		   document.f1.elements[i].value == "RULE_DISCIPLINA_LETIVA_SAVE" ||
+		    										  		      document.f1.elements[i].value == "RULE_DISCIPLINA_LISTA" ||
+					    										     document.f1.elements[i].value == "RULE_DISCIPLINA_NOVO" ||
+					    										        document.f1.elements[i].value == "RULE_DISCIPLINA_SALVA" ||
+					    										           document.f1.elements[i].value == "RULE_LISTA_AEP" ||
+					    										              document.f1.elements[i].value == "RULE_LISTA_COMPLEMENTAR" ||
+					    										                document.f1.elements[i].value == "RULE_SALVA_AEP" ||
+					    										                  document.f1.elements[i].value == "RULE_SALVA_COMPLEMENTAR" ||
+					    										                    document.f1.elements[i].value == "RULE_UPLOAD_DELETA" ||
+					    										                     document.f1.elements[i].value == "RULE_UPLOAD_LISTA" ||
+					    										                      document.f1.elements[i].value == "RULE_UPLOAD_NOVO" ||
+		    											  							   document.f1.elements[i].value == "RULE_DISCIPLINA_LETIVA_ALTERA" )
+	         	document.f1.elements[i].checked=1
+	}
  
  function deselecionar_tudo(){
 	 document.getElementById("ocultartudo").style.display = "none";
 	 document.getElementById("selecionartudo").style.display = "inline";
+	document.getElementById("selecionapadraoprofessor").style.display = "inline";
 	   for (i=0;i<document.f1.elements.length;i++)
 	      if(document.f1.elements[i].type == "checkbox")
 	         document.f1.elements[i].checked=0
@@ -146,7 +181,7 @@ width:295px;
 <title>Intranet - Faculdade Gama & Souza | Adicionar Professor</title>
 </head>
 <body>
-<div id="retorno">
+<div id="retorno" align="right">
 <img src="../images/arrow_categ.gif"><a href="../painel/professor!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Professores</a>
 </div>
 <div id="experience">
@@ -192,7 +227,8 @@ width:295px;
 								<b>Regras</b>
 								<hr width="100%">
 								<div style="text-align: right;">
-									<div id="selecionartudo" class="selecionartudo" ><a style="color:#666666;cursor:pointer;" onclick="selecionar_tudo()" >Marcar Todas</a></div>
+									<div id="selecionartudo" class="selecionartudo" ><a style="color:#666666;cursor:pointer;" onclick="selecionar_tudo()" >Marcar Todas</a></div><br>
+									<div id="selecionapadraoprofessor" class="selecionarpadraoprofessor" ><a style="color:#666666;cursor:pointer;" onclick="selecionar_padrao_professor()" >Marcar Padrão de Professor</a></div><br>
 									<div id="ocultartudo" class="ocultartudo"><a style="cursor:pointer;color:#666666;" onclick="deselecionar_tudo()" >Desmarcar Todas</a></div>
 								</div>
 								<table id="f1">

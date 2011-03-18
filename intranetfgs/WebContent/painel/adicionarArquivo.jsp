@@ -124,7 +124,7 @@ function restartTrs(){
 </script>
 </head>
 <body>
-<div id="retorno">
+<div id="retorno" align="right">
 <img src="../images/arrow_categ.gif"><a href="../painel/upload!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Arquivos</a>
 </div>
 <div id="experience" >

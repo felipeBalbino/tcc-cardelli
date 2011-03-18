@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.Atividade;
 import br.edu.gamaesouza.intranet.bean.HoraAEP;
 import br.edu.gamaesouza.intranet.bean.HoraComplementar;
 import br.edu.gamaesouza.intranet.dao.HoraDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
+import br.edu.gamaesouza.intranet.params.impl.AlunoSearchParams;
 import br.edu.gamaesouza.intranet.params.impl.HoraAEPAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.HoraAEPDeletaParams;
 import br.edu.gamaesouza.intranet.params.impl.HoraAEPListaParams;
@@ -39,9 +41,16 @@ public class HoraAction extends ActionSupport {
 	@Autowired private HoraComplementarDeletaParams horaComplementarDeletaParams;
 	@Autowired private HoraComplementarListaParams horaComplementarListaParams;
 	
+	@Autowired private AlunoSearchParams alunoSearchParams;
+	
 	@Autowired private HoraDAO horaDAO;
 	@Autowired private PessoaDAO pessoaDAO;
 	
+	// Aluno retornado pela matrícula
+	private Aluno aluno;
+	
+
+
 	// Carrega Lista mostrada ao UsuÃ¡rio
 	private List<HoraAEP> horasAEP;
 	private List<HoraComplementar> horasComplementares;
@@ -96,6 +105,24 @@ public class HoraAction extends ActionSupport {
 		try {
 			horasComplementares = horaDAO.getHorasComplementares(pessoaDAO.getAlunoByMatricula(horaComplementarListaParams.getMatricula()));
 			return RETURN_LIST_COMPLEMENTAR_SUCCESS;
+		} catch (IntranetException e) {
+			return RETURN_LIST_COMPLEMENTAR_FAILURE;	
+		}
+	}
+	
+	public String buscarAluno(){
+		UserData.grantAccess(RULE_LISTA_COMPLEMENTAR);	
+		try {
+			
+			aluno = alunoSearchParams.getAlunoByMatricula();
+			
+			if(aluno == null){
+				addActionError("Não existe nenhum aluno cadastrado com essa matrícula.");
+				return "erroBuscarAluno";
+			}else{
+				return "sucessoBuscarAluno";
+			}
+			
 		} catch (IntranetException e) {
 			return RETURN_LIST_COMPLEMENTAR_FAILURE;	
 		}
@@ -196,5 +223,21 @@ public class HoraAction extends ActionSupport {
 	public void setHorasComplementares(List<HoraComplementar> horasComplementares) {
 		this.horasComplementares = horasComplementares;
 	}		
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
+	public AlunoSearchParams getAlunoSearchParams() {
+		return alunoSearchParams;
+	}
+
+	public void setAlunoSearchParams(AlunoSearchParams alunoSearchParams) {
+		this.alunoSearchParams = alunoSearchParams;
+	}
+	
 	
 }

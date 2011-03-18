@@ -5,8 +5,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -47,7 +50,13 @@ public class DisciplinaLetiva implements Serializable {
 	@ManyToMany
 	private List<Aluno> aluno;
 	
-	@OneToMany(targetEntity=DisciplinaLetiva_Horario.class,mappedBy="horario")
+	@ManyToMany(
+			fetch=FetchType.LAZY,targetEntity=DisciplinaLetiva_Horario.class
+	     ) 
+	    @JoinTable (name="DisciplinaLetiva_Horario",
+	            joinColumns={@JoinColumn(name="disciplinaLetiva_id")},
+	            inverseJoinColumns={@JoinColumn(name="horario_id")}
+	            )
 	private List<Horario> horarios;
 	
 	@OneToOne

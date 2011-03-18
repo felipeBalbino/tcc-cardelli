@@ -162,7 +162,13 @@
 			<result name="deleteComplementarSuccess"></result>
 			<result name="deleteComplementarFailure"></result>
 			<result name="saveComplementarSuccess"></result>
-			<result name="saveComplementarFailure"></result>			
+			<result name="saveComplementarFailure"></result>	
+			
+			
+			<result name="erroBuscarAluno">/painel/buscarHorasAluno.jsp</result>	
+			<result name="sucessoBuscarAluno">/painel/indexHorasAluno.jsp</result>	
+			
+					
 		</action>
 
 	</package>

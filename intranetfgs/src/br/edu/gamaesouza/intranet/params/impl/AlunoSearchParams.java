@@ -1,6 +1,11 @@
 package br.edu.gamaesouza.intranet.params.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.edu.gamaesouza.intranet.bean.Aluno;
+import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.params.Params;
+import br.edu.gamaesouza.intranet.utils.IntranetException;
 
 
 
@@ -11,6 +16,7 @@ public class AlunoSearchParams implements Params {
 	private String nome;
 	private Integer matricula;
 	
+	@Autowired PessoaDAO pessoaDAO;
 	
 	
 	@Override
@@ -23,7 +29,10 @@ public class AlunoSearchParams implements Params {
 		return false;
 	}
 
-
+	
+	public Aluno getAlunoByMatricula() throws IntranetException{
+		return pessoaDAO.getAlunoByMatricula(matricula);
+	}
 
 
 	public String getEmail() {

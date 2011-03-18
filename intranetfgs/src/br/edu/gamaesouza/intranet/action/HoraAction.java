@@ -21,6 +21,7 @@ import br.edu.gamaesouza.intranet.params.impl.HoraComplementarListaParams;
 import br.edu.gamaesouza.intranet.params.impl.HoraComplementarNovoParams;
 import br.edu.gamaesouza.intranet.security.UserData;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
+import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -46,7 +47,7 @@ public class HoraAction extends ActionSupport {
 	@Autowired private HoraDAO horaDAO;
 	@Autowired private PessoaDAO pessoaDAO;
 	
-	// Aluno retornado pela matrícula
+	// Aluno retornado pela matrï¿½cula
 	private Aluno aluno;
 	
 
@@ -91,7 +92,8 @@ public class HoraAction extends ActionSupport {
 	public String listaAEP(){
 		UserData.grantAccess(RULE_LISTA_AEP);	
 		try {
-			horasAEP = horaDAO.getHorasAEP(pessoaDAO.getAlunoByMatricula(horaAEPListaParams.getMatricula()));
+			horasAEP = horaDAO.getHorasAEP(pessoaDAO.getAlunoByMatricula(alunoSearchParams.getMatricula()));
+			alunoSearchParams = (AlunoSearchParams) SpringUtil.getBean("alunoSearchParams");
 			return RETURN_LIST_AEP_SUCCESS;
 		} catch (IntranetException e) {
 			return RETURN_LIST_AEP_FAILURE;			
@@ -103,7 +105,8 @@ public class HoraAction extends ActionSupport {
 	public String listaComplementar(){
 		UserData.grantAccess(RULE_LISTA_COMPLEMENTAR);	
 		try {
-			horasComplementares = horaDAO.getHorasComplementares(pessoaDAO.getAlunoByMatricula(horaComplementarListaParams.getMatricula()));
+			horasComplementares = horaDAO.getHorasComplementares(pessoaDAO.getAlunoByMatricula(alunoSearchParams.getMatricula()));
+			alunoSearchParams = (AlunoSearchParams) SpringUtil.getBean("alunoSearchParams");
 			return RETURN_LIST_COMPLEMENTAR_SUCCESS;
 		} catch (IntranetException e) {
 			return RETURN_LIST_COMPLEMENTAR_FAILURE;	
@@ -117,7 +120,7 @@ public class HoraAction extends ActionSupport {
 			aluno = alunoSearchParams.getAlunoByMatricula();
 			
 			if(aluno == null){
-				addActionError("Não existe nenhum aluno cadastrado com essa matrícula.");
+				addActionError("Nï¿½o existe nenhum aluno cadastrado com essa matrï¿½cula.");
 				return "erroBuscarAluno";
 			}else{
 				return "sucessoBuscarAluno";

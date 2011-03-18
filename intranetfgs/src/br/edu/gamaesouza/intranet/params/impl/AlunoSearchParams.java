@@ -31,7 +31,9 @@ public class AlunoSearchParams implements Params {
 
 	
 	public Aluno getAlunoByMatricula() throws IntranetException{
-		return pessoaDAO.getAlunoByMatricula(matricula);
+		Aluno aluno = pessoaDAO.getAlunoByMatricula(matricula);
+		cleanTemp();
+		return aluno;
 	}
 
 
@@ -62,6 +64,12 @@ public class AlunoSearchParams implements Params {
 
 	public Integer getMatricula() {
 		return matricula;
+	}
+	
+	public void cleanTemp(){
+		this.email = "";
+		this.matricula = null;
+		this.nome = "";
 	}
 
 }

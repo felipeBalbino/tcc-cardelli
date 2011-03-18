@@ -148,8 +148,8 @@
 		
 		<action name="hora" class="br.edu.gamaesouza.intranet.action.HoraAction"
 			method="{1}">
-			<result name="listAEPSuccess"></result>
-			<result name="listAEPFailure"></result>
+			<result name="listAEPSuccess">/painel/listarAEP.jsp</result>
+			<result name="listAEPFailure">/painel/aluno!list.java</result>
 			<result name="alterAEPSuccess"></result>
 			<result name="alterAEPFailure"></result>
 			<result name="deleteAEPSuccess"></result>

@@ -16,6 +16,7 @@ import br.edu.gamaesouza.intranet.dao.HorarioDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaNovoParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaSearchParams;
+import br.edu.gamaesouza.intranet.params.impl.HorarioNovoParams;
 
 import br.edu.gamaesouza.intranet.security.UserData;
 
@@ -41,6 +42,7 @@ public class HorarioAction extends ActionSupport{
 	@Autowired private Horario horario;
 	@Autowired private HorarioDAO horarioDAO;
 	@Autowired private DisciplinaLetiva disciplinaLetiva;
+	@Autowired private HorarioNovoParams horarioNovoParams;
 
 	public String prepare()  {
 		//UserData.grantAccess();
@@ -59,17 +61,21 @@ public class HorarioAction extends ActionSupport{
 	}
 	
 	public String save() throws Exception{
-		horarioDAO.delete( horarioDAO.getHorarioById( id ) );
-		return "novoList";
+
+	horarioDAO.save(horarioNovoParams.getHorario());
+	addActionMessage("Horário criado com sucesso");
+		return prepare();
 	}
 	
 	public String delete() throws Exception{
-		
-		return "novoList";
+		try{
+		horarioDAO.delete( horarioDAO.getHorarioById( id ) );
+		addActionMessage("Horário deletado com sucesso");			
+	} catch (Exception e) {		
+		addActionError("Nï¿½o foi possivel deletar Horário, ocorreu um erro interno no Servidor");			
 	}
-	
-	
-
+		return prepare();
+	}
 	
 
 	public DisciplinaLetiva getDisciplinaLetiva() {
@@ -134,6 +140,14 @@ public class HorarioAction extends ActionSupport{
 
 	public Integer getId() {
 		return id;
+	}
+
+	public void setHorarioNovoParams(HorarioNovoParams horarioNovoParams) {
+		this.horarioNovoParams = horarioNovoParams;
+	}
+
+	public HorarioNovoParams getHorarioNovoParams() {
+		return horarioNovoParams;
 	}
 
 

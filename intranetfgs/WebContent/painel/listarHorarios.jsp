@@ -7,7 +7,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Horários</title>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
@@ -38,7 +37,7 @@ if(i == j) $(this).hide('slow');
 
 function deletar(id){
 
-	  if (confirm('Excluir o horário?')) {    
+	  if (confirm('Tem certeza que deseja excluir este horário? Esta operação é irreversível.')) {  
 	         location.href ="../painel/horario!delete.java?id="+id;
 	     } 
 }
@@ -46,21 +45,31 @@ function deletar(id){
 </script>
 </head>
 <body>
+<div id="retorno" align="right">
+<img src="../images/arrow_categ.gif"><a href="../painel/letiva!lista.java" style="color:#FF4500;text-align:right;border-style:none;">Lista de Disciplinas Letivas</a>
+</div>
 <b>Campos para adicionar Horários</b>
 <hr></hr>
 
 <s:form action="/painel/horario!save.java">
 	<table>
+
 		<tr>
 			<td>Hora Inicio:</td>
-			<td><s:textfield name="horaInicio" /></td>
+			<td><s:textfield name="horarioNovoParams.horaInicio" /></td>
 			<td>Hora Final:</td>
-			<td><s:textfield name="horaFinal" /></td>
+			<td><s:textfield name="horarioNovoParams.horaFim" /></td>
 			<td>Ano:</td>		
-			<td><sx:autocompleter headerKey="-1" headerValue="" id="ano" name="ano" list="anos" /></td>
+			<td><sx:autocompleter headerKey="-1" headerValue="" id="ano" name="horarioNovoParams.ano" list="anos" /></td>
 			<td>Semestre:</td>
-			<td><sx:autocompleter headerKey="-1" headerValue="" id="semestre" name="semestre" list="semestres" /></td>
+			<td><sx:autocompleter headerKey="-1" headerValue="" id="semestre" name="horarioNovoParams.semestre" list="semestres" /></td>
 			<td><s:submit value="Adicionar"></s:submit></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><b>Formato 12:00:00</b></td>
+			<td></td>
+			<td><b>Formato 12:00:00</b></td>
 		</tr>
 	</table>  
 	

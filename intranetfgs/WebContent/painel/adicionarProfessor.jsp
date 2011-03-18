@@ -181,7 +181,7 @@ width:295px;
 					<div id="contact-form">
 						<s:form name="f1" action="/painel/professor!save.java" onSubmit="return validaForm()">
 							Nome: 		<s:textfield id="nome"      name="professorNovoParams.nome"     ></s:textfield>
-							Matrícula:  <s:textfield id="matricula" name="professorNovoParams.matricula"></s:textfield>			
+							Matrícula:  <s:textfield id="matricula" name="professorNovoParams.matricula" maxlength="8"></s:textfield>			
 							Login: 		<s:textfield id="login"     name="professorNovoParams.login"    ></s:textfield>
 							Senha: 		<s:password  id="senha"     name="professorNovoParams.senha"    ></s:password>
 							E-mail:		<s:textfield id="email"     name="professorNovoParams.email"    ></s:textfield><br></br>

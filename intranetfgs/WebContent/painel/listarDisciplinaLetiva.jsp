@@ -41,7 +41,9 @@ if(i == j) $(this).hide('slow');
 	         location.href = "../painel/letiva!delete.java?disciplinaLetiva.id="+ codigo;
 	     }  
 	 }
-	
+ 	function horario(codigo) {       
+        location.href = "../painel/horario!teste.java?idAluno="+ codigo; 
+	}	
 </script>
 </head>
 <body>
@@ -96,17 +98,20 @@ if(i == j) $(this).hide('slow');
 							<table width="100%" bgcolor="#FAFAD2">
 								<tr>
 									<td width="1%"><img src="../images/event_icon.png" /></td>
-									<td width="91%" style="font-size: 10px;font-weight:bold"> 
+									<td width="88%" style="font-size: 10px;font-weight:bold"> 
 											<s:property  value="disciplina.nome" />
 										 -   <s:property  value="ano" />.<s:property  value="semestre" />/<s:property  value="turno" />
 										 -   <s:property  value="professor.nome" />
 									</td>
-									<td width="8%" align="right">
+									<td width="11%" align="right">
 										<a title="Exibir evento" class="exibir">
 											<img src="../images/open.png" />
 										</a>
 										<a  title="Ocultar evento" class="ocultar">
 											<img src="../images/close.png" />
+										</a>
+										<a  title="Cadastrar Horários da Displina letiva" border="30" href="javascript:horario(<s:property value="id" />)">
+											<img border="0" src="../images/letra-h.gif" />
 										</a>
 										<a   title="Deletar evento" href="javascript:del(<s:property value="id" />)">
 											<img border="0" src="../images/lixeira.gif" />
@@ -140,7 +145,7 @@ if(i == j) $(this).hide('slow');
 											
 								</table>
 								<hr></hr>
-								<strong>Horario(s) Cadastrado(s) nesta disciplina:</strong><br>
+								<strong>Horário(s) Cadastrado(s) nesta disciplina:</strong><br>
 								<s:iterator value="horarios" var="horario">
 											Dia da Semana: <s:property  value="DiaSemana" /> - Horario Inicial:<s:date format="HH:mm" name="horario.horaInicio" /> / Horario Final:<s:date format="HH:mm" name="horario.horaFim" /><br>
 								</s:iterator>

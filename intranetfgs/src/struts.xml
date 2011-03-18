@@ -103,6 +103,7 @@
 			method="{1}">
 			<result name="letiva">/painel/listarDisciplinaLetiva.jsp</result>
 			<result name="nova">/painel/adicionarDisciplinaLetiva.jsp</result>
+			<result name="listaPresenca">/painel/listaDePresenca.jsp</result>
 		</action>
 
 		<action name="upload" method="{1}"

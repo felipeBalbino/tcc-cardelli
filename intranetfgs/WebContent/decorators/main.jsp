@@ -76,7 +76,7 @@
 </head>
 <body>
 
-	<table width="97%" align="center">
+	<table width="97%" align="center" id="table">
 		<tr>
 			<td>
 				<div id="content">
@@ -142,7 +142,7 @@
 			<td>
 				<div id="content" >
 					<table id="contenttable" align="center" cellpadding="10" style="width: 800px; margin: 0pt auto;border-style:outset;border-width:1px;border-color:#D3D3D3;" >
-						<tr>
+						<tr id=table2>
 							<td align="center">
 								<div style="text-align: center">
 									<ul id="sddm" style="width: 110%;">
@@ -176,7 +176,7 @@
 		</tr>
 	</table>
 	<!-- Application Footer -->
-	<table align="center" width="100%" height="30" id="footer" cellspacing="3">
+	<table align="center" width="100%" height="30" id="footer" cellspacing="3" id="footer">
 		<tr>
 			<td>
 			<center>© 2011 - Intranet Gama & Souza 1.0 Beta ${sessionScope.pessoa.dataUltimoAcesso} </center>

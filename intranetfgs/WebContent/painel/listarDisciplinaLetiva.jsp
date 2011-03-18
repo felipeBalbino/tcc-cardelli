@@ -44,12 +44,15 @@ if(i == j) $(this).hide('slow');
  	function horario(codigo) {       
         location.href = "../painel/horario!teste.java?idAluno="+ codigo; 
 	}	
+ 	function listaPresenca(codigo) {       
+        location.href = "../painel/letiva!listaPresenca.java?id="+ codigo; 
+	}
 </script>
 </head>
 <body>
 <div align="right">
 	<a  title="Nova Disciplina Letiva" href="../painel/letiva!prepare.java">
-	<img border="0" src="../images/novo.jpg" />Nova Disciplina Letiva</a>
+	<img border="0" src="../images/novo.jpg" />Nova Disciplina Letiva&nbsp;&nbsp;&nbsp;&nbsp;</a>
 	<a  title="Nova Disciplina Letiva" href="../painel/horario!prepare.java">
 	<img border="0" src="../images/novo.jpg" />Alterar Horário das aulas</a>
 </div>
@@ -98,12 +101,12 @@ if(i == j) $(this).hide('slow');
 							<table width="100%" bgcolor="#FAFAD2">
 								<tr>
 									<td width="1%"><img src="../images/event_icon.png" /></td>
-									<td width="88%" style="font-size: 10px;font-weight:bold"> 
+									<td width="82%" style="font-size: 10px;font-weight:bold"> 
 											<s:property  value="disciplina.nome" />
 										 -   <s:property  value="ano" />.<s:property  value="semestre" />/<s:property  value="turno" />
 										 -   <s:property  value="professor.nome" />
 									</td>
-									<td width="11%" align="right">
+									<td width="15%" align="right">
 										<a title="Exibir evento" class="exibir">
 											<img src="../images/open.png" />
 										</a>
@@ -112,6 +115,9 @@ if(i == j) $(this).hide('slow');
 										</a>
 										<a  title="Cadastrar Horários da Displina letiva" border="30" href="javascript:horario(<s:property value="id" />)">
 											<img border="0" src="../images/letra-h.gif" />
+										</a>
+										<a  title="Imprimir lista de presença do Alunos" border="30" href="javascript:listaPresenca(<s:property value="id" />)">
+											<img border="0" src="../images/p_calendario.gif" />
 										</a>
 										<a   title="Deletar evento" href="javascript:del(<s:property value="id" />)">
 											<img border="0" src="../images/lixeira.gif" />

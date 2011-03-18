@@ -135,7 +135,15 @@ public class DisciplinaLetivaAction extends ActionSupport{
 			return lista();
 	}
 	
-
+	public String listaPresenca() {
+		try {
+			disciplinaLetiva = disciplinaDAO.getDisciplinaLetivaById(id);
+		} catch (IntranetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "listaPresenca";
+	}
 	
 
 	public DisciplinaLetiva getDisciplinaLetiva() {

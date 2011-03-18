@@ -12,7 +12,7 @@ import br.edu.gamaesouza.intranet.utils.DiaSemanaEnum;
 
 
 @Entity
-public class DisciplinaLetiva_Horario {
+public class DisciplinaLetivaHorario {
 
 	@Id
 	@GeneratedValue

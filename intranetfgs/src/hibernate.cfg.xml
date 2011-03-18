@@ -32,6 +32,6 @@
   <mapping class="br.edu.gamaesouza.intranet.bean.HoraComplementar"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.Atividade"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.Horario"/>
-  <mapping class="br.edu.gamaesouza.intranet.bean.DisciplinaLetiva_Horario"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.DisciplinaLetivaHorario"/>
  </session-factory>
 </hibernate-configuration>

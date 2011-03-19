@@ -54,7 +54,7 @@ function deletar(id){
 <s:form action="/painel/horario!saveHorariosEmDisciplinaLetiva.java">
 	<table>
 		<tr>
-			<td><s:hidden value="id" name="disciplinaLetivaHorarioNovoParams.disciplinaLetivaId" /></td>
+			<td><s:hidden value="%{id}" name="disciplinaLetivaHorarioNovoParams.disciplinaLetivaId" /></td>
 			<td>Horários:</td>		
 			<td><sx:autocompleter headerKey="-1" headerValue="" id="horario" name="disciplinaLetivaHorarioNovoParams.horarioId" list="horarios" listKey="id" /></td>
 			<td>Dia da Semana:</td>
@@ -62,7 +62,6 @@ function deletar(id){
 			<td><s:submit value="Adicionar"></s:submit></td>
 		</tr>
 	</table>  
-	
 </s:form>
 <s:if test="hasActionMessages()">
 	<div class="welcome" >
@@ -82,12 +81,16 @@ function deletar(id){
 		<tr>
 			<td><b>Id</b></td>
 			<td><b>Dia da Semana</b></td>
+			<td><b>Hora Inicio</b></td>
+			<td><b>Hora Fim</b></td>
 		</tr>
 		
 		<s:iterator value="disciplinaLetivaHorario">
 			<tr>
 				<td><s:property value="id"/></td>
 				<td><s:property value="DiaSemana"/></td>
+				<td><s:property value="Horario.horaFim"/></td>
+				<td><s:property value="Horario.horaInicio"/></td>
 
 	
 				<td><a onclick="javascript:deletar(<s:property value='id' />)""><img src="../images/lixeira.gif" /></a></td>

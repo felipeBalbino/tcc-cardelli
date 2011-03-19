@@ -81,7 +81,7 @@ public class Horario {
 
 	
 	public String toString(){
-		return "Id: "+id+" Ano:"+ano+" Hora inicial:"+horaInicio+" Hora Final:"+horaFim;
+		return "Ano: "+ano+" Hora inicial: "+horaInicio+" Hora Final: "+horaFim;
 		
 	}
 	

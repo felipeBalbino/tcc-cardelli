@@ -82,7 +82,7 @@
 	<bean class="br.edu.gamaesouza.intranet.bean.HoraAEP" id="horaAEP"></bean>
 	<bean class="br.edu.gamaesouza.intranet.bean.HoraComplementar" id="horaComplementar"></bean>
 	<bean class="br.edu.gamaesouza.intranet.bean.Horario" id="horario"></bean>
-	<bean class="br.edu.gamaesouza.intranet.bean.DisciplinaLetivaHorario" id="disciplinaLetiva_Horario"></bean>
+	<bean class="br.edu.gamaesouza.intranet.bean.DisciplinaLetivaHorario" id="disciplinaLetivaHorario"></bean>
 
 	<!-- MAIL -->
 

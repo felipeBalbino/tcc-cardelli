@@ -97,8 +97,8 @@ public class HorarioAction extends ActionSupport{
 	
 	public String saveHorariosEmDisciplinaLetiva() throws Exception{
 		horarioDAO.saveDisciplinaLetivaHorario(disciplinaLetivaHorarioNovoParams.getDisciplinaLetivaHorario());
-		addActionMessage("Hor�rio criado com sucesso");
-		return "listarHorarioDiscplinaLetiva";
+		addActionMessage("Horario adicionado em disciplina letiva com sucesso");
+		return listarHorarioPorDisciplinaLetiva();
 	}
 
 	public DisciplinaLetiva getDisciplinaLetiva() {

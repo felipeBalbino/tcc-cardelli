@@ -58,7 +58,7 @@ if(i == j) $(this).hide('slow');
 }
 
  	function grade(codigo) {       
-        location.href = "../painel/hora!listaAEP.java?alunoSearchParams.matricula="+ codigo; 
+        location.href = "../painel/aluno!grade.java?id="+ codigo; 
 }
  	
  	function complementar(codigo) {       

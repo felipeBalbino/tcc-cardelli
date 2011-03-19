@@ -53,29 +53,86 @@ if(i == j) $(this).hide('slow');
 <b>Grade</b>
 <hr></hr>
 <div id="result" >
-	<table width="100%">
+	<table width="100%" border="1px">
 		<tr>
-			<td><b>Nome</b></td>
-			<td><b>Ano</b></td>
-			<td><b>Semestre</b></td>
-			<td><b>Turno</b></td>
-			<td><b>Dia Semana</b></td>
-			<td><b>Hora Inicio</b></td>
-			<td><b>Hora Final</b></td>
+			<td><b>Tempo</b></td>
+			<td><b>Segunda</b></td>
+			<td><b>Terça</b></td>
+			<td><b>Quarta</b></td>
+			<td><b>Quinta</b></td>
+			<td><b>Sexta</b></td>
+			<td><b>Sábado</b></td>
+			<td><b>Domingo</b></td>
 		</tr>
 		
 		<s:iterator value="disciplinasLetivas" var="disciplinaLetiva">
 			<s:iterator value="horarios" var="horario">
-			<tr>
-				<td><s:property  value="disciplina.nome" /></td>
-				<td><s:property  value="ano" /></td>
-				<td><s:property  value="semestre" /></td>
-				<td><s:property  value="turno" /></td>
-				<td><s:property value="DiaSemana" /></td>
-				<td><s:date format="HH:mm" name="horario.horaInicio" /></td>
-				<td><s:date format="HH:mm" name="horario.horaFim" /></td>
+				<tr>
+					<td>			
+							
+					</td>
+
+					<td>
+						<c:if test="${DiaSemana == 'SEGUNDA'}">
+							<s:property  value="disciplina.nome" /><br>
+							<s:property value="DiaSemana" /><br>
+							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
+							<s:date format="HH:mm" name="horario.horaFim" /><br>
+						</c:if>
+					</td>
+					<td>
+						<c:if test="${DiaSemana == 'TERCA'}">
+							<s:property  value="disciplina.nome" /><br>
+							<s:property value="DiaSemana" /><br>
+							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
+							<s:date format="HH:mm" name="horario.horaFim" /><br>
+						</c:if>
+					</td>
+					<td>
+						<c:if test="${DiaSemana == 'QUARTA'}">
+							<s:property  value="disciplina.nome" /><br>
+							<s:property value="DiaSemana" /><br>
+							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
+							<s:date format="HH:mm" name="horario.horaFim" /><br>
+						</c:if>
+					</td>
+					<td>
+						<c:if test="${DiaSemana == 'QUINTA'}">
+							<s:property  value="disciplina.nome" /><br>
+							<s:property value="DiaSemana" /><br>
+							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
+							<s:date format="HH:mm" name="horario.horaFim" /><br>
+						</c:if>
+					</td>
+					<td>
+						<c:if test="${DiaSemana == 'SEXTA'}">
+							<s:property  value="disciplina.nome" /><br>
+							<s:property value="DiaSemana" /><br>
+							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
+							<s:date format="HH:mm" name="horario.horaFim" /><br>
+						</c:if>
+					</td>
+					<td>
+						<c:if test="${DiaSemana == 'SABADO'}">
+							<s:property  value="disciplina.nome" /><br>
+							<s:property value="DiaSemana" /><br>
+							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
+							<s:date format="HH:mm" name="horario.horaFim" /><br>
+						</c:if>
+					</td>
+					<td>
+						<c:if test="${DiaSemana == 'DOMINGO'}">
+							<s:property  value="disciplina.nome" /><br>
+							<s:property value="DiaSemana" /><br>
+							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
+							<s:date format="HH:mm" name="horario.horaFim" /><br>
+						</c:if>
+					</td>
+				</tr>
 				
-			</tr>
+
+					
+						
 			</s:iterator>
 		</s:iterator>
 	</table>

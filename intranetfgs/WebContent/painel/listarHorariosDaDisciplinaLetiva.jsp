@@ -56,9 +56,9 @@ function deletar(id){
 		<tr>
 			<td><s:hidden value="%{id}" name="disciplinaLetivaHorarioNovoParams.disciplinaLetivaId" /></td>
 			<td>Horários:</td>		
-			<td><sx:autocompleter headerKey="-1" headerValue="" id="horario" name="disciplinaLetivaHorarioNovoParams.horarioId" list="horarios" listKey="id" /></td>
+			<td><sx:autocompleter  id="horario" name="disciplinaLetivaHorarioNovoParams.horarioId" list="horarios" listKey="id" /></td>
 			<td>Dia da Semana:</td>
-			<td><sx:autocompleter  headerKey="-1"  headerValue="" id="diaSemanaEnum" list="diasSemana"  name="disciplinaLetivaHorarioNovoParams.diaSemana" /></td>
+			<td><sx:autocompleter   id="diaSemanaEnum" list="diasSemana"  name="disciplinaLetivaHorarioNovoParams.diaSemana" /></td>
 			<td><s:submit value="Adicionar"></s:submit></td>
 		</tr>
 	</table>  

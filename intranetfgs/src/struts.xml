@@ -138,6 +138,7 @@
 			method="{1}">
 			<result name="listAlunos">/painel/listarAlunos.jsp</result>
 			<result name="register">/painel/registerAluno.jsp</result>
+			<result name="grade">/painel/gradeAluno.jsp</result>
 		</action>
 		
 		<action name="horario" class="br.edu.gamaesouza.intranet.action.HorarioAction"

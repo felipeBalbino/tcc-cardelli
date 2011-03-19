@@ -154,7 +154,7 @@ if(i == j) $(this).hide('slow');
 								<hr></hr>
 								<strong>Horário(s) Cadastrado(s) nesta disciplina:</strong><br>
 								<s:iterator value="horarios" var="horario">
-											Dia da Semana: <s:property  value="DiaSemana" /> - Horario Inicial:<s:date format="HH:mm" name="horario.horaInicio" /> / Horario Final:<s:date format="HH:mm" name="horario.horaFim" /><br>
+											<img src="../images/date.png">Dia da Semana: <s:property  value="DiaSemana" /> - Horario Inicial:<s:date format="HH:mm" name="horario.horaInicio" /> / Horario Final:<s:date format="HH:mm" name="horario.horaFim" /><br>
 								</s:iterator>
 							</div>
 						</s:form>

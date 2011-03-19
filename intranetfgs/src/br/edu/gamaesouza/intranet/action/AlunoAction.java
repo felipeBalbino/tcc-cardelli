@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.Curso;
+import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.dao.CursoDAO;
+import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.params.impl.AlunoAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams;
@@ -26,17 +28,21 @@ public class AlunoAction extends ActionSupport {
 	private static final String RULE_ALUNOS_SAVE = "RULE_ALUNOS_SAVE";
 	private static final String RULE_ALUNOS_ALTERA = "RULE_ALUNOS_ALTERA";
 
+	private Integer id;
 	
 	private static final long serialVersionUID = 1L;
 	
 	private List<Aluno> alunos= new ArrayList<Aluno>();
 	private List<Curso> cursos = new ArrayList<Curso>();
+	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
 	
+
 	@Autowired private AlunoNovoParams alunoNovoParams ;
 	@Autowired private AlunoAlteraParams alunoAlteraParams ;
 	@Autowired private AlunoSearchParams alunoSearchParams;
 	@Autowired private PessoaDAO pessoaDAO;	
 	@Autowired private CursoDAO cursoDAO;
+	@Autowired private DisciplinaDAO disciplinaDAO;
 	
 
 
@@ -67,6 +73,16 @@ public class AlunoAction extends ActionSupport {
 		}
 		return lista();
 	}
+	
+	public String grade() {
+		try {
+			setDisciplinasLetivas(disciplinaDAO.getDisciplinaLetivaByUser(id));
+		} catch (IntranetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "grade";
+	}	
 		
 	public String registrar() {	
 			UserData.grantAccess(RULE_ALUNOS_SAVE);
@@ -169,4 +185,31 @@ public class AlunoAction extends ActionSupport {
 	public AlunoSearchParams getAlunoSearchParams() {
 		return alunoSearchParams;
 	}
+
+	public void setDisciplinaDAO(DisciplinaDAO disciplinaDAO) {
+		this.disciplinaDAO = disciplinaDAO;
+	}
+
+	public DisciplinaDAO getDisciplinaDAO() {
+		return disciplinaDAO;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setDisciplinasLetivas(List<DisciplinaLetiva> disciplinasLetivas) {
+		this.disciplinasLetivas = disciplinasLetivas;
+	}
+
+	public List<DisciplinaLetiva> getDisciplinasLetivas() {
+		return disciplinasLetivas;
+	}
+
+
 }

@@ -106,6 +106,7 @@ if(i == j) $(this).hide('slow');
 											<s:property  value="disciplina.nome" />
 										 -   <s:property  value="ano" />.<s:property  value="semestre" />/<s:property  value="turno" />
 										 -   <s:property  value="professor.nome" />
+										 -   <s:property  value="aluno.size" /> Aluno(s) Cadastrado(s).
 									</td>
 									<td width="15%" align="right">
 										<a title="Exibir evento" class="exibir">
@@ -146,6 +147,9 @@ if(i == j) $(this).hide('slow');
 									<tr>	
 										<td>Professor:<br><sx:autocompleter headerKey="-1" headerValue=""  id="professor" list="professores" name="professor.id"  listKey="id" listValue="nome" /><br></td>	
 									</tr>	
+									<tr>	
+										<td>Sala:<br><s:textfield  id="sala" name="sala"  value="%{sala}" /><br></td>	
+									</tr>
 									<tr>
 										<td><s:submit align="left" value="Alterar"></s:submit></td>
 									</tr>	

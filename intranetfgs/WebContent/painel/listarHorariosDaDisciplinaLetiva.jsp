@@ -85,7 +85,7 @@ function deletar(id){
 			<td><b>Hora Fim</b></td>
 		</tr>
 		
-		<s:iterator value="disciplinaLetivaHorario">
+		<s:iterator value="disciplinaLetivaHorario" >
 			<tr>
 				<td><s:property value="id"/></td>
 				<td><s:property value="DiaSemana"/></td>

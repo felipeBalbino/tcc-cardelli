@@ -11,7 +11,7 @@ public class DisciplinaLetivaSearchParams implements Params {
 	private String turno;
 	private String disciplinaNome;
 	private Integer professor;
-
+	private String sala;
 
 
 
@@ -57,6 +57,7 @@ public class DisciplinaLetivaSearchParams implements Params {
 			(semestre == null || semestre == -1) &&
 			(ano == null || ano == -1) && 
 			(disciplinaNome == null || disciplinaNome.equals("")) && 
+			(sala == null || sala.equals("")) &&
 			(professor == null || professor == -1)
 			
 			){
@@ -87,6 +88,18 @@ public class DisciplinaLetivaSearchParams implements Params {
 
 	public Integer getProfessor() {
 		return professor;
+	}
+
+
+
+	public void setSala(String sala) {
+		this.sala = sala;
+	}
+
+
+
+	public String getSala() {
+		return sala;
 	}
 	
 	

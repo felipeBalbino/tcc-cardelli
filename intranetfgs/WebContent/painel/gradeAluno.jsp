@@ -38,6 +38,9 @@ if(i == j) $(this).hide('slow');
 
 </script>
 </head>
+<div id="retorno" align="right">
+<img src="../images/arrow_categ.gif"><a href="../painel/aluno!lista.java" style="color:#FF4500;text-align:right;border-style:none;">Lista de Alunos</a>
+</div>
 <body>
 						<s:if test="hasActionMessages()">
 							<div class="welcome" >
@@ -55,7 +58,6 @@ if(i == j) $(this).hide('slow');
 <div id="result" >
 	<table width="100%" border="1px">
 		<tr>
-			<td><b>Tempo</b></td>
 			<td><b>Segunda</b></td>
 			<td><b>Terça</b></td>
 			<td><b>Quarta</b></td>
@@ -68,65 +70,105 @@ if(i == j) $(this).hide('slow');
 		<s:iterator value="disciplinasLetivas" var="disciplinaLetiva">
 			<s:iterator value="horarios" var="horario">
 				<tr>
-					<td>			
-							
-					</td>
-
 					<td>
 						<c:if test="${DiaSemana == 'SEGUNDA'}">
 							<s:property  value="disciplina.nome" /><br>
-							<s:property value="DiaSemana" /><br>
+							<hr></hr>
+							Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
 							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
 							<s:date format="HH:mm" name="horario.horaFim" /><br>
+							<hr></hr>
+							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
 						</c:if>
+							<c:if test="${DiaSemana != 'SEGUNDA'}">
+								N/A
+							</c:if>
 					</td>
 					<td>
 						<c:if test="${DiaSemana == 'TERCA'}">
 							<s:property  value="disciplina.nome" /><br>
-							<s:property value="DiaSemana" /><br>
+							<hr></hr>
+							Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
 							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
 							<s:date format="HH:mm" name="horario.horaFim" /><br>
+							<hr></hr>
+							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
 						</c:if>
+							<c:if test="${DiaSemana != 'TERCA'}">
+								N/A
+							</c:if>
+						
 					</td>
 					<td>
 						<c:if test="${DiaSemana == 'QUARTA'}">
 							<s:property  value="disciplina.nome" /><br>
-							<s:property value="DiaSemana" /><br>
+							<hr></hr>
+							Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
 							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
 							<s:date format="HH:mm" name="horario.horaFim" /><br>
+							<hr></hr>
+							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
 						</c:if>
+							<c:if test="${DiaSemana != 'QUARTA'}">
+								N/A
+							</c:if>
 					</td>
 					<td>
 						<c:if test="${DiaSemana == 'QUINTA'}">
 							<s:property  value="disciplina.nome" /><br>
-							<s:property value="DiaSemana" /><br>
+							<hr></hr>
+							Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
 							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
 							<s:date format="HH:mm" name="horario.horaFim" /><br>
+							<hr></hr>
+							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
 						</c:if>
+							<c:if test="${DiaSemana != 'QUINTA'}">
+								N/A
+							</c:if>
 					</td>
 					<td>
 						<c:if test="${DiaSemana == 'SEXTA'}">
 							<s:property  value="disciplina.nome" /><br>
-							<s:property value="DiaSemana" /><br>
+							<hr></hr>
+							Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
 							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
 							<s:date format="HH:mm" name="horario.horaFim" /><br>
+							<hr></hr>
+							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
 						</c:if>
+							<c:if test="${DiaSemana != 'SEXTA'}">
+								N/A
+							</c:if>
 					</td>
 					<td>
 						<c:if test="${DiaSemana == 'SABADO'}">
 							<s:property  value="disciplina.nome" /><br>
-							<s:property value="DiaSemana" /><br>
+							<hr></hr>
+							Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
 							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
 							<s:date format="HH:mm" name="horario.horaFim" /><br>
+							<hr></hr>
+							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
 						</c:if>
+							<c:if test="${DiaSemana != 'SABADO'}">
+								N/A
+							</c:if>
 					</td>
 					<td>
 						<c:if test="${DiaSemana == 'DOMINGO'}">
 							<s:property  value="disciplina.nome" /><br>
-							<s:property value="DiaSemana" /><br>
+							<hr></hr>
+							Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
 							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
 							<s:date format="HH:mm" name="horario.horaFim" /><br>
+							<hr></hr>
+							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
+							
 						</c:if>
+							<c:if test="${DiaSemana != 'DOMINGO'}">
+								N/A
+							</c:if>
 					</td>
 				</tr>
 				

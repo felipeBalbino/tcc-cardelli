@@ -26,7 +26,7 @@ public class DisciplinaLetivaHorarioNovoParams implements DisciplinaLetivaHorari
 		return false;
 	}
 	public DisciplinaLetivaHorario getDisciplinaLetivaHorario(){
-		DisciplinaLetivaHorario disciplinaLetivaHorario = (DisciplinaLetivaHorario) SpringUtil.getBean("disciplinaLetivaHorario");
+		DisciplinaLetivaHorario disciplinaLetivaHorario = new DisciplinaLetivaHorario();
 		try {
 			disciplinaLetivaHorario.setDiaSemana( diaSemana );
 			disciplinaLetivaHorario.setDisciplinaLetiva( disciplinaDAO.getDisciplinaLetivaById( disciplinaLetivaId )  );

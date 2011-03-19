@@ -217,20 +217,22 @@ INSERT INTO Aluno VALUES  (3,1);
 INSERT INTO Pessoa  (id,email,login,matricula,nome,senha) VALUES  (4,"phellipe@gmail.com","prof",23432446,"professor","123456");
 INSERT INTO Professor VALUES  (4);
 
-INSERT INTO DisciplinaLetiva VALUES  (1,2011,1,"manha",1,4);
-INSERT INTO DisciplinaLetiva VALUES  (2,2011,1,"tarde",2,4);
-INSERT INTO DisciplinaLetiva VALUES  (3,2011,2,"noite",1,4);
-INSERT INTO DisciplinaLetiva VALUES  (4,2011,2,"manha",2,4);
+INSERT INTO DisciplinaLetiva VALUES  (1,2011,"06",1,"manha",1,4);
+INSERT INTO DisciplinaLetiva VALUES  (2,2011,"12",1,"tarde",2,4);
+INSERT INTO DisciplinaLetiva VALUES  (3,2011,"21",2,"noite",1,4);
+INSERT INTO DisciplinaLetiva VALUES  (4,2011,"14",2,"manha",2,4);
 
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (1,2);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (2,2);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (1,3);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (2,3);
 
-INSERT INTO Horario VALUES(1,"2011","19:40","18:50",1);
-INSERT INTO Horario VALUES(2,"2011","20:40","19:40",1);
-INSERT INTO Horario VALUES(3,"2011","21:40","20:50",1);
-INSERT INTO Horario VALUES(4,"2011","22:40","21:50",1);
+INSERT INTO Horario VALUES(1,"2011","18:50","18:10",1);
+INSERT INTO Horario VALUES(2,"2011","19:35","18:55",1);
+INSERT INTO Horario VALUES(3,"2011","20:20","19:40",1);
+INSERT INTO Horario VALUES(4,"2011","21:05","20:25",1);
+INSERT INTO Horario VALUES(5,"2011","21:55","21:15",1);
+INSERT INTO Horario VALUES(6,"2011","22:40","22:00",1);
 
 INSERT INTO DisciplinaLetivaHorario VALUES  (1,"SEGUNDA",1,1);
 INSERT INTO DisciplinaLetivaHorario VALUES  (2,"QUARTA",1,2);

@@ -47,6 +47,9 @@ public class DisciplinaLetiva implements Serializable {
 	@Column(nullable = false)
 	private String turno;
 	
+	@Column(nullable = false)
+	private String sala;
+	
 	@ManyToMany
 	private List<Aluno> aluno;
 	
@@ -111,6 +114,12 @@ public class DisciplinaLetiva implements Serializable {
 	}
 	public List<Horario> getHorarios() {
 		return horarios;
+	}
+	public void setSala(String sala) {
+		this.sala = sala;
+	}
+	public String getSala() {
+		return sala;
 	}
 
 

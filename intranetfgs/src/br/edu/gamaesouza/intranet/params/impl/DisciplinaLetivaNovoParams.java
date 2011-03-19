@@ -20,6 +20,7 @@ public class DisciplinaLetivaNovoParams implements DisciplinaLetivaParams {
 	private Integer semestre;
 	private String turno;
 	private Integer ano =  Calendar.getInstance().get(Calendar.YEAR);
+	private String sala;
 	
 	@Autowired private PessoaDAO pessoaDao;
 	@Autowired private DisciplinaDAO disciplinaDAO;
@@ -38,6 +39,7 @@ public class DisciplinaLetivaNovoParams implements DisciplinaLetivaParams {
 			disciplinaLetiva.setSemestre(semestre);
 			disciplinaLetiva.setTurno(turno);
 			disciplinaLetiva.setAno(ano);
+			disciplinaLetiva.setSala(sala);
 			disciplinaLetiva.setProfessor(pessoaDao.getProfessorById(professorid));
 		} catch (IntranetException e) {
 			// TODO Auto-generated catch block
@@ -93,6 +95,14 @@ public class DisciplinaLetivaNovoParams implements DisciplinaLetivaParams {
 
 	public Integer getAno() {
 		return ano;
+	}
+
+	public void setSala(String sala) {
+		this.sala = sala;
+	}
+
+	public String getSala() {
+		return sala;
 	}
 
 	

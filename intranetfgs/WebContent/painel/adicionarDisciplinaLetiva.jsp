@@ -142,6 +142,8 @@ function restartTrs(){
 							Semestre:	<br><sx:autocompleter  	headerKey="-1"  headerValue="" 	id="semestre" 	 list="semestres"   name="disciplinaLetivaNovoParams.semestre" /><br>
 							Disciplina:	<br><sx:autocompleter 	headerKey="-1" 	headerValue=""  id="materia" 	 list="disciplinas" name="disciplinaLetivaNovoParams.materia" 		value="materia" 	listKey="id" listValue="nome" /><br>
 							Professor:	<br><sx:autocompleter 	headerKey="-1" 	headerValue=""  id="professorid" list="professores" name="disciplinaLetivaNovoParams.professorid"  value="professorid" listKey="id" listValue="nome" /><br>		
+							Sala:	<br><s:textfield id="sala" name="disciplinaLetivaNovoParams.sala" /><br>		
+											
 											<s:submit align="left" value="Adicionar"></s:submit>
 						</s:form>
 					</div>		

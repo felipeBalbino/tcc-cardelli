@@ -45,7 +45,7 @@ public class DateUtil {
 		if (minutos >= 60){
 			Integer horas = minutos / 60;
 			minutos = minutos % 60;
-			return horas + ":" + minutos;
+			return horas + "h(s) " + minutos + " min(s)";
 		}else{
 			return minutos + " min(s)";
 		}

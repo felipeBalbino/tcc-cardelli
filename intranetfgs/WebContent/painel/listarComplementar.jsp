@@ -49,7 +49,7 @@ if(i == j) $(this).hide('slow');
 <body>
 <div align="right"><a title="Novo Evento"
 	href="../painel/curso!execute.java"> <img border="0"
-	src="../images/novo.jpg" />Adicionar Hora AEP</a></div>
+	src="../images/novo.jpg" />Adicionar Hora Complementar</a></div>
 <br>
 <br>
 <b>Filtros de Pesquisa</b>
@@ -58,8 +58,8 @@ if(i == j) $(this).hide('slow');
 <s:form action="/painel/curso!lista.java">
 	<table>
 		<tr>
-			<td>Data:</td>
-			<td><s:textfield name="cursoSearchParams.cursoNome" id="cursoSearchParams.cursoNome"></s:textfield></td>
+			<td>Atividade:</td>
+			<td><sx:autocompleter/></td>
 			<td><s:submit value="Pesquisar"></s:submit></td>
 		</tr>
 	</table>  
@@ -79,12 +79,12 @@ if(i == j) $(this).hide('slow');
   							 	<s:actionerror cssStyle="color:red;background-image : url('../images/imgErro.gif');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
   							</div> 
 						</s:if>
-<b>Horas </b>
+<b>Horas Complementares </b>
 <hr></hr>
 <table width="100%">
 	<tr>
 			<td><b>Nome Evento</b></td>
-			<td><b>Carga Horário</b></td>
+			<td><b>Carga Horária</b></td>
 			<td><b>Atividade</b></td>
 			<td><b></b></td>
 			<td>	
@@ -94,12 +94,13 @@ if(i == j) $(this).hide('slow');
 				
 			</td>
 		</tr>
-	<s:iterator value="horasAEP" var="horaAEP">
+	<s:iterator value="horasComplementares" var="horaComplementar">
 		<tr>
-			<td><s:date name="data" format="dd/MM/yyyy" /></td>
-			<td><s:date name="horaInicio" format="hh:mm:ss" /></td>
-			<td><s:date name="horaFim" format="hh:mm:ss" /></td>
-			<td><s:property value="difHora" /></td>
+			
+			<td><s:property value="nomeEvento" /></td>
+			<td><s:property value="numeroHoras" /></td>
+			<td><s:property value="atividade.nome" /></td>
+			<td></td>
 			<td>	
 				
 							
@@ -111,6 +112,22 @@ if(i == j) $(this).hide('slow');
 		</tr>
 
 	</s:iterator>
+
 </table>
+<div id="totalHora" style="text-align:center">
+<table border="1">
+
+<tr>
+<td colspan="2" style="text-align:center"><b>Total de Horas por Atividade</b></td>
+</tr>
+<tr>
+
+	<td><b><center>Nome</center></b></td>
+	<td><b><center>Total</center></b></td>
+
+</tr>
+
+
+</table></div>
 </body>
 </html>

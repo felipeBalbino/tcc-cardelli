@@ -71,8 +71,8 @@ public class HoraAction extends ActionSupport {
 	private final String RULE_SALVA_AEP = "RULE_SALVA_AEP";
 	
 	
-	private final String RETURN_LIST_COMPLEMENTAR_SUCCESS = "listAEPSuccess";
-	private final String RETURN_LIST_COMPLEMENTAR_FAILURE = "listAEPFailure";
+	private final String RETURN_LIST_COMPLEMENTAR_SUCCESS = "listComplementarSuccess";
+	private final String RETURN_LIST_COMPLEMENTAR_FAILURE = "listComplementarFailure";
 	private final String RETURN_ALTER_COMPLEMENTAR_SUCCESS = "alterAEPSuccess";
 	private final String RETURN_ALTER_COMPLEMENTAR_FAILURE = "alterAEPFailure";
 	private final String RETURN_DELETE_COMPLEMENTAR_SUCCESS = "deleteAEPSuccess";
@@ -105,8 +105,8 @@ public class HoraAction extends ActionSupport {
 	public String listaComplementar(){
 		UserData.grantAccess(RULE_LISTA_COMPLEMENTAR);	
 		try {
-			horasComplementares = horaDAO.getHorasComplementares(pessoaDAO.getAlunoByMatricula(alunoSearchParams.getMatricula()));
-			alunoSearchParams = (AlunoSearchParams) SpringUtil.getBean("alunoSearchParams");
+			Aluno aluno = (Aluno)pessoaDAO.getPessoaById(horaComplementarListaParams.getId());
+			horasComplementares = horaDAO.getHorasComplementares(aluno);
 			return RETURN_LIST_COMPLEMENTAR_SUCCESS;
 		} catch (IntranetException e) {
 			return RETURN_LIST_COMPLEMENTAR_FAILURE;	

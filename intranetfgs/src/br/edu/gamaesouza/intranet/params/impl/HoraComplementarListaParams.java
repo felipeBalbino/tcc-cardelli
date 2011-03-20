@@ -4,14 +4,18 @@ import br.edu.gamaesouza.intranet.params.HoraComplementarParams;
 
 public class HoraComplementarListaParams implements HoraComplementarParams {
 
-	private Integer matricula;
+	private Integer id;
 
-	public Integer getMatricula() {
-		return matricula;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setMatricula(Integer matricula) {
-		this.matricula = matricula;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public void setId(String id) {
+		this.id = Integer.parseInt(id);
 	}
 	
 }

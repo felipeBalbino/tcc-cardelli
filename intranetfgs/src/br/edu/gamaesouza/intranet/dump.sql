@@ -221,11 +221,16 @@ INSERT INTO DisciplinaLetiva VALUES  (1,2011,"06",1,"manha",1,4);
 INSERT INTO DisciplinaLetiva VALUES  (2,2011,"12",1,"tarde",2,4);
 INSERT INTO DisciplinaLetiva VALUES  (3,2011,"21",2,"noite",1,4);
 INSERT INTO DisciplinaLetiva VALUES  (4,2011,"14",2,"manha",2,4);
+INSERT INTO DisciplinaLetiva VALUES  (5,2011,"06",1,"manha",36,4);
+INSERT INTO DisciplinaLetiva VALUES  (6,2011,"12",1,"tarde",45,4);
+INSERT INTO DisciplinaLetiva VALUES  (7,2011,"21",2,"noite",13,4);
+INSERT INTO DisciplinaLetiva VALUES  (8,2011,"14",2,"manha",17,4);
 
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (1,2);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (2,2);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (1,3);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (2,3);
+INSERT INTO DisciplinaLetiva_Aluno VALUES  (8,2);
 
 INSERT INTO Horario VALUES(1,"2011","18:50","18:10",1);
 INSERT INTO Horario VALUES(2,"2011","19:35","18:55",1);
@@ -255,6 +260,5 @@ INSERT INTO HoraAEP values ("2010-10-10","14:40","13:20",3);
 INSERT INTO HoraComplementar values ("Evento 1",10,4,1);
 INSERT INTO HoraComplementar values ("Evento 2",5,5,2);
 INSERT INTO HoraComplementar values ("Evento 3",3,6,1);
-
 
 SELECT dl FROM DisciplinaLetivaHorario dlHorario left join dlHorario.DisciplinaLetiva dl left join dl.horario horario where dl.semestre = 1 and dl.ano = 2011 and dlHorario = "SEGUNDA";

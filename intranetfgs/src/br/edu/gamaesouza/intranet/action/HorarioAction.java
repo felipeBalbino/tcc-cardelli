@@ -67,15 +67,25 @@ public class HorarioAction extends ActionSupport{
 	}
 	
 	public String save() throws Exception{
-
-	horarioDAO.save(horarioNovoParams.getHorario());
-	addActionMessage("Hor�rio criado com sucesso");
+		horarioDAO.save(horarioNovoParams.getHorario());
+		addActionMessage("Hor�rio criado com sucesso");
 		return prepare();
 	}
 	
 	public String delete() throws Exception{
 		try{
 		horarioDAO.delete( horarioDAO.getHorarioById( id ) );
+		addActionMessage("Hor�rio deletado com sucesso");			
+	} catch (Exception e) {		
+		addActionError("N�o foi possivel deletar Hor�rio, ocorreu um erro interno no Servidor");			
+	}
+		return listarHorarioPorDisciplinaLetiva();
+	}
+	
+	public String deleteDisciplinaLetivaHorario() throws Exception{
+		try{
+		DisciplinaLetivaHorario disciplinaLetivaHorario = horarioDAO.getDisciplinaLetivaHorarioById( id );
+		horarioDAO.deleteDisciplinaLetivaHorario( disciplinaLetivaHorario );
 		addActionMessage("Hor�rio deletado com sucesso");			
 	} catch (Exception e) {		
 		addActionError("N�o foi possivel deletar Hor�rio, ocorreu um erro interno no Servidor");			
@@ -102,7 +112,7 @@ public class HorarioAction extends ActionSupport{
 		} catch (Exception e) {		
 			addActionError("N�o foi possivel Adicionar, ocorreu um erro interno no Servidor");			
 		}
-		return "listaDisciplinaLetiva";
+		return listarHorarioPorDisciplinaLetiva();
 	}
 
 	public DisciplinaLetiva getDisciplinaLetiva() {

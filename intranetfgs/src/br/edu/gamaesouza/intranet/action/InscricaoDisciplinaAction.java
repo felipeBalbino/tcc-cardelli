@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
+import br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams;
+import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaSearchParams;
+import br.edu.gamaesouza.intranet.params.impl.DisciplinaSearchParams;
 import br.edu.gamaesouza.intranet.security.UserData;
 
 import br.edu.gamaesouza.intranet.utils.FormUtil;
@@ -29,6 +32,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	
 	@Autowired private DisciplinaDAO disciplinaDAO;
 	@Autowired private PessoaDAO pessoaDAO;	
+	@Autowired private DisciplinaLetivaSearchParams disciplinaLetivaSearchParams;
 	
 	private Integer idAluno;
 	
@@ -61,17 +65,9 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	}
 	
 	public String buscarDisciplinas(){
-		
-		try {
-			semestres = FormUtil.getSemestresList();
-			turnos = FormUtil.getTurnosList();
-			disciplinasLetivas = disciplinaDAO.getDisciplinasLetivas(ano, semestre,turno);
-		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
+		semestres = FormUtil.getSemestresList();
+		turnos = FormUtil.getTurnosList();
+		disciplinasLetivas = disciplinaDAO.getAllByParamsDisciplinaLetiva(disciplinaLetivaSearchParams);
 		return list();
 		
 	}
@@ -116,12 +112,11 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	public String list(){
 	
 		try{
-		semestres = FormUtil.getSemestresList();
-		turnos = FormUtil.getTurnosList();
-		disciplinasLetivasCadastradas = disciplinaDAO.getDisciplinaLetivaByUser( idAluno );
-		pessoa = pessoaDAO.getPessoaById( idAluno );
-		return "SUCCESS";
-		
+			semestres = FormUtil.getSemestresList();
+			turnos = FormUtil.getTurnosList();
+			disciplinasLetivasCadastradas = disciplinaDAO.getDisciplinaLetivaByUser( idAluno );
+			pessoa = pessoaDAO.getPessoaById( idAluno );
+			return "SUCCESS";
 		}catch(IntranetException e){
 			addActionError(MSG_NENHUMA_DISCIPLINA);
 			return prepare();
@@ -224,6 +219,16 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 
 	public void setIdAluno( Integer idAluno ) {
 		this.idAluno = idAluno;
+	}
+
+
+	public void setDisciplinaLetivaSearchParams(
+			DisciplinaLetivaSearchParams disciplinaLetivaSearchParams) {
+		this.disciplinaLetivaSearchParams = disciplinaLetivaSearchParams;
+	}
+
+	public DisciplinaLetivaSearchParams getDisciplinaLetivaSearchParams() {
+		return disciplinaLetivaSearchParams;
 	}
 	
 }

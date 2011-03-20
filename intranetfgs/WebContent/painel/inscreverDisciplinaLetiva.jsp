@@ -42,11 +42,11 @@ function buscarDisciplinas(semestre,ano,turno,id) {
 				<td><b>Ano:</b></td>		
 				<td><s:property  value="%{ano}" /></td>	
 				<td><b>Semestre:</b></td>
-				<td><sx:autocompleter onchange="javascript:buscarDisciplinas(this.value,'%{ano}',turno.value,'%{id}')" headerKey="-1"  headerValue=""  id="semestre" name="semestre" list="semestres" /></td>
+				<td><sx:autocompleter onchange="javascript:buscarDisciplinas(this.value,'%{ano}',turno.value,'%{id}')" headerKey="-1"  headerValue=""  id="semestre" name="disciplinaLetivaSearchParams.semestre" list="semestres" /></td>
 				<td><b>Turno:</b></td>
-				<td><sx:autocompleter onchange="javascript:buscarDisciplinas(semestre.value,'%{ano}',this.value,'%{id}')" headerKey="-1"  headerValue=""  id="turno" name="turno" list="turnos" /></td>
+				<td><sx:autocompleter onchange="javascript:buscarDisciplinas(semestre.value,'%{ano}',this.value,'%{id}')" headerKey="-1"  headerValue=""  id="turno" name="disciplinaLetivaSearchParams.turno" list="turnos" /></td>
 				<td><b>Disciplina:</b></td>
-				<td><sx:autocompleter headerKey="-1" headerValue=""  id="disciplina" list="disciplinasLetivas" name="disciplina" value="disciplina" listKey="disciplina.id" listValue="disciplina.nome" /></td>	
+				<td><sx:autocompleter headerKey="-1" headerValue=""  id="disciplina" list="disciplinasLetivas" name="disciplinaLetivaSearchParams.disciplinaNome" value="disciplina" listKey="disciplina.id" listValue="disciplina.nome" /></td>	
 				<td colspan="1"><s:submit value="Inscrever aluno" /></td>
 			</tr>
 		</table>

@@ -1,15 +1,19 @@
 
 package br.edu.gamaesouza.intranet.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import br.edu.gamaesouza.intranet.bean.Aluno;
@@ -122,8 +126,20 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		getHibernateTemplate().delete(disciplinaLetiva);
 	}
 	
-	public void updateDisciplinaLetiva(DisciplinaLetiva disciplinaLetiva) throws IntranetException{
-		getHibernateTemplate().update(disciplinaLetiva);
+	public void updateDisciplinaLetiva(final DisciplinaLetiva disciplinaLetiva) throws IntranetException{
+		HibernateCallback callback = new HibernateCallback() {
+	        public Object doInHibernate(Session session) throws HibernateException, SQLException {
+	        	DisciplinaLetiva disciplinaLet = new DisciplinaLetiva();
+	        	disciplinaLet = disciplinaLetiva;
+	        	DisciplinaLetiva groupObj = (DisciplinaLetiva) session.load(DisciplinaLetiva.class, disciplinaLetiva.getId());
+	            groupObj.setId(disciplinaLet.getId());
+	            groupObj.setProfessor(disciplinaLet.getProfessor());
+	            groupObj.setSala(disciplinaLet.getSala());
+	            session.update(groupObj);
+	            return null;
+	        }
+	    };	
+		getHibernateTemplate().execute(callback);
 	}
 
 	

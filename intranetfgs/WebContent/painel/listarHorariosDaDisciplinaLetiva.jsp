@@ -38,7 +38,7 @@ if(i == j) $(this).hide('slow');
 function deletar(id){
 
 	  if (confirm('Tem certeza que deseja excluir este horário? Esta operação é irreversível.')) {  
-	         location.href ="../painel/horario!delete.java?id="+id;
+	         location.href ="../painel/horario!deleteDisciplinaLetivaHorario.java?id="+id;
 	     } 
 }
 	
@@ -48,7 +48,7 @@ function deletar(id){
 <div id="retorno" align="right">
 <img src="../images/arrow_categ.gif"><a href="../painel/letiva!lista.java" style="color:#FF4500;text-align:right;border-style:none;">Lista de Disciplinas Letivas</a>
 </div>
-<b>Campos para adicionar Horários</b>
+<b>Campos para vincular horário a disciplina letiva</b>
 <hr></hr>
 
 <s:form action="/painel/horario!saveHorariosEmDisciplinaLetiva.java">

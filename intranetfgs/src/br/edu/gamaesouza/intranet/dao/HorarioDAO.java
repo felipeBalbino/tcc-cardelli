@@ -48,6 +48,11 @@ public class HorarioDAO extends HibernateDaoSupport {
 		return c.list();
 	}
 	
+	
+	public DisciplinaLetivaHorario getDisciplinaLetivaHorarioById(Integer id) throws IntranetException {
+		Query c = getSession().createQuery( "Select d from DisciplinaLetivaHorario d where id="+id );
+		return (DisciplinaLetivaHorario) c.uniqueResult();
+	}
 	public Horario getHorarioById(Integer id) throws IntranetException {
 		Criteria c = getSession().createCriteria(Horario.class);
 		c.add(Restrictions.eq("id", id));
@@ -57,6 +62,10 @@ public class HorarioDAO extends HibernateDaoSupport {
 	
 	public void delete(Horario horario)throws IntranetException{	
 		getHibernateTemplate().delete(horario);
+	}
+	
+	public void deleteDisciplinaLetivaHorario(DisciplinaLetivaHorario disciplinaLetivaHorario)throws IntranetException{	
+		getHibernateTemplate().delete(disciplinaLetivaHorario);
 	}
 	
 

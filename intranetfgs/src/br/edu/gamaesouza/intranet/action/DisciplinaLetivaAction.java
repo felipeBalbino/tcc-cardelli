@@ -35,7 +35,8 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	private static final String RULE_DISCIPLINA_LETIVA_DELETE = "RULE_DISCIPLINA_LETIVA_DELETE";
 
 	private Integer id;	
-	private Integer ano;	
+	private Integer ano;
+	private String sala;
 	
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	private List<Integer> anos  = new ArrayList<Integer>();
@@ -109,6 +110,7 @@ public class DisciplinaLetivaAction extends ActionSupport{
 		UserData.grantAccess(RULE_DISCIPLINA_LETIVA_ALTERA);
 		try {
 			disciplinaLetiva = disciplinaDAO.getDisciplinaLetivaById(id);
+			disciplinaLetiva.setSala(sala);
 			disciplinaLetiva.setProfessor(pessoaDao.getProfessorById(professor.getId()));
 			disciplinaDAO.updateDisciplinaLetiva(disciplinaLetiva);	
 			
@@ -306,8 +308,18 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	}
 
 
+	public String getSala() {
+		return sala;
+	}
 
 
+	public void setSala(String sala) {
+		this.sala = sala;
+	}
+
+
+
+	
 
 	
 	

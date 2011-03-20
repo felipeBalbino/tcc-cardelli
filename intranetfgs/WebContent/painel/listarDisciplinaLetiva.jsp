@@ -9,7 +9,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Intranet - Faculdade Gama & Souza | Disciplinas</title>
+<title>Intranet - Faculdade Gama & Souza | Disciplinas letivas</title>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
 <script type="text/javascript">
@@ -142,16 +142,10 @@ if(i == j) $(this).hide('slow');
 							<div class="conteudo">
 								<table>		
 									<tr>
-										<td><s:hidden name="id" id="id" value="%{id}"></s:hidden></td>
-									</tr>
-									<tr>	
-										<td>Professor:<br><sx:autocompleter headerKey="-1" headerValue=""  id="professor" list="professores" name="professor.id"  listKey="id" listValue="nome" /><br></td>	
-									</tr>	
-									<tr>	
-										<td>Sala:<br><s:textfield  id="sala" name="sala"  value="%{sala}" /><br></td>	
-									</tr>
-									<tr>
-										<td><s:submit align="left" value="Alterar"></s:submit></td>
+										<td>Professor:<br><sx:autocompleter headerKey="-1" headerValue=""  id="professor" list="professores" name="professor.id"  listKey="id" listValue="nome" /></td>	
+										<td>Sala:<br><s:textfield  id="sala" name="sala"  value="%{sala}" /></td>	
+										<td><br><s:submit align="left" value="Alterar"></s:submit></td>
+										<s:hidden name="id" id="id" value="%{id}"></s:hidden>
 									</tr>	
 											
 								</table>

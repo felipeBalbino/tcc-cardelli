@@ -18,8 +18,12 @@ public class SessionListen implements HttpSessionListener {
 		try {
 			Map<String, Object> sessao = ActionContext.getContext().getSession();
 			Pessoa pessoa = (Pessoa) sessao.get("pessoa");
-			pessoa.setDataUltimoAcesso(Calendar.getInstance());
-			pessoaDAO.merge(pessoa);
+			
+			if(pessoa != null){	
+				pessoa.setDataUltimoAcesso(Calendar.getInstance());
+				pessoaDAO.merge(pessoa);
+			}
+			
 		} catch (IntranetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

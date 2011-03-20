@@ -54,7 +54,7 @@ if(i == j) $(this).hide('slow');
 	 }
  	
  	function aep(codigo) {       
-        location.href = "../painel/hora!listaAEP.java?alunoSearchParams.matricula="+ codigo; 
+        location.href = "../painel/hora!listaAEP.java?horaAEPListaParams.id="+ codigo; 
 }
 
  	function grade(codigo) {       
@@ -201,7 +201,7 @@ if(i == j) $(this).hide('slow');
 										<a  title="Exibir e imprimir grade do aluno" border="30" href="javascript:grade(<s:property value="id" />)">
 											<img border="0" src="../images/gradeHorario.png" />
 										</a>
-										<a  title="Exibir e cadastrar Horas AEP" border="30" href="javascript:aep(<s:property value="matricula" />)">
+										<a  title="Exibir e cadastrar Horas AEP" border="30" href="javascript:aep(<s:property value="id" />)">
 											<img border="0" src="../images/aep.png" />
 										</a>
 										<a  title="Exibir e cadastrar Horas Complementares" border="30" href="javascript:complementar(<s:property value="matricula" />)">

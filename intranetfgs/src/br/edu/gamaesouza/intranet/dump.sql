@@ -238,5 +238,11 @@ INSERT INTO DisciplinaLetivaHorario VALUES  (1,"SEGUNDA",1,1);
 INSERT INTO DisciplinaLetivaHorario VALUES  (2,"QUARTA",1,2);
 INSERT INTO DisciplinaLetivaHorario VALUES  (3,"TERCA",2,3);
 
+INSERT INTO Hora values (1,2);
+INSERT INTO Hora values (2,2);
+INSERT INTO Hora values (3,2);
+INSERT INTO HoraAEP values ("2010-10-10","11:40","11:20",1);
+INSERT INTO HoraAEP values ("2010-10-10","12:40","12:20",2);
+INSERT INTO HoraAEP values ("2010-10-10","14:40","13:20",3);
 
 SELECT dl FROM DisciplinaLetivaHorario dlHorario left join dlHorario.DisciplinaLetiva dl left join dl.horario horario where dl.semestre = 1 and dl.ano = 2011 and dlHorario = "SEGUNDA";

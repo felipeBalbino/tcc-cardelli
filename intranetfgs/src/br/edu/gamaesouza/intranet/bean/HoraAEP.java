@@ -1,67 +1,68 @@
 package br.edu.gamaesouza.intranet.bean;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @NamedQueries(value={
 		
 		@NamedQuery(name="horasAEPByAluno",query="SELECT aep FROM HoraAEP aep where aep.aluno.id = :aluno"),
-		@NamedQuery(name="horasAEPByAlunoAnoSemestre",query="SELECT aep FROM HoraAEP aep where aep.aluno.id = :aluno AND ano = :ano AND semestre = :semestre")
+		@NamedQuery(name="horasAEPByAlunoData",query="SELECT aep FROM HoraAEP aep where aep.aluno.id = :aluno AND data = :data" )
 		
 })
 public class HoraAEP extends Hora {
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar dataInicio;
+	@Temporal(TemporalType.DATE)
+	private Calendar data;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar dataFim;
+	@Temporal(TemporalType.TIME)
+	private Date horaInicio;
 	
-	private Integer periodo;
+	@Temporal(TemporalType.TIME)
+	private Date horaFim;
 	
-	private Integer ano;
-
-
-	public Calendar getDataInicio() {
-		return dataInicio;
+	@Transient
+	private String difHora;
+	
+	public String getDifHora() {
+		return difHora;
 	}
 
-	public void setDataInicio(Calendar dataInicio) {
-		this.dataInicio = dataInicio;
+	public void setDifHora(String difHora) {
+		this.difHora = difHora;
 	}
 
-	public Calendar getDataFim() {
-		return dataFim;
+	public Calendar getData() {
+		return data;
 	}
 
-	public void setDataFim(Calendar dataFim) {
-		this.dataFim = dataFim;
+	public void setData(Calendar data) {
+		this.data = data;
 	}
 
-
-
-	public Integer getAno() {
-		return ano;
+	public Date getHoraInicio() {
+		return horaInicio;
 	}
 
-	public void setAno(Integer ano) {
-		this.ano = ano;
+	public void setHoraInicio(Date horaInicio) {
+		this.horaInicio = horaInicio;
 	}
 
-	public void setPeriodo(Integer periodo) {
-		this.periodo = periodo;
+	public Date getHoraFim() {
+		return horaFim;
 	}
 
-	public Integer getPeriodo() {
-		return periodo;
+	public void setHoraFim(Date horaFim) {
+		this.horaFim = horaFim;
 	}
+
+	
 	
 }

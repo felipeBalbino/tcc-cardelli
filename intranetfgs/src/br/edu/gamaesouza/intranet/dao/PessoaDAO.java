@@ -126,7 +126,9 @@ public class PessoaDAO extends HibernateDaoSupport {
 	}
 	
 	public void merge(Pessoa pessoa)throws IntranetException {
+		
 		getHibernateTemplate().merge(pessoa);
+		
 	}
 	
 	public void update(Pessoa pessoa,List<Rule> rules)throws IntranetException {
@@ -167,7 +169,7 @@ public class PessoaDAO extends HibernateDaoSupport {
 				operator = true;
 			}
 			
-			if(!alunoSearchParams.getNome().equals("")){
+			if(alunoSearchParams.getNome()!= null && !alunoSearchParams.getNome().equals("")){
 				if(operator){
 					query = query + " AND ";
 				}	
@@ -175,7 +177,7 @@ public class PessoaDAO extends HibernateDaoSupport {
 				operator = true;
 			}
 			
-			if(!alunoSearchParams.getEmail().equals("")){
+			if(alunoSearchParams.getEmail() != null && !alunoSearchParams.getEmail().equals("")){
 				if(operator){
 					query = query + " AND ";
 				}	

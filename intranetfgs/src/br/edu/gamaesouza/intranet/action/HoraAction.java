@@ -20,6 +20,7 @@ import br.edu.gamaesouza.intranet.params.impl.HoraComplementarDeletaParams;
 import br.edu.gamaesouza.intranet.params.impl.HoraComplementarListaParams;
 import br.edu.gamaesouza.intranet.params.impl.HoraComplementarNovoParams;
 import br.edu.gamaesouza.intranet.security.UserData;
+import br.edu.gamaesouza.intranet.utils.DateUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
@@ -42,15 +43,13 @@ public class HoraAction extends ActionSupport {
 	@Autowired private HoraComplementarDeletaParams horaComplementarDeletaParams;
 	@Autowired private HoraComplementarListaParams horaComplementarListaParams;
 	
-	@Autowired private AlunoSearchParams alunoSearchParams;
+	private AlunoSearchParams alunoSearchParams = new AlunoSearchParams();
 	
 	@Autowired private HoraDAO horaDAO;
 	@Autowired private PessoaDAO pessoaDAO;
 	
 	// Aluno retornado pela matr�cula
 	private Aluno aluno;
-	
-
 
 	// Carrega Lista mostrada ao Usuário
 	private List<HoraAEP> horasAEP;
@@ -92,8 +91,9 @@ public class HoraAction extends ActionSupport {
 	public String listaAEP(){
 		UserData.grantAccess(RULE_LISTA_AEP);	
 		try {
-			horasAEP = horaDAO.getHorasAEP(pessoaDAO.getAlunoByMatricula(alunoSearchParams.getMatricula()));
-			alunoSearchParams = (AlunoSearchParams) SpringUtil.getBean("alunoSearchParams");
+			Aluno aluno = (Aluno) pessoaDAO.getPessoaById(horaAEPListaParams.getId());	
+			horasAEP = DateUtil.getDiferencaDatasListAEP(horaDAO.getHorasAEP(aluno));
+			alunoSearchParams = new AlunoSearchParams();
 			return RETURN_LIST_AEP_SUCCESS;
 		} catch (IntranetException e) {
 			return RETURN_LIST_AEP_FAILURE;			
@@ -108,24 +108,6 @@ public class HoraAction extends ActionSupport {
 			horasComplementares = horaDAO.getHorasComplementares(pessoaDAO.getAlunoByMatricula(alunoSearchParams.getMatricula()));
 			alunoSearchParams = (AlunoSearchParams) SpringUtil.getBean("alunoSearchParams");
 			return RETURN_LIST_COMPLEMENTAR_SUCCESS;
-		} catch (IntranetException e) {
-			return RETURN_LIST_COMPLEMENTAR_FAILURE;	
-		}
-	}
-	
-	public String buscarAluno(){
-		UserData.grantAccess(RULE_LISTA_COMPLEMENTAR);	
-		try {
-			
-			aluno = alunoSearchParams.getAlunoByMatricula();
-			
-			if(aluno == null){
-				addActionError("N�o existe nenhum aluno cadastrado com essa matr�cula.");
-				return "erroBuscarAluno";
-			}else{
-				return "sucessoBuscarAluno";
-			}
-			
 		} catch (IntranetException e) {
 			return RETURN_LIST_COMPLEMENTAR_FAILURE;	
 		}
@@ -240,6 +222,23 @@ public class HoraAction extends ActionSupport {
 
 	public void setAlunoSearchParams(AlunoSearchParams alunoSearchParams) {
 		this.alunoSearchParams = alunoSearchParams;
+	}
+
+	public HoraAEPListaParams getHoraAEPListaParams() {
+		return horaAEPListaParams;
+	}
+
+	public void setHoraAEPListaParams(HoraAEPListaParams horaAEPListaParams) {
+		this.horaAEPListaParams = horaAEPListaParams;
+	}
+
+	public HoraComplementarListaParams getHoraComplementarListaParams() {
+		return horaComplementarListaParams;
+	}
+
+	public void setHoraComplementarListaParams(
+			HoraComplementarListaParams horaComplementarListaParams) {
+		this.horaComplementarListaParams = horaComplementarListaParams;
 	}
 	
 	

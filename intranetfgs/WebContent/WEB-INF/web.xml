@@ -106,7 +106,7 @@
 	<context-param>
 		<param-name>developers</param-name>
 		<param-value>
-			gabrielcastilho.cardelli@gmail.com,phellipe86@gmail.com
+			gabrielcastilho.cardelli@gmail.com,phellipe86@gmail.com,benatti77@gmail.com
 		</param-value>	
 	</context-param>
 	

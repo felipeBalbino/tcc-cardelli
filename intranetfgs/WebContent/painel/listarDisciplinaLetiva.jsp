@@ -43,7 +43,7 @@ if(i == j) $(this).hide('slow');
 	 }
  	
  	function horario(codigo) {       
-        location.href = "../painel/horario!listarHorarioPorDisciplinaLetiva.java?id="+ codigo; 
+        location.href = "../painel/horario!listarHorarioPorDisciplinaLetiva.java?idDisciplinaLetiva="+ codigo; 
 	}	
  	function listaPresenca(codigo) {       
         location.href = "../painel/letiva!listaPresenca.java?id="+ codigo; 

@@ -38,9 +38,13 @@ if(i == j) $(this).hide('slow');
 
 </script>
 </head>
+
+<% if (session.getAttribute("pessoa") instanceof br.edu.gamaesouza.intranet.bean.Professor){ %>
 <div id="retorno" align="right">
 <img src="../images/arrow_categ.gif"><a href="../painel/aluno!lista.java" style="color:#FF4500;text-align:right;border-style:none;">Lista de Alunos</a>
 </div>
+<% } %>
+									
 <body>
 						<s:if test="hasActionMessages()">
 							<div class="welcome" >

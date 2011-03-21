@@ -120,7 +120,7 @@
 									<% } %>
 									
 									<% if (session.getAttribute("pessoa") instanceof br.edu.gamaesouza.intranet.bean.Aluno){ %>
-										<a href="../painel/aluno!grade.java">Ver&nbsp;grade</a> 
+										<a href="../painel/aluno!gradeParaAluno.java">Ver&nbsp;grade</a> 
 									<% } %>
 									
 									<a href="../painel/trocarsenha.jsp">Alterar&nbsp;Senha</a>	

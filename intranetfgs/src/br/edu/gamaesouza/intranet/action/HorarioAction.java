@@ -43,6 +43,7 @@ public class HorarioAction extends ActionSupport{
 	
 		
 	private Integer id;
+	private Integer idDisciplinaLetiva;
 	
 	@Autowired private Horario horario;
 	@Autowired private HorarioDAO horarioDAO;
@@ -90,14 +91,14 @@ public class HorarioAction extends ActionSupport{
 	} catch (Exception e) {		
 		addActionError("Nï¿½o foi possivel deletar Horï¿½rio, ocorreu um erro interno no Servidor");			
 	}
-		return prepare();
+		return listarHorarioPorDisciplinaLetiva();
 	}
 	
 	public String listarHorarioPorDisciplinaLetiva() throws Exception{
 		try{
 		setDiasSemana( Arrays.asList(DiaSemanaEnum.values()) );
 		horarios = 	horarioDAO.getAllHorarios();
-		disciplinaLetivaHorario = 	horarioDAO.getAllDisciplinaLetivaHorariosById(id);
+		disciplinaLetivaHorario = 	horarioDAO.getAllDisciplinaLetivaHorariosById(idDisciplinaLetiva);
 		} catch (Exception e) {		
 			addActionError("Nï¿½o foi possivel listar Horï¿½rios, ocorreu um erro interno no Servidor");			
 		}
@@ -111,7 +112,7 @@ public class HorarioAction extends ActionSupport{
 				horarioDAO.saveDisciplinaLetivaHorario(disciplinaLetivaHorarioNovoParams.getDisciplinaLetivaHorario());
 				addActionMessage("Horario adicionado em disciplina letiva com sucesso");
 			}else{
-				addActionMessage("Não é possivel Adicionar mais de um horário no mesmo dia e horário.");
+				addActionError("Nï¿½o ï¿½ possivel Adicionar mais de um horï¿½rio no mesmo dia e horï¿½rio.");
 			}
 		} catch (Exception e) {		
 			addActionError("Nï¿½o foi possivel Adicionar, ocorreu um erro interno no Servidor");			
@@ -213,6 +214,14 @@ public class HorarioAction extends ActionSupport{
 
 	public DisciplinaLetivaHorarioNovoParams getDisciplinaLetivaHorarioNovoParams() {
 		return disciplinaLetivaHorarioNovoParams;
+	}
+
+	public Integer getIdDisciplinaLetiva() {
+		return idDisciplinaLetiva;
+	}
+
+	public void setIdDisciplinaLetiva( Integer idDisciplinaLetiva ) {
+		this.idDisciplinaLetiva = idDisciplinaLetiva;
 	}
 
 

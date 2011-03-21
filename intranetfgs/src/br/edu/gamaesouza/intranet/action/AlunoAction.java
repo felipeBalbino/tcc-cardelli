@@ -74,7 +74,7 @@ public class AlunoAction extends ActionSupport {
 		return lista();
 	}
 	
-	public String grade() {
+	public String gradeParaAdmin() {
 		try {
 			setDisciplinasLetivas(disciplinaDAO.getDisciplinaLetivaByUser(id));
 		} catch (IntranetException e) {
@@ -83,6 +83,16 @@ public class AlunoAction extends ActionSupport {
 		}
 		return "grade";
 	}	
+	
+	public String gradeParaAluno() {
+		try {
+			setDisciplinasLetivas(disciplinaDAO.getDisciplinaLetivaByUser(UserData.getLoggedUser().getId()));
+		} catch (IntranetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "grade";
+	}
 		
 	public String registrar() {	
 			UserData.grantAccess(RULE_ALUNOS_SAVE);

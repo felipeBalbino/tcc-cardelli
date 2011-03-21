@@ -53,8 +53,18 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	
 	
 	public String buscarDisciplinas(){
-		disciplinasLetivas = disciplinaDAO.getAllByParamsDisciplinaLetivaInscricao(disciplinaLetivaInscricaoSearchParams);
-		return list();
+		
+		try {
+			semestres = FormUtil.getSemestresList();
+			turnos = FormUtil.getTurnosList();
+			pessoa = pessoaDAO.getPessoaById( idAluno );
+			disciplinasLetivas = disciplinaDAO.getAllByParamsDisciplinaLetivaInscricao(disciplinaLetivaInscricaoSearchParams);
+		} catch ( IntranetException e ) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "SUCCESS";
 		
 	}
 	

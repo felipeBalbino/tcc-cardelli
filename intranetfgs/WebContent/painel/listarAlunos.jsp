@@ -58,7 +58,7 @@ if(i == j) $(this).hide('slow');
 }
 
  	function grade(codigo) {       
-        location.href = "../painel/aluno!grade.java?id="+ codigo; 
+        location.href = "../painel/aluno!gradeParaAdmin.java?id="+ codigo; 
 }
  	
  	function complementar(codigo) {       

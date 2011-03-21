@@ -11,12 +11,12 @@
 <script type="text/javascript">
 
 function buscarDisciplinas(semestre,ano,turno,id) {    
-    location.href = "disciplinaLetiva!buscarDisciplinas.java?ano="+ano+"&semestre=" +semestre+"&turno=" +turno+"&idAluno=" +id;
+    location.href = "disciplinaLetiva!buscarDisciplinas.java?disciplinaLetivaInscricaoSearchParams.ano="+ano+"&disciplinaLetivaInscricaoSearchParams.semestre=" +semestre+"&disciplinaLetivaInscricaoSearchParams.turno=" +turno+"&idAluno=" +id;
 	      
 }
-	function del(codigo) {  
+	function del(codigo,id) {  
 	     if (confirm('Excluir disciplina?')) {    
-	         location.href = "../painel/disciplinaLetiva!delete.java?disciplinaLetivaCadastrada.id="+ codigo;
+	         location.href = "../painel/disciplinaLetiva!delete.java?disciplinaLetivaCadastrada.id="+ codigo+"&idAluno=" +id;
 	     }  
 	 }
 
@@ -39,14 +39,15 @@ function buscarDisciplinas(semestre,ano,turno,id) {
 		</table>
 		<table cellspacing="10">
 		 	<tr>
+		 		<s:hidden name="idAluno" id="idAluno" value="%{pessoa.id}" ></s:hidden>
 				<td><b>Ano:</b></td>		
 				<td><s:property  value="%{ano}" /></td>	
 				<td><b>Semestre:</b></td>
-				<td><sx:autocompleter onchange="javascript:buscarDisciplinas(this.value,'%{ano}',turno.value,'%{id}')" headerKey="-1"  headerValue=""  id="semestre" name="disciplinaLetivaSearchParams.semestre" list="semestres" /></td>
+				<td><sx:autocompleter headerKey="-1"  headerValue=""  id="semestre" name="semestre" list="semestres" /></td>
 				<td><b>Turno:</b></td>
-				<td><sx:autocompleter onchange="javascript:buscarDisciplinas(semestre.value,'%{ano}',this.value,'%{id}')" headerKey="-1"  headerValue=""  id="turno" name="disciplinaLetivaSearchParams.turno" list="turnos" /></td>
+				<td><sx:autocompleter onchange="javascript:buscarDisciplinas(semestre.value,'%{ano}',this.value,'%{idAluno}')" headerKey="-1"  headerValue=""  id="turno" name="turno" list="turnos" /></td>
 				<td><b>Disciplina:</b></td>
-				<td><sx:autocompleter headerKey="-1" headerValue=""  id="disciplina" list="disciplinasLetivas" name="disciplinaLetivaSearchParams.disciplinaNome" value="disciplina" listKey="disciplina.id" listValue="disciplina.nome" /></td>	
+				<td><sx:autocompleter headerKey="-1" headerValue=""  id="disciplina" list="disciplinasLetivas" name="disciplina" value="disciplina" listKey="disciplina.id" listValue="disciplina.nome" /></td>	
 				<td colspan="1"><s:submit value="Inscrever aluno" /></td>
 			</tr>
 		</table>
@@ -94,7 +95,7 @@ function buscarDisciplinas(semestre,ano,turno,id) {
 			<td><c:out value="${disciplinaLetiva.turno}" /></td>
 			<td><c:out value="${disciplinaLetiva.semestre}" /></td>
 				<td>
-					<a href="javascript:del(${disciplinaLetiva.id})">
+					<a href="javascript:del(${disciplinaLetiva.id},${idAluno})">
 						<img border="0" src="../images/lixeira.gif" />
 					</a>
 				</td>

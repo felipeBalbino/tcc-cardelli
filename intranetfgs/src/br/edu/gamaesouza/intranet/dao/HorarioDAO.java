@@ -67,6 +67,21 @@ public class HorarioDAO extends HibernateDaoSupport {
 	public void deleteDisciplinaLetivaHorario(DisciplinaLetivaHorario disciplinaLetivaHorario)throws IntranetException{	
 		getHibernateTemplate().delete(disciplinaLetivaHorario);
 	}
+
+	public boolean validationDisciplinaLetivaHorario(
+			DisciplinaLetivaHorario disciplinaLetivaHorario) {
+	
+		Query c = getSession().createQuery( "Select d from DisciplinaLetivaHorario d where d.DiaSemana='"+disciplinaLetivaHorario.getDiaSemana().name()+
+				"' and disciplinaLetiva_id="+disciplinaLetivaHorario.getDisciplinaLetiva().getId()+
+				" and horario_id="+disciplinaLetivaHorario.getHorario().getId());
+		List<DisciplinaLetivaHorario> validationDisciplinaLetHorario =(List<DisciplinaLetivaHorario>) c.list();
+		
+		if(validationDisciplinaLetHorario.isEmpty()){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	
 
 }

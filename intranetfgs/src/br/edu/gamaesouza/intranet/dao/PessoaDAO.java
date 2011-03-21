@@ -204,6 +204,13 @@ public class PessoaDAO extends HibernateDaoSupport {
 		return pessoa;	
 	}
 	
+	public Aluno getAlunoById(Integer id)throws IntranetException{
+		Query c = getSession().getNamedQuery("alunoById");
+		c.setInteger("id", id);
+		Aluno aluno = (Aluno) c.uniqueResult();
+		return aluno;	
+	}
+	
 	public Pessoa getPessoaByEmail(String id)throws IntranetException{
 		Query c = getSession().getNamedQuery("pessoaById");
 		c.setString("email", id);

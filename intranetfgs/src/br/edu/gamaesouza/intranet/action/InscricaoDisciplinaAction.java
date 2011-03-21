@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams;
+import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaInscricaoSearchParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaSearchParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaSearchParams;
 import br.edu.gamaesouza.intranet.security.UserData;
@@ -33,8 +34,8 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	@Autowired private DisciplinaDAO disciplinaDAO;
 	@Autowired private PessoaDAO pessoaDAO;	
 	@Autowired private DisciplinaLetivaSearchParams disciplinaLetivaSearchParams;
-	
-	private Integer idAluno;
+	@Autowired private DisciplinaLetivaInscricaoSearchParams disciplinaLetivaInscricaoSearchParams;
+
 	
 	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
 	private List<DisciplinaLetiva> disciplinasLetivasCadastradas = new ArrayList<DisciplinaLetiva>();
@@ -45,29 +46,14 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	private List<String> turnos = new ArrayList<String>();
 	private Pessoa pessoa = new Pessoa();
 	
-	
+	private Integer idAluno;
 	private Integer semestre;
 	private Integer disciplina;
 	private String turno;
 	
-	public String prepare(){
-		try {
-			disciplinasLetivasCadastradas = disciplinaDAO.getDisciplinaLetivaByUser( idAluno );
-			semestres = FormUtil.getSemestresList();
-			turnos = FormUtil.getTurnosList();
-			pessoa = pessoaDAO.getPessoaById( idAluno );
-		} catch ( IntranetException e ) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return list();
-		
-	}
 	
 	public String buscarDisciplinas(){
-		semestres = FormUtil.getSemestresList();
-		turnos = FormUtil.getTurnosList();
-		disciplinasLetivas = disciplinaDAO.getAllByParamsDisciplinaLetiva(disciplinaLetivaSearchParams);
+		disciplinasLetivas = disciplinaDAO.getAllByParamsDisciplinaLetivaInscricao(disciplinaLetivaInscricaoSearchParams);
 		return list();
 		
 	}
@@ -76,19 +62,17 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 		
 		
 		try{
-		semestres = FormUtil.getSemestresList();
-		
-		boolean pessoaAlreadyFollow = disciplinaDAO.setPessoaFollowDisciplinhaLetiva(UserData.getLoggedUser(), disciplina, ano, semestre);
+		boolean pessoaAlreadyFollow = disciplinaDAO.setPessoaFollowDisciplinhaLetiva(pessoaDAO.getAlunoById(idAluno), disciplina, ano, semestre);
 		
 				if(pessoaAlreadyFollow){
 					addActionError(MSG_JA_INSCRITO);
 				}
 				
-				return prepare();
+				return list();
 		
 		}catch(IntranetException ex){
 			addActionError(MSG_MARCA_DISCIPLINA);
-			return prepare();
+			return list();
 		}
 		
 		
@@ -105,7 +89,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 		}
 		
 		
-		return prepare();
+		return list();
 	}
 	
 	
@@ -119,7 +103,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 			return "SUCCESS";
 		}catch(IntranetException e){
 			addActionError(MSG_NENHUMA_DISCIPLINA);
-			return prepare();
+			return "SUCCESS";
 		}
 		
 	}
@@ -230,5 +214,6 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	public DisciplinaLetivaSearchParams getDisciplinaLetivaSearchParams() {
 		return disciplinaLetivaSearchParams;
 	}
+	
 	
 }

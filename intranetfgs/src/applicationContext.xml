@@ -92,6 +92,7 @@
 	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaNovoParams" id="disciplinaLetivaNovoParams"></bean>
 	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaSearchParams" id="disciplinaSearchParams"></bean>
 	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaSearchParams" id="disciplinaLetivaSearchParams"></bean>
+	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaInscricaoSearchParams" id="disciplinaLetivaInscricaoSearchParams"></bean>
 	
 	<bean class="br.edu.gamaesouza.intranet.params.impl.EventoNovoParams" id="eventoNovoParams"></bean>
 	<bean class="br.edu.gamaesouza.intranet.params.impl.EventoAlteraParams" id="eventoAlteraParams"></bean>

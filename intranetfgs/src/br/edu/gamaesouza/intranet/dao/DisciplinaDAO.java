@@ -22,6 +22,7 @@ import br.edu.gamaesouza.intranet.bean.Disciplina;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.bean.Professor;
+import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaInscricaoSearchParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaSearchParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaSearchParams;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
@@ -191,7 +192,8 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		return disciplinasLetivas;	
 	}
 	
-	public boolean setPessoaFollowDisciplinhaLetiva(Pessoa pessoa, Integer disciplina , Integer ano, Integer semestre) throws IntranetException{
+	public boolean setPessoaFollowDisciplinhaLetiva(Aluno pessoa,
+			Integer disciplina, Integer ano, Integer semestre) throws IntranetException{
 		Query queryVerify = getSession().getNamedQuery("allDLByAlunoDisciplinaAnoSemestre");
 		queryVerify.setParameter("aluno", pessoa.getId());
 		queryVerify.setParameter("disciplina", disciplina);
@@ -210,8 +212,7 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 			DisciplinaLetiva dl = (DisciplinaLetiva) c.uniqueResult();
 			
 			
-			dl.getAluno().add((Aluno) pessoa);
-		
+			dl.getAluno().add(pessoa);
 			getHibernateTemplate().update(dl);
 			
 			return false;
@@ -344,6 +345,49 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		return ds;
 	}
 	
+	public List<DisciplinaLetiva> getAllByParamsDisciplinaLetivaInscricao(
+			DisciplinaLetivaInscricaoSearchParams disciplinaLetivaInscricaoSearchParams) {
+			
+	
+		boolean operator = false;
+		String query = "FROM DisciplinaLetiva  d left outer join fetch d.disciplina disciplina ";
+		
+		if (!disciplinaLetivaInscricaoSearchParams.isEmpty()){
+			query =  query + "WHERE ";
+			
+			if(disciplinaLetivaInscricaoSearchParams.getAno() != -1){
+				query = query + "ano = '" + disciplinaLetivaInscricaoSearchParams.getAno() + "'";
+				operator = true;
+			}
+			
+			if(disciplinaLetivaInscricaoSearchParams.getSemestre() != -1){
+				if(operator){
+					query = query + " AND ";
+				}
+				query = query + "semestre = '" + disciplinaLetivaInscricaoSearchParams.getSemestre() + "'";
+				operator = true;
+			}
+			
+			if(!disciplinaLetivaInscricaoSearchParams.getTurno().equals("-1")){
+				if(operator){
+					query = query + " AND ";
+				}
+				query = query + "turno = '" + disciplinaLetivaInscricaoSearchParams.getTurno() + "'";
+				operator = true;
+			}
+					
+			
+		}
+		
+		Query hibernateQuery = getSession().createQuery(query);
+		hibernateQuery.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<DisciplinaLetiva> ds =  hibernateQuery.list();
+	
+		
+		return ds;
+	}
+
+
 	
 
 }

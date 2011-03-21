@@ -107,8 +107,12 @@ public class HorarioAction extends ActionSupport{
 	
 	public String saveHorariosEmDisciplinaLetiva() throws Exception{
 		try{
-		horarioDAO.saveDisciplinaLetivaHorario(disciplinaLetivaHorarioNovoParams.getDisciplinaLetivaHorario());
-		addActionMessage("Horario adicionado em disciplina letiva com sucesso");
+			if(horarioDAO.validationDisciplinaLetivaHorario(disciplinaLetivaHorarioNovoParams.getDisciplinaLetivaHorario())){
+				horarioDAO.saveDisciplinaLetivaHorario(disciplinaLetivaHorarioNovoParams.getDisciplinaLetivaHorario());
+				addActionMessage("Horario adicionado em disciplina letiva com sucesso");
+			}else{
+				addActionMessage("Não é possivel Adicionar mais de um horário no mesmo dia e horário.");
+			}
 		} catch (Exception e) {		
 			addActionError("Nï¿½o foi possivel Adicionar, ocorreu um erro interno no Servidor");			
 		}

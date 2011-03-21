@@ -16,7 +16,8 @@ import javax.persistence.Transient;
  */
 @Entity
 @NamedQueries(value={
-		@NamedQuery(name="alunosByCurso",query="FROM Aluno a where a.curso.id = :curso")
+		@NamedQuery(name="alunosByCurso",query="FROM Aluno a where a.curso.id = :curso"),
+		@NamedQuery(name="alunoById",query="FROM Aluno WHERE id = :id")
 })
 public class Aluno extends Pessoa implements Serializable {
 	

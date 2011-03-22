@@ -105,12 +105,12 @@ function restartTrs(){
 <s:form action="/painel/curso!novo.java" name="adicionar" onSubmit="return validaForm()" >
 		
 </s:form><br>
-<b>Adicionar Hora</b>
+<b>Adicionar Hora AEP</b>
 				<hr>
-	<s:form action="/painel/curso!novo.java" name="adicionar" onSubmit="return validaForm()" >
-		Data: <sx:datetimepicker></sx:datetimepicker>
-		Hora Inicial: <s:textfield id="nome" name="cursoNovoParams.nomeCurso"></s:textfield>
-		Hora Final: <s:textfield id="nome" name="cursoNovoParams.nomeCurso"></s:textfield>
+	<s:form action="/painel/hora!salvaAEP.java" name="adicionar" onSubmit="return validaForm()" >
+		Data: <s:textfield id="data" name="horaAEPNovoParams.data" />
+		Hora Inicial: <s:textfield id="nome" name="horaAEPNovoParams.horaInicial"></s:textfield>
+		Hora Final: <s:textfield id="nome" name="horaAEPNovoParams.horaFinal"></s:textfield>
 	<s:submit align="left" value="Adicionar Hora"></s:submit>
 </s:form>
 </div>		

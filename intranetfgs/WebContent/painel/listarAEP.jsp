@@ -48,7 +48,7 @@ if(i == j) $(this).hide('slow');
 </head>
 <body>
 <div align="right"><a title="Novo Evento"
-	href="../painel/curso!execute.java"> <img border="0"
+	href="../painel/adicionarAEP.jsp?aluno.id=<s:property value="aluno.id"/>" > <img border="0"
 	src="../images/novo.jpg" />Adicionar Hora AEP</a></div>
 <br>
 <br>

@@ -1,5 +1,6 @@
 package br.edu.gamaesouza.intranet.action;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,7 +92,7 @@ public class HoraAction extends ActionSupport {
 	public String listaAEP(){
 		UserData.grantAccess(RULE_LISTA_AEP);	
 		try {
-			Aluno aluno = (Aluno) pessoaDAO.getPessoaById(horaAEPListaParams.getId());	
+			this.aluno = (Aluno) pessoaDAO.getPessoaById(horaAEPListaParams.getId());	
 			horasAEP = DateUtil.getDiferencaDatasListAEP(horaDAO.getHorasAEP(aluno));
 			alunoSearchParams = new AlunoSearchParams();
 			return RETURN_LIST_AEP_SUCCESS;
@@ -120,9 +121,18 @@ public class HoraAction extends ActionSupport {
 		return null;
 	}
 	
-	public String salvaAEP(){
+	public String salvaAEP() throws IntranetException{
 		UserData.grantAccess(RULE_SALVA_AEP);	
-		return null;
+		
+		try {
+			horaDAO.save(horaAEPNovoParams.getHoraAEP());
+			addActionMessage("Disiciplina adicionada com sucesso.");
+		} catch (ParseException e) {
+			addActionMessage("Ocorreu um erro ao adicionar uma hora AEP.");
+			throw new IntranetException(e.getMessage());
+		}
+		
+		return "saveAEPSuccess";
 	}
 	
 	public String salvaComplementar(){
@@ -240,6 +250,8 @@ public class HoraAction extends ActionSupport {
 			HoraComplementarListaParams horaComplementarListaParams) {
 		this.horaComplementarListaParams = horaComplementarListaParams;
 	}
+	
+	
 	
 	
 }

@@ -156,7 +156,7 @@
 			<result name="alterAEPFailure"></result>
 			<result name="deleteAEPSuccess"></result>
 			<result name="deleteAEPFailure"></result>
-			<result name="saveAEPSuccess"></result>
+			<result name="saveAEPSuccess">/painel/adicionarAEP.jsp</result>
 			<result name="saveAEPFailure"></result>
 			<result name="listComplementarSuccess">/painel/listarComplementar.jsp</result>
 			<result name="listComplementarFailure">/painel/aluno!list.java</result>

@@ -3,17 +3,11 @@ package br.edu.gamaesouza.intranet.action;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
-import br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaInscricaoSearchParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaSearchParams;
-import br.edu.gamaesouza.intranet.params.impl.DisciplinaSearchParams;
-import br.edu.gamaesouza.intranet.security.UserData;
-
 import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
@@ -36,7 +30,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	@Autowired private DisciplinaLetivaSearchParams disciplinaLetivaSearchParams;
 	@Autowired private DisciplinaLetivaInscricaoSearchParams disciplinaLetivaInscricaoSearchParams;
 
-	
+
 	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
 	private List<DisciplinaLetiva> disciplinasLetivasCadastradas = new ArrayList<DisciplinaLetiva>();
 	
@@ -57,6 +51,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 		try {
 			semestres = FormUtil.getSemestresList();
 			turnos = FormUtil.getTurnosList();
+			disciplinasLetivasCadastradas = disciplinaDAO.getDisciplinaLetivaByUser( idAluno );
 			pessoa = pessoaDAO.getPessoaById( idAluno );
 			disciplinasLetivas = disciplinaDAO.getAllByParamsDisciplinaLetivaInscricao(disciplinaLetivaInscricaoSearchParams);
 		} catch ( IntranetException e ) {
@@ -225,5 +220,15 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 		return disciplinaLetivaSearchParams;
 	}
 	
+
+	
+	public DisciplinaLetivaInscricaoSearchParams getDisciplinaLetivaInscricaoSearchParams() {
+		return disciplinaLetivaInscricaoSearchParams;
+	}
+
+	public void setDisciplinaLetivaInscricaoSearchParams(
+			DisciplinaLetivaInscricaoSearchParams disciplinaLetivaInscricaoSearchParams) {
+		this.disciplinaLetivaInscricaoSearchParams = disciplinaLetivaInscricaoSearchParams;
+	}
 	
 }

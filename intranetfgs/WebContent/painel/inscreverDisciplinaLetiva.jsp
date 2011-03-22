@@ -29,7 +29,7 @@ function buscarDisciplinas(semestre,ano,turno,id) {
 <b>Inscreve <s:property value="pessoa.nome" /> em Disciplinas letivas</b>
 <hr></hr>
 <div id="search">
-	<s:form action="/painel/disciplinaLetiva!salva.java">
+	<s:form action="/painel/disciplinaLetiva!salva.java" method="post">
 		<table cellspacing="10" >
 			<tr>
 				<td>

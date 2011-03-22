@@ -212,7 +212,7 @@ width:295px;
 							Nome Completo: <s:textfield id="nome" name="alunoNovoParams.nome"></s:textfield><br>
 							Matrícula: <s:textfield  maxLength="8" onKeyPress="return Numero(event);"  id="matricula" name="alunoNovoParams.matricula"></s:textfield><br>
 							Email: <s:textfield id="email" name="alunoNovoParams.email" ></s:textfield><br>
-							Confirmar Email: <s:textfield id="email2" name="aluno.email"></s:textfield><br>
+							Confirmar Email: <s:textfield id="email2" ></s:textfield><br>
 							Login: <s:textfield id="login" name="alunoNovoParams.login" maxlength="8"></s:textfield><br>
 							Senha: <s:password id="senha" name="alunoNovoParams.senha"></s:password><br>
 							Confirmar Senha: <s:password id="senha2"></s:password><br>

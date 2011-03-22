@@ -6,6 +6,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style type="text/css">
+
+#semestre {
+	background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; 
+	padding:2px 0px 2px 25px;
+}
+#turno {
+	background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; 
+	padding:2px 0px 2px 25px;
+}
+#disciplina {
+	background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; 
+	padding:2px 0px 2px 25px;
+}
+
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Inscrever aluno - Disciplinas letivas</title>
 <script type="text/javascript">
@@ -19,6 +35,54 @@ function buscarDisciplinas(semestre,ano,turno,id) {
 	         location.href = "../painel/disciplinaLetiva!delete.java?disciplinaLetivaCadastrada.id="+ codigo+"&idAluno=" +id;
 	     }  
 	 }
+	
+	function restartTrs(){
+	 	document.getElementById("turno").style.backgroundColor = "transparent";
+		document.getElementById("semestre").style.backgroundColor = "transparent";
+	 	document.getElementById("disciplina").style.backgroundColor = "transparent";
+	 }
+
+	 function restartMensagemErro(){
+	                   document.getElementById("mensagem_ocultos").style.display = "none";
+	 }
+
+	 function validaForm(){
+		 restartTrs();
+	         restartMensagemErro();
+	         d = document.adicionar;
+	         var erro = false;
+	        
+
+	         //validar turno
+	         if (d.turno.value == -1){
+	                  document.getElementById("turno").style.backgroundColor = "#FF6A6A";
+	                  d.turno.focus();
+	                  erro = true;
+	         }
+
+	       //validar semestre
+	         if (d.semestre.value == -1){
+	                  document.getElementById("semestre").style.backgroundColor = "#FF6A6A";
+	                  d.semestre.focus();
+	                  erro = true;
+	         }
+	       
+	         if (d.disciplina.value == -1){
+                 document.getElementById("disciplina").style.backgroundColor = "#FF6A6A";
+                 d.disciplina.focus();
+                 erro = true;
+        		}
+
+
+
+			if (erro != true) {
+				document.getElementById("mensagem_carregando").style.display = "inline";
+	         	return true;
+			}else{
+				document.getElementById("mensagem_ocultos").style.display = "inline";
+	         	return false;
+			}
+	}
 
 </script>
 </head>
@@ -28,8 +92,9 @@ function buscarDisciplinas(semestre,ano,turno,id) {
 </div>
 <b>Inscreve <s:property value="pessoa.nome" /> em Disciplinas letivas</b>
 <hr></hr>
+
 <div id="search">
-	<s:form action="/painel/disciplinaLetiva!salva.java" method="post">
+	<s:form name="adicionar" onSubmit="return validaForm()" action="/painel/disciplinaLetiva!salva.java" method="post" >
 		<table cellspacing="10" >
 			<tr>
 				<td>
@@ -39,21 +104,17 @@ function buscarDisciplinas(semestre,ano,turno,id) {
 		</table>
 		<table cellspacing="10">
 		 	<tr>
-		 		<s:hidden name="idAluno" id="idAluno" value="%{pessoa.id}" ></s:hidden>
-				<td><b>Ano:</b></td>		
-				<td><s:property  value="%{ano}" /></td>	
-				<td><b>Semestre:</b></td>
-				<td><sx:autocompleter headerKey="-1"  headerValue=""  id="semestre" name="semestre" list="semestres" /></td>
-				<td><b>Turno:</b></td>
-				<td><sx:autocompleter onchange="javascript:buscarDisciplinas(semestre.value,'%{ano}',this.value,'%{idAluno}')" headerKey="-1"  headerValue=""  id="turno" name="turno" list="turnos" /></td>
-				<td><b>Disciplina:</b></td>
-				<td><sx:autocompleter headerKey="-1" headerValue=""  id="disciplina" list="disciplinasLetivas" name="disciplina" value="disciplina" listKey="disciplina.id" listValue="disciplina.nome" /></td>	
+		 		<s:hidden name="idAluno" id="idAluno" value="%{pessoa.id}" ></s:hidden>				
+				<td>Ano: 		<s:property  value="%{ano}"/></td>	
+				<td>Turno:		<sx:autocompleter onchange="javascript:buscarDisciplinas(semestre.value,'%{ano}',this.value,'%{idAluno}')" headerKey="-1"  headerValue=""  id="turno" name="turno" list="turnos" value="disciplinaLetivaInscricaoSearchParams.turno"/></td>	
+				<td>Semestre:	<sx:autocompleter onchange="javascript:buscarDisciplinas(this.value,'%{ano}',turno.value,'%{idAluno}')" headerKey="-1"  headerValue="" id="semestre" name="semestre" list="semestres" value="disciplinaLetivaInscricaoSearchParams.semestre" /></td>	
+				<td>Disciplina:	<sx:autocompleter headerKey="-1" headerValue=""  id="disciplina" list="disciplinasLetivas" name="disciplina" value="disciplina" listKey="disciplina.id" listValue="disciplina.nome" /></td>	
 				<td colspan="1"><s:submit value="Inscrever aluno" /></td>
 			</tr>
 		</table>
 	</s:form>
 </div>
-
+<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O(s) Campo(s) em vermelhor é(são) requerido(s).</p></div>
 <s:if test="hasActionMessages()">
 	<div class="welcome" >
   		<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>

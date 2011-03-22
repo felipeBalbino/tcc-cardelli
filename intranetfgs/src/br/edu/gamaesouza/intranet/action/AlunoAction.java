@@ -30,6 +30,9 @@ public class AlunoAction extends ActionSupport {
 
 	private Integer id;
 	
+	private String email2;
+	private String senha2;
+	
 	private static final long serialVersionUID = 1L;
 	
 	private List<Aluno> alunos= new ArrayList<Aluno>();
@@ -219,6 +222,24 @@ public class AlunoAction extends ActionSupport {
 
 	public List<DisciplinaLetiva> getDisciplinasLetivas() {
 		return disciplinasLetivas;
+	}
+
+
+
+	public void setSenha2( String senha2 ) {
+		this.senha2 = senha2;
+	}
+
+	public String getSenha2() {
+		return senha2;
+	}
+
+	public void setEmail2( String email2 ) {
+		this.email2 = email2;
+	}
+
+	public String getEmail2() {
+		return email2;
 	}
 
 

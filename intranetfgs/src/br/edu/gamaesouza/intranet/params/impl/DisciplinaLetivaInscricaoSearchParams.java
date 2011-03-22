@@ -45,7 +45,7 @@ public class DisciplinaLetivaInscricaoSearchParams implements Params {
 		if ((turno == null || turno.equals("") || turno.equals("-1")) && 
 			(semestre == null || semestre == -1) &&
 			(ano == null || ano == -1) && 
-			(sala == null || sala.equals(""))
+			(sala == null || sala.equals("")|| sala.equals("-1"))
 			){
 			return true;
 		}

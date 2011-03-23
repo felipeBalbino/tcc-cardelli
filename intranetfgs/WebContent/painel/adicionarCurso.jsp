@@ -71,7 +71,7 @@ function restartTrs(){
 </head>
 <body>
 
-<div id="retorno" align="left">
+<div id="retorno" align="right">
 <img src="../images/arrow_categ.gif"><a href="../painel/curso!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Cursos</a>
 </div>
 <div id="experience" >

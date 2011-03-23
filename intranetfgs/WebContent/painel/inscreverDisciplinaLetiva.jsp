@@ -87,7 +87,7 @@ function buscarDisciplinas(semestre,ano,turno,id) {
 </script>
 </head>
 <body>
-<div id="retorno" align="right">
+<div id="retorno" align="left">
 <img src="../images/arrow_categ.gif"><a href="../painel/aluno!lista.java" style="color:#FF4500;text-align:right;border-style:none;">Lista de Alunos</a>
 </div>
 <b>Inscreve <s:property value="pessoa.nome" /> em Disciplinas letivas</b>

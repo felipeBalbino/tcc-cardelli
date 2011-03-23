@@ -86,7 +86,7 @@ public class ProfessorAction extends ActionSupport {
 			addActionError("Ocorreu um erro ao tentar adicionar o Professor.");
 		}
 
-		return lista();
+		return prepare();
 				
 
 	}

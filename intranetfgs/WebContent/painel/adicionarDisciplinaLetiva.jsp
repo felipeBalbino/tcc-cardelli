@@ -108,7 +108,7 @@ function restartTrs(){
 </script>
 </head>
 <body>
-<div id="retorno" align="right">
+<div id="retorno" align="left">
 <img src="../images/arrow_categ.gif"><a href="../painel/letiva!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Disciplinas letivas</a>
 </div>
 <div id="experience" >

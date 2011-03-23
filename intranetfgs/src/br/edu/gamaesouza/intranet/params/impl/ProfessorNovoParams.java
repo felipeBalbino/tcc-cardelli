@@ -37,7 +37,8 @@ public class ProfessorNovoParams implements ProfessorParams {
 		professor.setNome(nome);
 		professor.setSenha(senha);
 		professor.setDataUltimoAcesso(Calendar.getInstance());
-		professor.setRegras(pessoaDAO.getRuleListByStringList(rules));
+		if(rules != null)
+			professor.setRegras(pessoaDAO.getRuleListByStringList(rules));
 		return professor;
 	}
 

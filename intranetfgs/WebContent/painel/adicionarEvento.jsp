@@ -109,7 +109,7 @@ function restartTrs(){
 <sx:head/>
 </head>
 <body>
-<div id="retorno" align="right">
+<div id="retorno" align="left">
 <img src="../images/arrow_categ.gif"><a href="../painel/evento!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Eventos</a>
 </div>
 <div id="experience" >

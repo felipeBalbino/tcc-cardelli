@@ -66,6 +66,11 @@ public class Pessoa implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	// Bug Struts - Só passa parâmetros como String.
+	public void setId(String id) {
+		setId(Integer.parseInt(id));
+	}
 
 	
 	public String getNome() {

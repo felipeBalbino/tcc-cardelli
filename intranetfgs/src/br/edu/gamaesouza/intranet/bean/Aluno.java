@@ -26,7 +26,7 @@ public class Aluno extends Pessoa implements Serializable {
 	
 	@OneToOne
 	private Curso curso;
-	
+
 	@OneToMany
 	private List<Hora> horas;
 

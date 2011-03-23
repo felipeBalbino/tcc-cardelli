@@ -100,14 +100,25 @@ function restartTrs(){
 					</div>	
 				
 				<div id="contact-form">	
+				<hr>
 				<b>Dados do Aluno</b>
 				<hr>
-<s:form action="/painel/curso!novo.java" name="adicionar" onSubmit="return validaForm()" >
-		
-</s:form><br>
+				<table>
+					<tr>
+						<td><b>Nome:</b></td>
+						<td><s:property value="aluno.nome"/></td>
+					</tr>
+					<tr>
+						<td><b>Matrícula:</b></td>
+						<td><s:property value="aluno.matricula"/></td>
+					</tr>
+				</table>
+				<br>
+				<hr>
 <b>Adicionar Hora AEP</b>
 				<hr>
 	<s:form action="/painel/hora!salvaAEP.java" name="adicionar" onSubmit="return validaForm()" >
+		<s:hidden value="aluno.id" name="aluno.id" />
 		Data: <s:textfield id="data" name="horaAEPNovoParams.data" />
 		Hora Inicial: <s:textfield id="nome" name="horaAEPNovoParams.horaInicial"></s:textfield>
 		Hora Final: <s:textfield id="nome" name="horaAEPNovoParams.horaFinal"></s:textfield>

@@ -4,17 +4,24 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.HoraAEP;
+import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.params.HoraAEPParams;
+import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 public class HoraAEPNovoParams implements HoraAEPParams {
 
+	@Autowired private Aluno aluno;
+	@Autowired private PessoaDAO pessoaDAO;
 	private String data;
 	private String horaInicial;
 	private String horaFinal;
 	
-	public HoraAEP getHoraAEP() throws ParseException{
+	public HoraAEP getHoraAEP() throws ParseException, IntranetException{
 		
 		HoraAEP horaAEP = (HoraAEP) SpringUtil.getBean("horaAEP");
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -25,6 +32,8 @@ public class HoraAEPNovoParams implements HoraAEPParams {
 		sdf = new SimpleDateFormat("hh:mm:ss");
 		horaAEP.setHoraInicio(sdf.parse(horaInicial));
 		horaAEP.setHoraFim(sdf.parse(horaFinal));
+		
+		horaAEP.setAluno(pessoaDAO.getAlunoById(aluno.getId()));
 		
 		return horaAEP;
 		
@@ -53,5 +62,15 @@ public class HoraAEPNovoParams implements HoraAEPParams {
 	public void setHoraFinal(String horaFinal) {
 		this.horaFinal = horaFinal;
 	}
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+	
+	
 	
 }

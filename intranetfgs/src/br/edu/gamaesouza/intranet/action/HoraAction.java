@@ -116,6 +116,12 @@ public class HoraAction extends ActionSupport {
 	
 	// Preapara para ir para página de cadastrar nova hora complementar
 	// Carrega as Atividades
+	
+	public String prepareCadastroAEP() throws IntranetException{
+		aluno = pessoaDAO.getAlunoById(aluno.getId());
+		return "saveAEPSuccess";
+	}
+	
 	public String prepareComplementar(){
 		UserData.grantAccess(RULE_SALVA_COMPLEMENTAR);	
 		return null;
@@ -126,7 +132,8 @@ public class HoraAction extends ActionSupport {
 		
 		try {
 			horaDAO.save(horaAEPNovoParams.getHoraAEP());
-			addActionMessage("Disiciplina adicionada com sucesso.");
+			this.aluno = pessoaDAO.getAlunoById(horaAEPNovoParams.getAluno().getId());
+			addActionMessage("Hora AEP adicionada com sucesso.");
 		} catch (ParseException e) {
 			addActionMessage("Ocorreu um erro ao adicionar uma hora AEP.");
 			throw new IntranetException(e.getMessage());

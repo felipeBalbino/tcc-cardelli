@@ -42,7 +42,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	
 	private Integer idAluno;
 	private Integer semestre;
-	private Integer disciplina;
+	private Integer disciplinaLetiva;
 	private String turno;
 	
 	
@@ -67,7 +67,8 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 		
 		
 		try{
-		boolean pessoaAlreadyFollow = disciplinaDAO.setPessoaFollowDisciplinhaLetiva(pessoaDAO.getAlunoById(idAluno), disciplina, ano, semestre);
+			DisciplinaLetiva letiva = disciplinaDAO.getDisciplinaLetivaById(disciplinaLetiva);
+		boolean pessoaAlreadyFollow = disciplinaDAO.setAlunoFollowDisciplinhaLetiva(pessoaDAO.getAlunoById(idAluno), letiva.getDisciplina().getId(), letiva.getAno(), letiva.getSemestre());
 		
 				if(pessoaAlreadyFollow){
 					addActionError(MSG_JA_INSCRITO);
@@ -85,6 +86,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	
 	public String delete(){
 		try {
+			
 			DisciplinaLetiva disciplinaLetiva = disciplinaDAO.getDisciplinaLetivaById(disciplinaLetivaCadastrada.getId());
 			disciplinaDAO.deleteDisciplinaLetiva(disciplinaLetiva);
 			addActionMessage(MSG_DELETA_SUCESSO);
@@ -104,6 +106,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 			semestres = FormUtil.getSemestresList();
 			turnos = FormUtil.getTurnosList();
 			disciplinasLetivasCadastradas = disciplinaDAO.getDisciplinaLetivaByUser( idAluno );
+			disciplinasLetivas = disciplinaDAO.getAllDisciplinaLetivas();
 			pessoa = pessoaDAO.getPessoaById( idAluno );
 			return "SUCCESS";
 		}catch(IntranetException e){
@@ -144,13 +147,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 		this.semestre = semestre;
 	}
 
-	public Integer getDisciplina() {
-		return disciplina;
-	}
 
-	public void setDisciplina(Integer disciplina) {
-		this.disciplina = disciplina;
-	}
 
 	public List<DisciplinaLetiva> getDisciplinasLetivasCadastradas() {
 		return disciplinasLetivasCadastradas;
@@ -229,6 +226,14 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	public void setDisciplinaLetivaInscricaoSearchParams(
 			DisciplinaLetivaInscricaoSearchParams disciplinaLetivaInscricaoSearchParams) {
 		this.disciplinaLetivaInscricaoSearchParams = disciplinaLetivaInscricaoSearchParams;
+	}
+
+	public void setDisciplinaLetiva(Integer disciplinaLetiva) {
+		this.disciplinaLetiva = disciplinaLetiva;
+	}
+
+	public Integer getDisciplinaLetiva() {
+		return disciplinaLetiva;
 	}
 	
 }

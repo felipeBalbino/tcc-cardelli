@@ -62,13 +62,13 @@ if(i == j) $(this).hide('slow');
 <div id="result" >
 	<table width="100%" border="1px">
 		<tr>
-			<td><b>Segunda</b></td>
-			<td><b>Terça</b></td>
-			<td><b>Quarta</b></td>
-			<td><b>Quinta</b></td>
-			<td><b>Sexta</b></td>
-			<td><b>Sábado</b></td>
-			<td><b>Domingo</b></td>
+			<th><b>Segunda</b></th>
+			<th><b>Terça</b></th>
+			<th><b>Quarta</b></th>
+			<th><b>Quinta</b></th>
+			<th><b>Sexta</b></th>
+			<th><b>Sábado</b></th>
+			<th><b>Domingo</b></th>
 		</tr>
 		
 		<s:iterator value="disciplinasLetivas" var="disciplinaLetiva">

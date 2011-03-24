@@ -44,9 +44,12 @@ public class HorarioAction extends ActionSupport{
 		
 	private Integer id;
 	private Integer idDisciplinaLetiva;
+	private DiaSemanaEnum diaSemana;
+	private Integer horarioId ;
 	
 	@Autowired private Horario horario;
 	@Autowired private HorarioDAO horarioDAO;
+	@Autowired private DisciplinaDAO disciplinaDAO;
 	@Autowired private DisciplinaLetiva disciplinaLetiva;
 	@Autowired private HorarioNovoParams horarioNovoParams;
 	@Autowired private DisciplinaLetivaHorarioNovoParams disciplinaLetivaHorarioNovoParams;
@@ -108,12 +111,20 @@ public class HorarioAction extends ActionSupport{
 	
 	public String saveHorariosEmDisciplinaLetiva() throws Exception{
 		try{
-			if(horarioDAO.validationDisciplinaLetivaHorario(disciplinaLetivaHorarioNovoParams.getDisciplinaLetivaHorario())){
-				horarioDAO.saveDisciplinaLetivaHorario(disciplinaLetivaHorarioNovoParams.getDisciplinaLetivaHorario());
+			//if(horarioDAO.(disciplinaLetivaHorarioNovoParams.getDisciplinaLetivaHorario())){
+				//horarioDAO.saveDisciplinaLetivaHorario(disciplinaLetivaHorarioNovoParams.getDisciplinaLetivaHorario());
+				DisciplinaLetiva letiva = disciplinaDAO.getDisciplinaLetivaById(idDisciplinaLetiva);
+				Horario horario = horarioDAO.getHorarioById( horarioId );
+				DisciplinaLetivaHorario disciplinaLetivaHorario = new DisciplinaLetivaHorario();
+				disciplinaLetivaHorario.setDiaSemana(diaSemana);
+				disciplinaLetivaHorario.setDisciplinaLetiva(letiva);
+				disciplinaLetivaHorario.setHorario(horario);
+				//letiva.getHorarios().add( horario );
+				disciplinaDAO.update(letiva);
 				addActionMessage("Horario adicionado em disciplina letiva com sucesso");
-			}else{
-				addActionError("N�o � possivel Adicionar mais de um hor�rio no mesmo dia e hor�rio.");
-			}
+				//}else{
+				//addActionError("N�o � possivel Adicionar mais de um hor�rio no mesmo dia e hor�rio.");
+				//}
 		} catch (Exception e) {		
 			addActionError("N�o foi possivel Adicionar, ocorreu um erro interno no Servidor");			
 		}
@@ -129,6 +140,15 @@ public class HorarioAction extends ActionSupport{
 		this.disciplinaLetiva = disciplinaLetiva;
 	}
 
+
+	
+	public Integer getHorarioId() {
+		return horarioId;
+	}
+
+	public void setHorarioId(Integer horarioId) {
+		this.horarioId = horarioId;
+	}
 
 	public List<Integer> getSemestres() {
 		return semestres;
@@ -222,6 +242,22 @@ public class HorarioAction extends ActionSupport{
 
 	public void setIdDisciplinaLetiva( Integer idDisciplinaLetiva ) {
 		this.idDisciplinaLetiva = idDisciplinaLetiva;
+	}
+
+	public void setDisciplinaDAO(DisciplinaDAO disciplinaDAO) {
+		this.disciplinaDAO = disciplinaDAO;
+	}
+
+	public DisciplinaDAO getDisciplinaDAO() {
+		return disciplinaDAO;
+	}
+
+	public void setDiaSemana(DiaSemanaEnum diaSemana) {
+		this.diaSemana = diaSemana;
+	}
+
+	public DiaSemanaEnum getDiaSemana() {
+		return diaSemana;
 	}
 
 

@@ -20,6 +20,7 @@ import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.Disciplina;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
+import br.edu.gamaesouza.intranet.bean.Horario;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.bean.Professor;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaInscricaoSearchParams;
@@ -36,6 +37,13 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 	
 	@Autowired private CursoDAO cursoDAO;
 	
+	public void save(DisciplinaLetiva disciplinaLetiva){
+		getHibernateTemplate().save(disciplinaLetiva);
+	}
+
+	public void update(DisciplinaLetiva disciplinaLetiva) throws IntranetException{
+		getHibernateTemplate().update(disciplinaLetiva);		
+	}
 	public List<Disciplina> getAllDisciplinas() throws IntranetException {
 		Criteria getAllDisciplinasCriteria = getSession().createCriteria(Disciplina.class);
 		getAllDisciplinasCriteria.addOrder(Order.asc("nome"));
@@ -153,13 +161,9 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		DisciplinaLetiva disciplinaLetiva = (DisciplinaLetiva) c.uniqueResult();
 		
 		if(disciplinaLetiva != null){
-		
 			return disciplinaLetiva;
 		}else{
-		
-		
 			getHibernateTemplate().save(dl);
-		
 			return dl;
 		}
 	}
@@ -192,10 +196,10 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		return disciplinasLetivas;	
 	}
 	
-	public boolean setPessoaFollowDisciplinhaLetiva(Aluno pessoa,
+	public boolean setAlunoFollowDisciplinhaLetiva(Aluno aluno,
 			Integer disciplina, Integer ano, Integer semestre) throws IntranetException{
 		Query queryVerify = getSession().getNamedQuery("allDLByAlunoDisciplinaAnoSemestre");
-		queryVerify.setParameter("aluno", pessoa.getId());
+		queryVerify.setParameter("aluno", aluno.getId());
 		queryVerify.setParameter("disciplina", disciplina);
 		queryVerify.setParameter("ano", ano);
 		queryVerify.setParameter("semestre", semestre);
@@ -212,7 +216,7 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 			DisciplinaLetiva dl = (DisciplinaLetiva) c.uniqueResult();
 			
 			
-			dl.getAluno().add(pessoa);
+			dl.getAluno().add(aluno);
 			getHibernateTemplate().update(dl);
 			
 			return false;

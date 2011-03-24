@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
+import br.edu.gamaesouza.intranet.bean.Horario;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
@@ -88,8 +89,16 @@ public class AlunoAction extends ActionSupport {
 	}	
 	
 	public String gradeParaAluno() {
+		List<Horario> horarioSegunda = new ArrayList<Horario>();
+		List<Horario> horarioTerca = new ArrayList<Horario>();
+		List<Horario> horarioQuarta = new ArrayList<Horario>();
 		try {
 			setDisciplinasLetivas(disciplinaDAO.getDisciplinaLetivaByUser(UserData.getLoggedUser().getId()));
+			for(DisciplinaLetiva letiva :disciplinasLetivas){
+				for( Horario horario : letiva.getHorarios()){
+					//if(horario.get)
+				}
+			}
 		} catch (IntranetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

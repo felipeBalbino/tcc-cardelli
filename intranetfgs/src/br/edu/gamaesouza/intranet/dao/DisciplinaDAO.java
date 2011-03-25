@@ -196,8 +196,8 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		return disciplinasLetivas;	
 	}
 	
-	public boolean setAlunoFollowDisciplinhaLetiva(Aluno aluno,
-			Integer disciplina, Integer ano, Integer semestre) throws IntranetException{
+	public boolean setAlunoFollowDisciplinhaLetiva(final Aluno aluno,
+			final Integer disciplina, final Integer ano, final Integer semestre) throws IntranetException{
 		Query queryVerify = getSession().getNamedQuery("allDLByAlunoDisciplinaAnoSemestre");
 		queryVerify.setParameter("aluno", aluno.getId());
 		queryVerify.setParameter("disciplina", disciplina);
@@ -207,17 +207,24 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		// Verifica se o Aluno j� est� inscrito na DisciplinaLetiva
 		DisciplinaLetiva dlVerify = (DisciplinaLetiva) queryVerify.uniqueResult();
 		
-		if(dlVerify == null){
-			Query c = getSession().getNamedQuery("allDLByDisciplinaAnoSemestre");
-			c.setParameter("disciplina", disciplina);
-			c.setParameter("ano", ano);
-			c.setParameter("semestre", semestre);
+		if(dlVerify == null){			
+			HibernateCallback callback = new HibernateCallback() {
+		        public Object doInHibernate(Session session) throws HibernateException, SQLException {
+		        	Query c = session.getNamedQuery("allDLByDisciplinaAnoSemestre");
+					c.setParameter("disciplina", disciplina);
+					c.setParameter("ano", ano);
+					c.setParameter("semestre", semestre);
+					
+					DisciplinaLetiva dl = (DisciplinaLetiva) c.uniqueResult();
+					
+					dl.getAluno().add(aluno);
+					getHibernateTemplate().merge(dl);
+		            return null;
+		        }
+		    };	
+			getHibernateTemplate().execute(callback);
 			
-			DisciplinaLetiva dl = (DisciplinaLetiva) c.uniqueResult();
 			
-			
-			dl.getAluno().add(aluno);
-			getHibernateTemplate().update(dl);
 			
 			return false;
 		}else{

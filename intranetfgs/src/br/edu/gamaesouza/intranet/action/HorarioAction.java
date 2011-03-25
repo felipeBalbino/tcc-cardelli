@@ -83,7 +83,7 @@ public class HorarioAction extends ActionSupport{
 	} catch (Exception e) {		
 		addActionError("N�o foi possivel deletar Hor�rio, ocorreu um erro interno no Servidor");			
 	}
-		return listarHorarioPorDisciplinaLetiva();
+		return prepare();
 	}
 	
 	public String deleteDisciplinaLetivaHorario() throws Exception{

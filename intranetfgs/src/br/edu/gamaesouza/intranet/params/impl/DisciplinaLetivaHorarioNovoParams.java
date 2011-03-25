@@ -22,7 +22,6 @@ public class DisciplinaLetivaHorarioNovoParams implements DisciplinaLetivaHorari
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	public DisciplinaLetivaHorario getDisciplinaLetivaHorario(){
@@ -32,7 +31,6 @@ public class DisciplinaLetivaHorarioNovoParams implements DisciplinaLetivaHorari
 			disciplinaLetivaHorario.setDisciplinaLetiva( disciplinaDAO.getDisciplinaLetivaById( disciplinaLetivaId )  );
 			disciplinaLetivaHorario.setHorario( horarioDAO.getHorarioById( horarioId ) );
 		} catch ( IntranetException e ) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

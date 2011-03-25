@@ -54,7 +54,7 @@ if(i == j) $(this).hide('slow');
 <div align="right">
 	<a  title="Nova Disciplina Letiva" href="../painel/letiva!prepare.java">
 	<img border="0" src="../images/novo.jpg" />Nova Disciplina Letiva&nbsp;&nbsp;&nbsp;&nbsp;</a>
-	<a  title="Nova Disciplina Letiva" href="../painel/horario!prepare.java">
+	<a  title="Alterar Horário das aulas" href="../painel/horario!prepare.java">
 	<img border="0" src="../images/novo.jpg" />Alterar Horário das aulas</a>
 </div>
 
@@ -115,7 +115,7 @@ if(i == j) $(this).hide('slow');
 										<a  title="Ocultar evento" class="ocultar">
 											<img src="../images/close.png" />
 										</a>
-										<a  title="Cadastrar Horários da Displina letiva" border="30" href="javascript:horario(<s:property value="id" />)">
+										<a  title="Cadastrar e Listar Horários da Displina letiva" border="30" href="javascript:horario(<s:property value="id" />)">
 											<img border="0" src="../images/letra-h.gif" />
 										</a>
 										<a  title="Imprimir lista de presença do Alunos" border="30" href="javascript:listaPresenca(<s:property value="id" />)">
@@ -149,11 +149,6 @@ if(i == j) $(this).hide('slow');
 									</tr>	
 											
 								</table>
-								<hr></hr>
-								<strong>Horário(s) Cadastrado(s) nesta disciplina:</strong><br>
-								<s:iterator value="horarios" var="horario">
-											<img src="../images/date.png">Dia da Semana: <s:property  value="DiaSemana" /> - Horario Inicial:<s:date format="HH:mm" name="horario.horaInicio" /> / Horario Final:<s:date format="HH:mm" name="horario.horaFim" /><br>
-								</s:iterator>
 							</div>
 						</s:form>
 						

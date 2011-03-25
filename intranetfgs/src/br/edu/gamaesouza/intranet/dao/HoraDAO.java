@@ -10,6 +10,8 @@ import br.edu.gamaesouza.intranet.bean.Atividade;
 import br.edu.gamaesouza.intranet.bean.Hora;
 import br.edu.gamaesouza.intranet.bean.HoraAEP;
 import br.edu.gamaesouza.intranet.bean.HoraComplementar;
+import br.edu.gamaesouza.intranet.bean.result.HorasAtividadeResultBean;
+import br.edu.gamaesouza.intranet.bean.result.HorasCursoResultBean;
 
 public class HoraDAO extends HibernateDaoSupport {
 
@@ -43,5 +45,18 @@ public class HoraDAO extends HibernateDaoSupport {
 	public void save(Hora hora){
 		getHibernateTemplate().save(hora);
 	}
+
+	public List<HorasAtividadeResultBean> getHorasGroupByAtividade(Integer id) {
+		Query horasGroupByAtividade = getSession().getNamedQuery("totalHorasPorAtividade");
+		horasGroupByAtividade.setInteger("aluno",id);
+		return horasGroupByAtividade.list();
+	}
+	
+	public List<HorasCursoResultBean> getHorasCursoAndAluno(Integer id) {
+		Query horasCursoAndAluno = getSession().getNamedQuery("totalHorasCursoEAluno");
+		horasCursoAndAluno.setInteger("aluno",id);
+		return horasCursoAndAluno.list();
+	}
+	
 	
 }

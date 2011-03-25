@@ -118,7 +118,7 @@ function restartTrs(){
 <b>Adicionar Hora AEP</b>
 				<hr>
 	<s:form action="/painel/hora!salvaAEP.java" name="adicionar" onSubmit="return validaForm()" >
-		<s:hidden value="aluno.id" name="aluno.id" />
+		<s:hidden value="%{aluno.id}" name="aluno.id" />
 		Data: <s:textfield id="data" name="horaAEPNovoParams.data" />
 		Hora Inicial: <s:textfield id="nome" name="horaAEPNovoParams.horaInicial"></s:textfield>
 		Hora Final: <s:textfield id="nome" name="horaAEPNovoParams.horaFinal"></s:textfield>

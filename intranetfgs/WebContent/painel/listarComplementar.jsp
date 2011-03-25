@@ -48,7 +48,7 @@ if(i == j) $(this).hide('slow');
 </head>
 <body>
 <div align="right"><a title="Novo Evento"
-	href="../painel/curso!execute.java"> <img border="0"
+	href="../painel/hora!novaHoraComplementar.java?aluno.id=<s:property value="aluno.id"/>"> <img border="0"
 	src="../images/novo.jpg" />Adicionar Hora Complementar</a></div>
 <br>
 <br>
@@ -79,7 +79,7 @@ if(i == j) $(this).hide('slow');
   							 	<s:actionerror cssStyle="color:red;background-image : url('../images/imgErro.gif');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
   							</div> 
 						</s:if>
-<b>Horas Complementares </b>
+<table width="100%"><tr ><td width="95%"><b>Horas Complementares </b></td><td width="5%">Imprimir</td></tr></table>
 <hr></hr>
 <table width="100%">
 	<tr>
@@ -114,20 +114,46 @@ if(i == j) $(this).hide('slow');
 	</s:iterator>
 
 </table>
+<br>
+<b>Total de Horas por Atividade</b>
+<hr>
 <div id="totalHora" style="text-align:center">
-<table border="1">
 
+
+<table border="0" align="center" width="70%">
 <tr>
-<td colspan="2" style="text-align:center"><b>Total de Horas por Atividade</b></td>
+
+	<td><b>Nome</b></td>
+	<td><b>Horas do Aluno</b></td>
+	<td><b>Horas Atividade</b></td>
+	<td><b>Status</b></td>
+
+</tr>
+<s:iterator value="horasAtividadeResultBean" var="horaComplementar">
+<tr>
+
+	<td><s:property value="nomeAtividade" /></td>
+	<td><s:property value="totalHorasAluno" /></td>
+	<td><s:property value="totalHorasAtividade" /></td>
+	<td><c:if test="${totalHorasAluno ge totalHorasAtividade}">Completo</c:if><c:if test="${totalHorasAluno lt totalHorasAtividade}">Incompleto</c:if></td>
+	
+</tr>
+
+</s:iterator>
+<tr>
+
+	<td></td>
+	<td></td>
+	<td colspan="2"></td>
+	
 </tr>
 <tr>
 
-	<td><b><center>Nome</center></b></td>
-	<td><b><center>Total</center></b></td>
-
+	<td><b>Total de Horas (Aluno/Curso):</b></td>
+	<td colspan="2"><s:property value="horasCursoResultBean.totalHorasAluno"/> / <s:property value="horasCursoResultBean.totalHorasCurso"/></td>
+	<td><c:if test="${horasCursoResultBean.totalHorasAluno ge horasCursoResultBean.totalHorasCurso}">Aprovado</c:if><c:if test="${horasCursoResultBean.totalHorasAluno lt horasCursoResultBean.totalHorasCurso}">Reprovado</c:if></td>
+	
 </tr>
-
-
 </table></div>
 </body>
 </html>

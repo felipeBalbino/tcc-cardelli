@@ -42,6 +42,18 @@ public class Curso implements Serializable {
 	            )
 	public List<Disciplina> disciplinas; 
 	
+	private Integer cargaHorariaComplementar;
+	
+	
+	
+	public Integer getCargaHorariaComplementar() {
+		return cargaHorariaComplementar;
+	}
+
+	public void setCargaHorariaComplementar(Integer cargaHorariaComplementar) {
+		this.cargaHorariaComplementar = cargaHorariaComplementar;
+	}
+
 	public Integer getId() {
 		return id;
 	}

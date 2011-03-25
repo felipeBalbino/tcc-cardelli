@@ -9,6 +9,8 @@ import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.Atividade;
 import br.edu.gamaesouza.intranet.bean.HoraAEP;
 import br.edu.gamaesouza.intranet.bean.HoraComplementar;
+import br.edu.gamaesouza.intranet.bean.result.HorasAtividadeResultBean;
+import br.edu.gamaesouza.intranet.bean.result.HorasCursoResultBean;
 import br.edu.gamaesouza.intranet.dao.HoraDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.params.impl.AlunoSearchParams;
@@ -23,7 +25,6 @@ import br.edu.gamaesouza.intranet.params.impl.HoraComplementarNovoParams;
 import br.edu.gamaesouza.intranet.security.UserData;
 import br.edu.gamaesouza.intranet.utils.DateUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
-import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -56,6 +57,8 @@ public class HoraAction extends ActionSupport {
 	private List<HoraAEP> horasAEP;
 	private List<HoraComplementar> horasComplementares;
 	private List<Atividade> atividades;
+	private List<HorasAtividadeResultBean> horasAtividadeResultBean;
+	private HorasCursoResultBean horasCursoResultBean;
 	
 	private final String RETURN_LIST_AEP_SUCCESS = "listAEPSuccess";
 	private final String RETURN_LIST_AEP_FAILURE = "listAEPFailure";
@@ -108,6 +111,8 @@ public class HoraAction extends ActionSupport {
 		try {
 			Aluno aluno = (Aluno)pessoaDAO.getPessoaById(horaComplementarListaParams.getId());
 			horasComplementares = horaDAO.getHorasComplementares(aluno);
+			horasAtividadeResultBean = horaDAO.getHorasGroupByAtividade(horaComplementarListaParams.getId());
+			horasCursoResultBean = horaDAO.getHorasCursoAndAluno(horaComplementarListaParams.getId()).get(0);
 			return RETURN_LIST_COMPLEMENTAR_SUCCESS;
 		} catch (IntranetException e) {
 			return RETURN_LIST_COMPLEMENTAR_FAILURE;	
@@ -122,7 +127,7 @@ public class HoraAction extends ActionSupport {
 		return "saveAEPSuccess";
 	}
 	
-	public String prepareComplementar(){
+	public String novaHoraComplementar(){
 		UserData.grantAccess(RULE_SALVA_COMPLEMENTAR);	
 		return null;
 	}
@@ -256,6 +261,23 @@ public class HoraAction extends ActionSupport {
 	public void setHoraComplementarListaParams(
 			HoraComplementarListaParams horaComplementarListaParams) {
 		this.horaComplementarListaParams = horaComplementarListaParams;
+	}
+
+	public List<HorasAtividadeResultBean> getHorasAtividadeResultBean() {
+		return horasAtividadeResultBean;
+	}
+
+	public void setHorasAtividadeResultBean(
+			List<HorasAtividadeResultBean> horasAtividadeResultBean) {
+		this.horasAtividadeResultBean = horasAtividadeResultBean;
+	}
+
+	public HorasCursoResultBean getHorasCursoResultBean() {
+		return horasCursoResultBean;
+	}
+
+	public void setHorasCursoResultBean(HorasCursoResultBean horasCursoResultBean) {
+		this.horasCursoResultBean = horasCursoResultBean;
 	}
 	
 	

@@ -109,7 +109,7 @@ public class HoraAction extends ActionSupport {
 	public String listaComplementar(){
 		UserData.grantAccess(RULE_LISTA_COMPLEMENTAR);	
 		try {
-			Aluno aluno = (Aluno)pessoaDAO.getPessoaById(horaComplementarListaParams.getId());
+			aluno = (Aluno)pessoaDAO.getPessoaById(horaComplementarListaParams.getId());
 			horasComplementares = horaDAO.getHorasComplementares(aluno);
 			horasAtividadeResultBean = horaDAO.getHorasGroupByAtividade(horaComplementarListaParams.getId());
 			horasCursoResultBean = horaDAO.getHorasCursoAndAluno(horaComplementarListaParams.getId()).get(0);
@@ -127,9 +127,11 @@ public class HoraAction extends ActionSupport {
 		return "saveAEPSuccess";
 	}
 	
-	public String novaHoraComplementar(){
+	public String novaHoraComplementar() throws IntranetException{
 		UserData.grantAccess(RULE_SALVA_COMPLEMENTAR);	
-		return null;
+		atividades = horaDAO.getAtividades();
+		aluno = pessoaDAO.getAlunoById(aluno.getId());
+		return RETURN_SAVE_COMPLEMENTAR_SUCCESS;
 	}
 	
 	public String salvaAEP() throws IntranetException{

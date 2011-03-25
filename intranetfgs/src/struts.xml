@@ -164,7 +164,7 @@
 			<result name="alterComplementarFailure"></result>
 			<result name="deleteComplementarSuccess"></result>
 			<result name="deleteComplementarFailure"></result>
-			<result name="saveComplementarSuccess"></result>
+			<result name="saveComplementarSuccess">/painel/adicionarComplementar.jsp</result>
 			<result name="saveComplementarFailure"></result>	
 			
 			

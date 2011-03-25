@@ -2,6 +2,7 @@ package br.edu.gamaesouza.intranet.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -56,6 +57,11 @@ public class HoraDAO extends HibernateDaoSupport {
 		Query horasCursoAndAluno = getSession().getNamedQuery("totalHorasCursoEAluno");
 		horasCursoAndAluno.setInteger("aluno",id);
 		return horasCursoAndAluno.list();
+	}
+
+	public List<Atividade> getAtividades() {
+		Criteria c = getSession().createCriteria(Atividade.class);
+		return c.list();
 	}
 	
 	

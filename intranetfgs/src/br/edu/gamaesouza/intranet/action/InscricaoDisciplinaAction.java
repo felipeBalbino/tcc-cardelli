@@ -88,7 +88,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 		try {
 			
 			DisciplinaLetiva disciplinaLetiva = disciplinaDAO.getDisciplinaLetivaById(disciplinaLetivaCadastrada.getId());
-			disciplinaDAO.deleteDisciplinaLetiva(disciplinaLetiva);
+			disciplinaDAO.deleteDisciplinaLetivaOfAluno(disciplinaLetiva,idAluno);
 			addActionMessage(MSG_DELETA_SUCESSO);
 		} catch (IntranetException e) {
 			// TODO Auto-generated catch block

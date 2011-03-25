@@ -135,6 +135,19 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		getHibernateTemplate().delete(disciplinaLetiva);
 	}
 	
+	public void deleteDisciplinaLetivaOfAluno(DisciplinaLetiva disciplinaLetiva, Integer idAluno) throws IntranetException{
+		List<Aluno> alunos = disciplinaLetiva.getAluno();
+		for(Aluno aluno:alunos){
+			if(aluno.getId().equals(idAluno)){
+				alunos.remove( aluno );
+			}
+		}
+	    disciplinaLetiva.setAluno( alunos );
+	    getSession().merge(disciplinaLetiva);
+
+		
+	}
+	
 	public void updateDisciplinaLetiva(final DisciplinaLetiva disciplinaLetiva) throws IntranetException{
 		HibernateCallback callback = new HibernateCallback() {
 	        public Object doInHibernate(Session session) throws HibernateException, SQLException {

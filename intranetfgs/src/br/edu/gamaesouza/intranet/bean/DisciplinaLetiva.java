@@ -123,7 +123,7 @@ public class DisciplinaLetiva implements Serializable {
 	}
 
 	public String toString(){
-		return "Turno: "+turno+"  Semestre: "+semestre+"  Nome: ";
+		return "Turno: "+turno+" -  Semestre: "+semestre+" -  Nome: "+disciplina.getNome();
 		
 	}
 

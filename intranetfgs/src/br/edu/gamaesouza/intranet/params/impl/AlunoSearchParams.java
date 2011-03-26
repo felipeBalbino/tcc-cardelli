@@ -7,6 +7,7 @@ import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.params.Params;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
+import br.edu.gamaesouza.intranet.utils.StatusMatriculaEnum;
 
 public class AlunoSearchParams implements Params {
 
@@ -15,6 +16,9 @@ public class AlunoSearchParams implements Params {
 	private String email;
 	private String nome;
 	private Integer matricula;
+	private Integer cursoId;
+	private StatusMatriculaEnum statusMatricula;
+	private Integer periodo;
 	
 
 	
@@ -23,6 +27,9 @@ public class AlunoSearchParams implements Params {
 	public boolean isEmpty() {
 		if ((email == null || email.equals("")) &&
 			(matricula == null || matricula.equals("")) &&
+			(cursoId == null || cursoId.equals("") || cursoId == -1 ) &&
+			(statusMatricula == null || statusMatricula.equals("") ) &&
+			(periodo == null || periodo.equals("") ) &&
 			(nome == null || nome.equals("")) ){
 			return true;
 		}
@@ -65,14 +72,50 @@ public class AlunoSearchParams implements Params {
 	}
 
 
-
-
-	public void setMatricula(Integer matricula) {
-		this.matricula = matricula;
-	}
-
 	public void setMatricula(String matricula) {
 		this.matricula = Integer.parseInt(matricula);
+	}
+
+
+
+
+	public void setCursoId(Integer cursoId) {
+		this.cursoId = cursoId;
+	}
+
+
+
+
+	public Integer getCursoId() {
+		return cursoId;
+	}
+
+
+
+
+	public void setStatusMatricula(StatusMatriculaEnum statusMatricula) {
+		this.statusMatricula = statusMatricula;
+	}
+
+
+
+
+	public StatusMatriculaEnum getStatusMatricula() {
+		return statusMatricula;
+	}
+
+
+
+
+	public void setPeriodo(Integer periodo) {
+		this.periodo = periodo;
+	}
+
+
+
+
+	public Integer getPeriodo() {
+		return periodo;
 	}
 
 }

@@ -26,6 +26,7 @@ width:340px;
 #senha {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
 #senha2 {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
 #matricula {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
+#periodo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
 #statusMatricula  {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
  
 #contact-form { 

@@ -169,6 +169,30 @@ public class PessoaDAO extends HibernateDaoSupport {
 				operator = true;
 			}
 			
+			if(! ( alunoSearchParams.getPeriodo() == null )){
+				if(operator){
+					query = query + " AND ";
+				}
+				query = query + "periodo = '" + alunoSearchParams.getPeriodo() + "'";
+				operator = true;
+			}
+			
+			if(! ( alunoSearchParams.getCursoId() == null )){
+				if(operator){
+					query = query + " AND ";
+				}
+				query = query + "curso_id = '" + alunoSearchParams.getCursoId() + "'";
+				operator = true;
+			}
+			
+			if(alunoSearchParams.getStatusMatricula()!= null && !alunoSearchParams.getStatusMatricula().equals("")){
+				if(operator){
+					query = query + " AND ";
+				}	
+				query = query + "statusMatricula LIKE '%" + alunoSearchParams.getStatusMatricula() + "%'";	
+				operator = true;
+			}
+
 			if(alunoSearchParams.getNome()!= null && !alunoSearchParams.getNome().equals("")){
 				if(operator){
 					query = query + " AND ";

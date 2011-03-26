@@ -13,6 +13,10 @@
 #nome  {background:transparent url(../images/ico_user.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
 #senha {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
 #matricula {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
+#periodo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
+#statusMatricula  {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
+#curso  {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
+ 
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Alunos</title>
@@ -135,7 +139,23 @@ if(i == j) $(this).hide('slow');
  	         	return false;
  			}
  	}
- 	 
+ 	 function Numero(e)
+ 	 {
+ 		 navegador = /msie/i.test(navigator.userAgent);
+ 		 if (navegador)
+ 		 	var tecla = event.keyCode;
+ 		 else
+ 		 	var tecla = e.which;
+ 		 if(tecla > 47 && tecla < 58) // numeros de 0 a 9
+ 			 return true;
+ 		 else
+ 		 {
+ 		 if (tecla != 8) // backspace
+ 		 return false;
+ 		 else
+ 		 return true;
+ 		 }
+ 	 } 
 </script>
 </head>
 <body>
@@ -152,10 +172,25 @@ if(i == j) $(this).hide('slow');
 		<tr>
 			<td>Nome:</td>
 			<td><s:textfield name="alunoSearchParams.nome" id="alunoSearchParams.nome"></s:textfield></td>
+			
+			<td>Periodo:</td>
+			<td><s:textfield  onKeyPress="return Numero(event);"  maxLength="2" name="alunoSearchParams.periodo" id="alunoSearchParams.periodo"></s:textfield></td>
+		</tr>
+		<tr>	
+			<td>Curso:</td>
+			<td><sx:autocompleter  headerKey=""  headerValue=""  id="curso" list="cursos"  name="alunoSearchParams.cursoId" listValue="nome" listKey="id" /></td>
+			
+			<td>Status Matrícula:</td>
+			<td><sx:autocompleter  headerKey=""  headerValue=""  id="statusMatricula" list="allStatusMatricula"  name="alunoSearchParams.statusMatricula"/></td>
+		</tr>	
+		<tr>
 			<td>Email:</td>
 			<td><s:textfield name="alunoSearchParams.email" id="alunoSearchParams.email"></s:textfield></td>
+			
 			<td>Matrícula:</td>
-			<td><s:textfield name="alunoSearchParams.matricula" id="alunoSearchParams.matricula" maxLenght="8"></s:textfield></td>
+			<td><s:textfield  onKeyPress="return Numero(event);" name="alunoSearchParams.matricula" id="alunoSearchParams.matricula" maxLength="8"></s:textfield></td>
+		</tr>
+		<tr>
 			<td><s:submit value="Pesquisar"></s:submit></td>
 		</tr>
 	</table>  
@@ -233,11 +268,15 @@ if(i == j) $(this).hide('slow');
 									</tr>
 									
 									<tr>
-										<td><b>Período:</b> <s:textfield maxLenght="2" id="periodo" name="alunoAlteraParams.periodo" value="%{periodo}"  /></td>
+										<td><b>Curso:</b> <br><sx:autocompleter  headerKey=""  headerValue=""  id="curso" list="cursos"  name="alunoAlteraParams.cursoId" listValue="nome" listKey="id" value="%{curso.id}"/></td>
 									</tr>
 									
 									<tr>
-										<td><b>Matricula:</b> <s:textfield maxLenght="8" id="matricula" name="alunoAlteraParams.matricula" value="%{matricula}"  /></td>
+										<td><b>Período:</b> <s:textfield onKeyPress="return Numero(event);"  maxLength="2" id="periodo" name="alunoAlteraParams.periodo" value="%{periodo}"  /></td>
+									</tr>
+									
+									<tr>
+										<td><b>Matricula:</b> <s:textfield onKeyPress="return Numero(event);"  maxLength="8" id="matricula" name="alunoAlteraParams.matricula" value="%{matricula}"  /></td>
 									</tr>
 									
 									<tr>

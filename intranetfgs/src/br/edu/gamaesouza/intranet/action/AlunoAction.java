@@ -71,9 +71,14 @@ public class AlunoAction extends ActionSupport {
 	
 	public String lista() {
 		UserData.grantAccess(RULE_ALUNOS_LISTA);
-		setAllStatusMatricula(Arrays.asList(StatusMatriculaEnum.values()));
-		setAlunos( pessoaDAO.getAllAlunosByParams(alunoSearchParams) );
-		
+		try {
+			setCursos( cursoDAO.getAllCursos() );
+			setAllStatusMatricula(Arrays.asList(StatusMatriculaEnum.values()));
+			setAlunos( pessoaDAO.getAllAlunosByParams(alunoSearchParams) );
+		} catch (IntranetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "listAlunos";
 	}
 	public String editar() {

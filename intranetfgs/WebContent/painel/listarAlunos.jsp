@@ -14,7 +14,6 @@
 #senha {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
 #matricula {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
 </style>
-<sx:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Alunos</title>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
@@ -230,7 +229,15 @@ if(i == j) $(this).hide('slow');
 									</tr>
 									
 									<tr>
-										<td><b>Matricula:</b> <s:textfield id="matricula" name="alunoAlteraParams.matricula" value="%{matricula}"  /></td>
+										<td><b>Status Matrícula:</b> <br><sx:autocompleter  headerKey=""  headerValue=""  id="statusMatricula" list="allStatusMatricula"  name="alunoAlteraParams.statusMatricula" value="%{statusMatricula}"/></td>
+									</tr>
+									
+									<tr>
+										<td><b>Período:</b> <s:textfield maxLenght="2" id="periodo" name="alunoAlteraParams.periodo" value="%{periodo}"  /></td>
+									</tr>
+									
+									<tr>
+										<td><b>Matricula:</b> <s:textfield maxLenght="8" id="matricula" name="alunoAlteraParams.matricula" value="%{matricula}"  /></td>
 									</tr>
 									
 									<tr>

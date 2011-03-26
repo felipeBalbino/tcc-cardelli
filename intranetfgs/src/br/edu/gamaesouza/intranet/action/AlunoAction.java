@@ -2,21 +2,27 @@ package br.edu.gamaesouza.intranet.action;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
+import br.edu.gamaesouza.intranet.bean.DisciplinaLetivaHorario;
 import br.edu.gamaesouza.intranet.bean.Horario;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
+import br.edu.gamaesouza.intranet.dao.HorarioDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.params.impl.AlunoAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams;
 import br.edu.gamaesouza.intranet.params.impl.AlunoSearchParams;
 import br.edu.gamaesouza.intranet.security.UserData;
+import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
+import br.edu.gamaesouza.intranet.utils.StatusMatriculaEnum;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AlunoAction extends ActionSupport {
@@ -36,6 +42,7 @@ public class AlunoAction extends ActionSupport {
 	
 	private static final long serialVersionUID = 1L;
 	
+	List<StatusMatriculaEnum> allStatusMatricula = new ArrayList<StatusMatriculaEnum>();
 	private List<Aluno> alunos= new ArrayList<Aluno>();
 	private List<Curso> cursos = new ArrayList<Curso>();
 	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
@@ -46,6 +53,7 @@ public class AlunoAction extends ActionSupport {
 	@Autowired private AlunoSearchParams alunoSearchParams;
 	@Autowired private PessoaDAO pessoaDAO;	
 	@Autowired private CursoDAO cursoDAO;
+	@Autowired private HorarioDAO horarioDAO;
 	@Autowired private DisciplinaDAO disciplinaDAO;
 	
 
@@ -53,6 +61,7 @@ public class AlunoAction extends ActionSupport {
 	public String prepare(){
 		try {
 			setCursos( cursoDAO.getAllCursos() );
+			setAllStatusMatricula(Arrays.asList(StatusMatriculaEnum.values()));
 		} catch ( IntranetException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,7 +71,9 @@ public class AlunoAction extends ActionSupport {
 	
 	public String lista() {
 		UserData.grantAccess(RULE_ALUNOS_LISTA);
+		setAllStatusMatricula(Arrays.asList(StatusMatriculaEnum.values()));
 		setAlunos( pessoaDAO.getAllAlunosByParams(alunoSearchParams) );
+		
 		return "listAlunos";
 	}
 	public String editar() {
@@ -92,11 +103,36 @@ public class AlunoAction extends ActionSupport {
 		List<Horario> horarioSegunda = new ArrayList<Horario>();
 		List<Horario> horarioTerca = new ArrayList<Horario>();
 		List<Horario> horarioQuarta = new ArrayList<Horario>();
+		List<Horario> horarioQuinta = new ArrayList<Horario>();
+		List<Horario> horarioSexta = new ArrayList<Horario>();
+		List<Horario> horarioSabado = new ArrayList<Horario>();
+		List<Horario> horarioDomingo = new ArrayList<Horario>();
 		try {
 			setDisciplinasLetivas(disciplinaDAO.getDisciplinaLetivaByUser(UserData.getLoggedUser().getId()));
 			for(DisciplinaLetiva letiva :disciplinasLetivas){
 				for( Horario horario : letiva.getHorarios()){
-					//if(horario.get)
+					DisciplinaLetivaHorario disciplinaLetivaHorario = horarioDAO.getDisciplinaLetivaHorarioByIds(horario.getId(),letiva.getId());
+					if(disciplinaLetivaHorario.getDiaSemana().equals("SEGUNDA")){
+						
+					}
+					if(disciplinaLetivaHorario.getDiaSemana().equals("TERCA")){
+						
+					}
+					if(disciplinaLetivaHorario.getDiaSemana().equals("QUARTA")){
+						
+					}
+					if(disciplinaLetivaHorario.getDiaSemana().equals("QUINTA")){
+						
+					}
+					if(disciplinaLetivaHorario.getDiaSemana().equals("SEXTA")){
+						
+					}
+					if(disciplinaLetivaHorario.getDiaSemana().equals("SABADO")){
+						
+					}
+					if(disciplinaLetivaHorario.getDiaSemana().equals("DOMINGO")){
+						
+					}
 				}
 			}
 		} catch (IntranetException e) {
@@ -251,5 +287,16 @@ public class AlunoAction extends ActionSupport {
 		return email2;
 	}
 
+	public List<StatusMatriculaEnum> getAllStatusMatricula() {
+		return allStatusMatricula;
+	}
 
+	public void setAllStatusMatricula(List<StatusMatriculaEnum> allStatusMatricula) {
+		this.allStatusMatricula = allStatusMatricula;
+	}
+
+
+
+
+	
 }

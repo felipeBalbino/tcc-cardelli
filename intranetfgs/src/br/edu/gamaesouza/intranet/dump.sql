@@ -211,9 +211,9 @@ INSERT INTO disciplina_curso (curso_id, disciplina_id) VALUES (3,59);
 INSERT INTO disciplina_curso (curso_id, disciplina_id) VALUES (3,60);
 INSERT INTO disciplina_curso (curso_id, disciplina_id) VALUES (3,61);
 INSERT INTO Pessoa (id,email,login,matricula,nome,senha)  VALUES  (2,"gabrielcastilho.cardelli@gmail.com","gabriel",1232345345,"Gabriel","123456");
-INSERT INTO Aluno VALUES  (2,1);
+INSERT INTO Aluno VALUES  (4,"ATIVA",2,1);
 INSERT INTO Pessoa  (id,email,login,matricula,nome,senha) VALUES  (3,"phellipe86@gmail.com","taaqui",1231233,"Felipe","123456");
-INSERT INTO Aluno VALUES  (3,1);
+INSERT INTO Aluno VALUES  (5,"ATIVA",3,1);
 INSERT INTO Pessoa  (id,email,login,matricula,nome,senha) VALUES  (4,"phellipe@gmail.com","prof",23432446,"professor","123456");
 INSERT INTO Professor VALUES  (4);
 

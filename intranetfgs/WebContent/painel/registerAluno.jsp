@@ -26,7 +26,7 @@ width:340px;
 #senha {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
 #senha2 {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
 #matricula {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-
+#statusMatricula  {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
  
 #contact-form { 
 border-left:1px solid #313b45; 
@@ -207,11 +207,12 @@ width:295px;
 					</div>	
 					
 					<div id="contact-form">
-						<s:form name="registra" method="post" action="../painel/aluno!registrar.java"  onSubmit="return validaForm()">
-		
+						<s:form name="registra" method="post" action="../painel/aluno!registrar.java"  onSubmit="return validaForm()"><br>
+							Status Matrícula:<br><sx:autocompleter  headerKey=""  headerValue=""  id="statusMatricula" list="allStatusMatricula"  name="alunoNovoParams.statusMatricula" /><br>
 							Curso:<br><sx:autocompleter  headerKey=""  headerValue=""  id="curso" name="alunoNovoParams.cursoId" list="cursos" listValue="nome" listKey="id"/><br>
 							Nome Completo: <s:textfield id="nome" name="alunoNovoParams.nome"></s:textfield><br>
 							Matrícula: <s:textfield  maxLength="8" onKeyPress="return Numero(event);"  id="matricula" name="alunoNovoParams.matricula"></s:textfield><br>
+							Período: <s:textfield  maxLength="2" onKeyPress="return Numero(event);"  id="periodo" name="alunoNovoParams.periodo"></s:textfield><br>
 							Email: <s:textfield id="email" name="alunoNovoParams.email" ></s:textfield><br>
 							Confirmar Email: <s:textfield id="email2" name="email2"></s:textfield><br>
 							Login: <s:textfield id="login" name="alunoNovoParams.login" maxlength="8"></s:textfield><br>

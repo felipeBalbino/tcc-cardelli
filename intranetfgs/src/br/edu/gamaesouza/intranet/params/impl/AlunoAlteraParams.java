@@ -13,6 +13,7 @@ import br.edu.gamaesouza.intranet.params.AlunoParams;
 
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
+import br.edu.gamaesouza.intranet.utils.StatusMatriculaEnum;
 
 public class AlunoAlteraParams implements AlunoParams {
 
@@ -23,6 +24,8 @@ public class AlunoAlteraParams implements AlunoParams {
 	private String nome;
 	private Integer cursoId;
 	private Integer matricula;
+	private Integer periodo;
+	private StatusMatriculaEnum statusMatricula;
 	
 	
 
@@ -42,6 +45,8 @@ public class AlunoAlteraParams implements AlunoParams {
 		aluno.setEmail(email);
 		aluno.setNome(nome);
 		aluno.setMatricula(matricula);
+		aluno.setStatusMatricula(statusMatricula);
+		aluno.setPeriodo(periodo);
 		aluno.setDataUltimoAcesso(Calendar.getInstance());
 		Curso curso = (Curso) SpringUtil.getBean("curso");
 		try {
@@ -112,6 +117,22 @@ public class AlunoAlteraParams implements AlunoParams {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public void setPeriodo(Integer periodo) {
+		this.periodo = periodo;
+	}
+
+	public Integer getPeriodo() {
+		return periodo;
+	}
+
+	public void setStatusMatricula(StatusMatriculaEnum statusMatricula) {
+		this.statusMatricula = statusMatricula;
+	}
+
+	public StatusMatriculaEnum getStatusMatricula() {
+		return statusMatricula;
 	}
 
 }

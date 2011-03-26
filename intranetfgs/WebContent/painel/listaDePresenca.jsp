@@ -36,43 +36,16 @@
 <hr></hr>
 <div id="result" >		
 	<table width="100%" border=1>
-		<CAPTION>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dias do Mês</CAPTION>
+		
 		<tr>
-			<th><b>Id</b></th>
 			<th><b>Matrícula</b></th>
 			<th><b>Nome Completo</b></th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			<th>&nbsp;&nbsp;</th>
-			
+			<td colspan="25" align="center">Dias do Mês</td>
 			
 		</tr>
 		
 		<s:iterator value="disciplinaLetiva.aluno">
 			<tr>
-				<td><s:property value="id"/></td>
 				<td><s:property value="matricula"/></td>	
 				<td><s:property value="nome"/></td>
 				<td>&nbsp;&nbsp;</td>

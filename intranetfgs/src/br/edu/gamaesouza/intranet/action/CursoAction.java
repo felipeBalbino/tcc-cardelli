@@ -111,10 +111,10 @@ public class CursoAction extends ActionSupport {
 				cursoDAO.delete(curso);
 				addActionMessage(MSG_CURSO_DELETA_SUCESSO);
 			}else{
-				addActionError("Nï¿½o foi possï¿½vel deletar este curso, "+alunos.size()+" aluno(s) esta(Ã£o) cadastrado(s) nele.");
+				addActionError("Não foi possível deletar este curso, "+alunos.size()+" aluno(s) esta(ão) cadastrado(s) nele.");
 				for(Aluno aluno : alunos) {
 					addActionError("Nome: "+aluno.getNome()+
-							" - MatrÃ­cula: "+aluno.getMatricula()+
+							" - Matrícula: "+aluno.getMatricula()+
 							" - Email: "+aluno.getEmail());
 				}
 			}

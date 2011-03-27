@@ -28,6 +28,7 @@ import br.edu.gamaesouza.intranet.params.impl.HoraComplementarNovoParams;
 import br.edu.gamaesouza.intranet.security.UserData;
 import br.edu.gamaesouza.intranet.utils.DateUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
+import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -119,7 +120,9 @@ public class HoraAction extends ActionSupport {
 		UserData.grantAccess(RULE_LISTA_COMPLEMENTAR);	
 		try {
 			this.aluno = (Aluno)pessoaDAO.getPessoaById(horaComplementarListaParams.getId());
+			this.atividades = horaDAO.getAtividades();
 			horasComplementares = horaDAO.getHorasComplementares(aluno);
+			horasComplementares = DateUtil.getFormatedFields(horasComplementares);
 			horasAtividadeResultBean = horaDAO.getHorasGroupByAtividade(horaComplementarListaParams.getId());
 			List<HorasCursoResultBean> resultList = horaDAO.getHorasCursoAndAluno(horaComplementarListaParams.getId());
 			if(resultList.size() > 0){
@@ -172,11 +175,16 @@ public class HoraAction extends ActionSupport {
 				}else{
 				this.aluno = pessoaDAO.getAlunoById(horaComplementarNovoParams.getAluno().getId());
 				addActionMessage("Hora adicionada com sucesso, utilize o links disponível para gerar um comprovante para o aluno.");
-			}}catch(HibernateException he){
+				}
+				
+			}catch(HibernateException he){
 				addActionError("Ocorreu um erro ao tentar salvar a hora.");
 				atividades = horaDAO.getAtividades();
 				throw new IntranetException(he.getMessage());
+			}finally{
+				horaComplementarNovoParams = (HoraComplementarNovoParams) SpringUtil.getBean("horaComplementarNovoParams");
 			}
+		
 			return RETURN_SAVE_COMPLEMENTAR_SUCCESS;
 	}
 	
@@ -193,6 +201,7 @@ public class HoraAction extends ActionSupport {
 	public String gerarComprovanteHoraComplementar() throws IntranetException{
 		this.aluno = geraComprovanteHoraComplementarParams.getAluno();
 		this.horaComplementar = geraComprovanteHoraComplementarParams.getHoraComplementar();
+		this.horaComplementar.setTotalHoras(DateUtil.getHourMinutesFormated(horaComplementar.getMinutos()));
 		return "geraComprovante";	
 	}
 	

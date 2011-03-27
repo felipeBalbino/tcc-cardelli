@@ -155,25 +155,25 @@ public class AlunoAction extends ActionSupport {
 				
 				if(pessoaDAO.validarLogin(alunoNovoParams.getLogin())){
 					error=true;
-					addActionError("Login jï¿½ existente em nossa base.");
+					addActionError("Login já existente em nossa base.");
 				}
 
 				
 				if (pessoaDAO.validarEmail(alunoNovoParams.getEmail())){
 					error=true;
-					addActionError("Email jï¿½ existente em nossa base.");
+					addActionError("Email já existente em nossa base.");
 				}
 						
 				
 				if (alunoNovoParams.getLogin().length() > 8){
 					error=true;
-					addActionError("Login do Usuï¿½rio precisar tem menos de 8 caracteres.");
+					addActionError("Login do Usuário precisar tem menos de 8 caracteres.");
 				}
 						
 				
 				if(pessoaDAO.validarMatricula(alunoNovoParams.getMatricula())){
 					error=true;
-					addActionError("Matrï¿½cula jï¿½ existente em nossa base.");
+					addActionError("Matrícula já existente em nossa base.");
 					Pessoa pessoa = pessoaDAO.getPessoaByMatricula( alunoNovoParams.getMatricula() );
 					addActionError("Aluno: "+pessoa.getNome()+ " - " + "Email: "+pessoa.getEmail()+" - " + "Matricula: "+pessoa.getMatricula());					
 				}

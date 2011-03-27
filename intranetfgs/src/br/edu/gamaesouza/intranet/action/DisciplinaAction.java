@@ -119,7 +119,7 @@ public class DisciplinaAction extends ActionSupport{
 					disciplina = (Disciplina) SpringUtil.getBean("disciplina");
 					addActionMessage("Disciplina deletada com sucesso");
 				}else{
-					addActionError("Nï¿½o foi possivel deletar esta disciplina, existe(m) "+disciplinasLetivas.size()+" Disciplina(s) letiva(s) vincula(s) a essa disciplina.");	
+					addActionError("Não foi possivel deletar esta disciplina, existe(m) "+disciplinasLetivas.size()+" Disciplina(s) letiva(s) vincula(s) a essa disciplina.");	
 					for(DisciplinaLetiva letiva : disciplinasLetivas) {
 						addActionError("Turno: "+letiva.getTurno()+
 								" - Ano: "+letiva.getAno()+
@@ -129,7 +129,7 @@ public class DisciplinaAction extends ActionSupport{
 					}
 				}
 			} catch (IntranetException e) {	
-				addActionError("Nï¿½o foi possivel deletar o disciplina, ocorreu um erro interno no Servidor");
+				addActionError("Não foi possivel deletar o disciplina, ocorreu um erro interno no Servidor");
 			}
 			return lista();
 	

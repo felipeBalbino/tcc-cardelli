@@ -51,25 +51,25 @@ public class ProfessorAction extends ActionSupport {
 		
 		if(pessoaDAO.validarLogin(professorNovoParams.getLogin())){
 			error=true;
-			addActionError("Login jï¿½ existente em nossa base.");
+			addActionError("Login já existente em nossa base.");
 		}
 
 		
 		if (pessoaDAO.validarEmail(professorNovoParams.getEmail())){
 			error=true;
-			addActionError("Email jï¿½ existente em nossa base.");
+			addActionError("Email já existente em nossa base.");
 		}
 				
 		
 		if (professorNovoParams.getLogin().length() > 8){
 			error=true;
-			addActionError("Login do Usuï¿½rio precisar tem menos de 8 caracteres.");
+			addActionError("Login do Usuário precisar tem menos de 8 caracteres.");
 		}
 				
 		
 		if(pessoaDAO.validarMatricula(professorNovoParams.getMatricula())){
 			error=true;
-			addActionError("Matrï¿½cula jï¿½ existente em nossa base.");
+			addActionError("Matrícula já existente em nossa base.");
 			Pessoa pessoa = pessoaDAO.getPessoaByMatricula( professorNovoParams.getMatricula() );
 			addActionError("Professor: "+pessoa.getNome()+ " - " + "Email: "+pessoa.getEmail()+" - " + "Matricula: "+pessoa.getMatricula());					
 		}
@@ -118,7 +118,7 @@ public class ProfessorAction extends ActionSupport {
 					professor = (Professor) SpringUtil.getBean("professor");
 					addActionMessage("Professor deletada com sucesso");
 				}else{
-					addActionError("Nï¿½o foi possivel deletar o professor "+professor.getNome()+", existe(m) "+disciplinasLetivas.size()+" Disciplina(s) letiva(s) vincula(s) a este professor.");
+					addActionError("Não foi possivel deletar o professor "+professor.getNome()+", existe(m) "+disciplinasLetivas.size()+" Disciplina(s) letiva(s) vincula(s) a este professor.");
 					for(DisciplinaLetiva letiva : disciplinasLetivas) {
 						addActionError("Turno: "+letiva.getTurno()+
 								" - Ano: "+letiva.getAno()+

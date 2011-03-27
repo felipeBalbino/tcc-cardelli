@@ -154,7 +154,7 @@ public class UploadAction extends ActionSupport {
 				addActionMessage("Arquivo deletado com sucesso!");
 			} catch (Exception e) {
 
-				addActionMessage("Nï¿½o foi possivel remover o arquivo.");
+				addActionMessage("Não foi possivel remover o arquivo.");
 				e.printStackTrace();
 			} finally {
 				try {

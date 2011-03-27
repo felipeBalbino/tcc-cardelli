@@ -121,7 +121,11 @@ public class HoraAction extends ActionSupport {
 			this.aluno = (Aluno)pessoaDAO.getPessoaById(horaComplementarListaParams.getId());
 			horasComplementares = horaDAO.getHorasComplementares(aluno);
 			horasAtividadeResultBean = horaDAO.getHorasGroupByAtividade(horaComplementarListaParams.getId());
-			horasCursoResultBean = horaDAO.getHorasCursoAndAluno(horaComplementarListaParams.getId()).get(0);
+			List<HorasCursoResultBean> resultList = horaDAO.getHorasCursoAndAluno(horaComplementarListaParams.getId());
+			if(resultList.size() > 0){
+				horasCursoResultBean = resultList.get(0);
+			}
+			
 			return RETURN_LIST_COMPLEMENTAR_SUCCESS;
 		} catch (IntranetException e) {
 			return RETURN_LIST_COMPLEMENTAR_FAILURE;	

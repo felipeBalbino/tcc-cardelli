@@ -129,6 +129,8 @@
 	<bean class="br.edu.gamaesouza.intranet.params.impl.HorarioNovoParams" id="horarioNovoParams"></bean>
 	<bean class="br.edu.gamaesouza.intranet.params.impl.DisciplinaLetivaHorarioNovoParams" id="disciplinaLetivaHorarioNovoParams"></bean>
 	
+	<bean class="br.edu.gamaesouza.intranet.params.impl.GeraComprovanteHoraComplementarParams" id="geraComprovanteHoraComplementarParams"></bean>
+	
 	<!-- Value Objects -->
 	<bean class="br.edu.gamaesouza.intranet.vo.OuvidoriaVO" id="ouvidoriaVO"></bean>
 

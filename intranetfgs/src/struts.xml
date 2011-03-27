@@ -166,7 +166,7 @@
 			<result name="deleteComplementarFailure"></result>
 			<result name="saveComplementarSuccess">/painel/adicionarComplementar.jsp</result>
 			<result name="saveComplementarFailure"></result>	
-			
+			<result name="geraComprovante">/painel/gerarComprovanteHoraComplementar.jsp</result>	
 			
 			<result name="erroBuscarAluno">/painel/buscarHorasAluno.jsp</result>	
 			<result name="sucessoBuscarAluno">/painel/indexHorasAluno.jsp</result>	

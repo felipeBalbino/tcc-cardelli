@@ -1,19 +1,23 @@
 package br.edu.gamaesouza.intranet.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.Curso;
+import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
 import br.edu.gamaesouza.intranet.bean.Noticia;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.bean.Professor;
@@ -209,7 +213,7 @@ public class PessoaDAO extends HibernateDaoSupport {
 			}
 			
 		}
-		
+		query = query + " order by nome";
 		Query alunosByParams = getSession().createQuery(query);
 		List<Aluno> alunos =  alunosByParams.list();
 		return alunos;
@@ -280,6 +284,18 @@ public class PessoaDAO extends HibernateDaoSupport {
 	
 	public void deleteProfessor(Professor professor)throws IntranetException{	
 		getHibernateTemplate().delete(professor);
+	}
+	
+	public void deleteAluno(final Integer idAluno)throws IntranetException{	
+		
+		HibernateCallback callback = new HibernateCallback() {
+	        public Object doInHibernate(Session session) throws HibernateException, SQLException {			
+				Aluno groupObj = (Aluno) session.load(Aluno.class, idAluno);
+				getHibernateTemplate().delete(groupObj);
+	            return null;
+	        }
+	    };	
+		getHibernateTemplate().execute(callback);	
 	}
 
 }

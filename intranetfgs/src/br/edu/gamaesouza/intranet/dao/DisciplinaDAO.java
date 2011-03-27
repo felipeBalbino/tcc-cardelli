@@ -135,14 +135,33 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		getHibernateTemplate().delete(disciplinaLetiva);
 	}
 	
-	public void deleteDisciplinaLetivaOfAluno(DisciplinaLetiva disciplinaLetiva, Integer idAluno) throws IntranetException{
-		for(Aluno aluno:disciplinaLetiva.getAluno()){
+	public void deleteDisciplinaLetivaOfAluno(final DisciplinaLetiva disciplinaLetiva, Integer idAluno) throws IntranetException{
+		final List<Aluno> alunos = disciplinaLetiva.getAluno();
+		for(Aluno aluno:alunos){
 				if(aluno.getId().equals(idAluno)){
-					disciplinaLetiva.getAluno().remove( aluno );
+					alunos.remove( aluno );
 					break;
 				}
 		}
-	    getSession().merge(disciplinaLetiva);
+		
+		HibernateCallback callback = new HibernateCallback() {
+	        public Object doInHibernate(Session session) throws HibernateException, SQLException {
+	        	DisciplinaLetiva dl;
+				try {
+					dl = (DisciplinaLetiva) getDisciplinaLetivaById(disciplinaLetiva.getId());
+					dl.setAluno(alunos);
+					getHibernateTemplate().merge(dl);
+		         
+				} catch (IntranetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				   return null;
+
+	        }
+	    };	
+		getHibernateTemplate().execute(callback);
+		
 	}
 	
 	public void updateDisciplinaLetiva(final DisciplinaLetiva disciplinaLetiva) throws IntranetException{

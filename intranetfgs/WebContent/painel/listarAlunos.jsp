@@ -48,7 +48,7 @@ if(i == j) $(this).hide('slow');
 
  	function del(codigo) {    
 	     if (confirm('Excluir o Aluno?')) {    
-	         location.href = "../painel/aluno!delete.java?aluno.id="+ codigo;
+	         location.href = "../painel/aluno!delete.java?idAluno="+ codigo;
 	     }  
 	 }
  	

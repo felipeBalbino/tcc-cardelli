@@ -15,6 +15,8 @@ public class HorasCursoResultBean {
 	public HorasCursoResultBean(Long totalHorasAluno, Integer totalHorasCurso) {
 		this.totalMinutosAluno = totalHorasAluno;
 		this.totalHorasCurso = totalHorasCurso;
+		totalHorasAlunoFormatado = DateUtil.getHourMinutesFormated(Integer.parseInt(totalMinutosAluno.toString()));
+		this.setTotalHorasAluno(totalMinutosAluno / 60); 
 	}
 
 	

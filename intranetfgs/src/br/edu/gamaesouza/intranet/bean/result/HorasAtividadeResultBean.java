@@ -14,6 +14,7 @@ public class HorasAtividadeResultBean {
 		this.totalMinutosAluno = totalHorasAluno;
 		this.nomeAtividade = nomeAtividade;
 		this.totalHorasAtividade = totalHorasAtividade;
+		totalHorasAlunoFormatado = DateUtil.getHourMinutesFormated(Integer.parseInt(totalMinutosAluno.toString()));
 	}
 
 	public String getNomeAtividade() {

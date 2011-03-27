@@ -139,7 +139,7 @@
 <tr>
 
 	<td><s:property value="nomeAtividade" /></td>
-	<td><s:property value="totalHorasAlunoFormatado" /> / <s:property value="totalHorasAtividade" /></td>
+	<td><s:property value="totalHorasAlunoFormatado" /> / <s:property value="totalHorasAtividade" />h(s)</td>
 	<td><c:if test="${totalHorasAluno ge totalHorasAtividade}">Completo</c:if><c:if test="${totalHorasAluno lt totalHorasAtividade}">Incompleto</c:if></td>
 	
 </tr>
@@ -155,7 +155,7 @@
 <tr>
 
 	<td><b>Total de Horas (Aluno/Curso):</b></td>
-	<td colspan="1"><s:property value="horasCursoResultBean.totalHorasAlunoFormatado"/> / <s:property value="horasCursoResultBean.totalHorasCurso"/></td>
+	<td colspan="1"><s:property value="horasCursoResultBean.totalHorasAlunoFormatado"/> / <s:property value="horasCursoResultBean.totalHorasCurso"/>h(s)</td>
 	<td><c:if test="${horasCursoResultBean.totalHorasAluno ge horasCursoResultBean.totalHorasCurso}">Aprovado</c:if><c:if test="${horasCursoResultBean.totalHorasAluno lt horasCursoResultBean.totalHorasCurso}">Reprovado</c:if></td>
 	
 </tr>

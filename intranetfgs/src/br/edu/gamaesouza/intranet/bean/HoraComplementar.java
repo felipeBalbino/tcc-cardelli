@@ -12,7 +12,8 @@ import javax.persistence.OneToOne;
 		
 		@NamedQuery(name="horasComplementaresByAluno",query="SELECT comp FROM HoraComplementar comp where comp.aluno.id = :aluno"),
 		@NamedQuery(name="horasComplementaresByAlunoAtividade",query="SELECT comp FROM HoraComplementar comp  where comp.aluno.id = :aluno AND comp.atividade.id = :atividade"),
-		@NamedQuery(name="totalHorasPorAtividade",query="SELECT new br.edu.gamaesouza.intranet.bean.result.HorasAtividadeResultBean(sum(comp.numeroHoras), comp.atividade.nome, comp.atividade.numeroHoras) FROM HoraComplementar comp  where comp.aluno.id = :aluno GROUP by comp.atividade.nome")
+		@NamedQuery(name="totalHorasPorAtividade",query="SELECT new br.edu.gamaesouza.intranet.bean.result.HorasAtividadeResultBean(sum(comp.numeroHoras), comp.atividade.nome, comp.atividade.numeroHoras) FROM HoraComplementar comp  where comp.aluno.id = :aluno GROUP by comp.atividade.nome"),
+		@NamedQuery(name="horaComplementarByHora",query="SELECT comp FROM HoraComplementar comp  where comp.aluno.id = :aluno AND comp.nomeEvento = :titulo AND comp.numeroHoras = :numeroHoras")
 		
 })
 public class HoraComplementar extends Hora {

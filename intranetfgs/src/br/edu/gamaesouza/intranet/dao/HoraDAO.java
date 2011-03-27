@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import br.edu.gamaesouza.intranet.bean.Aluno;
@@ -62,6 +63,30 @@ public class HoraDAO extends HibernateDaoSupport {
 	public List<Atividade> getAtividades() {
 		Criteria c = getSession().createCriteria(Atividade.class);
 		return c.list();
+	}
+
+	public Atividade getAtividadeById(Integer id) {
+		Criteria c = getSession().createCriteria(Atividade.class);
+		c.add(Restrictions.eq("id", id));
+		return (Atividade) c.uniqueResult();
+	}
+
+	public HoraComplementar getHorasComplementares(Hora hora) {
+		HoraComplementar horaComplementar = null;
+		if(hora instanceof HoraComplementar){
+			horaComplementar = (HoraComplementar) hora;
+		}else{
+			return null;
+		}
+		
+		
+		
+		Query horasCursoAndAluno = getSession().getNamedQuery("horaComplementarByHora");
+		horasCursoAndAluno.setInteger("aluno",horaComplementar.getAluno().getId());
+		horasCursoAndAluno.setString("titulo",horaComplementar.getNomeEvento());
+		horasCursoAndAluno.setInteger("numeroHoras", horaComplementar.getNumeroHoras());
+		return (HoraComplementar) horasCursoAndAluno.uniqueResult();
+
 	}
 	
 	

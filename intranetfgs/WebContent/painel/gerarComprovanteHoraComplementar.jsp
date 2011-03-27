@@ -5,9 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Intranet - Faculdade Gama & Souza | Gerar Comprovante de Horas</title>
 </head>
 <body>
+<div id="retorno" align="right">
+		<img src="../images/arrow_categ.gif" />
+		<a href="../painel/aluno!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Alunos</a>
+	</div>
 <div id="comprovante" style="boder:1px;">
 <div id="opcoes"><img src="../images/imprimir.gif" /> <a href="hora!enviarComprovanteEmail.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>&geraComprovanteHoraComplementarParams.horaId=<s:property value="horaComplementar.id"/>"> <img src="../images/email.gif" /></a>
   				</div><br>

@@ -1,44 +1,41 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@taglib prefix="s" uri="/struts-tags"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <%@taglib prefix="sx" uri="/struts-dojo-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <style type="text/css">
-#experience { 
-padding:30px; 
-position:relative;
-padding:17px 0px 0 39px;
-}
+	#experience { 
+		padding:30px; 
+		position:relative;
+		padding:17px 0px 0 39px;
+	}
 
 
-#explanation { 
-float:left;
-width:340px;
-}
+	#explanation { 
+		float:left;
+		width:340px;
+	}
 
-#nome {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#disciplinasCurso {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
+	#nome {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
+	#disciplinasCurso {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
 
-#contact-form { 
-border-left:1px solid #313b45; 
-margin-left:370px; 
-padding-left:30px; 
-width:295px; 
-}
+	#contact-form { 
+		border-left:1px solid #313b45; 
+		margin-left:370px; 
+		padding-left:30px; 
+		width:295px; 
+	}
 
 </style>
 <script type="text/javascript">
+	function restartTrs(){
+		document.getElementById("nome").style.backgroundColor = "transparent";
+	}
 
-
-function restartTrs(){
-	document.getElementById("nome").style.backgroundColor = "transparent";
- }
-
- function restartMensagemErro(){
-                   document.getElementById("mensagem_ocultos").style.display = "none";
- }
+	function restartMensagemErro(){
+	    document.getElementById("mensagem_ocultos").style.display = "none";
+	}
 
 
  function validaForm(){
@@ -65,65 +62,74 @@ function restartTrs(){
 
 
 </script>
-
+<s:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Adicionar Hora Complementar</title>
 </head>
 <body>
 
-<div id="retorno" align="right">
-<img src="../images/arrow_categ.gif"><a href="../painel/curso!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Cursos</a>
-</div>
-<div id="experience" >
-					<div id="explanation">
-						<h3>
-						<strong>
-						Adicionar Hora Complementar
-						</strong>
-						</h3>
-						<p> 
-						  Use os campos ao lado para adicionar uma hora Complementar;
-						</p>
-						<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O Campo Nome em vermelhor é requerido.</p></div>
-						<br>
-						<s:if test="hasActionMessages()">
-							<div class="welcome" >
-  							 	<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
-  							</div> 			
-						</s:if>
+	<div id="retorno" align="right">
+		<img src="../images/arrow_categ.gif" />
+		<a href="../painel/aluno!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Alunos</a>
+	</div>
+	<div id="experience" >
+		<div id="explanation">
+			<h3>
+				<strong>
+					Adicionar Hora Complementar
+				</strong>
+			</h3>
+			<p> 
+				Use os campos ao lado para adicionar uma hora Complementar;
+			</p>
+			<div id="mensagem_ocultos" style="display:none;color:red;">
+				<p>
+					<img src="../images/imgErro.gif"/>  
+					O Campo Nome em vermelhor é requerido.
+				</p>
+			</div>
+			<br>
+			<s:if test="hasActionMessages()">
+				<div class="welcome" >
+  					<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/><br>
+		<a href="hora!gerarComprovanteHoraComplementar.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>"&geraComprovanteHoraComplementarParams.horaId=<s:property value="horaComplementar.id"/>"><img src="../images/imprimir.gif" /></a> <img src="../images/email.gif" />
+  				</div> 			
+			</s:if>
 						
-						<s:if test="hasActionErrors()">
-							 <div class="errors">
-  							 	<s:actionerror cssStyle="color:red;background-image : url('../images/imgErro.gif');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
-  							</div> 
-						</s:if>
-					</div>	
+			<s:if test="hasActionErrors()">
+				<div class="errors">
+  					<s:actionerror cssStyle="color:red;background-image : url('../images/imgErro.gif');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
+  				</div> 
+			</s:if>
+		</div>	
 				
-				<div id="contact-form">	
-				<hr>
-				<b>Dados do Aluno</b>
-				<hr>
-				<table>
-					<tr>
-						<td><b>Nome:</b></td>
-						<td><s:property value="aluno.nome"/></td>
-					</tr>
-					<tr>
-						<td><b>Matrícula:</b></td>
-						<td><s:property value="aluno.matricula"/></td>
-					</tr>
-				</table>
-				<br>
-				<hr>
-<b>Adicionar Hora Complementar</b>
-				<hr>
-	<s:form action="/painel/hora!salvaComplementar.java" name="adicionar" onSubmit="return validaForm()" >
-		<s:hidden value="%{aluno.id}" name="aluno.id" />
-		Número de Horas: <s:textfield id="data" name="horaAEPNovoParams.data" /> Formato: XX:XX
-		Atividade: <s:combobox list="atividades"></s:combobox>
-	<s:submit align="left" value="Adicionar Hora"></s:submit>
-</s:form>
-</div>		
+		<div id="contact-form">	
+			<hr>
+			<b>Dados do Aluno</b>
+			<hr>
+			<table>
+				<tr>
+					<td><b>Nome:</b></td>
+					<td><s:property value="aluno.nome"/></td>
+				</tr>
+				<tr>
+					<td><b>Matrícula:</b></td>
+					<td><s:property value="aluno.matricula"/></td>
+				</tr>
+			</table>
+			<br>
+			<hr>
+			<b>Adicionar Hora Complementar</b>
+			<hr>
+			<s:form action="/painel/hora!salvaComplementar.java" name="adicionar" onSubmit="return validaForm()" >
+				<s:hidden value="%{aluno.id}" name="horaComplementarNovoParams.aluno.id" />
+				Título: <br><s:textfield id="data" name="horaComplementarNovoParams.nomeEvento" /><br>
+				Número de Horas: <br><s:textfield id="data" name="horaComplementarNovoParams.numeroHoras" /><br>
+				Atividade:<br><sx:autocompleter headerKey="-1" headerValue=""  id="atividade" list="atividades" name="horaComplementarNovoParams.atividadeId" value="atividade" listKey="id" listValue="nome" /><br>
+						<br>
+				<s:submit align="left" value="Adicionar Hora"></s:submit>
+			</s:form>
+		</div>		
 </div>
 </body>
 </html>

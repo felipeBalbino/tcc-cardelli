@@ -1,0 +1,111 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="comprovante" style="boder:1px;">
+<div id="opcoes"><img src="../images/imprimir.gif" /> | <img src="../images/email.gif" /></div>
+<table border="0" width="100%" bgcolor="#FFFAF0">
+	<tr>
+	
+		<td colspan=1><img src="../images/logoComprovante.jpg" /></td>
+		<td><h2 style="text-size: 14px;">Comprovante de Hora Complementar</h2></td>
+		
+	<tr>
+	<tr>
+	
+		<td valign="top">
+		
+			<table border="1" cellpadding="2" cellspacing="0" width="100%" style="border-style:dotted;">
+				<tr style="border-style:dotted;">
+					<td colspan="2" style="border-style:dotted;">
+						<center><h3>Dados da Hora</h3></center>
+					</td>
+				</tr>
+				<tr style="border-style:dotted;">
+					<td width="30%" style="border-style:dotted;"><b>Título: </b></td>
+					<td width="70%" style="border-style:dotted;"><s:property value="horaComplementar.nomeEvento" /></td>
+					
+				</tr>
+				<tr style="border-style:dotted;">
+				
+					<td width="30%" style="border-style:dotted;"><b>Qtd. de Horas: </b></td>
+					<td width="70%" style="border-style:dotted;"><s:property value="horaComplementar.numeroHoras" /></td>
+					
+				
+				</tr>
+				<tr style="border-style:dotted;">
+				<td width="30%" style="border-style:dotted;">
+					<b>Atividade: </b>
+				</td>
+				<td width="70%" style="border-style:dotted;"><s:property value="horaComplementar.atividade.nome" /></td>
+				</tr>
+				
+			</table>
+		
+		</td>
+	<td valign="top">
+		<table style="border-style:dotted;" border="1" cellpadding="2" cellspacing="0" width="100%">
+				<tr style="border-style:dotted;">
+					<td colspan="2" style="border-style:dotted;">
+						<center><h3>Dados do Aluno</h3></center>
+					</td>
+				</tr>
+				<tr style="border-style:dotted;">
+					<td width="30%"  style="border-style:dotted;"><b>Nome: </b></td>
+					<td  width="70%" style="border-style:dotted;"><s:property value="aluno.nome" /></td>
+					
+				</tr>
+				<tr style="border-style:dotted;">
+				
+					<td width="30%"  style="border-style:dotted;"><b>Matrícula: </b></td>
+					<td  width="70%" style="border-style:dotted;"><s:property value="aluno.matricula" /></td>
+					
+				
+				</tr>
+				<tr style="border-style:dotted;">
+				<td width="30%"  style="border-style:dotted;">
+					<b>Período: </b>
+				</td>
+				<td  width="70%" style="border-style:dotted;"><s:property value="aluno" /></td>
+				</tr>
+				
+				<tr style="border-style:dotted;">
+				<td width="30%"  style="border-style:dotted;">
+					<b>Curso: </b>
+				</td>
+				<td  width="70%" style="border-style:dotted;"><s:property value="aluno.curso.nome" /></td>
+				</tr>
+				
+			</table>
+	</td>
+
+</tr>
+<tr>
+	<td colspan="4">
+	<br></br>
+		* Ao assinar este comprovante você está de acordo com os dados contidos no mesmo.
+	</td>
+</tr>
+
+<tr>
+	<td width="50%">
+	<br><br><br><br>
+		<hr width="80%" style="border-style: line;">
+		<center><b>Assinatura do Aluno</b></center>
+	</td>
+	<td width="50%">
+	<br><br><br><br>
+		<hr width="80%">
+		<center><b>Assinatura do Professor</b></center>
+	</td>
+</tr>
+
+</table>
+</div>
+</body>
+</html>

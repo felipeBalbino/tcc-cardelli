@@ -59,6 +59,14 @@
          	return false;
 		}
 }
+ 
+ function dois_pontos(tempo){
+ 
+     if(tempo.value.length==2){
+       tempo.value+=":";
+      }
+     
+}
 
 
 </script>
@@ -92,7 +100,9 @@
 			<s:if test="hasActionMessages()">
 				<div class="welcome" >
   					<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/><br>
-					<a href="hora!gerarComprovanteHoraComplementar.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>&geraComprovanteHoraComplementarParams.horaId=<s:property value="horaComplementar.id"/>">Gerar Comprovante</a>
+					<a href="hora!gerarComprovanteHoraComplementar.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>&geraComprovanteHoraComplementarParams.horaId=<s:property value="horaComplementar.id"/>">
+						<img src="../images/comprovante.gif"/>Gerar Comprovante
+					</a>
   				</div> 			
 			</s:if>
 						
@@ -123,8 +133,8 @@
 			<hr>
 			<s:form action="/painel/hora!salvaComplementar.java" name="adicionar" onSubmit="return validaForm()" >
 				<s:hidden value="%{aluno.id}" name="horaComplementarNovoParams.aluno.id" />
-				Título: <br><s:textfield id="data" name="horaComplementarNovoParams.nomeEvento" /><br>
-				Número de Horas: <br><s:textfield id="data" name="horaComplementarNovoParams.numeroHoras" /><br>
+				Título: <br><s:textfield id="data" name="horaComplementarNovoParams.nomeEvento"   /><br>
+				Horas (hh:mm): <br><s:textfield maxlength="5" id="data" name="horaComplementarNovoParams.numeroHoras" onkeypress="dois_pontos(this)" /><br>
 				Atividade:<br><sx:autocompleter headerKey="-1" headerValue=""  id="atividade" list="atividades" name="horaComplementarNovoParams.atividadeId" value="atividade" listKey="id" listValue="nome" /><br>
 						<br>
 				<s:submit align="left" value="Adicionar Hora"></s:submit>

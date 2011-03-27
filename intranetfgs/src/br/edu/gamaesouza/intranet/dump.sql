@@ -257,8 +257,8 @@ INSERT INTO HoraAEP values ("2010-10-10","11:40","11:20",1);
 INSERT INTO HoraAEP values ("2010-10-10","12:40","12:20",2);
 INSERT INTO HoraAEP values ("2010-10-10","14:40","13:20",3);
 
-INSERT INTO HoraComplementar values ("Evento 1",10,4,1);
-INSERT INTO HoraComplementar values ("Evento 2",5,5,2);
-INSERT INTO HoraComplementar values ("Evento 3",3,6,1);
+INSERT INTO HoraComplementar values (100,"Evento 1",4,1);
+INSERT INTO HoraComplementar values (50,"Evento 2",5,2);
+INSERT INTO HoraComplementar values (30,"Evento 3",6,1);
 
 SELECT dl FROM DisciplinaLetivaHorario dlHorario left join dlHorario.DisciplinaLetiva dl left join dl.horario horario where dl.semestre = 1 and dl.ano = 2011 and dlHorario = "SEGUNDA";

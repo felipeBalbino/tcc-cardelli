@@ -85,6 +85,7 @@
 			<td><b>Carga Horária</b></td>
 			<td><b>Atividade</b></td>
 			<td><b></b></td>
+			<td><b></b></td>
 			<td>	
 				
 							
@@ -95,8 +96,8 @@
 	<s:iterator value="horasComplementares" var="horaComplementar">
 		<tr>
 			
-			<td><s:property value="nomeEvento" /></td>
-			<td><s:property value="numeroHoras" /></td>
+			<td><s:property value="titulo" /></td>
+			<td><s:property value="totalHoras" /></td>
 			<td><s:property value="atividade.nome" /></td>
 			<td></td>
 			<td>	
@@ -105,6 +106,14 @@
 				<a title="Deletar evento" href="javascript:delcurso(<s:property value="%{id}" />)">
 					<img border="0" src="../images/lixeira.gif" /> 
 				</a>
+				
+			</td>
+			<td>	
+				
+							
+				<a style="border: 0px;" href="hora!enviarComprovanteEmail.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>&geraComprovanteHoraComplementarParams.horaId=<s:property value="id"/>">
+				 <img src="../images/email_go.png" />
+				 </a>
 				
 			</td>
 		</tr>
@@ -130,7 +139,7 @@
 <tr>
 
 	<td><s:property value="nomeAtividade" /></td>
-	<td><s:property value="totalHorasAluno" /> / <s:property value="totalHorasAtividade" /></td>
+	<td><s:property value="totalHorasAlunoFormatado" /> / <s:property value="totalHorasAtividade" /></td>
 	<td><c:if test="${totalHorasAluno ge totalHorasAtividade}">Completo</c:if><c:if test="${totalHorasAluno lt totalHorasAtividade}">Incompleto</c:if></td>
 	
 </tr>
@@ -146,7 +155,7 @@
 <tr>
 
 	<td><b>Total de Horas (Aluno/Curso):</b></td>
-	<td colspan="1"><s:property value="horasCursoResultBean.totalHorasAluno"/> / <s:property value="horasCursoResultBean.totalHorasCurso"/></td>
+	<td colspan="1"><s:property value="horasCursoResultBean.totalHorasAlunoFormatado"/> / <s:property value="horasCursoResultBean.totalHorasCurso"/></td>
 	<td><c:if test="${horasCursoResultBean.totalHorasAluno ge horasCursoResultBean.totalHorasCurso}">Aprovado</c:if><c:if test="${horasCursoResultBean.totalHorasAluno lt horasCursoResultBean.totalHorasCurso}">Reprovado</c:if></td>
 	
 </tr>

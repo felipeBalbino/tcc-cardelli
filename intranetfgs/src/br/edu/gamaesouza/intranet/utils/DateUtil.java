@@ -52,5 +52,11 @@ public class DateUtil {
 		
 		
 	}
+	
+	public static Integer getMinutesByHourMinutes(String h){
+		String[] split = h.split(":");
+		
+		return (Integer.parseInt(split[0]) * 60) + Integer.parseInt(split[1]);
+	}
 
 }

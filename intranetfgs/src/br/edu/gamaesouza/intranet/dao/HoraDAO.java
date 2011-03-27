@@ -83,8 +83,8 @@ public class HoraDAO extends HibernateDaoSupport {
 		
 		Query horasCursoAndAluno = getSession().getNamedQuery("horaComplementarByHora");
 		horasCursoAndAluno.setInteger("aluno",horaComplementar.getAluno().getId());
-		horasCursoAndAluno.setString("titulo",horaComplementar.getNomeEvento());
-		horasCursoAndAluno.setInteger("numeroHoras", horaComplementar.getNumeroHoras());
+		horasCursoAndAluno.setString("titulo",horaComplementar.getTitulo());
+		horasCursoAndAluno.setInteger("minutos", horaComplementar.getMinutos());
 		return (HoraComplementar) horasCursoAndAluno.uniqueResult();
 
 	}

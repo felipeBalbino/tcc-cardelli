@@ -8,12 +8,13 @@ import br.edu.gamaesouza.intranet.bean.HoraComplementar;
 import br.edu.gamaesouza.intranet.dao.HoraDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.params.HoraComplementarParams;
+import br.edu.gamaesouza.intranet.utils.DateUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 
 public class HoraComplementarNovoParams implements HoraComplementarParams {
 	
 	private Integer atividadeId;
-	private Integer numeroHoras;
+	private String numeroHoras;
 	private String nomeEvento;
 	private Aluno aluno;
 	
@@ -28,11 +29,11 @@ public class HoraComplementarNovoParams implements HoraComplementarParams {
 		this.atividadeId = atividadeId;
 	}
 
-	public Integer getNumeroHoras() {
+	public String getNumeroHoras() {
 		return numeroHoras;
 	}
 
-	public void setNumeroHoras(Integer numeroHoras) {
+	public void setNumeroHoras(String numeroHoras) {
 		this.numeroHoras = numeroHoras;
 	}
 
@@ -40,8 +41,8 @@ public class HoraComplementarNovoParams implements HoraComplementarParams {
 		HoraComplementar horaComplementar = new HoraComplementar();
 		horaComplementar.setAluno(pessoaDAO.getAlunoById(aluno.getId()));
 		horaComplementar.setAtividade(horaDAO.getAtividadeById(atividadeId));
-		horaComplementar.setNomeEvento(nomeEvento);
-		horaComplementar.setNumeroHoras(numeroHoras);
+		horaComplementar.setTitulo(nomeEvento);
+		horaComplementar.setMinutos(DateUtil.getMinutesByHourMinutes(numeroHoras));
 		return horaComplementar;
 	}
 

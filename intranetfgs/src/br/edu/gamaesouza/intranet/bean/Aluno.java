@@ -23,7 +23,7 @@ import br.edu.gamaesouza.intranet.utils.StatusMatriculaEnum;
 @NamedQueries(value={
 		@NamedQuery(name="alunosByCurso",query="FROM Aluno a where a.curso.id = :curso"),
 		@NamedQuery(name="alunoById",query="FROM Aluno WHERE id = :id"),
-		@NamedQuery(name="totalHorasCursoEAluno",query="SELECT DISTINCT new br.edu.gamaesouza.intranet.bean.result.HorasCursoResultBean(sum(comp.numeroHoras), comp.aluno.curso.cargaHorariaComplementar) FROM HoraComplementar comp  where comp.aluno.id = :aluno GROUP BY comp.aluno.id")
+		@NamedQuery(name="totalHorasCursoEAluno",query="SELECT DISTINCT new br.edu.gamaesouza.intranet.bean.result.HorasCursoResultBean(sum(comp.minutos), comp.aluno.curso.cargaHorariaComplementar) FROM HoraComplementar comp  where comp.aluno.id = :aluno GROUP BY comp.aluno.id")
 })
 public class Aluno extends Pessoa implements Serializable {
 	

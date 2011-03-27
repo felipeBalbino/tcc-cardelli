@@ -1,14 +1,17 @@
 package br.edu.gamaesouza.intranet.bean.result;
 
+import br.edu.gamaesouza.intranet.utils.DateUtil;
+
 public class HorasAtividadeResultBean {
 	
-	private Long totalHorasAluno;
+	private Long totalMinutosAluno;
+	private String totalHorasAlunoFormatado;
 	private Integer totalHorasAtividade;
 	private String nomeAtividade;
 
 	public HorasAtividadeResultBean(Long totalHorasAluno, String nomeAtividade,Integer totalHorasAtividade) {
 		super();
-		this.totalHorasAluno = totalHorasAluno;
+		this.totalMinutosAluno = totalHorasAluno;
 		this.nomeAtividade = nomeAtividade;
 		this.totalHorasAtividade = totalHorasAtividade;
 	}
@@ -21,12 +24,16 @@ public class HorasAtividadeResultBean {
 		this.nomeAtividade = nomeAtividade;
 	}
 
-	public Long getTotalHorasAluno() {
-		return totalHorasAluno;
+	
+	
+
+	public Long getTotalMinutosAluno() {
+		return totalMinutosAluno;
 	}
 
-	public void setTotalHorasAluno(Long totalHorasAluno) {
-		this.totalHorasAluno = totalHorasAluno;
+	public void setTotalMinutosAluno(Long totalMinutosAluno) {
+		this.totalMinutosAluno = totalMinutosAluno;
+		totalHorasAlunoFormatado = DateUtil.getHourMinutesFormated(Integer.parseInt(totalMinutosAluno.toString()));
 	}
 
 	public Integer getTotalHorasAtividade() {
@@ -35,6 +42,14 @@ public class HorasAtividadeResultBean {
 
 	public void setTotalHorasAtividade(Integer totalHorasAtividade) {
 		this.totalHorasAtividade = totalHorasAtividade;
+	}
+
+	public String getTotalHorasAlunoFormatado() {
+		return totalHorasAlunoFormatado;
+	}
+
+	public void setTotalHorasAlunoFormatado(String totalHorasAlunoFormatado) {
+		this.totalHorasAlunoFormatado = totalHorasAlunoFormatado;
 	}
 	
 	

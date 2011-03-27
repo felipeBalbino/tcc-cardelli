@@ -31,7 +31,9 @@ import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.bean.Rule;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
+import br.edu.gamaesouza.intranet.security.UserData;
 import br.edu.gamaesouza.intranet.utils.ContextUtil;
+import br.edu.gamaesouza.intranet.utils.DateUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.vo.OuvidoriaVO;
 
@@ -356,7 +358,7 @@ public class EnviarEmail {
 		msgBody = msgBody
 				+ "	<td width=\"30%\" style=\"border-style:dotted;\"><b>Título: </b></td>";
 		msgBody = msgBody
-				+ "<td width=\"70%\" style=\"border-style:dotted;\">"+ horaComplementar.getNomeEvento() + "</td>";
+				+ "<td width=\"70%\" style=\"border-style:dotted;\">"+ horaComplementar.getTitulo() + "</td>";
 
 		msgBody = msgBody + "	</tr>";
 		msgBody = msgBody + "<tr style=\"border-style:dotted;\">";
@@ -364,7 +366,7 @@ public class EnviarEmail {
 		msgBody = msgBody
 				+ " <td width=\"30%\" style=\"border-style:dotted;\"><b>Qtd. de Horas: </b></td>";
 		msgBody = msgBody
-				+ "<td width=\"70%\" style=\"border-style:dotted;\">"+ horaComplementar.getNumeroHoras() +"</td>";
+				+ "<td width=\"70%\" style=\"border-style:dotted;\">"+ DateUtil.getHourMinutesFormated(horaComplementar.getMinutos()) +"</td>";
 
 		msgBody = msgBody + "</tr>";
 		msgBody = msgBody + "<tr style=\"border-style:dotted;\">";
@@ -429,7 +431,7 @@ public class EnviarEmail {
 		msgBody = msgBody
 		+ "* Ao assinar este comprovante você está de acordo com os dados contidos no mesmo.<br>";
 		msgBody = msgBody
-		+ "** Esse comprovante foi gerado diretamente para seu e-mail em "+ new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(Calendar.getInstance().getTime()) +", para ele ter valor é necessário que você imprima e leve para o coordenador assinar.";
+		+ "** Esse comprovante foi gerado diretamente para seu e-mail em "+ new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime()) +" pelo professor "+ UserData.getLoggedUser().getNome() +", para ele ter valor é necessário que você imprima e leve para o coordenador assinar.";
 		
 		msgBody = msgBody + "</td>";
 		msgBody = msgBody + "</tr>";
@@ -451,7 +453,7 @@ public class EnviarEmail {
 
 		try {
 			message.setSubject("[Comprovante / Hora Complementar] "
-					+ horaComplementar.getNomeEvento());
+					+ horaComplementar.getTitulo());
 			message.setContent(msgBody, "text/html");
 			Transport.send(message);
 		} catch (MessagingException e) {

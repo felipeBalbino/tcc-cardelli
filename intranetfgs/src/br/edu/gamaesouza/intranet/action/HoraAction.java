@@ -174,6 +174,8 @@ public class HoraAction extends ActionSupport {
 				addActionMessage("Hora adicionada com sucesso, utilize o links disponível para gerar um comprovante para o aluno.");
 			}}catch(HibernateException he){
 				addActionError("Ocorreu um erro ao tentar salvar a hora.");
+				atividades = horaDAO.getAtividades();
+				throw new IntranetException(he.getMessage());
 			}
 			return RETURN_SAVE_COMPLEMENTAR_SUCCESS;
 	}

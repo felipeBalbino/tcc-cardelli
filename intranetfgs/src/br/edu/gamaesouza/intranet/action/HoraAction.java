@@ -3,6 +3,7 @@ package br.edu.gamaesouza.intranet.action;
 import java.text.ParseException;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Aluno;
@@ -51,7 +52,9 @@ public class HoraAction extends ActionSupport {
 	@Autowired private PessoaDAO pessoaDAO;
 	
 	// Aluno retornado pela matrï¿½cula
-	private Aluno aluno;
+	@Autowired private Aluno aluno;
+	
+	@Autowired private HoraComplementar horaComplementar;
 
 	// Carrega Lista mostrada ao UsuÃ¡rio
 	private List<HoraAEP> horasAEP;
@@ -81,8 +84,8 @@ public class HoraAction extends ActionSupport {
 	private final String RETURN_ALTER_COMPLEMENTAR_FAILURE = "alterAEPFailure";
 	private final String RETURN_DELETE_COMPLEMENTAR_SUCCESS = "deleteAEPSuccess";
 	private final String RETURN_DELETE_COMPLEMENTAR_FAILURE = "deleteAEPFailure";
-	private final String RETURN_SAVE_COMPLEMENTAR_SUCCESS = "saveAEPSuccess";
-	private final String RETURN_SAVE_COMPLEMENTAR_FAILURE = "saveAEPFailure";
+	private final String RETURN_SAVE_COMPLEMENTAR_SUCCESS = "saveComplementarSuccess";
+	private final String RETURN_SAVE_COMPLEMENTAR_FAILURE = "saveComplementarFailure";
 	
 	private final String RULE_LISTA_COMPLEMENTAR = "RULE_LISTA_COMPLEMENTAR";
 	private final String RULE_DELETA_COMPLEMENTAR = "RULE_DELETA_COMPLEMENTAR";
@@ -109,7 +112,7 @@ public class HoraAction extends ActionSupport {
 	public String listaComplementar(){
 		UserData.grantAccess(RULE_LISTA_COMPLEMENTAR);	
 		try {
-			aluno = (Aluno)pessoaDAO.getPessoaById(horaComplementarListaParams.getId());
+			this.aluno = (Aluno)pessoaDAO.getPessoaById(horaComplementarListaParams.getId());
 			horasComplementares = horaDAO.getHorasComplementares(aluno);
 			horasAtividadeResultBean = horaDAO.getHorasGroupByAtividade(horaComplementarListaParams.getId());
 			horasCursoResultBean = horaDAO.getHorasCursoAndAluno(horaComplementarListaParams.getId()).get(0);
@@ -149,9 +152,20 @@ public class HoraAction extends ActionSupport {
 		return "saveAEPSuccess";
 	}
 	
-	public String salvaComplementar(){
-		UserData.grantAccess(RULE_SALVA_COMPLEMENTAR);	
-		return null;
+	public String salvaComplementar() throws IntranetException{
+		UserData.grantAccess(RULE_SALVA_COMPLEMENTAR);
+			try{
+				horaDAO.save(horaComplementarNovoParams.getHora());
+				horaComplementar = horaDAO.getHorasComplementares(horaComplementarNovoParams.getHora());
+				if(horaComplementar == null){
+					addActionError("Hora adicionada com sucesso, não foi possível gerar o comprovante.");
+				}else{
+				this.aluno = pessoaDAO.getAlunoById(horaComplementarNovoParams.getAluno().getId());
+				addActionMessage("Hora adicionada com sucesso, utilize os links disponíveis para imprimir ou enviar por e-mail o comprovante.");
+			}}catch(HibernateException he){
+				addActionError("Ocorreu um erro ao tentar salvar a hora.");
+			}
+			return RETURN_SAVE_COMPLEMENTAR_SUCCESS;
 	}
 	
 	public String alteraAEP(){
@@ -162,6 +176,10 @@ public class HoraAction extends ActionSupport {
 	public String alteraComplementar(){
 		UserData.grantAccess(RULE_ALTERA_COMPLEMENTAR);	
 		return null;
+	}
+	
+	public String gerarComprovanteHoraComplementar(){
+		return "geraComprovante";	
 	}
 
 	// Gets and Sets
@@ -280,6 +298,22 @@ public class HoraAction extends ActionSupport {
 
 	public void setHorasCursoResultBean(HorasCursoResultBean horasCursoResultBean) {
 		this.horasCursoResultBean = horasCursoResultBean;
+	}
+
+	public List<Atividade> getAtividades() {
+		return atividades;
+	}
+
+	public void setAtividades(List<Atividade> atividades) {
+		this.atividades = atividades;
+	}
+
+	public HoraComplementar getHoraComplementar() {
+		return horaComplementar;
+	}
+
+	public void setHoraComplementar(HoraComplementar horaComplementar) {
+		this.horaComplementar = horaComplementar;
 	}
 	
 	

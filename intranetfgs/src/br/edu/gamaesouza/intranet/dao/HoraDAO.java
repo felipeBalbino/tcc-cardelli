@@ -88,6 +88,12 @@ public class HoraDAO extends HibernateDaoSupport {
 		return (HoraComplementar) horasCursoAndAluno.uniqueResult();
 
 	}
+
+	public HoraComplementar getHoraComplementarById(Integer id) {
+		Criteria c = getSession().createCriteria(HoraComplementar.class);
+		c.add(Restrictions.eq("id", id));
+		return (HoraComplementar) c.uniqueResult();
+	}
 	
 	
 }

@@ -92,7 +92,7 @@
 			<s:if test="hasActionMessages()">
 				<div class="welcome" >
   					<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/><br>
-		<a href="hora!gerarComprovanteHoraComplementar.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>"&geraComprovanteHoraComplementarParams.horaId=<s:property value="horaComplementar.id"/>"><img src="../images/imprimir.gif" /></a> <img src="../images/email.gif" />
+					<a href="hora!gerarComprovanteHoraComplementar.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>&geraComprovanteHoraComplementarParams.horaId=<s:property value="horaComplementar.id"/>">Gerar Comprovante</a>
   				</div> 			
 			</s:if>
 						

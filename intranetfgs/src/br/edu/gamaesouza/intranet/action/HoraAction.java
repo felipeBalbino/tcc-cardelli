@@ -14,7 +14,9 @@ import br.edu.gamaesouza.intranet.bean.result.HorasAtividadeResultBean;
 import br.edu.gamaesouza.intranet.bean.result.HorasCursoResultBean;
 import br.edu.gamaesouza.intranet.dao.HoraDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
+import br.edu.gamaesouza.intranet.mail.EnviarEmail;
 import br.edu.gamaesouza.intranet.params.impl.AlunoSearchParams;
+import br.edu.gamaesouza.intranet.params.impl.GeraComprovanteHoraComplementarParams;
 import br.edu.gamaesouza.intranet.params.impl.HoraAEPAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.HoraAEPDeletaParams;
 import br.edu.gamaesouza.intranet.params.impl.HoraAEPListaParams;
@@ -46,6 +48,8 @@ public class HoraAction extends ActionSupport {
 	@Autowired private HoraComplementarDeletaParams horaComplementarDeletaParams;
 	@Autowired private HoraComplementarListaParams horaComplementarListaParams;
 	
+	@Autowired private GeraComprovanteHoraComplementarParams geraComprovanteHoraComplementarParams;
+	
 	private AlunoSearchParams alunoSearchParams = new AlunoSearchParams();
 	
 	@Autowired private HoraDAO horaDAO;
@@ -55,6 +59,8 @@ public class HoraAction extends ActionSupport {
 	@Autowired private Aluno aluno;
 	
 	@Autowired private HoraComplementar horaComplementar;
+	
+	@Autowired private EnviarEmail enviarEmail;
 
 	// Carrega Lista mostrada ao UsuÃ¡rio
 	private List<HoraAEP> horasAEP;
@@ -161,7 +167,7 @@ public class HoraAction extends ActionSupport {
 					addActionError("Hora adicionada com sucesso, não foi possível gerar o comprovante.");
 				}else{
 				this.aluno = pessoaDAO.getAlunoById(horaComplementarNovoParams.getAluno().getId());
-				addActionMessage("Hora adicionada com sucesso, utilize os links disponíveis para imprimir ou enviar por e-mail o comprovante.");
+				addActionMessage("Hora adicionada com sucesso, utilize o links disponível para gerar um comprovante para o aluno.");
 			}}catch(HibernateException he){
 				addActionError("Ocorreu um erro ao tentar salvar a hora.");
 			}
@@ -178,7 +184,21 @@ public class HoraAction extends ActionSupport {
 		return null;
 	}
 	
-	public String gerarComprovanteHoraComplementar(){
+	public String gerarComprovanteHoraComplementar() throws IntranetException{
+		this.aluno = geraComprovanteHoraComplementarParams.getAluno();
+		this.horaComplementar = geraComprovanteHoraComplementarParams.getHoraComplementar();
+		return "geraComprovante";	
+	}
+	
+	public String enviarComprovanteEmail() throws IntranetException{
+		this.aluno = geraComprovanteHoraComplementarParams.getAluno();
+		this.horaComplementar = geraComprovanteHoraComplementarParams.getHoraComplementar();
+		try{
+			enviarEmail.sendComprovanteToAluno(aluno,horaComplementar);
+			addActionMessage("Comprovante enviado com sucesso.");
+		}catch(IntranetException e){
+			addActionError("Ocorreu um erro ao tentar enviar o comprovante pro e-mail do aluno.");
+		}
 		return "geraComprovante";	
 	}
 
@@ -314,6 +334,15 @@ public class HoraAction extends ActionSupport {
 
 	public void setHoraComplementar(HoraComplementar horaComplementar) {
 		this.horaComplementar = horaComplementar;
+	}
+
+	public GeraComprovanteHoraComplementarParams getGeraComprovanteHoraComplementarParams() {
+		return geraComprovanteHoraComplementarParams;
+	}
+
+	public void setGeraComprovanteHoraComplementarParams(
+			GeraComprovanteHoraComplementarParams geraComprovanteHoraComplementarParams) {
+		this.geraComprovanteHoraComplementarParams = geraComprovanteHoraComplementarParams;
 	}
 	
 	

@@ -1,39 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%@taglib uri="/struts-dojo-tags" prefix="sx"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <%@ taglib uri="/WEB-INF/intranet-core-tags.tld" prefix="intranet" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="/WEB-INF/intranet-core-tags.tld" prefix="intranet" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <sx:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Horas AEP</title>
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
 <script type="text/javascript">
  
+	$(document).ready(function(){ 
 
-$(document).ready(function(){ 
+		$('.conteudo').hide(); 
 
-$('.conteudo').hide(); 
-
-$('.exibir').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-	if(i == j) 
-		$(this).show('slow');        
-});    
-});
-});
-$('.ocultar').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-if(i == j) $(this).hide('slow');        
-});    
-});
+		$('.exibir').each(function(i){    
+			$(this).click(function(){        
+			$('.conteudo').each(function(j){            
+				if(i == j) 
+					$(this).show('slow');        
+				});    
+			});
+		});
+		$('.ocultar').each(function(i){    
+			$(this).click(function(){        
+				$('.conteudo').each(function(j){            
+				if(i == j) $(this).hide('slow');        
+			});    
+		});
 });
 });
 
@@ -50,6 +47,7 @@ if(i == j) $(this).hide('slow');
 <div align="right"><a title="Novo Evento"
 	href="../painel/hora!novaHoraComplementar.java?aluno.id=<s:property value="aluno.id"/>"> <img border="0"
 	src="../images/novo.jpg" />Adicionar Hora Complementar</a></div>
+	
 <br>
 <br>
 <b>Filtros de Pesquisa</b>
@@ -125,7 +123,6 @@ if(i == j) $(this).hide('slow');
 
 	<td><b>Nome</b></td>
 	<td><b>Horas do Aluno</b></td>
-	<td><b>Horas Atividade</b></td>
 	<td><b>Status</b></td>
 
 </tr>
@@ -133,8 +130,7 @@ if(i == j) $(this).hide('slow');
 <tr>
 
 	<td><s:property value="nomeAtividade" /></td>
-	<td><s:property value="totalHorasAluno" /></td>
-	<td><s:property value="totalHorasAtividade" /></td>
+	<td><s:property value="totalHorasAluno" /> / <s:property value="totalHorasAtividade" /></td>
 	<td><c:if test="${totalHorasAluno ge totalHorasAtividade}">Completo</c:if><c:if test="${totalHorasAluno lt totalHorasAtividade}">Incompleto</c:if></td>
 	
 </tr>
@@ -144,13 +140,13 @@ if(i == j) $(this).hide('slow');
 
 	<td></td>
 	<td></td>
-	<td colspan="2"></td>
+	<td></td>
 	
 </tr>
 <tr>
 
 	<td><b>Total de Horas (Aluno/Curso):</b></td>
-	<td colspan="2"><s:property value="horasCursoResultBean.totalHorasAluno"/> / <s:property value="horasCursoResultBean.totalHorasCurso"/></td>
+	<td colspan="1"><s:property value="horasCursoResultBean.totalHorasAluno"/> / <s:property value="horasCursoResultBean.totalHorasCurso"/></td>
 	<td><c:if test="${horasCursoResultBean.totalHorasAluno ge horasCursoResultBean.totalHorasCurso}">Aprovado</c:if><c:if test="${horasCursoResultBean.totalHorasAluno lt horasCursoResultBean.totalHorasCurso}">Reprovado</c:if></td>
 	
 </tr>

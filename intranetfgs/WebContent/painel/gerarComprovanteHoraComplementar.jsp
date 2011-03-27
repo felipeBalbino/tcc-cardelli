@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,7 +9,19 @@
 </head>
 <body>
 <div id="comprovante" style="boder:1px;">
-<div id="opcoes"><img src="../images/imprimir.gif" /> | <img src="../images/email.gif" /></div>
+<div id="opcoes"><img src="../images/imprimir.gif" /> <a href="hora!enviarComprovanteEmail.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>&geraComprovanteHoraComplementarParams.horaId=<s:property value="horaComplementar.id"/>"> <img src="../images/email.gif" /></a>
+  				</div><br>
+  						<s:if test="hasActionMessages()">
+				<div class="welcome" >
+  					<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/><br>
+						</div> 			
+			</s:if>
+						
+			<s:if test="hasActionErrors()">
+				<div class="errors">
+  					<s:actionerror cssStyle="color:red;background-image : url('../images/imgErro.gif');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
+  				</div> 
+			</s:if>
 <table border="0" width="100%" bgcolor="#FFFAF0">
 	<tr>
 	
@@ -57,7 +70,7 @@
 				</tr>
 				<tr style="border-style:dotted;">
 					<td width="30%"  style="border-style:dotted;"><b>Nome: </b></td>
-					<td  width="70%" style="border-style:dotted;"><s:property value="aluno.nome" /></td>
+					<td  width="70%" style="border-style:dotted;"><s:property value="%{aluno.nome}" /></td>
 					
 				</tr>
 				<tr style="border-style:dotted;">
@@ -71,7 +84,7 @@
 				<td width="30%"  style="border-style:dotted;">
 					<b>Período: </b>
 				</td>
-				<td  width="70%" style="border-style:dotted;"><s:property value="aluno" /></td>
+				<td  width="70%" style="border-style:dotted;"><s:property value="aluno.periodo" /></td>
 				</tr>
 				
 				<tr style="border-style:dotted;">
@@ -101,7 +114,7 @@
 	<td width="50%">
 	<br><br><br><br>
 		<hr width="80%">
-		<center><b>Assinatura do Professor</b></center>
+		<center><b>Assinatura do Coordenador</b></center>
 	</td>
 </tr>
 

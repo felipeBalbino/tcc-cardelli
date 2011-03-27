@@ -36,6 +36,7 @@ public class AlunoAction extends ActionSupport {
 	private static final String RULE_ALUNOS_ALTERA = "RULE_ALUNOS_ALTERA";
 
 	private Integer id;
+	private Integer idAluno;
 	
 	private String email2;
 	private String senha2;
@@ -102,6 +103,17 @@ public class AlunoAction extends ActionSupport {
 			e.printStackTrace();
 		}
 		return "grade";
+	}	
+	
+	public String delete() {
+				
+		try {
+			pessoaDAO.deleteAluno(idAluno);
+		} catch (IntranetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista();
 	}	
 	
 	public String gradeParaAluno() {
@@ -300,8 +312,24 @@ public class AlunoAction extends ActionSupport {
 		this.allStatusMatricula = allStatusMatricula;
 	}
 
+	public Integer getIdAluno() {
+		return idAluno;
+	}
+
+	public void setIdAluno(Integer idAluno) {
+		this.idAluno = idAluno;
+	}
+
+	public HorarioDAO getHorarioDAO() {
+		return horarioDAO;
+	}
+
+	public void setHorarioDAO(HorarioDAO horarioDAO) {
+		this.horarioDAO = horarioDAO;
+	}
 
 
+	
 
 	
 }

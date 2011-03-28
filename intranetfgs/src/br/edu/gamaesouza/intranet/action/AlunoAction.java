@@ -30,6 +30,7 @@ public class AlunoAction extends ActionSupport {
 
 	private static final String MSG_REGISTRO_SUCESSO = "Registrado com sucesso.";
 	private static final String MSG_EDITADO_SUCESSO = 	"Editado com sucesso";
+	private static final String MSG_DELETADO_SUCESSO = 	"Aluno deletado com sucesso";
 	
 	private static final String RULE_ALUNOS_LISTA = "RULE_ALUNOS_LISTA";
 	private static final String RULE_ALUNOS_SAVE = "RULE_ALUNOS_SAVE";
@@ -108,7 +109,18 @@ public class AlunoAction extends ActionSupport {
 	public String delete() {
 				
 		try {
-			pessoaDAO.deleteAluno(idAluno);
+			
+			List<DisciplinaLetiva> disciplinaLetiva = disciplinaDAO.getDisciplinaLetivaByUser(idAluno);
+			if(disciplinaLetiva.size() == 0){
+				pessoaDAO.deleteAluno(idAluno);
+				addActionMessage(MSG_DELETADO_SUCESSO);
+			}else{
+				addActionError("Não é possível efetuar esta operação, este aluno tem "+disciplinaLetiva.size()+" Disciplina(s) letiva(s) vínculada(s)");
+				for(DisciplinaLetiva letiva:disciplinaLetiva){
+					addActionError(letiva.getDisciplina().getNome()+" - "+letiva.getAno()+"/"+letiva.getSemestre()+" -  Ano:"+letiva.getAno()+" -  Sala:"+letiva.getSala());
+				}
+				addActionError("Delete primeiro suas disciplinas clicando no icone D.");
+			}
 		} catch (IntranetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

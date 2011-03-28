@@ -15,6 +15,7 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 public class CursoNovoParams implements CursoParams{
 
 	private String nomeCurso;
+	private Integer cargaHorariaComplementar;
 	private List<String> disciplinasCurso;
 	
 	@Autowired private CursoDAO cursoDAO;
@@ -33,6 +34,7 @@ public class CursoNovoParams implements CursoParams{
 		Curso curso = (Curso) SpringUtil.getBean("curso");
 		try {
 			curso.setDisciplinas(cursoDAO.getDisciplinaListByStringList(disciplinasCurso));
+			curso.setCargaHorariaComplementar(cargaHorariaComplementar);
 		} catch (IntranetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,6 +59,14 @@ public class CursoNovoParams implements CursoParams{
 
 	public void setDisciplinasCurso(List<String> disciplinasCurso) {
 		this.disciplinasCurso = disciplinasCurso;
+	}
+
+	public void setCargaHorariaComplementar(Integer cargaHorariaComplementar) {
+		this.cargaHorariaComplementar = cargaHorariaComplementar;
+	}
+
+	public Integer getCargaHorariaComplementar() {
+		return cargaHorariaComplementar;
 	}
 
 }

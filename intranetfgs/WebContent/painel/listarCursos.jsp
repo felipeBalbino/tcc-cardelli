@@ -124,6 +124,10 @@ if(i == j) $(this).hide('slow');
 					<tr>
 						<td><b>Nome: </b><s:textfield id="cursoAlteraParams.nomeCurso" name="cursoAlteraParams.nomeCurso" value="%{nome}" /></td>
 					</tr>
+					
+					<tr>
+						<td><b>Carga Horário Complementar: </b><s:textfield id="cursoAlteraParams.cargaHorariaComplementar" name="cursoAlteraParams.cargaHorariaComplementar" value="%{cargaHorariaComplementar}" /></td>
+					</tr>
 				
 					<tr><td>
 					<select id="cursoAlteraParams.disciplinas" name="cursoAlteraParams.disciplinas" multiple="multiple" size="10" >

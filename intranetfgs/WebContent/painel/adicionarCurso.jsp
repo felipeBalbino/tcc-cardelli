@@ -103,7 +103,8 @@ function restartTrs(){
 
 
 	<s:form action="/painel/curso!novo.java" name="adicionar" onSubmit="return validaForm()" >
-		Nome: <s:textfield id="nome" name="cursoNovoParams.nomeCurso"></s:textfield>
+		Nome: <s:textfield id="nome" name="cursoNovoParams.nomeCurso"></s:textfield><br>
+		Carga Horário Complementar: <s:textfield id="cargaHorariaComplementar" name="cursoNovoParams.cargaHorariaComplementar"></s:textfield>
 			<br></br>
 		<b>Selecione as disciplinas lecionadas neste curso</b>
 			<hr></hr>

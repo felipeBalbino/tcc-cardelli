@@ -264,7 +264,7 @@ INSERT INTO Atividade values (11,"Estágios extracurriculares", 40);
 INSERT INTO Atividade values (12,"Participação em programas de Extensão, pesquisa, iniciação científica ou cursos da área de interesse da graduação ou fins", 40);
 INSERT INTO Atividade values (13,"Participação em programas de voluntariado", 40);
 INSERT INTO Atividade values (14,"Visitas orientadas", 40);
-INSERT INTO Atividade values (14,"Semana do curso", 40);
+INSERT INTO Atividade values (15,"Semana do curso", 40);
 
 
 INSERT INTO HoraAEP values ("2010-10-10","11:40","11:20",1);

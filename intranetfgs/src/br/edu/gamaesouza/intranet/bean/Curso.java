@@ -44,8 +44,6 @@ public class Curso implements Serializable {
 	
 	private Integer cargaHorariaComplementar;
 	
-	
-	
 	public Integer getCargaHorariaComplementar() {
 		return cargaHorariaComplementar;
 	}

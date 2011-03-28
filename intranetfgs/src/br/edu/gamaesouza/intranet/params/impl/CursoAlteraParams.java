@@ -20,6 +20,8 @@ public class CursoAlteraParams implements CursoParams {
 	
 	private String nomeCurso;
 	
+	private Integer cargaHorariaComplementar;
+	
 	private List<String> disciplinas;
 	
 	@Autowired private CursoDAO cursoDAO;
@@ -36,6 +38,7 @@ public class CursoAlteraParams implements CursoParams {
 		Curso curso = (Curso) SpringUtil.getBean("curso");
 		curso.setId(id);
 		curso.setNome(nomeCurso);
+		curso.setCargaHorariaComplementar(cargaHorariaComplementar);
 		try {
 			curso.setDisciplinas(cursoDAO.getDisciplinaListByStringList(disciplinas));
 		} catch (IntranetException e) {
@@ -67,6 +70,14 @@ public class CursoAlteraParams implements CursoParams {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public void setCargaHorariaComplementar(Integer cargaHorariaComplementar) {
+		this.cargaHorariaComplementar = cargaHorariaComplementar;
+	}
+
+	public Integer getCargaHorariaComplementar() {
+		return cargaHorariaComplementar;
 	}
 
 	

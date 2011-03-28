@@ -98,7 +98,8 @@ public class AlunoAction extends ActionSupport {
 	
 	public String gradeParaAdmin() {
 		try {
-			setDisciplinasLetivas(disciplinaDAO.getDisciplinaLetivaByUser(id));
+			disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
+			disciplinasLetivas = disciplinaDAO.getDisciplinaLetivaByUser(id);
 		} catch (IntranetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -115,7 +116,7 @@ public class AlunoAction extends ActionSupport {
 				pessoaDAO.deleteAluno(idAluno);
 				addActionMessage(MSG_DELETADO_SUCESSO);
 			}else{
-				addActionError("Não é possível efetuar esta operação, este aluno tem "+disciplinaLetiva.size()+" Disciplina(s) letiva(s) vínculada(s)");
+				addActionError("Nï¿½o ï¿½ possï¿½vel efetuar esta operaï¿½ï¿½o, este aluno tem "+disciplinaLetiva.size()+" Disciplina(s) letiva(s) vï¿½nculada(s)");
 				for(DisciplinaLetiva letiva:disciplinaLetiva){
 					addActionError(letiva.getDisciplina().getNome()+" - "+letiva.getAno()+"/"+letiva.getSemestre()+" -  Ano:"+letiva.getAno()+" -  Sala:"+letiva.getSala());
 				}
@@ -129,7 +130,7 @@ public class AlunoAction extends ActionSupport {
 	}	
 	
 	public String gradeParaAluno() {
-		List<Horario> horarioSegunda = new ArrayList<Horario>();
+		/*List<Horario> horarioSegunda = new ArrayList<Horario>();
 		List<Horario> horarioTerca = new ArrayList<Horario>();
 		List<Horario> horarioQuarta = new ArrayList<Horario>();
 		List<Horario> horarioQuinta = new ArrayList<Horario>();
@@ -142,28 +143,37 @@ public class AlunoAction extends ActionSupport {
 				for( Horario horario : letiva.getHorarios()){
 					DisciplinaLetivaHorario disciplinaLetivaHorario = horarioDAO.getDisciplinaLetivaHorarioByIds(horario.getId(),letiva.getId());
 					if(disciplinaLetivaHorario.getDiaSemana().equals("SEGUNDA")){
-						
+						horarioSegunda.add( horario );
 					}
 					if(disciplinaLetivaHorario.getDiaSemana().equals("TERCA")){
-						
+						horarioTerca.add( horario );
 					}
 					if(disciplinaLetivaHorario.getDiaSemana().equals("QUARTA")){
-						
+						horarioQuarta.add( horario );
 					}
 					if(disciplinaLetivaHorario.getDiaSemana().equals("QUINTA")){
-						
+						horarioQuinta.add( horario );
 					}
 					if(disciplinaLetivaHorario.getDiaSemana().equals("SEXTA")){
-						
+						horarioSexta.add( horario );
 					}
 					if(disciplinaLetivaHorario.getDiaSemana().equals("SABADO")){
-						
+						horarioSabado.add( horario );
 					}
 					if(disciplinaLetivaHorario.getDiaSemana().equals("DOMINGO")){
-						
+						horarioDomingo.add( horario );
 					}
 				}
 			}
+		} catch (IntranetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "grade";
+		*/
+		
+		try {
+			setDisciplinasLetivas(disciplinaDAO.getDisciplinaLetivaByUser(UserData.getLoggedUser().getId()));
 		} catch (IntranetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -179,25 +189,25 @@ public class AlunoAction extends ActionSupport {
 				
 				if(pessoaDAO.validarLogin(alunoNovoParams.getLogin())){
 					error=true;
-					addActionError("Login já existente em nossa base.");
+					addActionError("Login jï¿½ existente em nossa base.");
 				}
 
 				
 				if (pessoaDAO.validarEmail(alunoNovoParams.getEmail())){
 					error=true;
-					addActionError("Email já existente em nossa base.");
+					addActionError("Email jï¿½ existente em nossa base.");
 				}
 						
 				
 				if (alunoNovoParams.getLogin().length() > 8){
 					error=true;
-					addActionError("Login do Usuário precisar tem menos de 8 caracteres.");
+					addActionError("Login do Usuï¿½rio precisar tem menos de 8 caracteres.");
 				}
 						
 				
 				if(pessoaDAO.validarMatricula(alunoNovoParams.getMatricula())){
 					error=true;
-					addActionError("Matrícula já existente em nossa base.");
+					addActionError("Matrï¿½cula jï¿½ existente em nossa base.");
 					Pessoa pessoa = pessoaDAO.getPessoaByMatricula( alunoNovoParams.getMatricula() );
 					addActionError("Aluno: "+pessoa.getNome()+ " - " + "Email: "+pessoa.getEmail()+" - " + "Matricula: "+pessoa.getMatricula());					
 				}

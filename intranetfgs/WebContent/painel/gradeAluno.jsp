@@ -73,6 +73,11 @@ if(i == j) $(this).hide('slow');
 		
 		<s:iterator value="disciplinasLetivas" var="disciplinaLetiva">
 			<s:iterator value="horarios" var="horario">
+			
+							<s:property  value="diaSemana" /> - <s:property  value="disciplina.nome" /> - Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
+							<s:date format="HH:mm" name="horario.horaInicio" /> / <s:date format="HH:mm" name="horario.horaFim" /><br>
+							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
+							<hr></hr>
 				<tr>
 					<td>
 						<c:if test="${DiaSemana == 'SEGUNDA'}">

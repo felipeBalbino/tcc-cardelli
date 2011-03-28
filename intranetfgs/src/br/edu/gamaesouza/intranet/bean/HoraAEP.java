@@ -15,7 +15,6 @@ import javax.persistence.Transient;
 		
 		@NamedQuery(name="horasAEPByAluno",query="SELECT aep FROM HoraAEP aep where aep.aluno.id = :aluno"),
 		@NamedQuery(name="horasAEPByAlunoData",query="SELECT aep FROM HoraAEP aep where aep.aluno.id = :aluno AND data = :data" )
-		
 })
 public class HoraAEP extends Hora {
 	

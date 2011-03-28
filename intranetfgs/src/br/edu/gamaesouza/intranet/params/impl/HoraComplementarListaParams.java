@@ -7,6 +7,18 @@ import br.edu.gamaesouza.intranet.utils.IntranetException;
 public class HoraComplementarListaParams implements HoraComplementarParams {
 
 	private Integer id;
+	
+	private String atividade;
+
+	private Integer atividadeKey;
+	
+	public Integer getAtividadeKey() {
+		return atividadeKey;
+	}
+
+	public void setAtividadeKey(Integer atividadeKey) {
+		this.atividadeKey = atividadeKey;
+	}
 
 	public Integer getId() {
 		return id;
@@ -25,5 +37,15 @@ public class HoraComplementarListaParams implements HoraComplementarParams {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public String getAtividade() {
+		return atividade;
+	}
+
+	public void setAtividade(String atividade) {
+		this.atividade = atividade;
+	}
+	
+	
 	
 }

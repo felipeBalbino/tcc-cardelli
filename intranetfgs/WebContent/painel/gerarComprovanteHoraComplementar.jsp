@@ -13,7 +13,7 @@
 		<a href="../painel/aluno!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Alunos</a>
 	</div>
 <div id="comprovante" style="boder:1px;">
-<div id="opcoes" style="text-align:right;"><img src="../images/imprimir.gif" /> <a style="border: 0px;" href="hora!enviarComprovanteEmail.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>&geraComprovanteHoraComplementarParams.horaId=<s:property value="horaComplementar.id"/>"> <img src="../images/email.gif" /></a>
+<div id="opcoes" style="text-align:right;"><img src="../images/imprimir.gif" /> <a style="border: 0px;" href="hora!enviarComprovanteEmail.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>&geraComprovanteHoraComplementarParams.horaId=<s:property value="horaComplementar.id"/>"> <img style="border: 0px;" src="../images/email.gif" /></a>
   				</div><br>
   						<s:if test="hasActionMessages()">
 				<div class="welcome" >
@@ -45,13 +45,13 @@
 				</tr>
 				<tr style="border-style:dotted;">
 					<td width="30%" style="border-style:dotted;"><b>Título: </b></td>
-					<td width="70%" style="border-style:dotted;"><s:property value="horaComplementar.nomeEvento" /></td>
+					<td width="70%" style="border-style:dotted;"><s:property value="horaComplementar.titulo" /></td>
 					
 				</tr>
 				<tr style="border-style:dotted;">
 				
 					<td width="30%" style="border-style:dotted;"><b>Qtd. de Horas: </b></td>
-					<td width="70%" style="border-style:dotted;"><s:property value="horaComplementar.numeroHoras" /></td>
+					<td width="70%" style="border-style:dotted;"><s:property value="horaComplementar.totalHoras" /></td>
 					
 				
 				</tr>

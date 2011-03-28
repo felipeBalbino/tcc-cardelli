@@ -15,6 +15,7 @@ import br.edu.gamaesouza.intranet.utils.DateUtil;
 		@NamedQuery(name="horasComplementaresByAlunoAtividade",query="SELECT comp FROM HoraComplementar comp  where comp.aluno.id = :aluno AND comp.atividade.id = :atividade"),
 		@NamedQuery(name="totalHorasPorAtividade",query="SELECT new br.edu.gamaesouza.intranet.bean.result.HorasAtividadeResultBean(sum(comp.minutos), comp.atividade.nome, comp.atividade.numeroHoras) FROM HoraComplementar comp  where comp.aluno.id = :aluno GROUP by comp.atividade.nome"),
 		@NamedQuery(name="horaComplementarByHora",query="SELECT comp FROM HoraComplementar comp  where comp.aluno.id = :aluno AND comp.titulo = :titulo AND comp.minutos = :minutos")
+
 		
 })
 public class HoraComplementar extends Hora {
@@ -51,7 +52,7 @@ public class HoraComplementar extends Hora {
 
 	public void setMinutos(Integer minutos) {
 		this.minutos = minutos;
-		this.totalHoras = DateUtil.getHourMinutesFormated(minutos);
+		
 	}
 
 	public String getTotalHoras() {

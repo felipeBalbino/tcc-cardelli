@@ -250,8 +250,22 @@ INSERT INTO Hora values (4,2);
 INSERT INTO Hora values (5,2);
 INSERT INTO Hora values (6,2);
 
-INSERT INTO Atividade values (1,"Cursos Extra-Curriculares",40);
-INSERT INTO Atividade values (2,"Testa Atividade", 40);
+INSERT INTO Atividade values (1,"Disciplinas Extracurriculares oferecidas pelos cursos",40);
+INSERT INTO Atividade values (2,"Disciplinas Extracurriculares em outros cursos ou IES, em áreas afins", 40);
+INSERT INTO Atividade values (3,"Projetos de pesquisa ou iniciação científica orientados por Docentes da Faculdade", 40);
+INSERT INTO Atividade values (4,"Programas de Extensão orientados por docentes da faculdade", 40);
+INSERT INTO Atividade values (5,"Monitoria nos cursos", 40);
+INSERT INTO Atividade values (6,"Eventos diversos, de interesses dos alunos", 40);
+INSERT INTO Atividade values (7,"Assistência a defesa de monografias, dissertações de Mestrado ou teses de Doutorado", 40);
+INSERT INTO Atividade values (8,"Cursos de Idiomas", 40);
+INSERT INTO Atividade values (9,"Cursos na área da computação e informática", 40);
+INSERT INTO Atividade values (10,"Participação em atividades extracurricular de assistência ou assessoria em área de interesse dos cursos, diretamente ou por intermédio de associações,sindicatos,ONGs,mediante convênio com a faculdade", 40);
+INSERT INTO Atividade values (11,"Estágios extracurriculares", 40);
+INSERT INTO Atividade values (12,"Participação em programas de Extensão, pesquisa, iniciação científica ou cursos da área de interesse da graduação ou fins", 40);
+INSERT INTO Atividade values (13,"Participação em programas de voluntariado", 40);
+INSERT INTO Atividade values (14,"Visitas orientadas", 40);
+INSERT INTO Atividade values (14,"Semana do curso", 40);
+
 
 INSERT INTO HoraAEP values ("2010-10-10","11:40","11:20",1);
 INSERT INTO HoraAEP values ("2010-10-10","12:40","12:20",2);

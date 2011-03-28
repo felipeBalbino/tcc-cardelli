@@ -34,9 +34,9 @@
 });
 });
 
- 	function delcurso(codigo) {    
-	     if (confirm('Excluir o curso?')) {    
-	         location.href = "../painel/curso!delete.java?cursoDeletaParams.id="+ codigo;
+ 	function delcomplementar(alunoId,horaId) {    
+	     if (confirm('Excluir hora complementar?')) {    
+	         location.href = "../painel/hora!deletaComplementar.java?horaComplementarDeletaParams.alunoId="+ alunoId+ "&horaComplementarDeletaParams.horaId=" + horaId; 
 	     }  
 	 }
 
@@ -53,16 +53,15 @@
 <b>Filtros de Pesquisa</b>
 <hr></hr>
 				
-<s:form action="/painel/curso!lista.java">
+<s:form method="get" action="hora!listaComplementar.java">
+	<s:hidden name="horaComplementarListaParams.id" value="%{aluno.id}"></s:hidden>
 	<table>
 		<tr>
-			<td>Atividade:</td>
-			<td><sx:autocompleter/></td>
+			<td><b>Atividade:</b></td>
+			<td><sx:autocompleter headerKey="-1" headerValue="Todos"  name="horaComplementarListaParams.atividade" cssStyle="width:300px;" list="atividades" listKey="id" listValue="nome" /></td>
 			<td><s:submit value="Pesquisar"></s:submit></td>
 		</tr>
 	</table>  
-	 
-	
 	
 </s:form>
 
@@ -77,7 +76,7 @@
   							 	<s:actionerror cssStyle="color:red;background-image : url('../images/imgErro.gif');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
   							</div> 
 						</s:if>
-<table width="100%"><tr ><td width="95%"><b>Horas Complementares </b></td><td width="5%">Imprimir</td></tr></table>
+<table width="100%"><tr ><td width="95%"><b>Horas Complementares </b></td><td width="5%"></td></tr></table>
 <hr></hr>
 <table width="100%">
 	<tr>
@@ -103,7 +102,7 @@
 			<td>	
 				
 							
-				<a title="Deletar evento" href="javascript:delcurso(<s:property value="%{id}" />)">
+				<a title="Deletar Hora Complementar" href="javascript:delcomplementar(<s:property value="%{aluno.id}" />,<s:property value="%{id}" />)">
 					<img border="0" src="../images/lixeira.gif" /> 
 				</a>
 				
@@ -112,7 +111,7 @@
 				
 							
 				<a style="border: 0px;" href="hora!enviarComprovanteEmail.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>&geraComprovanteHoraComplementarParams.horaId=<s:property value="id"/>">
-				 <img src="../images/email_go.png" />
+				 <img style="border: 0px;" src="../images/email_go.png" />
 				 </a>
 				
 			</td>
@@ -140,7 +139,7 @@
 
 	<td><s:property value="nomeAtividade" /></td>
 	<td><s:property value="totalHorasAlunoFormatado" /> / <s:property value="totalHorasAtividade" />h(s)</td>
-	<td><c:if test="${totalHorasAluno ge totalHorasAtividade}">Completo</c:if><c:if test="${totalHorasAluno lt totalHorasAtividade}">Incompleto</c:if></td>
+	<td><c:if test="${(totalMinutosAluno / 60) ge totalHorasAtividade}">Completo</c:if><c:if test="${(totalMinutosAluno / 60) lt totalHorasAtividade}">Incompleto</c:if></td>
 	
 </tr>
 

@@ -67,12 +67,12 @@ function restartTrs(){
 </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Intranet - Faculdade Gama & Souza | Adicionar Curso</title>
+<title>Intranet - Faculdade Gama & Souza | Adicionar Hora AEP</title>
 </head>
 <body>
 
 <div id="retorno" align="right">
-<img src="../images/arrow_categ.gif"><a href="../painel/curso!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Cursos</a>
+<img src="../images/arrow_categ.gif"><a href="../painel/aluno!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Alunos</a>
 </div>
 <div id="experience" >
 					<div id="explanation">

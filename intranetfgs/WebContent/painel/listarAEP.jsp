@@ -111,6 +111,9 @@ if(i == j) $(this).hide('slow');
 		</tr>
 
 	</s:iterator>
+	
 </table>
+<br><br>
+<b>Total de Horas AEP: </b><s:property value="totalHorasAEPAluno" />
 </body>
 </html>

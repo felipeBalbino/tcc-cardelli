@@ -17,8 +17,8 @@
 		width:340px;
 	}
 
-	#nome {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-	#disciplinasCurso {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
+	#titulo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px; width:300px;}
+	#data {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
 
 	#contact-form { 
 		border-left:1px solid #313b45; 
@@ -100,8 +100,9 @@
 			<s:if test="hasActionMessages()">
 				<div class="welcome" >
   					<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/><br>
-					<a href="hora!gerarComprovanteHoraComplementar.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>&geraComprovanteHoraComplementarParams.horaId=<s:property value="horaComplementar.id"/>">
-						<img src="../images/comprovante.gif"/>Gerar Comprovante
+					<a style="border:0px;" href="hora!gerarComprovanteHoraComplementar.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>&geraComprovanteHoraComplementarParams.horaId=<s:property value="horaComplementar.id"/>">
+						<table><tr><td><img style="border:0px;" src="../images/comprovante.gif"/></td><td>Gerar Comprovante</td></tr></table>
+						
 					</a>
   				</div> 			
 			</s:if>
@@ -133,7 +134,7 @@
 			<hr>
 			<s:form action="/painel/hora!salvaComplementar.java" name="adicionar" onSubmit="return validaForm()" >
 				<s:hidden value="%{aluno.id}" name="horaComplementarNovoParams.aluno.id" />
-				Título: <br><s:textfield id="data" name="horaComplementarNovoParams.nomeEvento"   /><br>
+				Título: <br><s:textfield id="data" id="titulo" name="horaComplementarNovoParams.nomeEvento"   /><br>
 				Horas (hh:mm): <br><s:textfield maxlength="5" id="data" name="horaComplementarNovoParams.numeroHoras" onkeypress="dois_pontos(this)" /><br>
 				Atividade:<br><sx:autocompleter headerKey="-1" headerValue=""  id="atividade" list="atividades" name="horaComplementarNovoParams.atividadeId" value="atividade" listKey="id" listValue="nome" /><br>
 						<br>

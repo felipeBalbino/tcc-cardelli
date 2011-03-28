@@ -70,33 +70,27 @@ public class HoraAction extends ActionSupport {
 	private List<HorasAtividadeResultBean> horasAtividadeResultBean;
 	private HorasCursoResultBean horasCursoResultBean;
 	
+	private String totalHorasAEPAluno;
+	
 	private final String RETURN_LIST_AEP_SUCCESS = "listAEPSuccess";
 	private final String RETURN_LIST_AEP_FAILURE = "listAEPFailure";
-	private final String RETURN_ALTER_AEP_SUCCESS = "alterAEPSuccess";
-	private final String RETURN_ALTER_AEP_FAILURE = "alterAEPFailure";
-	private final String RETURN_DELETE_AEP_SUCCESS = "deleteAEPSuccess";
-	private final String RETURN_DELETE_AEP_FAILURE = "deleteAEPFailure";
+
+	private final String RETURN_DELETE_AEP_SUCCESS = "listAEPSuccess";
 	private final String RETURN_SAVE_AEP_SUCCESS = "saveAEPSuccess";
-	private final String RETURN_SAVE_AEP_FAILURE = "saveAEPFailure";
+
 	
 	private final String RULE_LISTA_AEP = "RULE_LISTA_AEP";
 	private final String RULE_DELETA_AEP = "RULE_DELETA_AEP";
-	private final String RULE_ALTERA_AEP = "RULE_ALTERA_AEP";
 	private final String RULE_SALVA_AEP = "RULE_SALVA_AEP";
 	
 	
 	private final String RETURN_LIST_COMPLEMENTAR_SUCCESS = "listComplementarSuccess";
 	private final String RETURN_LIST_COMPLEMENTAR_FAILURE = "listComplementarFailure";
-	private final String RETURN_ALTER_COMPLEMENTAR_SUCCESS = "alterAEPSuccess";
-	private final String RETURN_ALTER_COMPLEMENTAR_FAILURE = "alterAEPFailure";
-	private final String RETURN_DELETE_COMPLEMENTAR_SUCCESS = "deleteAEPSuccess";
-	private final String RETURN_DELETE_COMPLEMENTAR_FAILURE = "deleteAEPFailure";
+	private final String RETURN_DELETE_COMPLEMENTAR_SUCCESS = "listComplementarSuccess";
 	private final String RETURN_SAVE_COMPLEMENTAR_SUCCESS = "saveComplementarSuccess";
-	private final String RETURN_SAVE_COMPLEMENTAR_FAILURE = "saveComplementarFailure";
 	
 	private final String RULE_LISTA_COMPLEMENTAR = "RULE_LISTA_COMPLEMENTAR";
 	private final String RULE_DELETA_COMPLEMENTAR = "RULE_DELETA_COMPLEMENTAR";
-	private final String RULE_ALTERA_COMPLEMENTAR = "RULE_ALTERA_COMPLEMENTAR";
 	private final String RULE_SALVA_COMPLEMENTAR = "RULE_SALVA_COMPLEMENTAR";
 	
 
@@ -107,6 +101,7 @@ public class HoraAction extends ActionSupport {
 		try {
 			this.aluno = (Aluno) pessoaDAO.getPessoaById(horaAEPListaParams.getId());	
 			horasAEP = DateUtil.getDiferencaDatasListAEP(horaDAO.getHorasAEP(aluno));
+			totalHorasAEPAluno = DateUtil.getSomaHorasAEP(horasAEP);
 			alunoSearchParams = new AlunoSearchParams();
 			return RETURN_LIST_AEP_SUCCESS;
 		} catch (IntranetException e) {
@@ -121,7 +116,7 @@ public class HoraAction extends ActionSupport {
 		try {
 			this.aluno = (Aluno)pessoaDAO.getPessoaById(horaComplementarListaParams.getId());
 			this.atividades = horaDAO.getAtividades();
-			horasComplementares = horaDAO.getHorasComplementares(aluno);
+			horasComplementares = horaDAO.getHorasComplementares(aluno,horaComplementarListaParams.getAtividadeKey());
 			horasComplementares = DateUtil.getFormatedFields(horasComplementares);
 			horasAtividadeResultBean = horaDAO.getHorasGroupByAtividade(horaComplementarListaParams.getId());
 			List<HorasCursoResultBean> resultList = horaDAO.getHorasCursoAndAluno(horaComplementarListaParams.getId());
@@ -140,7 +135,7 @@ public class HoraAction extends ActionSupport {
 	
 	public String prepareCadastroAEP() throws IntranetException{
 		aluno = pessoaDAO.getAlunoById(aluno.getId());
-		return "saveAEPSuccess";
+		return RETURN_SAVE_AEP_SUCCESS;
 	}
 	
 	public String novaHoraComplementar() throws IntranetException{
@@ -162,7 +157,7 @@ public class HoraAction extends ActionSupport {
 			throw new IntranetException(e.getMessage());
 		}
 		
-		return "saveAEPSuccess";
+		return RETURN_SAVE_AEP_SUCCESS;
 	}
 	
 	public String salvaComplementar() throws IntranetException{
@@ -188,14 +183,38 @@ public class HoraAction extends ActionSupport {
 			return RETURN_SAVE_COMPLEMENTAR_SUCCESS;
 	}
 	
-	public String alteraAEP(){
-		UserData.grantAccess(RULE_ALTERA_AEP);	
-		return null;
+	public String deletaAEP(){
+		UserData.grantAccess(RULE_DELETA_AEP);	
+		try {
+			horaDAO.deleteAEP(horaAEPDeletaParams.getAlunoId(),horaAEPDeletaParams.getHoraId());
+			addActionMessage("Hora deletada com sucesso!");
+		} catch (IntranetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return RETURN_DELETE_AEP_SUCCESS;
 	}
 	
-	public String alteraComplementar(){
-		UserData.grantAccess(RULE_ALTERA_COMPLEMENTAR);	
-		return null;
+	public String deletaComplementar(){
+		UserData.grantAccess(RULE_DELETA_COMPLEMENTAR);	
+		try {
+			this.horaDAO.deleteComplementar(this.horaComplementarDeletaParams.getAlunoId(),this.horaComplementarDeletaParams.getHoraId());
+			this.aluno = this.pessoaDAO.getAlunoById(Integer.parseInt(horaComplementarDeletaParams.getAlunoId()));
+			this.atividades = this.horaDAO.getAtividades();
+			this.horasComplementares = this.horaDAO.getHorasComplementares(this.aluno,null);
+			this.horasComplementares = DateUtil.getFormatedFields(this.horasComplementares);
+			horasAtividadeResultBean = this.horaDAO.getHorasGroupByAtividade(Integer.parseInt(horaComplementarDeletaParams.getAlunoId()));
+			List<HorasCursoResultBean> resultList = this.horaDAO.getHorasCursoAndAluno(Integer.parseInt(horaComplementarDeletaParams.getAlunoId()));
+			if(resultList.size() > 0){
+				horasCursoResultBean = resultList.get(0);
+			}	
+			
+			addActionMessage("Hora deletada com sucesso!");
+		} catch (IntranetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return RETURN_DELETE_COMPLEMENTAR_SUCCESS;
 	}
 	
 	public String gerarComprovanteHoraComplementar() throws IntranetException{
@@ -358,6 +377,14 @@ public class HoraAction extends ActionSupport {
 	public void setGeraComprovanteHoraComplementarParams(
 			GeraComprovanteHoraComplementarParams geraComprovanteHoraComplementarParams) {
 		this.geraComprovanteHoraComplementarParams = geraComprovanteHoraComplementarParams;
+	}
+
+	public String getTotalHorasAEPAluno() {
+		return totalHorasAEPAluno;
+	}
+
+	public void setTotalHorasAEPAluno(String totalHorasAEPAluno) {
+		this.totalHorasAEPAluno = totalHorasAEPAluno;
 	}
 	
 	

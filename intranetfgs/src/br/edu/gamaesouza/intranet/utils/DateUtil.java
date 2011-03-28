@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.edu.gamaesouza.intranet.bean.HoraAEP;
+import br.edu.gamaesouza.intranet.bean.HoraComplementar;
 
 public class DateUtil {
 	
@@ -57,6 +58,40 @@ public class DateUtil {
 		String[] split = h.split(":");
 		
 		return (Integer.parseInt(split[0]) * 60) + Integer.parseInt(split[1]);
+	}
+
+	public static List<HoraComplementar> getFormatedFields(
+			List<HoraComplementar> horasComplementares) {
+		for (HoraComplementar h : horasComplementares){
+			h.setTotalHoras(getHourMinutesFormated(h.getMinutos()));
+		}
+		return horasComplementares;
+	}
+	
+	public static String getSomaHorasAEP(List<HoraAEP> aeps){
+		Integer total = 0;
+		for(HoraAEP aep : aeps){
+		
+			Calendar calendarInicio = Calendar.getInstance();
+			calendarInicio.setTime(aep.getHoraInicio());
+			
+			Calendar calendarFim = Calendar.getInstance();
+			calendarFim.setTime(aep.getHoraFim());
+			
+			
+			Integer horaInicio = calendarInicio.get(Calendar.HOUR);
+			Integer horaFim = calendarFim.get(Calendar.HOUR);
+			
+			Integer minutoInicio = calendarInicio.get(Calendar.MINUTE);
+			Integer minutoFim = calendarFim.get(Calendar.MINUTE);
+			
+			Integer minutosInicio = (horaInicio * 60) + minutoInicio;
+			Integer minutosFim = (horaFim * 60) + minutoFim;
+			
+			total = total + (minutosFim - minutosInicio);
+		}
+		return getHourMinutesFormated(total);	
+		
 	}
 
 }

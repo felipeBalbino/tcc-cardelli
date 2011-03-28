@@ -14,6 +14,7 @@ import br.edu.gamaesouza.intranet.bean.HoraAEP;
 import br.edu.gamaesouza.intranet.bean.HoraComplementar;
 import br.edu.gamaesouza.intranet.bean.result.HorasAtividadeResultBean;
 import br.edu.gamaesouza.intranet.bean.result.HorasCursoResultBean;
+import br.edu.gamaesouza.intranet.utils.IntranetException;
 
 public class HoraDAO extends HibernateDaoSupport {
 
@@ -93,6 +94,54 @@ public class HoraDAO extends HibernateDaoSupport {
 		Criteria c = getSession().createCriteria(HoraComplementar.class);
 		c.add(Restrictions.eq("id", id));
 		return (HoraComplementar) c.uniqueResult();
+	}
+
+	public void deleteComplementar(String alunoId, String horaId) throws IntranetException {
+		
+		Query query = getSession().getNamedQuery("horasByAlunoAndIdHora");
+		query.setInteger("aluno", Integer.parseInt(alunoId));
+		query.setInteger("hora", Integer.parseInt(horaId));
+		
+		Hora hora = (Hora) query.uniqueResult();
+		
+		if(hora == null){
+			throw new IntranetException("[deleteComplementar] Não foi possível buscar a hora com os parâmetros passados.");
+		}else{
+			getHibernateTemplate().delete(hora);
+		}
+		
+	}
+
+	public void deleteAEP(String alunoId, String horaId) throws IntranetException {
+		Query query = getSession().getNamedQuery("horasByAlunoAndIdHora");
+		query.setInteger("aluno", Integer.parseInt(alunoId));
+		query.setInteger("hora", Integer.parseInt(horaId));
+		
+		Hora hora = (Hora) query.uniqueResult();
+		
+		if(hora == null){
+			throw new IntranetException("[deleteAEP] Não foi possível buscar a hora com os parâmetros passados.");
+		}else{
+			getHibernateTemplate().delete(hora);
+		}
+		
+	}
+
+	public List<HoraComplementar> getHorasComplementares(Aluno aluno,
+			Integer atividadeKey) {
+		
+		if (atividadeKey == null || atividadeKey < 1){
+			Query horasAEPQuery = getSession().getNamedQuery("horasComplementaresByAluno");
+			horasAEPQuery.setInteger("aluno", aluno.getId());
+			return horasAEPQuery.list();
+		}else{
+			Query horasAEPQuery = getSession().getNamedQuery("horasComplementaresByAlunoAtividade");
+			horasAEPQuery.setInteger("aluno", aluno.getId());
+			horasAEPQuery.setInteger("atividade", atividadeKey);
+			return horasAEPQuery.list();
+		}
+		
+		
 	}
 	
 	

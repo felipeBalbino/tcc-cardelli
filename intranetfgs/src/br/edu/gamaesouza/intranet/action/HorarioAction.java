@@ -72,16 +72,16 @@ public class HorarioAction extends ActionSupport{
 	
 	public String save() throws Exception{
 		horarioDAO.save(horarioNovoParams.getHorario());
-		addActionMessage("Horário criado com sucesso");
+		addActionMessage("Horï¿½rio criado com sucesso");
 		return prepare();
 	}
 	
 	public String delete() throws Exception{
 		try{
 		horarioDAO.delete( horarioDAO.getHorarioById( id ) );
-		addActionMessage("Horário deletado com sucesso");			
+		addActionMessage("Horï¿½rio deletado com sucesso");			
 	} catch (Exception e) {		
-		addActionError("Não foi possivel deletar Horário, ocorreu um erro interno no Servidor");			
+		addActionError("Nï¿½o foi possivel deletar Horï¿½rio, ocorreu um erro interno no Servidor");			
 	}
 		return prepare();
 	}
@@ -90,9 +90,9 @@ public class HorarioAction extends ActionSupport{
 		try{
 		DisciplinaLetivaHorario disciplinaLetivaHorario = horarioDAO.getDisciplinaLetivaHorarioById( id );
 		horarioDAO.deleteDisciplinaLetivaHorario( disciplinaLetivaHorario );
-		addActionMessage("Horário deletado com sucesso");			
+		addActionMessage("Horï¿½rio deletado com sucesso");			
 	} catch (Exception e) {		
-		addActionError("Não foi possivel deletar Horário, ocorreu um erro interno no Servidor");			
+		addActionError("Nï¿½o foi possivel deletar Horï¿½rio, ocorreu um erro interno no Servidor");			
 	}
 		return listarHorarioPorDisciplinaLetiva();
 	}
@@ -103,7 +103,7 @@ public class HorarioAction extends ActionSupport{
 		horarios = 	horarioDAO.getAllHorarios();
 		disciplinaLetivaHorario = 	horarioDAO.getAllDisciplinaLetivaHorariosById(idDisciplinaLetiva);
 		} catch (Exception e) {		
-			addActionError("Não foi possivel listar Horários, ocorreu um erro interno no Servidor");			
+			addActionError("Nï¿½o foi possivel listar Horï¿½rios, ocorreu um erro interno no Servidor");			
 		}
 	return "listarHorarioDiscplinaLetiva";
 	}
@@ -117,10 +117,15 @@ public class HorarioAction extends ActionSupport{
 				disciplinaLetivaHorario.setDiaSemana(diaSemana);
 				disciplinaLetivaHorario.setDisciplinaLetiva(letiva);
 				disciplinaLetivaHorario.setHorario(horario);
-				disciplinaDAO.update(letiva);
-				addActionMessage("Horario adicionado em disciplina letiva com sucesso");
+				
+				if(horarioDAO.validationDisciplinaLetivaHorario(disciplinaLetivaHorario)){
+					horarioDAO.saveDisciplinaLetivaHorario(disciplinaLetivaHorario);
+					addActionMessage("Horario adicionado em disciplina letiva com sucesso");
+				}else{
+					addActionError("Nï¿½o foi possivel Adicionar, este horÃ¡rio jÃ¡ existe nesta disciplina. ");		
+				}
 		} catch (Exception e) {		
-			addActionError("Não foi possivel Adicionar, ocorreu um erro interno no Servidor");			
+			addActionError("Nï¿½o foi possivel Adicionar, ocorreu um erro interno no Servidor");			
 		}
 		return listarHorarioPorDisciplinaLetiva();
 	}

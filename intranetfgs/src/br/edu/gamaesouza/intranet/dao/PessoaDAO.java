@@ -239,10 +239,10 @@ public class PessoaDAO extends HibernateDaoSupport {
 		return aluno;	
 	}
 	
-	public Pessoa getPessoaByEmail(String id)throws IntranetException{
-		Query c = getSession().getNamedQuery("pessoaById");
-		c.setString("email", id);
-		Pessoa pessoa = (Pessoa) c.uniqueResult();
+	public Pessoa getPessoaByEmail(String idEmail)throws IntranetException{
+		Criteria getPessoaByEmail = getSession().createCriteria( Pessoa.class );
+		getPessoaByEmail.add( Restrictions.eq( "email", idEmail ));
+		Pessoa pessoa = (Pessoa) getPessoaByEmail.uniqueResult();
 		return pessoa;	
 		
 	}
@@ -282,8 +282,17 @@ public class PessoaDAO extends HibernateDaoSupport {
 		return rule;
 	}
 	
-	public void deleteProfessor(Professor professor)throws IntranetException{	
-		getHibernateTemplate().delete(professor);
+	public void deleteProfessor(final Integer idProfessor)throws IntranetException{	
+		HibernateCallback callback = new HibernateCallback() {
+	        public Object doInHibernate(Session session) throws HibernateException, SQLException {			
+	        	Professor professor = (Professor) session.load(Professor.class, idProfessor);
+				getHibernateTemplate().delete(professor);
+	            return null;
+	        }
+	    };	
+		getHibernateTemplate().execute(callback);	
+		
+		
 	}
 	
 	public void deleteAluno(final Integer idAluno)throws IntranetException{	

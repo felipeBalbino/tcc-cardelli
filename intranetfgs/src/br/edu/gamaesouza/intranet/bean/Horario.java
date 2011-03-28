@@ -1,7 +1,9 @@
 package br.edu.gamaesouza.intranet.bean;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -81,7 +83,11 @@ public class Horario {
 
 	
 	public String toString(){
-		return "Ano: "+ano+" Hora inicial: "+horaInicio+" Hora Final: "+horaFim;
+		Date horaInicio = this.horaInicio;
+		Date horaFim = this.horaFim;
+		String strDateFormat = "hh:mm:ss a";
+		SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
+		return "Ano: "+ano+" Hora inicial: "+sdf.format(horaInicio)+" Hora Final: "+sdf.format(horaFim);
 		
 	}
 	

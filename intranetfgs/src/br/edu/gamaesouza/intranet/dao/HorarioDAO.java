@@ -44,8 +44,12 @@ public class HorarioDAO extends HibernateDaoSupport {
 	}
 	
 	public List<DisciplinaLetivaHorario> getAllDisciplinaLetivaHorariosById(Integer id) throws IntranetException {
-		Query c = getSession().createQuery( "Select d from DisciplinaLetivaHorario d where disciplinaLetiva_id="+id );
-		return c.list();
+		Criteria getAllLetivaByHorario = getSession().createCriteria(DisciplinaLetivaHorario.class);
+		getAllLetivaByHorario.add( Restrictions.eq( "disciplinaLetiva.id", id ) );
+		getAllLetivaByHorario.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<DisciplinaLetivaHorario> letivaHorario =  getAllLetivaByHorario.list();
+		//Query c = getSession().createQuery( "Select d from DisciplinaLetivaHorario d where disciplinaLetiva_id="+id );
+		return letivaHorario;
 	}
 	
 	

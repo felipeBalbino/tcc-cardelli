@@ -118,7 +118,7 @@ width:295px;
 							<span id="sprestante2" style="font-family:Georgia;"></span><br>
 							Mensagem: <s:textarea cssStyle="width:80%; height:200px;" name="noticia.mensagem" id="mensagem" ></s:textarea>
 							
-							<s:submit align="left"></s:submit>
+							<s:submit align="left" value="Adicionar"></s:submit>
 						</s:form>
 					</div>		
 		</div>

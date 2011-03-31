@@ -26,7 +26,7 @@ function enviaremail(idarquivo) {
 <div id="search">
 <s:form action="/jsp/buscarMaterial!carregaResultado.java">
 
-	<table cellspacing="10">
+	<table cellspacing="0">
 		<tr>
 			<td>Matéria:</td>
 			<td><sx:autocompleter headerKey="-1" headerValue=""  id="disciplina" list="disciplinas" name="disciplina" value="disciplina" listKey="id" listValue="nome" /></td>	

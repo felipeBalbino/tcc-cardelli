@@ -99,6 +99,7 @@ public class HorarioAction extends ActionSupport{
 	
 	public String listarHorarioPorDisciplinaLetiva() throws Exception{
 		try{
+		disciplinaLetiva = disciplinaDAO.getDisciplinaLetivaById(idDisciplinaLetiva);
 		setDiasSemana( Arrays.asList(DiaSemanaEnum.values()) );
 		horarios = 	horarioDAO.getAllHorarios();
 		disciplinaLetivaHorario = 	horarioDAO.getAllDisciplinaLetivaHorariosById(idDisciplinaLetiva);

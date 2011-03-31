@@ -106,7 +106,7 @@ function buscarDisciplinas(semestre,ano,turno,id) {
 		 	<tr>
 		 		<s:hidden name="idAluno" id="idAluno" value="%{pessoa.id}" ></s:hidden>				
 				<td>Ano: 		<s:property  value="%{ano}" /></td>	
-                <td>Disciplinas Letivas:	<sx:autocompleter headerKey="-1" headerValue=""  id="disciplinaLetiva" list="disciplinasLetivas" name="disciplinaLetiva" value="disciplinaLetiva" listKey="id" listValue="toString()" /></td>	
+                <td>Disciplinas Letivas:	<sx:autocompleter  id="disciplinaLetiva" list="disciplinasLetivas" name="disciplinaLetiva" value="disciplinaLetiva" listKey="id" listValue="toString()" /></td>	
 				<td colspan="1"><s:submit value="Inscrever aluno" /></td>
 			</tr>
 		</table>

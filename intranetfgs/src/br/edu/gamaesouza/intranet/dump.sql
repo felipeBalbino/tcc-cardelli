@@ -216,7 +216,6 @@ INSERT INTO Pessoa  (id,email,login,matricula,nome,senha) VALUES  (3,"phellipe86
 INSERT INTO Aluno VALUES  (5,"ATIVA",3,1);
 INSERT INTO Pessoa  (id,email,login,matricula,nome,senha) VALUES  (4,"phellipe@gmail.com","prof",23432446,"professor","123456");
 INSERT INTO Professor VALUES  (4);
-
 INSERT INTO DisciplinaLetiva VALUES  (1,2011,"06",1,"manha",1,4);
 INSERT INTO DisciplinaLetiva VALUES  (2,2011,"12",1,"tarde",2,4);
 INSERT INTO DisciplinaLetiva VALUES  (3,2011,"21",2,"noite",1,4);
@@ -225,31 +224,26 @@ INSERT INTO DisciplinaLetiva VALUES  (5,2011,"06",1,"manha",36,4);
 INSERT INTO DisciplinaLetiva VALUES  (6,2011,"12",1,"tarde",45,4);
 INSERT INTO DisciplinaLetiva VALUES  (7,2011,"21",2,"noite",13,4);
 INSERT INTO DisciplinaLetiva VALUES  (8,2011,"14",2,"manha",17,4);
-
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (1,2);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (2,2);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (1,3);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (2,3);
 INSERT INTO DisciplinaLetiva_Aluno VALUES  (8,2);
-
 INSERT INTO Horario VALUES(1,"2011","18:50","18:10",1);
 INSERT INTO Horario VALUES(2,"2011","19:35","18:55",1);
 INSERT INTO Horario VALUES(3,"2011","20:20","19:40",1);
 INSERT INTO Horario VALUES(4,"2011","21:05","20:25",1);
 INSERT INTO Horario VALUES(5,"2011","21:55","21:15",1);
 INSERT INTO Horario VALUES(6,"2011","22:40","22:00",1);
-
 INSERT INTO DisciplinaLetivaHorario VALUES  (1,"SEGUNDA",1,1);
 INSERT INTO DisciplinaLetivaHorario VALUES  (2,"QUARTA",1,2);
 INSERT INTO DisciplinaLetivaHorario VALUES  (3,"TERCA",2,3);
-
 INSERT INTO Hora values (1,2);
 INSERT INTO Hora values (2,2);
 INSERT INTO Hora values (3,2);
 INSERT INTO Hora values (4,2);
 INSERT INTO Hora values (5,2);
 INSERT INTO Hora values (6,2);
-
 INSERT INTO Atividade values (1,"Disciplinas Extracurriculares oferecidas pelos cursos",40);
 INSERT INTO Atividade values (2,"Disciplinas Extracurriculares em outros cursos ou IES, em áreas afins", 40);
 INSERT INTO Atividade values (3,"Projetos de pesquisa ou iniciação científica orientados por Docentes da Faculdade", 40);
@@ -265,14 +259,10 @@ INSERT INTO Atividade values (12,"Participação em programas de Extensão, pesquis
 INSERT INTO Atividade values (13,"Participação em programas de voluntariado", 40);
 INSERT INTO Atividade values (14,"Visitas orientadas", 40);
 INSERT INTO Atividade values (15,"Semana do curso", 40);
-
-
 INSERT INTO HoraAEP values ("2010-10-10","11:40","11:20",1);
 INSERT INTO HoraAEP values ("2010-10-10","12:40","12:20",2);
 INSERT INTO HoraAEP values ("2010-10-10","14:40","13:20",3);
-
 INSERT INTO HoraComplementar values (100,"Evento 1",4,1);
 INSERT INTO HoraComplementar values (50,"Evento 2",5,2);
 INSERT INTO HoraComplementar values (30,"Evento 3",6,1);
 
-SELECT dl FROM DisciplinaLetivaHorario dlHorario left join dlHorario.DisciplinaLetiva dl left join dl.horario horario where dl.semestre = 1 and dl.ano = 2011 and dlHorario = "SEGUNDA";

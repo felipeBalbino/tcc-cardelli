@@ -144,23 +144,12 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 				}
 		}
 		
-		HibernateCallback callback = new HibernateCallback() {
-	        public Object doInHibernate(Session session) throws HibernateException, SQLException {
-	        	DisciplinaLetiva dl;
-				try {
-					dl = (DisciplinaLetiva) getDisciplinaLetivaById(disciplinaLetiva.getId());
-					dl.setAluno(alunos);
-					getHibernateTemplate().merge(dl);
-		         
-				} catch (IntranetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				   return null;
 
-	        }
-	    };	
-		getHibernateTemplate().execute(callback);
+	  DisciplinaLetiva dl = (DisciplinaLetiva) getDisciplinaLetivaById(disciplinaLetiva.getId());
+	  dl.setAluno(alunos);
+	  getHibernateTemplate().merge(dl);
+		         
+
 		
 	}
 	

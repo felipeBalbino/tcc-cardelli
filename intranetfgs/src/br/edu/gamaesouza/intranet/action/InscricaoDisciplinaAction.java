@@ -68,14 +68,14 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 		
 		try{
 			DisciplinaLetiva letiva = disciplinaDAO.getDisciplinaLetivaById(disciplinaLetiva);
-		boolean pessoaAlreadyFollow = disciplinaDAO.setAlunoFollowDisciplinhaLetiva(pessoaDAO.getAlunoById(idAluno), letiva.getDisciplina().getId(), letiva.getAno(), letiva.getSemestre());
+			boolean pessoaAlreadyFollow = disciplinaDAO.setAlunoFollowDisciplinhaLetiva(pessoaDAO.getAlunoById(idAluno), letiva.getDisciplina().getId(), letiva.getAno(), letiva.getSemestre());
 		
 				if(pessoaAlreadyFollow){
 					addActionError(MSG_JA_INSCRITO);
 				}
 				
 				return list();
-		
+				
 		}catch(IntranetException ex){
 			addActionError(MSG_MARCA_DISCIPLINA);
 			return list();

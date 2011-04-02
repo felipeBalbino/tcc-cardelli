@@ -69,8 +69,7 @@ public class BuscarMaterialAction extends ActionSupport {
 			semestres = FormUtil.getSemestresList();
 			//turnos = FormUtil.getTurnosList();
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 	}
 	
@@ -86,7 +85,7 @@ public class BuscarMaterialAction extends ActionSupport {
 				try {
 					enviarEmail.sendArquivoPeloAluno( arquivo, arquivo.getNome(), UserData.getLoggedUser() );
 				} catch ( Throwable e ) {
-					addActionError("Não foi possível enviar o email");
+					addActionError("Nï¿½o foi possï¿½vel enviar o email");
 				}			
 			
 				return carregaFiltrosPesquisa();

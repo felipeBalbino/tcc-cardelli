@@ -83,19 +83,16 @@ public class UploadAction extends ActionSupport {
 				enviarEmail.sendMailToAluno( dl , fileName, UserData.getLoggedUser() );
 				addActionMessage("Arquivo enviado com sucesso");
 			} catch (IntranetException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				addActionMessage(e1.getMessage());
 			} catch ( Throwable e ) {
-				System.out.println("Email nÃ£o enviado");
-				e.printStackTrace();
+				addActionMessage(e.getMessage());
 			}finally{
 				arquivo = (Arquivo) SpringUtil.getBean("arquivo");
 				materia = null;
 				try {
 					disciplinas = disciplinaDAO.getAllDisciplinas();
 				} catch (IntranetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					addActionMessage(e.getMessage());
 				}
 			}			
 				return lista();
@@ -138,8 +135,7 @@ public class UploadAction extends ActionSupport {
 			try {
 				arquivos = arquivoDAO.getArquivos((Professor)UserData.getLoggedUser());
 			} catch (IntranetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				addActionMessage(e.getMessage());
 			}
 			
 			return "modificarArquivo";
@@ -153,15 +149,13 @@ public class UploadAction extends ActionSupport {
 				arquivoDAO.delete(id, (Professor)UserData.getLoggedUser());
 				addActionMessage("Arquivo deletado com sucesso!");
 			} catch (Exception e) {
-
-				addActionMessage("Não foi possivel remover o arquivo.");
-				e.printStackTrace();
+				addActionMessage("Nï¿½o foi possivel remover o arquivo.");
+				addActionMessage(e.getMessage());
 			} finally {
 				try {
 					arquivos = arquivoDAO.getArquivos((Professor) UserData.getLoggedUser());
 				} catch (IntranetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					addActionMessage(e.getMessage());addActionMessage(e.getMessage());
 				}
 			}
 

@@ -55,8 +55,7 @@ public class LoginAction extends ActionSupport {
 		try {
 			setCursos( cursoDAO.getAllCursos() );
 		} catch ( IntranetException e ) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		return "register";
 		
@@ -118,8 +117,7 @@ public class LoginAction extends ActionSupport {
 					addActionMessage(MSG_REGISTRO_SUCESSO);
 				}
 			} catch (IntranetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				addActionMessage(e.getMessage());
 			}
 			return "login";
 				

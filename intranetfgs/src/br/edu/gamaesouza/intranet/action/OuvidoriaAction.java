@@ -27,7 +27,7 @@ public class OuvidoriaAction extends ActionSupport {
 		try {
 			setCursos( cursoDAO.getAllCursos() );
 		} catch ( IntranetException e ) {
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		return "refresh";	
 	}

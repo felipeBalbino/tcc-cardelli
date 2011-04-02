@@ -34,8 +34,7 @@ public class NoticiaAction extends ActionSupport {
 		try {
 			noticias = noticiaDAO.getAll();
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		return "modificarNoticia";
 		
@@ -52,11 +51,11 @@ public class NoticiaAction extends ActionSupport {
 
 				noticiaDAO.save(noticia);
 				noticia = (Noticia) SpringUtil.getBean("noticia");
-				addActionMessage("Notícia adicionado com sucesso");
+				addActionMessage("Notï¿½cia adicionado com sucesso");
 				
 			} catch (Exception e) {
 				
-				addActionError("Não foi possivel adicionar a notícia, ocorreu um erro interno no Servidor");
+				addActionError("Nï¿½o foi possivel adicionar a notï¿½cia, ocorreu um erro interno no Servidor");
 
 			}
 
@@ -75,11 +74,11 @@ public class NoticiaAction extends ActionSupport {
 				noticiaDAO.update(noticia);
 				noticia = (Noticia) SpringUtil.getBean("noticia");
 				
-				addActionMessage("Notícia alterada com sucesso");
+				addActionMessage("Notï¿½cia alterada com sucesso");
 				
 			} catch (Exception e) {
 				
-				addActionError("Não foi possivel alterar a notícia, ocorreu um erro interno no Servidor");
+				addActionError("Nï¿½o foi possivel alterar a notï¿½cia, ocorreu um erro interno no Servidor");
 
 			}
 
@@ -96,11 +95,11 @@ public class NoticiaAction extends ActionSupport {
 				System.out.println(noticia.getMensagem());
 				noticiaDAO.delete(noticia);
 				noticia = (Noticia) SpringUtil.getBean("noticia");
-				addActionMessage("Notícia deletada com sucesso");
+				addActionMessage("Notï¿½cia deletada com sucesso");
 				
 			} catch (Exception e) {
 				
-				addActionError("Não foi possivel deletar a notícia, ocorreu um erro interno no Servidor");
+				addActionError("Nï¿½o foi possivel deletar a notï¿½cia, ocorreu um erro interno no Servidor");
 				
 			}
 			return lista();

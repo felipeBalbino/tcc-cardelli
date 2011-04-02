@@ -140,8 +140,7 @@ public class ProfessorAction extends ActionSupport {
 		try {
 			rules = pessoaDAO.getAllRules();
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		return "this";
 		
@@ -155,8 +154,7 @@ public class ProfessorAction extends ActionSupport {
 			professores = pessoaDAO.getAll();
 			allRules = pessoaDAO.getAllRules();
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		return "modificarProfessor";
 	}

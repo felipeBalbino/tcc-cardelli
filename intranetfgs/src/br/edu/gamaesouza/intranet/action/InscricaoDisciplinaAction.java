@@ -19,11 +19,11 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static final String MSG_JA_INSCRITO = "Voce já está inscrito nesta disciplina";
+	private static final String MSG_JA_INSCRITO = "Voce jï¿½ estï¿½ inscrito nesta disciplina";
 	
 	private static final String MSG_MARCA_DISCIPLINA = "Marque pelo menos uma Disciplina.";
-	private static final String MSG_DELETA_SUCESSO = "Inscrição deletada com sucesso.";
-	private static final String MSG_NENHUMA_DISCIPLINA = "Você não tem nenhuma disciplina cadastrada.";
+	private static final String MSG_DELETA_SUCESSO = "Inscriï¿½ï¿½o deletada com sucesso.";
+	private static final String MSG_NENHUMA_DISCIPLINA = "Vocï¿½ nï¿½o tem nenhuma disciplina cadastrada.";
 	
 	@Autowired private DisciplinaDAO disciplinaDAO;
 	@Autowired private PessoaDAO pessoaDAO;	
@@ -55,8 +55,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 			pessoa = pessoaDAO.getPessoaById( idAluno );
 			disciplinasLetivas = disciplinaDAO.getAllByParamsDisciplinaLetivaInscricao(disciplinaLetivaInscricaoSearchParams);
 		} catch ( IntranetException e ) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 
 		return "SUCCESS";
@@ -92,8 +91,7 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 			disciplinasLetivasCadastradas = new ArrayList<DisciplinaLetiva>();
 			addActionMessage(MSG_DELETA_SUCESSO);
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		
 		

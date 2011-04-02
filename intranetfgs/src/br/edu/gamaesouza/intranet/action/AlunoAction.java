@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
-import br.edu.gamaesouza.intranet.bean.DisciplinaLetivaHorario;
-import br.edu.gamaesouza.intranet.bean.Horario;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
@@ -19,7 +17,6 @@ import br.edu.gamaesouza.intranet.params.impl.AlunoAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams;
 import br.edu.gamaesouza.intranet.params.impl.AlunoSearchParams;
 import br.edu.gamaesouza.intranet.security.UserData;
-import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.StatusMatriculaEnum;
 
@@ -29,11 +26,11 @@ public class AlunoAction extends ActionSupport {
 	
 
 	private static final String MSG_REGISTRO_SUCESSO = "Registrado com sucesso.";
-	private static final String MSG_EDITADO_SUCESSO = 	"Editado com sucesso";
-	private static final String MSG_DELETADO_SUCESSO = 	"Aluno deletado com sucesso";
+	private static final String MSG_EDITADO_SUCESSO  = "Editado com sucesso";
+	private static final String MSG_DELETADO_SUCESSO = "Aluno deletado com sucesso";
 	
-	private static final String RULE_ALUNOS_LISTA = "RULE_ALUNOS_LISTA";
-	private static final String RULE_ALUNOS_SAVE = "RULE_ALUNOS_SAVE";
+	private static final String RULE_ALUNOS_LISTA  = "RULE_ALUNOS_LISTA";
+	private static final String RULE_ALUNOS_SAVE   = "RULE_ALUNOS_SAVE";
 	private static final String RULE_ALUNOS_ALTERA = "RULE_ALUNOS_ALTERA";
 
 	private Integer id;
@@ -65,8 +62,7 @@ public class AlunoAction extends ActionSupport {
 			setCursos( cursoDAO.getAllCursos() );
 			setAllStatusMatricula(Arrays.asList(StatusMatriculaEnum.values()));
 		} catch ( IntranetException e ) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		return "register";	
 	}
@@ -78,20 +74,19 @@ public class AlunoAction extends ActionSupport {
 			setAllStatusMatricula(Arrays.asList(StatusMatriculaEnum.values()));
 			setAlunos( pessoaDAO.getAllAlunosByParams(alunoSearchParams) );
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		return "listAlunos";
 	}
+	
 	public String editar() {
 		UserData.grantAccess(RULE_ALUNOS_ALTERA);
 		try {
-				pessoaDAO.merge( alunoAlteraParams.getAluno() );
+				pessoaDAO.merge(alunoAlteraParams.getAluno());
 				addActionMessage(MSG_EDITADO_SUCESSO);
 			
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		return lista();
 	}
@@ -101,8 +96,7 @@ public class AlunoAction extends ActionSupport {
 			disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
 			disciplinasLetivas = disciplinaDAO.getDisciplinaLetivaByUser(id);
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		return "grade";
 	}	
@@ -123,8 +117,7 @@ public class AlunoAction extends ActionSupport {
 				addActionError("Delete primeiro suas disciplinas clicando no icone D.");
 			}
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		return lista();
 	}	
@@ -166,8 +159,7 @@ public class AlunoAction extends ActionSupport {
 				}
 			}
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		return "grade";
 		*/
@@ -175,8 +167,7 @@ public class AlunoAction extends ActionSupport {
 		try {
 			setDisciplinasLetivas(disciplinaDAO.getDisciplinaLetivaByUser(UserData.getLoggedUser().getId()));
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		return "grade";
 	}
@@ -218,8 +209,7 @@ public class AlunoAction extends ActionSupport {
 					addActionMessage(MSG_REGISTRO_SUCESSO);
 				}
 			} catch (IntranetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				addActionMessage(e.getMessage());
 			}
 			return prepare();
 				

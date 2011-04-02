@@ -166,10 +166,10 @@ public class HoraAction extends ActionSupport {
 				horaDAO.save(horaComplementarNovoParams.getHora());
 				horaComplementar = horaDAO.getHorasComplementares(horaComplementarNovoParams.getHora());
 				if(horaComplementar == null){
-					addActionError("Hora adicionada com sucesso, não foi possível gerar o comprovante.");
+					addActionError("Hora adicionada com sucesso, nï¿½o foi possï¿½vel gerar o comprovante.");
 				}else{
 				this.aluno = pessoaDAO.getAlunoById(horaComplementarNovoParams.getAluno().getId());
-				addActionMessage("Hora adicionada com sucesso, utilize o links disponível para gerar um comprovante para o aluno.");
+				addActionMessage("Hora adicionada com sucesso, utilize o links disponï¿½vel para gerar um comprovante para o aluno.");
 				}
 				
 			}catch(HibernateException he){
@@ -189,8 +189,7 @@ public class HoraAction extends ActionSupport {
 			horaDAO.deleteAEP(horaAEPDeletaParams.getAlunoId(),horaAEPDeletaParams.getHoraId());
 			addActionMessage("Hora deletada com sucesso!");
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		return RETURN_DELETE_AEP_SUCCESS;
 	}
@@ -211,8 +210,7 @@ public class HoraAction extends ActionSupport {
 			
 			addActionMessage("Hora deletada com sucesso!");
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		return RETURN_DELETE_COMPLEMENTAR_SUCCESS;
 	}

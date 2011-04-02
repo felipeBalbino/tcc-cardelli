@@ -62,8 +62,7 @@ public class HorarioAction extends ActionSupport{
 			setSemestres(FormUtil.getSemestresList());
 			horarios = 	horarioDAO.getAllHorarios();
 		} catch ( IntranetException e ) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			addActionMessage(e.getMessage());
 		}
 		
 		return "novoList";

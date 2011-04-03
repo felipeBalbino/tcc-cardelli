@@ -84,8 +84,9 @@ public class BuscarMaterialAction extends ActionSupport {
 		
 				try {
 					enviarEmail.sendArquivoPeloAluno( arquivo, arquivo.getNome(), UserData.getLoggedUser() );
+					addActionMessage("Arquivo enviado com sucesso - "+UserData.getLoggedUser().getEmail());
 				} catch ( Throwable e ) {
-					addActionError("Nï¿½o foi possï¿½vel enviar o email");
+					addActionError("Não foi possível enviar o email");
 				}			
 			
 				return carregaFiltrosPesquisa();

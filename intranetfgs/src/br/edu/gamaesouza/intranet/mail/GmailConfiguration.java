@@ -12,8 +12,8 @@ public class GmailConfiguration implements EmailConfiguration {
 	public Authenticator getAuth() {
 		Authenticator auth = new Authenticator() {
 			public PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(EMAIL,
-						SENHA); // Senha do gmail
+				return new PasswordAuthentication("intranetfgs@gmail.com",
+						"qwe123qwe123"); // Senha do gmail
 			}
 		};
 		

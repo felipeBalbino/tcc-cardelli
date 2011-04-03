@@ -226,9 +226,8 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		DisciplinaLetiva dlVerify = (DisciplinaLetiva) queryVerify.uniqueResult();
 		
 		if(dlVerify == null){			
-			HibernateCallback callback = new HibernateCallback() {
-		        public Object doInHibernate(Session session) throws HibernateException, SQLException {
-		        	Query c = session.getNamedQuery("allDLByDisciplinaAnoSemestre");
+
+		        	Query c = getSession().getNamedQuery("allDLByDisciplinaAnoSemestre");
 					c.setParameter("disciplina", disciplina);
 					c.setParameter("ano", ano);
 					c.setParameter("semestre", semestre);
@@ -237,11 +236,6 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 					
 					dl.getAluno().add(aluno);
 					getHibernateTemplate().merge(dl);
-		            return null;
-		        }
-		    };	
-			getHibernateTemplate().execute(callback);
-			
 			
 			
 			return false;

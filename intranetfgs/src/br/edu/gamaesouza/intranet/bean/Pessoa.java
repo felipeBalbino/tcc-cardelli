@@ -30,7 +30,7 @@ public class Pessoa implements Serializable {
 
 	private String nome;
 	
-	@Column(unique = true, nullable = false)
+	@Column(unique = true, nullable = false, length=8)
 	private String login;
 	
 	@Column(unique = true)

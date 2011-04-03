@@ -36,16 +36,45 @@
 <hr></hr>
 <div id="result" >		
 	<table width="100%" border=1>
-		
 		<tr>
-			<th><b>Matrícula</b></th>
-			<th><b>Nome Completo</b></th>
-			<td colspan="25" align="center">Dias do Mês</td>
-			
+		<th></th>
+		<th></th>
+		<td colspan="25" align="center">Dias do Mês</td>
+		</tr>
+		<tr>
+				
+				<th><b>Matrícula</b></th>
+				<th><b>Nome Completo</b></th>
+				<th>&nbsp;&nbsp;</td>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</td>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</td>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;</th>
 		</tr>
 		
 		<s:iterator value="disciplinaLetiva.aluno">
 			<tr>
+			
 				<td><s:property value="matricula"/></td>	
 				<td><s:property value="nome"/></td>
 				<td>&nbsp;&nbsp;</td>

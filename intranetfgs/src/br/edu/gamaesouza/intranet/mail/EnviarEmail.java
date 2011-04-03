@@ -53,7 +53,7 @@ public class EnviarEmail {
 		Session session = Session.getInstance(configuration.getConfiguration(),
 				configuration.getAuth());
 
-		MimeMessage message = new MimeMessage(session);
+		final MimeMessage message = new MimeMessage(session);
 
 		try {
 
@@ -75,10 +75,23 @@ public class EnviarEmail {
 					TemplateManager.getOuvidoriaTemplate(ouvidoriaVO),
 					"text/html");
 
-			Transport.send(message);
+			Thread thread = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					try {
+						Transport.send(message);
+					} catch (MessagingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			});
+			thread.start();
 		} catch (Exception e) {
 			throw new IntranetException(e.getMessage());
-		}
+	    }
 
 	}
 
@@ -93,7 +106,7 @@ public class EnviarEmail {
 
 			Session session = Session.getInstance(
 					configuration.getConfiguration(), configuration.getAuth());
-			MimeMessage message = new MimeMessage(session);
+			final MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("intranetfgs@gmail.com",
 					"Intranet FGS"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
@@ -138,7 +151,20 @@ public class EnviarEmail {
 					+ dl.getDisciplina().getNome());
 			message.setContent(emailContent, "text/html");
 
-			Transport.send(message);
+			Thread thread = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					try {
+						Transport.send(message);
+					} catch (MessagingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			});
+			thread.start();
 		}
 
 	}
@@ -149,7 +175,7 @@ public class EnviarEmail {
 		configuration = new GmailConfiguration();
 		Session session = Session.getInstance(configuration.getConfiguration(),
 				configuration.getAuth());
-		MimeMessage message = new MimeMessage(session);
+		final MimeMessage message = new MimeMessage(session);
 		message.setFrom(new InternetAddress("intranetfgs@gmail.com",
 				"Intranet FGS"));
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(
@@ -200,8 +226,20 @@ public class EnviarEmail {
 
 		message.setContent(mpRoot);
 		message.saveChanges();
-
-		Transport.send(message);
+		Thread thread = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				try {
+					Transport.send(message);
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		thread.start();
 
 	}
 
@@ -282,7 +320,7 @@ public class EnviarEmail {
 		Session session = Session.getInstance(configuration.getConfiguration(),
 				configuration.getAuth());
 
-		MimeMessage message = new MimeMessage(session);
+		final MimeMessage message = new MimeMessage(session);
 		try {
 			message.setFrom(new InternetAddress("intranetfgs@gmail.com",
 					"Intranet FGS"));
@@ -306,7 +344,20 @@ public class EnviarEmail {
 		try {
 			message.setSubject("Recuperar Senha @intranetfgs");
 			message.setContent(msgBody, "text/html");
-			Transport.send(message);
+			Thread thread = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					try {
+						Transport.send(message);
+					} catch (MessagingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			});
+			thread.start();
 		} catch (MessagingException e) {
 			throw new IntranetException(e.getMessage());
 		}
@@ -321,7 +372,7 @@ public class EnviarEmail {
 		Session session = Session.getInstance(configuration.getConfiguration(),
 				configuration.getAuth());
 
-		MimeMessage message = new MimeMessage(session);
+		final MimeMessage message = new MimeMessage(session);
 		try {
 			message.setFrom(new InternetAddress("intranetfgs@gmail.com",
 					"Intranet FGS"));
@@ -356,7 +407,7 @@ public class EnviarEmail {
 		msgBody = msgBody + "</tr>";
 		msgBody = msgBody + "<tr style=\"border-style:dotted;\">";
 		msgBody = msgBody
-				+ "	<td width=\"30%\" style=\"border-style:dotted;\"><b>Tï¿½tulo: </b></td>";
+				+ "	<td width=\"30%\" style=\"border-style:dotted;\"><b>Título: </b></td>";
 		msgBody = msgBody
 				+ "<td width=\"70%\" style=\"border-style:dotted;\">"+ horaComplementar.getTitulo() + "</td>";
 
@@ -398,7 +449,7 @@ public class EnviarEmail {
 		msgBody = msgBody + "<tr style=\"border-style:dotted;\">";
 
 		msgBody = msgBody
-				+ "	<td width=\"30%\"  style=\"border-style:dotted;\"><b>Matrï¿½cula: </b></td>";
+				+ "	<td width=\"30%\"  style=\"border-style:dotted;\"><b>Matrícula: </b></td>";
 		msgBody = msgBody
 				+ "<td  width=\"70%\" style=\"border-style:dotted;\">"+aluno.getMatricula()+"</td>";
 
@@ -406,7 +457,7 @@ public class EnviarEmail {
 		msgBody = msgBody + "	<tr style=\"border-style:dotted;\">";
 		msgBody = msgBody
 				+ "<td width=\"30%\"  style=\"border-style:dotted;\">";
-		msgBody = msgBody + "	<b>Perï¿½odo: </b>";
+		msgBody = msgBody + "	<b>Período: </b>";
 		msgBody = msgBody + "</td>";
 		msgBody = msgBody
 				+ "<td  width=\"70%\" style=\"border-style:dotted;\">"+aluno.getPeriodo()+"</td>";
@@ -429,9 +480,9 @@ public class EnviarEmail {
 		msgBody = msgBody + "	<td colspan=\"4\">";
 		msgBody = msgBody + "	<br></br>";
 		msgBody = msgBody
-		+ "* Ao assinar este comprovante vocï¿½ estï¿½ de acordo com os dados contidos no mesmo.<br>";
+		+ "* Ao assinar este comprovante você está de acordo com os dados contidos no mesmo.<br>";
 		msgBody = msgBody
-		+ "** Esse comprovante foi gerado diretamente para seu e-mail em "+ new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime()) +" pelo professor "+ UserData.getLoggedUser().getNome() +", para ele ter valor ï¿½ necessï¿½rio que vocï¿½ imprima e leve para o coordenador assinar.";
+		+ "** Esse comprovante foi gerado diretamente para seu e-mail em "+ new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime()) +" pelo professor "+ UserData.getLoggedUser().getNome() +", para ele ter valor é necessário que você imprima e leve para o coordenador assinar.";
 		
 		msgBody = msgBody + "</td>";
 		msgBody = msgBody + "</tr>";
@@ -455,7 +506,20 @@ public class EnviarEmail {
 			message.setSubject("[Comprovante / Hora Complementar] "
 					+ horaComplementar.getTitulo());
 			message.setContent(msgBody, "text/html");
-			Transport.send(message);
+			Thread thread = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					try {
+						Transport.send(message);
+					} catch (MessagingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			});
+			thread.start();
 		} catch (MessagingException e) {
 			throw new IntranetException(e.getMessage());
 		}

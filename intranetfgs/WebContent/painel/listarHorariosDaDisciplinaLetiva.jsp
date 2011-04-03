@@ -35,10 +35,10 @@ if(i == j) $(this).hide('slow');
 });
 });
 
-function deletar(id,idDisciplinaLetiva){
+function deletar(id,idDisciplinaLetiva,idHora,idDisciplinaLetiva){
 
 	  if (confirm('Tem certeza que deseja excluir este horÃ¡rio? Esta operaÃ§Ã£o Ã© irreversÃ­vel.')) {  
-	         location.href ="../painel/horario!deleteDisciplinaLetivaHorario.java?id="+id+"&idDisciplinaLetiva="+idDisciplinaLetiva;
+	         location.href ="../painel/horario!deleteDisciplinaLetivaHorario.java?id="+id+"&idDisciplinaLetiva="+idDisciplinaLetiva+"&idHorario="+idHora;
 	     } 
 }
 	
@@ -48,14 +48,14 @@ function deletar(id,idDisciplinaLetiva){
 <div id="retorno" align="right">
 <img src="../images/arrow_categ.gif"><a href="../painel/letiva!lista.java" style="color:#FF4500;text-align:right;border-style:none;">Lista de Disciplinas Letivas</a>
 </div>
-<b>Vincular Horário em Disciplina - <b style="color: #FF4500"><s:property  value="%{disciplinaLetiva.disciplina.nome}"/> </b>
+<b>Vincular HorÃ¡rio em Disciplina - <b style="color: #FF4500"><s:property  value="%{disciplinaLetiva.disciplina.nome}"/> </b>
 
 <hr></hr>
-<s:form action="/painel/horario!saveHorariosEmDisciplinaLetiva.java">
+<s:form method="POST" action="/painel/horario!saveHorariosEmDisciplinaLetiva.java">
 	<table>
 		<tr>
 			<td><s:hidden value="%{idDisciplinaLetiva}" name="idDisciplinaLetiva" /></td>
-			<td>Horários:</td>		
+			<td>HorÃ¡rios:</td>		
 			<td><sx:autocompleter  id="horario" name="horarioId" list="horarios" listKey="id" /></td>
 			<td>Dia da Semana:</td>
 			<td><sx:autocompleter   id="diaSemanaEnum" list="diasSemana"  name="diaSemana" /></td>
@@ -87,11 +87,10 @@ function deletar(id,idDisciplinaLetiva){
 		
 		<s:iterator value="disciplinaLetivaHorario" >
 			<tr>
-				<td><s:property value="%{id}"/></td>
-				<td><s:property value="%{DiaSemana}"/></td>
-				<td><s:property value="Horario.horaInicio"/></td>
-				<td><s:property value="Horario.horaFim"/></td>
-				<td><a onclick="javascript:deletar('<s:property value='id' />','${idDisciplinaLetiva}')" >
+				<td><s:property value="%{disciplinaLetivaHorarioPK.DiaSemana}"/></td>
+				<td><s:property value="disciplinaLetivaHorarioPK.horario.horaInicio"/></td>
+				<td><s:property value="disciplinaLetivaHorarioPK.horario.horaFim"/></td>
+				<td><a onclick="javascript:deletar('<s:property value='id' />','${idDisciplinaLetiva}',<s:property value='disciplinaLetivaHorarioPK.horario.id' />,<s:property value='disciplinaLetivaHorarioPK.disciplinaLetiva.id' />)" >
 				<img src="../images/lixeira.gif" /></a></td>
 			</tr>
 		</s:iterator>

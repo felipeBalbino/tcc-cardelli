@@ -112,7 +112,7 @@ width:295px;
 					<br><br>
 					<div id="contact-form">
 						<s:form method="post" action="../jsp/log!in.java">
-							Login: <s:textfield name="login" id="login"></s:textfield>
+							Login: <s:textfield name="login" id="login" maxlength="8"></s:textfield>
 							Senha: <s:password name="senha" id="senha"></s:password>
 							<sx:submit align="left" value="Entrar" label="Log in"></sx:submit>
 						</s:form>

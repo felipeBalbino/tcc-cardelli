@@ -13,7 +13,7 @@ import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import com.opensymphony.xwork2.ActionContext;
  
 public class SessionListen implements HttpSessionListener {
-	PessoaDAO pessoaDAO = new PessoaDAO();
+	
     public void sessionDestroyed(HttpSessionEvent event) {
 		try {
 			Map<String, Object> sessao = ActionContext.getContext().getSession();
@@ -21,6 +21,7 @@ public class SessionListen implements HttpSessionListener {
 			
 			if(pessoa != null){	
 				pessoa.setDataUltimoAcesso(Calendar.getInstance());
+				PessoaDAO pessoaDAO = new PessoaDAO();
 				pessoaDAO.merge(pessoa);
 			}
 			

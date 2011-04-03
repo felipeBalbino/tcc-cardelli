@@ -27,9 +27,9 @@ public class DisciplinaLetivaHorarioNovoParams implements DisciplinaLetivaHorari
 	public DisciplinaLetivaHorario getDisciplinaLetivaHorario(){
 		DisciplinaLetivaHorario disciplinaLetivaHorario = new DisciplinaLetivaHorario();
 		try {
-			disciplinaLetivaHorario.setDiaSemana( diaSemana );
-			disciplinaLetivaHorario.setDisciplinaLetiva( disciplinaDAO.getDisciplinaLetivaById( disciplinaLetivaId )  );
-			disciplinaLetivaHorario.setHorario( horarioDAO.getHorarioById( horarioId ) );
+			disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().setDiaSemana( diaSemana );
+			disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().setDisciplinaLetiva( disciplinaDAO.getDisciplinaLetivaById( disciplinaLetivaId )  );
+			disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().setHorario( horarioDAO.getHorarioById( horarioId ) );
 		} catch ( IntranetException e ) {
 			e.printStackTrace();
 		}

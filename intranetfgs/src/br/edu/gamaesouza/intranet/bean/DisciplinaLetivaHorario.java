@@ -1,6 +1,7 @@
 package br.edu.gamaesouza.intranet.bean;
 
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,52 +16,24 @@ import br.edu.gamaesouza.intranet.utils.DiaSemanaEnum;
 
 @Entity
 public class DisciplinaLetivaHorario {
-
-	@Id
-	@GeneratedValue
-	private Integer id;
 	
-	@Enumerated(EnumType.STRING)
-	private DiaSemanaEnum DiaSemana;
+	@EmbeddedId
+	private DisciplinaLetivaHorarioPK disciplinaLetivaHorarioPK;
 	
-	@OneToOne
-	private DisciplinaLetiva disciplinaLetiva;
+	public DisciplinaLetivaHorario(){
+		this.disciplinaLetivaHorarioPK = new DisciplinaLetivaHorarioPK();
+	}
 	
-	@OneToOne
-	private Horario horario;
-
-	public void setId( Integer id ) {
-		this.id = id;
+	public DisciplinaLetivaHorarioPK getDisciplinaLetivaHorarioPK() {
+		return disciplinaLetivaHorarioPK;
 	}
 
-	public Integer getId() {
-		return id;
+	public void setDisciplinaLetivaHorarioPK(
+			DisciplinaLetivaHorarioPK disciplinaLetivaHoraPK) {
+		this.disciplinaLetivaHorarioPK = disciplinaLetivaHoraPK;
 	}
 
-	public void setDisciplinaLetiva( DisciplinaLetiva disciplinaLetiva ) {
-		this.disciplinaLetiva = disciplinaLetiva;
-	}
-
-	public DisciplinaLetiva getDisciplinaLetiva() {
-		return disciplinaLetiva;
-	}
-
-	public void setHorario( Horario horario ) {
-		this.horario = horario;
-	}
-
-	public Horario getHorario() {
-		return horario;
-	}
-
-	public void setDiaSemana( DiaSemanaEnum diaSemana ) {
-		DiaSemana = diaSemana;
-	}
-
-	public DiaSemanaEnum getDiaSemana() {
-		return DiaSemana;
-	}
-
+	
 
 	
 

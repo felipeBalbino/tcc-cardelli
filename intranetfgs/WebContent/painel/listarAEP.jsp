@@ -47,9 +47,19 @@ if(i == j) $(this).hide('slow');
 </script>
 </head>
 <body>
-<div align="right"><a title="Novo Evento"
-	href="../painel/hora!prepareCadastroAEP.java?aluno.id=<s:property value="aluno.id"/>" > <img border="0"
-	src="../images/novo.jpg" />Adicionar Hora AEP</a></div>
+
+<div id="retorno" align="right">
+	<img src="../images/arrow_categ.gif">
+		<a href="../painel/aluno!lista.java"  style="color:#FF4500;text-align:left;border-style:none;">
+			Listar Alunos
+		</a>
+	
+	<img src="../images/arrow_categ.gif">
+		<a href="../painel/hora!prepareCadastroAEP.java?aluno.id=<s:property value="aluno.id"/>"   style="color:#FF4500;text-align:left;border-style:none;">
+			Adicionar Hora AEP
+		</a>
+</div>
+
 <br>
 <br>
 <b>Filtros de Pesquisa</b>

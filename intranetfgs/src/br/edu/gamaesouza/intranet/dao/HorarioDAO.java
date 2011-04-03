@@ -44,8 +44,8 @@ public class HorarioDAO extends HibernateDaoSupport {
 	}
 	
 	public List<DisciplinaLetivaHorario> getAllDisciplinaLetivaHorariosById(Integer id) throws IntranetException {
-		Criteria getAllLetivaByHorario = getSession().createCriteria(DisciplinaLetivaHorario.class);
-		getAllLetivaByHorario.add( Restrictions.eq( "disciplinaLetiva.id", id ) );
+		String sql = "FROM DisciplinaLetivaHorario dlh WHERE dlh.disciplinaLetivaHorarioPK.disciplinaLetiva.id = " + id;
+		Query getAllLetivaByHorario = getSession().createQuery(sql);
 		getAllLetivaByHorario.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		List<DisciplinaLetivaHorario> letivaHorario =  getAllLetivaByHorario.list();
 		//Query c = getSession().createQuery( "Select d from DisciplinaLetivaHorario d where disciplinaLetiva_id="+id );
@@ -81,9 +81,9 @@ public class HorarioDAO extends HibernateDaoSupport {
 	public boolean validationDisciplinaLetivaHorario(
 			DisciplinaLetivaHorario disciplinaLetivaHorario) {
 	
-		Query c = getSession().createQuery( "Select d from DisciplinaLetivaHorario d where d.DiaSemana='"+disciplinaLetivaHorario.getDiaSemana().name()+
-				"' and disciplinaLetiva_id="+disciplinaLetivaHorario.getDisciplinaLetiva().getId()+
-				" and horario_id="+disciplinaLetivaHorario.getHorario().getId());
+		Query c = getSession().createQuery( "Select d from DisciplinaLetivaHorario d where d.disciplinaLetivaHorarioPK.DiaSemana='"+disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().getDiaSemana().name()+
+				"' and d.disciplinaLetivaHorarioPK.disciplinaLetiva.id="+disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().getDisciplinaLetiva().getId()+
+				" and d.disciplinaLetivaHorarioPK.horario.id="+disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().getHorario().getId());
 		List<DisciplinaLetivaHorario> validationDisciplinaLetHorario =(List<DisciplinaLetivaHorario>) c.list();
 		
 		if(validationDisciplinaLetHorario.isEmpty()){
@@ -91,6 +91,13 @@ public class HorarioDAO extends HibernateDaoSupport {
 		}else{
 			return false;
 		}
+	}
+
+	public DisciplinaLetivaHorario getDisciplinaLetivaHorarioByHorarioAndDisciplinaLetivaId(
+			Integer idDisciplinaLetiva, Integer idHorario) {
+		String sql = "FROM DisciplinaLetivaHorario dlh WHERE dlh.disciplinaLetivaHorarioPK.horario.id = " + idHorario + " AND dlh.disciplinaLetivaHorarioPK.disciplinaLetiva.id = " + idDisciplinaLetiva ; 
+		Query c = getSession().createQuery(sql);
+		return (DisciplinaLetivaHorario) c.uniqueResult();
 	}
 	
 

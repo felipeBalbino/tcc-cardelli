@@ -54,10 +54,6 @@ public class DisciplinaLetiva implements Serializable {
 	private List<Aluno> aluno;
 	
 	@ManyToMany(targetEntity=DisciplinaLetivaHorario.class)
-	    @JoinTable (name="DisciplinaLetivaHorario",
-	            joinColumns={@JoinColumn(name="disciplinaLetiva_id")},
-	            inverseJoinColumns={@JoinColumn(name="horario_id")}
-	            )
 	private List<Horario> horarios;
 	
 	@OneToOne

@@ -73,6 +73,7 @@ function restartTrs(){
 
 <div id="retorno" align="right">
 <img src="../images/arrow_categ.gif"><a href="../painel/aluno!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Alunos</a>
+<img src="../images/arrow_categ.gif"><a href="../painel/hora!listaAEP.java?horaAEPListaParams.id=<s:property value="aluno.id" />" style="color:#FF4500;text-align:left;border-style:none;">Lista de Horas do Aluno</a>
 </div>
 <div id="experience" >
 					<div id="explanation">

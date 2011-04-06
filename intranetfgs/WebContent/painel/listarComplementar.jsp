@@ -44,10 +44,23 @@
 </script>
 </head>
 <body>
-<div align="right"><a title="Novo Evento"
-	href="../painel/hora!novaHoraComplementar.java?aluno.id=<s:property value="aluno.id"/>"> <img border="0"
-	src="../images/novo.jpg" />Adicionar Hora Complementar</a></div>
+<table border=0 width="100%">
+
+	<tr>
 	
+		<td><img src="../images/arrow_categ.gif" />
+		<a href="../painel/aluno!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Alunos</a>
+		</td>
+		<td align="right"><a title="Novo Evento"
+	href="../painel/hora!novaHoraComplementar.java?aluno.id=<s:property value="aluno.id"/>"> <img border="0"
+	src="../images/novo.jpg" />Adicionar Hora Complementar</a>
+		</td>
+	
+	</tr>
+
+</table>
+
+
 <br>
 <br>
 <b>Filtros de Pesquisa</b>

@@ -75,11 +75,19 @@
 <title>Intranet - Faculdade Gama & Souza | Adicionar Hora Complementar</title>
 </head>
 <body>
-
-	<div id="retorno" align="right">
+<table>
+	<tr>
+		<td><img src="../images/arrow_categ.gif" />
+		<a href="../painel/hora!listaComplementar.java?horaComplementarListaParams.id=<s:property value="aluno.id" />" style="color:#FF4500;text-align:left;border-style:none;">Lista de Horas Complementares</a>
 		<img src="../images/arrow_categ.gif" />
 		<a href="../painel/aluno!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Alunos</a>
-	</div>
+	</td>
+	</tr>
+</table>
+	
+	
+	
+	
 	<div id="experience" >
 		<div id="explanation">
 			<h3>

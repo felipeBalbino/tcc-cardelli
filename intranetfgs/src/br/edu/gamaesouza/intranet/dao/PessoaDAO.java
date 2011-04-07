@@ -169,7 +169,7 @@ public class PessoaDAO extends HibernateDaoSupport {
 			query =  query + "WHERE ";
 			
 			if(! ( alunoSearchParams.getMatricula() == null )){
-				query = query + "matricula = '" + alunoSearchParams.getMatricula() + "'";
+				query = query + "matricula LIKE '%" + alunoSearchParams.getMatricula() + "%'";		
 				operator = true;
 			}
 			

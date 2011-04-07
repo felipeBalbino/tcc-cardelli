@@ -14,6 +14,7 @@ import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.params.impl.ProfessorAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.ProfessorNovoParams;
 import br.edu.gamaesouza.intranet.security.UserData;
+import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
@@ -42,6 +43,8 @@ public class ProfessorAction extends ActionSupport {
 	@Autowired private PessoaDAO pessoaDAO;
 	@Autowired private DisciplinaDAO disciplinaDAO;
 
+	private String tempoDeResposta;
+	
 	public String save() {
 		UserData.grantAccess(RULE_PROFESSOR_SALVA);
 		
@@ -151,8 +154,11 @@ public class ProfessorAction extends ActionSupport {
 		UserData.grantAccess(RULE_PROFESSOR_LISTA);
 		
 		try {
+			long inicio = System.currentTimeMillis();  
 			professores = pessoaDAO.getAll();
 			allRules = pessoaDAO.getAllRules();
+			long  end = System.currentTimeMillis();  
+			setTempoDeResposta(FormUtil.tempoResposta(professores, inicio, end)); 
 		} catch (IntranetException e) {
 			addActionMessage(e.getMessage());
 		}
@@ -222,5 +228,13 @@ public class ProfessorAction extends ActionSupport {
 
 	public void setProfessorAlteraParams( ProfessorAlteraParams professorAlteraParams ) {
 		this.professorAlteraParams = professorAlteraParams;
+	}
+
+	public void setTempoDeResposta(String tempoDeResposta) {
+		this.tempoDeResposta = tempoDeResposta;
+	}
+
+	public String getTempoDeResposta() {
+		return tempoDeResposta;
 	}
 }

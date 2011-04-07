@@ -27,26 +27,35 @@ import br.edu.gamaesouza.intranet.utils.StatusMatriculaEnum;
 })
 public class Aluno extends Pessoa implements Serializable {
 	
+	@OneToOne
 	private Curso curso;
+
+	@OneToMany
 	private List<Hora> horas;
+	
 	private Integer periodo;
+	@Enumerated(EnumType.STRING)
 	private StatusMatriculaEnum statusMatricula;
    
    
-   @OneToOne
+
 	public Curso getCurso() { return curso; }
+	public void setCurso(Curso curso) { this.curso = curso; }   
 
-	public void setCurso(Curso curso) { this.curso = curso; }
-
-   @OneToMany
-	public List<Hora> getHoras() { return horas; }
-	public void setHoras(List<Hora> horas) { this.horas = horas; }
-   
-   @Enumerated(EnumType.STRING)
 	public StatusMatriculaEnum getStatusMatricula() { return statusMatricula; }
 	public void setStatusMatricula(StatusMatriculaEnum statusMatricula) { this.statusMatricula = statusMatricula; }
    
 	public Integer getPeriodo() { return periodo; }
 	public void setPeriodo(Integer periodo) { this.periodo = periodo; }
+
+	public void setHoras(List<Hora> horas) {
+		this.horas = horas;
+	}
+
+	public List<Hora> getHoras() {
+		return horas;
+	}
+	
+	
 
 }

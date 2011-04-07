@@ -55,6 +55,8 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	@Autowired private Disciplina disciplina;
 	@Autowired private DisciplinaDAO disciplinaDAO;
 
+	private String tempoDeResposta;
+	
 	public String prepare()  {
 		UserData.grantAccess(RULE_DISCIPLINA_LETIVA_LISTA);
 		try {
@@ -76,12 +78,16 @@ public class DisciplinaLetivaAction extends ActionSupport{
 	public String lista()  {
 		UserData.grantAccess(RULE_DISCIPLINA_LETIVA_LISTA);
 		try {
+			long inicio = System.currentTimeMillis();  
 			setAnos(FormUtil.getAnosList(3));
 			setSemestres(FormUtil.getSemestresList());
 			setTurnos(FormUtil.getTurnosList());
 			disciplinas = disciplinaDAO.getAllDisciplinas();
 			professores = pessoaDao.getAll();
 			disciplinasLetivas = disciplinaDAO.getAllByParamsDisciplinaLetiva(disciplinaLetivaSearchParams);
+			long  end = System.currentTimeMillis();  
+			setTempoDeResposta(FormUtil.tempoResposta(disciplinasLetivas, inicio, end)); 
+			
 		} catch (IntranetException e) {
 			addActionMessage(e.getMessage());
 		}
@@ -312,6 +318,16 @@ public class DisciplinaLetivaAction extends ActionSupport{
 
 	public void setSala(String sala) {
 		this.sala = sala;
+	}
+
+
+	public void setTempoDeResposta(String tempoDeResposta) {
+		this.tempoDeResposta = tempoDeResposta;
+	}
+
+
+	public String getTempoDeResposta() {
+		return tempoDeResposta;
 	}
 
 

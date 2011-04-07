@@ -1,8 +1,12 @@
 package br.edu.gamaesouza.intranet.action;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Arquivo;
@@ -81,14 +85,22 @@ public class BuscarMaterialAction extends ActionSupport {
 		try {
 			arquivo = arquivoDAO.getArquivoById(idarquivo);						
 			//enviar email dd arquivo para pessoa logada
-		
+			ServletContext sContext = ServletActionContext.getServletContext();  
+			String diretorio = sContext.getRealPath("/arquivos");
+			File fds = new File(diretorio + "\\" +arquivo.getUrl()); 
+			
+			if(fds.length() <= 25000000){
 				try {
 					enviarEmail.sendArquivoPeloAluno( arquivo, arquivo.getNome(), UserData.getLoggedUser() );
 					addActionMessage("Arquivo enviado com sucesso - "+UserData.getLoggedUser().getEmail());
 				} catch ( Throwable e ) {
-					addActionError("Não foi possível enviar o email");
+					addActionError("Nï¿½o foi possï¿½vel enviar o email");
 				}			
-			
+			}else{
+				addActionError("O arquivo selecionado precisa ser menor que 25MB.");
+			}
+				
+				
 				return carregaFiltrosPesquisa();
 		} catch (Exception e1) {
 			return carregaFiltrosPesquisa();

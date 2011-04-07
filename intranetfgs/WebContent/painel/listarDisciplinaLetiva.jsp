@@ -138,8 +138,8 @@ if(i == j) $(this).hide('slow');
 					
 				 	<tr>
 						<td>
+						<div class="conteudo">
 						<s:form action="../painel/letiva!alterar.java">
-							<div class="conteudo">
 								<table>		
 									<tr>
 										<td>Professor:<br><sx:autocompleter headerKey="-1" headerValue=""  id="professor" list="professores" name="professor.id"  listKey="id" listValue="nome" /></td>	
@@ -149,13 +149,14 @@ if(i == j) $(this).hide('slow');
 									</tr>	
 											
 								</table>
-							</div>
 						</s:form>
+						</div>
 						
 						</td>
 					</tr>
 					
 				</s:iterator>
 			</table>
+			<center style="font-size: 10px"><s:property value="%{tempoDeResposta}"/></center>
 </body>
 </html>

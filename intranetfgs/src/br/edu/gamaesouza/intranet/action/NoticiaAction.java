@@ -7,6 +7,7 @@ import br.edu.gamaesouza.intranet.bean.Noticia;
 import br.edu.gamaesouza.intranet.bean.Professor;
 import br.edu.gamaesouza.intranet.dao.NoticiaDAO;
 import br.edu.gamaesouza.intranet.security.UserData;
+import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
@@ -27,12 +28,20 @@ public class NoticiaAction extends ActionSupport {
 	@Autowired private Noticia noticia;
 	
 	@Autowired private NoticiaDAO noticiaDAO;
+	
+	private String tempoDeResposta;
 
 	public String lista() {
 		
 		UserData.grantAccess(RULE_NOTICIA_LISTA);
-		try {
+		try {		
+			long inicio = System.currentTimeMillis();  
 			noticias = noticiaDAO.getAll();
+			long  end = System.currentTimeMillis();  
+			setTempoDeResposta(FormUtil.tempoResposta(noticias, inicio, end)); 
+			
+			
+			
 		} catch (IntranetException e) {
 			addActionMessage(e.getMessage());
 		}
@@ -120,6 +129,14 @@ public class NoticiaAction extends ActionSupport {
 
 	public void setNoticia(Noticia noticia) {
 		this.noticia = noticia;
+	}
+
+	public void setTempoDeResposta(String tempoDeResposta) {
+		this.tempoDeResposta = tempoDeResposta;
+	}
+
+	public String getTempoDeResposta() {
+		return tempoDeResposta;
 	}
 
 }

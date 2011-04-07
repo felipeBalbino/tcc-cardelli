@@ -72,8 +72,8 @@ public class AlunoSearchParams implements Params {
 	}
 
 
-	public void setMatricula(String matricula) {
-		this.matricula = Integer.parseInt(matricula);
+	public void setMatricula(Integer matricula) {
+		this.matricula = matricula;
 	}
 
 

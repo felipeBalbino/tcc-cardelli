@@ -25,7 +25,7 @@ public class FormUtil {
 	public static List<String> getDiasSemana(){
 		List<String> dias = new ArrayList<String>();
 		dias.add("SEGUNDA");
-		dias.add("TERÇA");
+		dias.add("TERï¿½A");
 		dias.add("QUARTA");
 		dias.add("QUINTA");
 		dias.add("SEXTA");
@@ -55,6 +55,10 @@ public class FormUtil {
 		return  anoAtual - 1;
 	}
 	
+	
+	public static String tempoResposta(List list, Long inicio, Long end){
+		return (list.size() +" resultados em ("+ (end - inicio) + " Milisegundo(s))"); 
+	}
 	
 	public static List<Integer> getAnos(){
 		List<Integer> anos = new ArrayList<Integer>();

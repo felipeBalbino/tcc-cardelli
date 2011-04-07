@@ -17,6 +17,7 @@ import br.edu.gamaesouza.intranet.params.impl.AlunoAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams;
 import br.edu.gamaesouza.intranet.params.impl.AlunoSearchParams;
 import br.edu.gamaesouza.intranet.security.UserData;
+import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.StatusMatriculaEnum;
 
@@ -54,7 +55,7 @@ public class AlunoAction extends ActionSupport {
 	@Autowired private CursoDAO cursoDAO;
 	@Autowired private HorarioDAO horarioDAO;
 	@Autowired private DisciplinaDAO disciplinaDAO;
-	
+	private String tempoDeResposta;
 
 
 	public String prepare(){
@@ -69,10 +70,14 @@ public class AlunoAction extends ActionSupport {
 	
 	public String lista() {
 		UserData.grantAccess(RULE_ALUNOS_LISTA);
-		try {
+		try {	
+			long inicio = System.currentTimeMillis();  
 			setCursos( cursoDAO.getAllCursos() );
 			setAllStatusMatricula(Arrays.asList(StatusMatriculaEnum.values()));
 			setAlunos( pessoaDAO.getAllAlunosByParams(alunoSearchParams) );
+			long  end = System.currentTimeMillis();  
+			setTempoDeResposta(FormUtil.tempoResposta(getAlunos(), inicio, end)); 
+			//alunoSearchParams = new AlunoSearchParams();
 		} catch (IntranetException e) {
 			addActionMessage(e.getMessage());
 		}
@@ -338,6 +343,14 @@ public class AlunoAction extends ActionSupport {
 
 	public void setHorarioDAO(HorarioDAO horarioDAO) {
 		this.horarioDAO = horarioDAO;
+	}
+
+	public void setTempoDeResposta(String tempoDeResposta) {
+		this.tempoDeResposta = tempoDeResposta;
+	}
+
+	public String getTempoDeResposta() {
+		return tempoDeResposta;
 	}
 
 

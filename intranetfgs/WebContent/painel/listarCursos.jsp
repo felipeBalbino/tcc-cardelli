@@ -7,7 +7,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<sx:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Cursos</title>
 <script type="text/javascript"
@@ -43,6 +42,64 @@ if(i == j) $(this).hide('slow');
 	     }  
 	 }
 
+ 	
+
+ 	function restartTrs(){
+ 		document.getElementById("nome").style.backgroundColor = "transparent";
+ 		document.getElementById("cargaHorariaComplementar").style.backgroundColor = "transparent";
+ 	 }
+
+ 	 function restartMensagemErro(){
+ 	                   document.getElementById("mensagem_ocultos").style.display = "none";
+ 	 }
+
+
+ 	 function validaForm(){
+ 		 restartTrs();
+ 	         restartMensagemErro();
+ 	         d = document.altera;
+ 	         var erro = false;
+
+ 	         //validar nome do curso
+ 	         if ( document.getElementById("nome").value == ""){
+ 		           document.getElementById("nome").style.backgroundColor = "#FF6A6A";
+ 	                 d.nome.focus();
+ 	                 erro = true;
+ 	       	 }  
+ 	         
+ 	         //validar Carga Horário Complementar
+ 	         if (document.getElementById("cargaHorariaComplementar").value == ""){
+ 		           document.getElementById("cargaHorariaComplementar").style.backgroundColor = "#FF6A6A";
+ 	                 d.cargaHorariaComplementar.focus();
+ 	                 erro = true;
+ 	         } 
+ 	        
+ 	         
+ 			if (erro != true) {
+ 	         	return true;
+ 			}else{
+ 				document.getElementById("mensagem_ocultos").style.display = "inline";
+ 	         	return false;
+ 			}
+ 	}
+ 	 
+ 	 function Numero(e)
+ 	 {
+ 		 navegador = /msie/i.test(navigator.userAgent);
+ 		 if (navegador)
+ 		 	var tecla = event.keyCode;
+ 		 else
+ 		 	var tecla = e.which;
+ 		 if(tecla > 47 && tecla < 58) // numeros de 0 a 9
+ 			 return true;
+ 		 else
+ 		 {
+ 		 if (tecla != 8) // backspace
+ 		 return false;
+ 		 else
+ 		 return true;
+ 		 }
+ 	 }
 	
 </script>
 </head>
@@ -65,9 +122,9 @@ if(i == j) $(this).hide('slow');
 			<td><s:submit value="Pesquisar"></s:submit></td>
 		</tr>
 	</table>  
-	 
-	
-	
+<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  Campo(s) em vermelho requerido(s).</p></div>
+						
+<br>
 </s:form>
 
 	<s:if test="hasActionMessages()">
@@ -117,16 +174,18 @@ if(i == j) $(this).hide('slow');
 		</tr>
 
 		<tr>
-			<td><s:form action="/painel/curso!altera.java">
-				<div class="conteudo">
+			<td>
+			<div class="conteudo">
+			<s:form action="/painel/curso!altera.java" name="altera" onSubmit="return validaForm()">
+				
 				<s:hidden name="cursoAlteraParams.id" id="cursoAlteraParams.id" value="%{id}"></s:hidden>
 				<table>
 					<tr>
-						<td><b>Nome: </b><s:textfield id="cursoAlteraParams.nomeCurso" name="cursoAlteraParams.nomeCurso" value="%{nome}" /></td>
+						<td><b>Nome: </b><s:textfield id="nome" name="cursoAlteraParams.nomeCurso" value="%{nome}" /></td>
 					</tr>
 					
 					<tr>
-						<td><b>Carga Horário Complementar: </b><s:textfield id="cursoAlteraParams.cargaHorariaComplementar" name="cursoAlteraParams.cargaHorariaComplementar" value="%{cargaHorariaComplementar}" /></td>
+						<td><b>Carga Horário Complementar: </b><s:textfield id="cargaHorariaComplementar" name="cursoAlteraParams.cargaHorariaComplementar" value="%{cargaHorariaComplementar}" maxLength="8"  onKeyPress="return Numero(event);" /></td>
 					</tr>
 				
 					<tr><td>
@@ -146,12 +205,14 @@ if(i == j) $(this).hide('slow');
 						<td><s:submit align="left" value="Alterar"></s:submit></td>
 					</tr>
 				</table>
-				</div>
 			</s:form>
+		</div>
 		</td>
 		</tr>
 
 	</s:iterator>
+	
 </table>
+<center style="font-size: 10px"><s:property value="%{tempoDeResposta}"/></center>
 </body>
 </html>

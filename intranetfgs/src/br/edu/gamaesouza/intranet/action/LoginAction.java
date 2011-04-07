@@ -140,6 +140,12 @@ public class LoginAction extends ActionSupport {
 		}
 		
 		
+		
+		public String sessionClosed() {
+			addActionError("A sua sessão expirou, você ficou muito tempo sem enviar ou alterar nada dentro da intranet, ocasionando o fechamento da sua sessão. Efetue o login novamente.");
+			return "login";
+		}
+		
 		public String senha() {
 			try {
 				Map<String, Object> sessao = ActionContext.getContext().getSession();

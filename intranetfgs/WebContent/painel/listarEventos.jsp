@@ -153,9 +153,10 @@ if(i == j) $(this).hide('slow');
 					
 					<tr>
 						<td>
+						<div class="conteudo">
 						<s:form name="alterar" onSubmit="return validaForm()" action="/painel/evento!altera.java"  >
 						
-							<div class="conteudo">
+							
 								<table>
 									<tr>
 										<td><s:hidden name="eventoAlteraParams.id" id="id" value="%{id}"></s:hidden></td>
@@ -202,14 +203,16 @@ if(i == j) $(this).hide('slow');
 									</tr>
 								</table>
 								
-							</div>
-						</s:form>
 						
+						</s:form>
+							</div>
 						</td>
 						
 					</tr>
 				
 				</s:iterator>
 			</table>
+			
+			<center style="font-size: 10px"><s:property value="%{tempoDeResposta}"/></center>
 </body>
 </html>

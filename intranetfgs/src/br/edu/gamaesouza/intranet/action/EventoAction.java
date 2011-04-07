@@ -13,6 +13,7 @@ import br.edu.gamaesouza.intranet.params.impl.EventoAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.EventoDeletaParams;
 import br.edu.gamaesouza.intranet.params.impl.EventoNovoParams;
 import br.edu.gamaesouza.intranet.security.UserData;
+import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
@@ -25,11 +26,11 @@ public class EventoAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	
 	private static final String MSG_EVENTO_NOVO_SUCESSO = "Evento adicionado com sucesso";
-	private static final String MSG_EVENTO_NOVO_FAILURE = "Não foi possivel adicionar o evento, ocorreu um erro interno no Servidor";
+	private static final String MSG_EVENTO_NOVO_FAILURE = "Nï¿½o foi possivel adicionar o evento, ocorreu um erro interno no Servidor";
 	private static final String MSG_EVENTO_ALTERA_SUCESSO = "Evento modificado com sucesso";
-	private static final String MSG_EVENTO_ALTERA_FAILURE = "Não foi possivel modificar o evento, ocorreu um erro interno no Servidor";
+	private static final String MSG_EVENTO_ALTERA_FAILURE = "Nï¿½o foi possivel modificar o evento, ocorreu um erro interno no Servidor";
 	private static final String MSG_EVENTO_DELETA_SUCESSO = "Evento deletado com sucesso";
-	private static final String MSG_EVENTO_DELETA_INSUCESSO = "Não foi possivel deletar o evento, ocorreu um erro interno no Servidor";
+	private static final String MSG_EVENTO_DELETA_INSUCESSO = "Nï¿½o foi possivel deletar o evento, ocorreu um erro interno no Servidor";
 
 	private static final String RULE_EVENTO_NOVO = "RULE_EVENTO_NOVO";
 	private static final String RULE_EVENTO_ALTERA = "RULE_EVENTO_ALTERA";
@@ -45,13 +46,17 @@ public class EventoAction extends ActionSupport {
 	@Autowired private EventoDeletaParams eventoDeletaParams;
 	@Autowired private EventoNovoParams   eventoNovoParams;
 
+	private String tempoDeResposta;
 	public String lista() {
 		
 		UserData.grantAccess(RULE_EVENTO_LISTA);
-		try {
+		try {			
+			long inicio = System.currentTimeMillis();  
 			eventos = eventoDAO.getAll();
+			long  end = System.currentTimeMillis();  
+			setTempoDeResposta(FormUtil.tempoResposta(eventos, inicio, end)); 
 		} catch (IntranetException e) {
-			logger.warning("Erro Método lista() em EventoAction.");
+			logger.warning("Erro Mï¿½todo lista() em EventoAction.");
 		}
 		return RETURN_EVENTO_LISTA;
 		
@@ -136,6 +141,14 @@ public class EventoAction extends ActionSupport {
 
 	public void setEventoNovoParams(EventoNovoParams eventoNovoParams) {
 		this.eventoNovoParams = eventoNovoParams;
+	}
+
+	public void setTempoDeResposta(String tempoDeResposta) {
+		this.tempoDeResposta = tempoDeResposta;
+	}
+
+	public String getTempoDeResposta() {
+		return tempoDeResposta;
 	}	
 
 }

@@ -1,6 +1,9 @@
 package br.edu.gamaesouza.intranet.action;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -18,6 +21,7 @@ import br.edu.gamaesouza.intranet.params.impl.CursoDeletaParams;
 import br.edu.gamaesouza.intranet.params.impl.CursoNovoParams;
 import br.edu.gamaesouza.intranet.params.impl.CursoSearchParams;
 import br.edu.gamaesouza.intranet.security.UserData;
+import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -25,12 +29,9 @@ import com.opensymphony.xwork2.ActionSupport;
 public class CursoAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
-	private static final String MSG_CURSO_NOVO_SUCESSO = "Curso cadastrado com sucesso!";
 	private static final String MSG_CURSO_NOVO_FAILURE = "Ocorreu um erro interno no servidor. N�o foi poss�vel cadastrar o curso.";
 	private static final String MSG_CURSO_DELETA_SUCESSO = "Curso deletado com sucesso!";
 	private static final String MSG_CURSO_DELETA_INSUCESSO = "Ocorreu um erro interno no servidor. N�o foi poss�vel deletar o curso.";
-	
-	private static final String MSG_CURSO_ALTERA_SUCESSO = "Curso alterado com sucesso!";
 	private static final String MSG_CURSO_ALTERA_FAILURE = "Ocorreu um erro interno no servidor. N�o foi poss�vel alterar o curso.";
 
 	private static final String RULE_CURSO_NOVO = "RULE_CURSO_NOVO";
@@ -53,9 +54,10 @@ public class CursoAction extends ActionSupport {
 	@Autowired private DisciplinaDAO disciplinaDAO;
 	@Autowired private PessoaDAO pessoaDAO;
 
+	private String tempoDeResposta;
 	
 	public String execute(){
-		try {
+		try {	
 			allDisciplinas = disciplinaDAO.getAllDisciplinas();
 		} catch (IntranetException e) {
 			// TODO Falta Implementar
@@ -64,12 +66,19 @@ public class CursoAction extends ActionSupport {
 	}
 	
 	public String novo() throws IntranetException {
-
+	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		UserData.grantAccess(RULE_CURSO_NOVO);	
 			try {
-				
+				if(cursoNovoParams.getNomeCurso().equals("") || cursoNovoParams.getCargaHorariaComplementar() == null) {
+					if(cursoNovoParams.getNomeCurso().equals(""))
+					addActionError("Campo Nome é obrigatório.");
+					
+					if(cursoNovoParams.getCargaHorariaComplementar() == null)
+					addActionError("Campo Carga Horária é obrigatório.");
+				}else{
 				cursoDAO.save(cursoNovoParams.getCurso());
-				addActionMessage(MSG_CURSO_NOVO_SUCESSO);
+				addActionMessage(" Curso " + cursoNovoParams.getNomeCurso() + " cadastrado com sucesso em "+sdf.format(Calendar.getInstance().getTime()));
+				}
 			} catch (IntranetException e) {
 				addActionError(MSG_CURSO_NOVO_FAILURE);
 			}
@@ -80,9 +89,19 @@ public class CursoAction extends ActionSupport {
 	
 	public String altera() {
 		UserData.grantAccess(RULE_CURSO_ALTERA);
+	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			try {
-				cursoDAO.merge(cursoAlteraParams.getCurso());
-				addActionMessage(MSG_CURSO_ALTERA_SUCESSO);
+				
+				if(cursoAlteraParams.getNomeCurso().equals("") || cursoAlteraParams.getCargaHorariaComplementar() == null) {
+							if(cursoAlteraParams.getNomeCurso().equals(""))
+							addActionError("Campo Nome é obrigatório.");
+							
+							if(cursoAlteraParams.getCargaHorariaComplementar() == null)
+							addActionError("Campo Carga Horária é obrigatório.");
+				}else{
+					cursoDAO.merge(cursoAlteraParams.getCurso());
+					addActionMessage(" Curso " + cursoAlteraParams.getNomeCurso() + " alterado com sucesso em "+sdf.format(Calendar.getInstance().getTime()));
+				}
 			} catch (IntranetException e) {
 				addActionError(MSG_CURSO_ALTERA_FAILURE);
 			}
@@ -92,9 +111,13 @@ public class CursoAction extends ActionSupport {
 
 	public String lista() {
 		UserData.grantAccess(RULE_CURSO_LISTA);
+ 
 			try{
-				cursos = cursoDAO.getAllByParams(cursoSearchParams);
-				allDisciplinas = disciplinaDAO.getAllDisciplinas();
+				 long inicio = System.currentTimeMillis();  
+				 cursos = cursoDAO.getAllByParams(cursoSearchParams);
+				 allDisciplinas = disciplinaDAO.getAllDisciplinas();
+				 long  end = System.currentTimeMillis();  
+				 setTempoDeResposta(FormUtil.tempoResposta(cursos, inicio, end)); 
 				return RETURN_CURSO_LISTA;
 			}catch(IntranetException e){	
 				return RETURN_CURSO_LISTA;
@@ -111,10 +134,10 @@ public class CursoAction extends ActionSupport {
 				cursoDAO.delete(curso);
 				addActionMessage(MSG_CURSO_DELETA_SUCESSO);
 			}else{
-				addActionError("N�o foi poss�vel deletar este curso, "+alunos.size()+" aluno(s) esta(�o) cadastrado(s) nele.");
+				addActionError("N�o foi poss�vel deletar este curso, "+alunos.size()+" aluno(s) esta(�o) cadastrado(s) nele.");
 				for(Aluno aluno : alunos) {
 					addActionError("Nome: "+aluno.getNome()+
-							" - Matr�cula: "+aluno.getMatricula()+
+							" - Matr�cula: "+aluno.getMatricula()+
 							" - Email: "+aluno.getEmail());
 				}
 			}
@@ -183,6 +206,14 @@ public class CursoAction extends ActionSupport {
 
 	public void setCursoDeletaParams(CursoDeletaParams cursoDeletaParams) {
 		this.cursoDeletaParams = cursoDeletaParams;
+	}
+
+	public void setTempoDeResposta(String tempoDeResposta) {
+		this.tempoDeResposta = tempoDeResposta;
+	}
+
+	public String getTempoDeResposta() {
+		return tempoDeResposta;
 	}
 	
 	

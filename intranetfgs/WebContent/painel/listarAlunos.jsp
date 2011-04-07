@@ -188,7 +188,7 @@ if(i == j) $(this).hide('slow');
 			<td><s:textfield name="alunoSearchParams.email" id="alunoSearchParams.email"></s:textfield></td>
 			
 			<td>Matrícula:</td>
-			<td><s:textfield  onKeyPress="return Numero(event);" name="alunoSearchParams.matricula" id="alunoSearchParams.matricula" maxLength="8"></s:textfield></td>
+			<td><s:textfield  onKeyPress="return Numero(event);" name="alunoSearchParams.matricula" id="searchmatricula" maxLength="8"></s:textfield></td>
 		</tr>
 		<tr>
 			<td><s:submit value="Pesquisar"></s:submit></td>
@@ -254,9 +254,10 @@ if(i == j) $(this).hide('slow');
 					</tr>
 					<tr>
 						<td>
+						<div class="conteudo">
 						<s:form name="registra" onSubmit="return validaForm()" action="/painel/aluno!editar.java" method="get">
 						<s:hidden id="aluno.id" name="alunoAlteraParams.id" value="%{id}" />
-							<div class="conteudo">
+							
 								<table width="100%">
 								
 									<tr>
@@ -298,13 +299,15 @@ if(i == j) $(this).hide('slow');
 										
 				
 								</table>
-							</div>
+							
 						</s:form>
+						</div>
 						
 						</td>
 					</tr>
 				
 				</s:iterator>
 			</table>
+			<center style="font-size: 10px"><s:property value="%{tempoDeResposta}"/></center>
 </body>
 </html>

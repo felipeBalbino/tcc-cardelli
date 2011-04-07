@@ -321,7 +321,7 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 			
 	
 		boolean operator = false;
-		String query = "FROM DisciplinaLetiva  d left outer join fetch d.disciplina disciplina ";
+		String query = "FROM DisciplinaLetiva  d left outer join fetch d.disciplina disciplina left outer join fetch d.professor professor ";
 		
 		if (!disciplinaLetivaSearchParams.isEmpty()){
 			query =  query + "WHERE ";
@@ -346,6 +346,14 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 				query = query + "turno = '" + disciplinaLetivaSearchParams.getTurno() + "'";
 				operator = true;
 			}
+			
+			if(disciplinaLetivaSearchParams.getProfessor() != -1){
+				if(operator){
+					query = query + " AND ";
+				}
+				query = query + "professor.id = '" + disciplinaLetivaSearchParams.getProfessor() + "'";
+				operator = true;
+			}
 					
 			
 			
@@ -357,6 +365,8 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 				query = query + "disciplina.nome LIKE '%" + disciplinaLetivaSearchParams.getDisciplinaNome() + "%'";
 				
 			}
+			
+			
 			
 		}
 		

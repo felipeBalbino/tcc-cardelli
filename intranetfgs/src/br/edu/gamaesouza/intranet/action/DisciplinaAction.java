@@ -14,6 +14,7 @@ import br.edu.gamaesouza.intranet.params.impl.DisciplinaAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaDeletaParams;
 import br.edu.gamaesouza.intranet.params.impl.DisciplinaSearchParams;
 import br.edu.gamaesouza.intranet.security.UserData;
+import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
@@ -47,6 +48,8 @@ public class DisciplinaAction extends ActionSupport{
 	@Autowired private DisciplinaDeletaParams disciplinaDeletaParams;
 	@Autowired private DisciplinaAlteraParams disciplinaAlteraParams;
 	
+	private String tempoDeResposta;
+	
 	public String alterar() {
 		UserData.grantAccess(RULE_DISCIPLINA_ALTERA);
 				
@@ -68,8 +71,11 @@ public class DisciplinaAction extends ActionSupport{
 		UserData.grantAccess(RULE_DISCIPLINA_LISTA);
 			
 			try {
+				long inicio = System.currentTimeMillis();  
 				disciplinas = disciplinaDAO.getAllByParams(disciplinaSearchParams);
 				allCursos = cursoDAO.getAllCursos();
+				long  end = System.currentTimeMillis();  
+				setTempoDeResposta(FormUtil.tempoResposta(disciplinas, inicio, end)); 
 			} catch (IntranetException e) {}
 			
 			return "disciplinas";
@@ -119,7 +125,7 @@ public class DisciplinaAction extends ActionSupport{
 					disciplina = (Disciplina) SpringUtil.getBean("disciplina");
 					addActionMessage("Disciplina deletada com sucesso");
 				}else{
-					addActionError("Não foi possivel deletar esta disciplina, existe(m) "+disciplinasLetivas.size()+" Disciplina(s) letiva(s) vincula(s) a essa disciplina.");	
+					addActionError("Nï¿½o foi possivel deletar esta disciplina, existe(m) "+disciplinasLetivas.size()+" Disciplina(s) letiva(s) vincula(s) a essa disciplina.");	
 					for(DisciplinaLetiva letiva : disciplinasLetivas) {
 						addActionError("Turno: "+letiva.getTurno()+
 								" - Ano: "+letiva.getAno()+
@@ -129,7 +135,7 @@ public class DisciplinaAction extends ActionSupport{
 					}
 				}
 			} catch (IntranetException e) {	
-				addActionError("Não foi possivel deletar o disciplina, ocorreu um erro interno no Servidor");
+				addActionError("Nï¿½o foi possivel deletar o disciplina, ocorreu um erro interno no Servidor");
 			}
 			return lista();
 	
@@ -234,6 +240,16 @@ public class DisciplinaAction extends ActionSupport{
 	public void setDisciplinaAlteraParams(
 			DisciplinaAlteraParams disciplinaAlteraParams) {
 		this.disciplinaAlteraParams = disciplinaAlteraParams;
+	}
+
+
+	public void setTempoDeResposta(String tempoDeResposta) {
+		this.tempoDeResposta = tempoDeResposta;
+	}
+
+
+	public String getTempoDeResposta() {
+		return tempoDeResposta;
 	}
 	
 	

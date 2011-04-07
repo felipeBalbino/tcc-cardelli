@@ -34,6 +34,7 @@ width:295px;
 
 function restartTrs(){
 	document.getElementById("nome").style.backgroundColor = "transparent";
+	document.getElementById("cargaHorariaComplementar").style.backgroundColor = "transparent";
  }
 
  function restartMensagemErro(){
@@ -47,12 +48,19 @@ function restartTrs(){
          d = document.adicionar;
          var erro = false;
         
-         //validar arquivo
+         //validar nome do curso
          if (d.nome.value == ""){
 	           document.getElementById("nome").style.backgroundColor = "#FF6A6A";
                  d.nome.focus();
                  erro = true;
        		}  
+         
+         //validar Carga Horário Complementar
+         if (d.cargaHorariaComplementar.value == ""){
+	           document.getElementById("cargaHorariaComplementar").style.backgroundColor = "#FF6A6A";
+                 d.cargaHorariaComplementar.focus();
+                 erro = true;
+       		} 
         
          
 		if (erro != true) {
@@ -62,6 +70,24 @@ function restartTrs(){
          	return false;
 		}
 }
+ 
+ function Numero(e)
+ {
+	 navegador = /msie/i.test(navigator.userAgent);
+	 if (navegador)
+	 	var tecla = event.keyCode;
+	 else
+	 	var tecla = e.which;
+	 if(tecla > 47 && tecla < 58) // numeros de 0 a 9
+		 return true;
+	 else
+	 {
+	 if (tecla != 8) // backspace
+	 return false;
+	 else
+	 return true;
+	 }
+ }
 
 
 </script>
@@ -84,7 +110,8 @@ function restartTrs(){
 						<p> 
 						  Use os campos ao lado para adicionar um curso. 
 						</p>
-						<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  O Campo Nome em vermelhor é requerido.</p></div>
+						<div id="mensagem_ocultos" style="display:none;color:red;"><p><img src="../images/imgErro.gif"/>  Campo(s) em vermelho requerido(s).</p></div>
+						
 						<br>
 						<s:if test="hasActionMessages()">
 							<div class="welcome" >
@@ -103,8 +130,8 @@ function restartTrs(){
 
 
 	<s:form action="/painel/curso!novo.java" name="adicionar" onSubmit="return validaForm()" >
-		Nome: <s:textfield id="nome" name="cursoNovoParams.nomeCurso"></s:textfield><br>
-		Carga Horário Complementar: <s:textfield id="cargaHorariaComplementar" name="cursoNovoParams.cargaHorariaComplementar"></s:textfield>
+		Nome: <s:textfield id="nome" name="cursoNovoParams.nomeCurso" value=""></s:textfield><br>
+		Carga Horário Complementar: <s:textfield id="cargaHorariaComplementar" name="cursoNovoParams.cargaHorariaComplementar" value="" maxLength="8"  onKeyPress="return Numero(event);"></s:textfield>
 			<br></br>
 		<b>Selecione as disciplinas lecionadas neste curso</b>
 			<hr></hr>

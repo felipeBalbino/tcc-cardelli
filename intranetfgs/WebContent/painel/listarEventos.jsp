@@ -170,13 +170,21 @@ if(i == j) $(this).hide('slow');
 									</tr>
 					
 									<tr>
-										<td><b>Início:</b> 
-											<sx:datetimepicker  cssStyle="width:190px" name="eventoAlteraParams.dataHoraInicio" displayFormat="dd/MM/yyyy hh:mm" value="%{datahoraInicio}"/>
-											 - <b>Fim:</b> 
-										    <sx:datetimepicker  cssStyle="width:190px" name="eventoAlteraParams.dataHoraFim" displayFormat="dd/MM/yyyy hh:mm" value="%{datahoraFim}"/>
+										<td>
+										<b>Data Início:</b> 
+											<sx:datetimepicker  cssStyle="width:190px" name="eventoAlteraParams.dataInicio" displayFormat="dd/MM/yyyy" value="%{dataInicio}"/>
+											 - <b>Data Fim:</b> 
+										    <sx:datetimepicker  cssStyle="width:190px" name="eventoAlteraParams.dataFim" displayFormat="dd/MM/yyyy" value="%{dataFim}"/>
 										</td>
 									</tr>	
 									
+									
+									<tr>
+										<td>
+										Hora Inicio: <s:textfield id="horainicio" name="eventoAlteraParams.horaInicio" maxlength="8" size="10" value="%{horaInicio}"/>
+										Hora Fim: <s:textfield  id="horafinal"name="eventoAlteraParams.horaFim" maxlength="8" size="10" value="%{horaFim}"/>
+										</td>
+									</tr>	
 							
 									
 									<tr>
@@ -213,6 +221,6 @@ if(i == j) $(this).hide('slow');
 				</s:iterator>
 			</table>
 			
-			<center style="font-size: 10px"><s:property value="%{tempoDeResposta}"/></center>
+			<center style="font-size: 10px;color: grey;"><s:property value="%{tempoDeResposta}"/></center>
 </body>
 </html>

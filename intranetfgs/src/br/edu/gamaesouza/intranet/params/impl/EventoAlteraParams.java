@@ -1,6 +1,10 @@
 package br.edu.gamaesouza.intranet.params.impl;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,8 +20,10 @@ public class EventoAlteraParams implements EventoParams{
 	private Integer id;
 	private String title;
 	private String coordenacao;
-	private Calendar dataHoraInicio;
-	private Calendar dataHoraFim;
+	private Calendar dataInicio;
+	private Calendar dataFim;
+	private Date horaInicio;
+	private Date horaFim;
 	private String local;
 	private String publicoAlvo;
 	private String observacoes;
@@ -35,8 +41,10 @@ public class EventoAlteraParams implements EventoParams{
 			evento.setId(id);
 			evento.setTitle(title);
 			evento.setCoordenacao(coordenacao);
-			evento.setDatahoraInicio(dataHoraInicio);
-			evento.setDatahoraFim(dataHoraFim);
+			evento.setDataInicio(dataInicio);
+			evento.setDataFim(dataFim);
+			evento.setHoraInicio(horaInicio);
+			evento.setHoraFim(horaFim);
 			evento.setLocal(local);
 			evento.setPublicoalvo(publicoAlvo);
 			evento.setObs(observacoes);
@@ -61,20 +69,54 @@ public class EventoAlteraParams implements EventoParams{
 		this.coordenacao = coordenacao;
 	}
 
-	public Calendar getDataHoraInicio() {
-		return dataHoraInicio;
+
+
+	public Calendar getDataInicio() {
+		return dataInicio;
 	}
 
-	public void setDataHoraInicio(Calendar dataHoraInicio) {
-		this.dataHoraInicio = dataHoraInicio;
+	public void setDataInicio(Calendar dataInicio) {
+		this.dataInicio = dataInicio;
 	}
 
-	public Calendar getDataHoraFim() {
-		return dataHoraFim;
+	public Calendar getDataFim() {
+		return dataFim;
 	}
 
-	public void setDataHoraFim(Calendar dataHoraFim) {
-		this.dataHoraFim = dataHoraFim;
+	public void setDataFim(Calendar dataFim) {
+		this.dataFim = dataFim;
+	}
+
+	public void setHoraInicio(String horaInicio) {
+		 DateFormat formatter = new SimpleDateFormat("hh:mm:ss");  
+		 try {
+			 this.horaInicio = (Date)formatter.parse(horaInicio);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+
+	public void setHoraFim(String horaFim) {
+		 DateFormat formatter = new SimpleDateFormat("hh:mm:ss");  
+		 try {
+			this.horaFim = (Date)formatter.parse(horaFim);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+	}
+	
+	
+
+	public Date getHoraInicio() {
+		return horaInicio;
+	}
+
+	public Date getHoraFim() {
+		return horaFim;
 	}
 
 	public String getLocal() {

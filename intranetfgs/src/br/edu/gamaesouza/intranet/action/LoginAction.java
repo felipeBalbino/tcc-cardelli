@@ -115,6 +115,7 @@ public class LoginAction extends ActionSupport {
 				if(error == false){
 					pessoaDAO.saveAluno(alunoNovoParams.getAluno());
 					addActionMessage(MSG_REGISTRO_SUCESSO);
+					return "register";
 				}
 			} catch (IntranetException e) {
 				addActionMessage(e.getMessage());

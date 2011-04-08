@@ -57,7 +57,7 @@ public class FormUtil {
 	
 	
 	public static String tempoResposta(List list, Long inicio, Long end){
-		return (list.size() +" resultados em ("+ (end - inicio) + " Milisegundo(s))"); 
+		return (list.size() +" resultado(s) em ("+ (end - inicio) + " Milisegundos)"); 
 	}
 	
 	public static List<Integer> getAnos(){

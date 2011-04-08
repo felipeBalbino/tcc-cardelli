@@ -8,7 +8,6 @@
 <style type="text/css">
 #experience { 
 	padding:30px; 
-	position:relative;
 	padding:17px 0px 0 39px;
 }
 

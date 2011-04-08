@@ -8,7 +8,6 @@
 <style type="text/css">
 #experience { 
 padding:30px; 
-position:relative;
 padding:17px 0px 0 39px;
 }
 
@@ -195,7 +194,7 @@ Antes de nos enviar sua manifestação leia estes lembretes:<br>
 									<td>
 										<s:text name="Nome:"/><s:textfield id="nome" name="ouvidoriaEmailParams.nome" ></s:textfield><br>
 										<s:text name="Email:"/><s:textfield id="email" name="ouvidoriaEmailParams.email" ></s:textfield><br>
-										<s:text name="Telefone:"/><i style="color:gray;">(21)2222-2222</i><s:textfield id="telefone" onkeypress="mascara(this,Telefone)" maxlength="14"  name="ouvidoriaEmailParams.telefone" ></s:textfield><br>
+										<s:text name="Telefone:"/><i style="color:gray;"> 21 2222-2222</i><s:textfield id="telefone" onkeypress="mascara(this,Telefone)" maxlength="13"  name="ouvidoriaEmailParams.telefone" ></s:textfield><br>
 										<s:text name="Matricula:"/><br><s:textfield id="matricula" name="ouvidoriaEmailParams.matricula" ></s:textfield><br>
 										<s:text name="Curso:"/><br><sx:autocompleter headerKey=""   headerValue=""  id="curso" name="ouvidoriaEmailParams.cursoId" list="cursos" listValue="nome" listKey="id"/><br>
 										<s:text name="Mensagem:"/><s:textarea id="mensagem" name="ouvidoriaEmailParams.mensagem"  cssStyle="width: 230px;height:170"></s:textarea><br>

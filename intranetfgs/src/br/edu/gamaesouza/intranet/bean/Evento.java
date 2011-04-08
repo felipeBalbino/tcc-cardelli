@@ -2,6 +2,7 @@ package br.edu.gamaesouza.intranet.bean;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,11 +37,17 @@ public class Evento implements Serializable {
 	@Column(length=400)
 	private String coordenacao;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar datahoraInicio;
+	@Temporal(TemporalType.DATE)
+	private Calendar dataInicio;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar datahoraFim;
+	@Temporal(TemporalType.DATE)
+	private Calendar dataFim;
+	
+	@Temporal(TemporalType.TIME)
+	private Date horaInicio;
+	
+	@Temporal(TemporalType.TIME)
+	private Date horaFim;
 	
 	@Column(length=1024)
 	private String local;
@@ -89,21 +96,7 @@ public class Evento implements Serializable {
 		this.coordenacao = coordenacao;
 	}
 
-	public Calendar getDatahoraInicio() {
-		return datahoraInicio;
-	}
 
-	public void setDatahoraInicio(Calendar datahoraInicio) {
-		this.datahoraInicio = datahoraInicio;
-	}
-
-	public Calendar getDatahoraFim() {
-		return datahoraFim;
-	}
-
-	public void setDatahoraFim(Calendar datahoraFim) {
-		this.datahoraFim = datahoraFim;
-	}
 
 	public String getLocal() {
 		return local;
@@ -158,7 +151,40 @@ public class Evento implements Serializable {
 		String obsComQuebra = publicoalvo.replaceAll("\n", "<br>");
 		return obsComQuebra;
 	
-	}	
+	}
+
+	public void setDataInicio(Calendar dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Calendar getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataFim(Calendar dataFim) {
+		this.dataFim = dataFim;
+	}
+
+	public Calendar getDataFim() {
+		return dataFim;
+	}
+
+	public Date getHoraInicio() {
+		return horaInicio;
+	}
+
+	public void setHoraInicio(Date horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+
+	public Date getHoraFim() {
+		return horaFim;
+	}
+
+	public void setHoraFim(Date horaFim) {
+		this.horaFim = horaFim;
+	}
+
 
 	
 	

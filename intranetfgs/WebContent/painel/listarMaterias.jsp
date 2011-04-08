@@ -144,6 +144,6 @@ if(i == j) $(this).hide('slow');
 				</s:iterator>
 			</table>
 			
-			<center style="font-size: 10px"><s:property value="%{tempoDeResposta}"/></center>
+			<center style="font-size: 10px;color: grey;"><s:property value="%{tempoDeResposta}"/></center>
 </body>
 </html>

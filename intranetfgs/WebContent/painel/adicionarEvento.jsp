@@ -8,7 +8,6 @@
 <style type="text/css">
 #experience { 
 padding:30px; 
-position:relative;
 padding:17px 0px 0 39px;
 }
 
@@ -21,8 +20,10 @@ width:340px;
 
 #titulo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
 #coorden {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#inicio {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#final {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
+#horainicio {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
+#horafinal {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
+#datainicio {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
+#datafinal {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
 #local {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
 #alvo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
 #obs {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
@@ -167,13 +168,22 @@ function restartTrs(){
 	<s:textfield cssStyle="width:80%" name="eventoNovoParams.coordenacao" id="coorden"></s:textfield>
 	<br>
 	
-	Data / Hora Inicio: 
-	<sx:datetimepicker cssStyle="width:190px" id="inicio" name="eventoNovoParams.dataHoraInicio" displayFormat="dd/MM/yyyy HH:mm"/>
-	<br>Utilize o formato da data dd/MM/yyyy hh:mm<br><br>
+	Data Inicio: 
+	<sx:datetimepicker cssStyle="width:190px" id="datainicio" name="eventoNovoParams.dataInicio" displayFormat="dd/MM/yyyy"/>
+	<br>Utilize o formato da data dd/MM/yyyy<br><br>
 	
-	Data / Hora Fim: 
-	<sx:datetimepicker  cssStyle="width:190px"  id="final"name="eventoNovoParams.dataHoraFim" displayFormat="dd/MM/yyyy HH:mm"/>
-	<br>Utilize o formato da data dd/MM/yyyy hh:mm<br><br>
+	Data  Fim: 
+	<sx:datetimepicker  cssStyle="width:190px"  id="datafinal"name="eventoNovoParams.dataFim" displayFormat="dd/MM/yyyy"/>
+	<br>Utilize o formato da data dd/MM/yyyy<br><br>
+	
+	<br>
+	Hora Inicio: <s:textfield id="horainicio" name="eventoNovoParams.horaInicio" maxlength="8" size="10"/>
+	Hora Fim: <s:textfield  id="horafinal"name="eventoNovoParams.horaFim" maxlength="8" size="10"/>
+	Utilize o formato de hora hh:mm:ss<br>
+	<br>
+	
+	
+	
 	
 	<li id="lilocal"><a   href="#" onclick="javascript:inserirlocal()">Inserir Local</a><br><br></li>
 	<li id="lialvo"><a href="#" onclick="javascript:inserirpublicoalvo()">Inserir Publico Alvo</a><br><br></li>

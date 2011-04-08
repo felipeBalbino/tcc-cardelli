@@ -56,9 +56,9 @@ function deletar(id){
 
 		<tr>
 			<td>Hora Inicio:</td>
-			<td><s:textfield name="horarioNovoParams.horaInicio" /></td>
+			<td><s:textfield name="horarioNovoParams.horaInicio" size="12" maxlength="8"/></td>
 			<td>Hora Final:</td>
-			<td><s:textfield name="horarioNovoParams.horaFim" /></td>
+			<td><s:textfield name="horarioNovoParams.horaFim" size="12" maxlength="8" cssStyle=""/></td>
 			<td>Ano:</td>		
 			<td><sx:autocompleter headerKey="-1" headerValue="" id="ano" name="horarioNovoParams.ano" list="anos" /></td>
 			<td>Semestre:</td>

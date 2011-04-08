@@ -79,18 +79,20 @@ if(i == j) $(this).hide('slow');
 									
 									<tr>
 										<td>
-											<b>Horário:</b> 
-											<s:date name="datahoraInicio" format="HH:mm" />
-											 <b> às </b> 
-											<s:date name="datahoraFim" format="HH:mm" />
+											<b>Data:</b> 
+											<s:date name="dataInicio" format="dd/MM/yyyy" />
+											 <b> ao </b> 
+											<s:date name="dataFim" format="dd/MM/yyyy" />
 										</td>
 									</tr>	
 									<tr>
 										<td>
-											<b>Dia(s):</b> 
-											<s:date name="datahoraInicio" format="dd/MM/yyyy" />
-											 <b> ao </b> 
-											<s:date name="datahoraFim" format="dd/MM/yyyy" />
+											<b>Horário:</b> 
+											<s:date name="horaInicio" format="hh:mm:ss" />
+											
+											 <b> ás </b> 
+											
+											<s:date name="horaFim" format="hh:mm:ss" />
 										</td>
 									</tr>	
 									

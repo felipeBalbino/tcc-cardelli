@@ -170,8 +170,6 @@ function restartTrs(){
 	
 	Data Inicio: 
 	<sx:datetimepicker cssStyle="width:190px" id="datainicio" name="eventoNovoParams.dataInicio" displayFormat="dd/MM/yyyy"/>
-	<br>Utilize o formato da data dd/MM/yyyy<br><br>
-	
 	Data  Fim: 
 	<sx:datetimepicker  cssStyle="width:190px"  id="datafinal"name="eventoNovoParams.dataFim" displayFormat="dd/MM/yyyy"/>
 	<br>Utilize o formato da data dd/MM/yyyy<br><br>

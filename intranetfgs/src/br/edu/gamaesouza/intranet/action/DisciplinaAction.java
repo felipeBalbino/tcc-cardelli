@@ -125,7 +125,7 @@ public class DisciplinaAction extends ActionSupport{
 					disciplina = (Disciplina) SpringUtil.getBean("disciplina");
 					addActionMessage("Disciplina deletada com sucesso");
 				}else{
-					addActionError("N�o foi possivel deletar esta disciplina, existe(m) "+disciplinasLetivas.size()+" Disciplina(s) letiva(s) vincula(s) a essa disciplina.");	
+					addActionError("N�o foi possivel deletar esta disciplina, existe(m) "+disciplinasLetivas.size()+" Disciplina(s) letiva(s) vinculada(s) a essa disciplina.");	
 					for(DisciplinaLetiva letiva : disciplinasLetivas) {
 						addActionError("Turno: "+letiva.getTurno()+
 								" - Ano: "+letiva.getAno()+

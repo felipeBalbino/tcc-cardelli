@@ -68,6 +68,22 @@ public class AlunoAction extends ActionSupport {
 		return "register";	
 	}
 	
+	public String validarmatricula(){
+		try {
+			
+			Aluno aluno = pessoaDAO.getAlunoByMatricula(alunoNovoParams.getMatricula());
+			if(aluno != null){
+				addActionError("Matr�cula j� existente em nossa base.");
+				Pessoa pessoa = pessoaDAO.getPessoaByMatricula( alunoNovoParams.getMatricula() );
+				addActionError("Aluno: "+pessoa.getNome()+ " - " + "Email: "+pessoa.getEmail()+" - " + "Matricula: "+pessoa.getMatricula());					
+			}
+		} catch (IntranetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return prepare();	
+	}
+	
 	public String lista() {
 		UserData.grantAccess(RULE_ALUNOS_LISTA);
 		try {	

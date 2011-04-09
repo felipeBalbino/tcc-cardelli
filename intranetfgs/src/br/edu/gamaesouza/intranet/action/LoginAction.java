@@ -107,8 +107,6 @@ public class LoginAction extends ActionSupport {
 				if(pessoaDAO.validarMatricula(alunoNovoParams.getMatricula())){
 					error=true;
 					addActionError("Matr�cula j� existente em nossa base.");
-					Pessoa pessoa = pessoaDAO.getPessoaByMatricula( alunoNovoParams.getMatricula() );
-					addActionError("Aluno: "+pessoa.getNome()+ " - " + "Email: "+pessoa.getEmail()+" - " + "Matricula: "+pessoa.getMatricula());					
 				}
 					
 					
@@ -120,7 +118,7 @@ public class LoginAction extends ActionSupport {
 			} catch (IntranetException e) {
 				addActionMessage(e.getMessage());
 			}
-			return "login";
+			return prepare();
 				
 		}
 	

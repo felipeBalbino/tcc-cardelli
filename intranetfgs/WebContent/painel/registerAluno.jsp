@@ -163,6 +163,10 @@ width:295px;
 	 }
  }
 
+	function validarMatricula(codigo) {    
+	         location.href = "../painel/aluno!validarmatricula.java?alunoNovoParams.matricula="+ codigo;  
+	 }
+
   
 </script>
 
@@ -207,18 +211,37 @@ width:295px;
 					</div>	
 					
 					<div id="contact-form">
-						<s:form name="registra" method="post" action="../painel/aluno!registrar.java"  onSubmit="return validaForm()"><br>
-							Status Matrícula:<br><sx:autocompleter  headerKey=""  headerValue=""  id="statusMatricula" list="allStatusMatricula"  name="alunoNovoParams.statusMatricula" /><br>
-							Curso:<br><sx:autocompleter  headerKey=""  headerValue=""  id="curso" name="alunoNovoParams.cursoId" list="cursos" listValue="nome" listKey="id"/><br>
-							Nome Completo: <s:textfield id="nome" name="alunoNovoParams.nome"></s:textfield><br>
-							Matrícula: <s:textfield  maxLength="8" onKeyPress="return Numero(event);"  id="matricula" name="alunoNovoParams.matricula"></s:textfield><br>
-							Período: <s:textfield  maxLength="2" onKeyPress="return Numero(event);"  id="periodo" name="alunoNovoParams.periodo"></s:textfield><br>
-							Email: <s:textfield id="email" name="alunoNovoParams.email" ></s:textfield><br>
-							Confirmar Email: <s:textfield id="email2" name="email2"></s:textfield><br>
-							Login: <s:textfield id="login" name="alunoNovoParams.login" maxlength="8"></s:textfield><br>
-							Senha: <s:password id="senha" name="alunoNovoParams.senha"></s:password><br>
-							Confirmar Senha: <s:password id="senha2" name="senha2"></s:password><br>
-							
+						<s:form name="registra" method="post" action="../painel/aluno!registrar.java"  onSubmit="return validaForm()">
+							<s:textfield id="nome"  required="true" label="Nome Completo" name="alunoNovoParams.nome"></s:textfield>
+							<s:textfield  required="true" onblur="validarMatricula(this.value)" label="Matrícula" maxLength="8" onKeyPress="return Numero(event);"  id="matricula" name="alunoNovoParams.matricula"></s:textfield>
+							<br>
+							<hr></hr>
+							<br>
+							Curso:<br><sx:autocompleter  headerKey=""  headerValue=""  id="curso" name="alunoNovoParams.cursoId" list="cursos" listValue="nome" listKey="id"/>
+							<s:select label="Período"
+										   id="periodo"
+										   required="true" 
+									       headerKey="" headerValue=""
+									       list="#{'01':'01', '02':'02','03':'03', '04':'04','05':'05', '06':'06','07':'07', '08':'08','09':'09', '10':'10','11':'11', '12':'12','13':'13','14':'14'}"
+									       name="alunoNovoParams.periodo"
+									></s:select>
+							Status Matrícula:<br><sx:autocompleter  headerKey=""   headerValue=""  id="statusMatricula" list="allStatusMatricula"  name="alunoNovoParams.statusMatricula" />
+							<br>
+							<br>
+							<hr></hr>
+							<br>
+							<s:textfield id="email" required="true" label="Email" name="alunoNovoParams.email" ></s:textfield>
+							<s:textfield id="email2"  required="true" label="Confirmar" name="email2"></s:textfield>
+							<br>
+							<hr></hr>
+							<br>
+							<s:textfield id="login"  required="true"  label="Login"  name="alunoNovoParams.login" maxlength="8"></s:textfield>
+							<br>
+							<hr></hr>
+							<br>
+							<s:password id="senha" required="true"  label="Senha"   name="alunoNovoParams.senha"></s:password>
+							<s:password id="senha2" required="true"  label="Confirmar" name="senha2"></s:password>
+							<br>
 							<sx:submit align="left" value="Entrar" label="Log in"></sx:submit>
 						</s:form>
 					</div>		

@@ -69,10 +69,13 @@ public class CursoAction extends ActionSupport {
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		UserData.grantAccess(RULE_CURSO_NOVO);	
 			try {
-				if(cursoNovoParams.getNomeCurso().equals("") || cursoNovoParams.getCargaHorariaComplementar() == null) {
+				if(cursoDAO.getCursoByNome(cursoNovoParams.getNomeCurso())!= null){
+					addActionError("j� existe um curso cadastrado com o mesmo nome em nossa base.");
+				}
+				else if(cursoNovoParams.getNomeCurso().equals("") || cursoNovoParams.getCargaHorariaComplementar() == null) {
 					if(cursoNovoParams.getNomeCurso().equals(""))
 					addActionError("Campo Nome é obrigatório.");
-					
+										
 					if(cursoNovoParams.getCargaHorariaComplementar() == null)
 					addActionError("Campo Carga Horária é obrigatório.");
 				}else{
@@ -91,8 +94,10 @@ public class CursoAction extends ActionSupport {
 		UserData.grantAccess(RULE_CURSO_ALTERA);
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			try {
-				
-				if(cursoAlteraParams.getNomeCurso().equals("") || cursoAlteraParams.getCargaHorariaComplementar() == null) {
+				if(cursoDAO.getCursoByNome(cursoNovoParams.getNomeCurso())!= null){
+					addActionError("j� existe um curso cadastrado com o mesmo nome em nossa base.");
+				}
+				else if(cursoAlteraParams.getNomeCurso().equals("") || cursoAlteraParams.getCargaHorariaComplementar() == null) {
 							if(cursoAlteraParams.getNomeCurso().equals(""))
 							addActionError("Campo Nome é obrigatório.");
 							

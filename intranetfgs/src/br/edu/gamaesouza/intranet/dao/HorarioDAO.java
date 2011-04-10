@@ -43,6 +43,16 @@ public class HorarioDAO extends HibernateDaoSupport {
 		return horarios;
 	}
 	
+	public List<Horario> getAllHorarios(Integer ano, Integer semestre) throws IntranetException {
+		Criteria getAllHorarioCriteria = getSession().createCriteria(Horario.class);
+		getAllHorarioCriteria.add(Restrictions.eq("ano", ano));
+		getAllHorarioCriteria.add(Restrictions.eq("semestre", semestre));
+		getAllHorarioCriteria.addOrder(Order.asc("id"));
+		getAllHorarioCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<Horario> horarios =  getAllHorarioCriteria.list();
+		return horarios;
+	}
+	
 	public List<DisciplinaLetivaHorario> getAllDisciplinaLetivaHorariosById(Integer id) throws IntranetException {
 		String sql = "FROM DisciplinaLetivaHorario dlh WHERE dlh.disciplinaLetivaHorarioPK.disciplinaLetiva.id = " + id;
 		Query getAllLetivaByHorario = getSession().createQuery(sql);
@@ -61,6 +71,25 @@ public class HorarioDAO extends HibernateDaoSupport {
 	public DisciplinaLetivaHorario getDisciplinaLetivaHorarioByIds(Integer idHorario, Integer idLetiva) throws IntranetException {
 		Query c = getSession().createQuery( "Select d from DisciplinaLetivaHorario d where disciplinaLetiva_id="+idLetiva+" and horario_id="+idHorario );
 		return (DisciplinaLetivaHorario) c.uniqueResult();
+	}
+	
+	public List<DisciplinaLetivaHorario> getDisciplinaLetivaHorarioByIds(Integer idHorario, Integer idLetiva, Integer ano, Integer semestre) throws IntranetException {
+		
+		
+	String query =	"Select disciplinaLetivaHorario";
+	query = query + " From DisciplinaLetivaHorario disciplinaLetivaHorario," ;
+	query = query + "DisciplinaLetiva disciplinaLetiva ";
+	query = query + "where disciplinaLetivaHorario.disciplinaLetivaHorarioPK.disciplinaLetiva.id="+idLetiva+" and disciplinaLetivaHorario.disciplinaLetivaHorarioPK.horario.id="+idHorario;
+	query = query + " AND disciplinaLetivaHorario.disciplinaLetivaHorarioPK.disciplinaLetiva.disciplina.id = disciplinaLetiva.disciplina.id AND";
+	query = query + " disciplinaLetiva.ano = 2011 and disciplinaLetiva.semestre = 1";
+		
+		
+		
+		
+		
+		
+		Query c = getSession().createQuery( query );
+		return c.list();
 	}
 	
 	public Horario getHorarioById(Integer id) throws IntranetException {

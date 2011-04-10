@@ -256,7 +256,18 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		return disciplinasLetivas;
 		
 	}
-
+	
+	
+	public List<DisciplinaLetiva> getDisciplinaLetivaByUser(Integer id, Integer ano,Integer semestre) throws IntranetException{
+		
+		String sql = "FROM DisciplinaLetiva d left join fetch d.aluno aluno WHERE  aluno.id = " + id + " AND ano = " + ano+  " AND semestre = " + semestre ;
+		
+		Query query = getSession().createQuery(sql);
+		query.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<DisciplinaLetiva> disciplinasLetivas = (List<DisciplinaLetiva>)query.list();
+		return disciplinasLetivas;
+		
+	}
 
 	public DisciplinaLetiva getAlunosByDL( Integer id ) throws IntranetException{
 	

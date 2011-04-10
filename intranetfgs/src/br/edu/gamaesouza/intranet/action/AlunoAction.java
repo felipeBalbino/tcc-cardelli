@@ -3,11 +3,17 @@ package br.edu.gamaesouza.intranet.action;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
+import br.edu.gamaesouza.intranet.bean.DisciplinaLetivaHorario;
+import br.edu.gamaesouza.intranet.bean.Horario;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
@@ -56,6 +62,8 @@ public class AlunoAction extends ActionSupport {
 	@Autowired private HorarioDAO horarioDAO;
 	@Autowired private DisciplinaDAO disciplinaDAO;
 	private String tempoDeResposta;
+	
+	Map<Horario,List<DisciplinaLetiva>> mapa;
 
 
 	public String prepare(){
@@ -144,53 +152,61 @@ public class AlunoAction extends ActionSupport {
 	}	
 	
 	public String gradeParaAluno() {
-		/*List<Horario> horarioSegunda = new ArrayList<Horario>();
-		List<Horario> horarioTerca = new ArrayList<Horario>();
-		List<Horario> horarioQuarta = new ArrayList<Horario>();
-		List<Horario> horarioQuinta = new ArrayList<Horario>();
-		List<Horario> horarioSexta = new ArrayList<Horario>();
-		List<Horario> horarioSabado = new ArrayList<Horario>();
-		List<Horario> horarioDomingo = new ArrayList<Horario>();
+	
+	 mapa = new HashMap<Horario,List<DisciplinaLetiva>>();
+		List<Horario> horarios;
+		
 		try {
-			setDisciplinasLetivas(disciplinaDAO.getDisciplinaLetivaByUser(UserData.getLoggedUser().getId()));
-			for(DisciplinaLetiva letiva :disciplinasLetivas){
-				for( Horario horario : letiva.getHorarios()){
-					DisciplinaLetivaHorario disciplinaLetivaHorario = horarioDAO.getDisciplinaLetivaHorarioByIds(horario.getId(),letiva.getId());
-					if(disciplinaLetivaHorario.getDiaSemana().equals("SEGUNDA")){
-						horarioSegunda.add( horario );
-					}
-					if(disciplinaLetivaHorario.getDiaSemana().equals("TERCA")){
-						horarioTerca.add( horario );
-					}
-					if(disciplinaLetivaHorario.getDiaSemana().equals("QUARTA")){
-						horarioQuarta.add( horario );
-					}
-					if(disciplinaLetivaHorario.getDiaSemana().equals("QUINTA")){
-						horarioQuinta.add( horario );
-					}
-					if(disciplinaLetivaHorario.getDiaSemana().equals("SEXTA")){
-						horarioSexta.add( horario );
-					}
-					if(disciplinaLetivaHorario.getDiaSemana().equals("SABADO")){
-						horarioSabado.add( horario );
-					}
-					if(disciplinaLetivaHorario.getDiaSemana().equals("DOMINGO")){
-						horarioDomingo.add( horario );
+			setDisciplinasLetivas(disciplinaDAO.getDisciplinaLetivaByUser(UserData.getLoggedUser().getId(),2011,1));
+			horarios = horarioDAO.getAllHorarios(2011,1);
+			
+			for (Horario h : horarios){
+				mapa.put(h, new ArrayList<DisciplinaLetiva>());
+			}
+			
+			for (Horario h : horarios){
+				List<DisciplinaLetiva> dl = mapa.get(h);
+				dl.add(new DisciplinaLetiva());
+				dl.add(new DisciplinaLetiva());
+				dl.add(new DisciplinaLetiva());
+				dl.add(new DisciplinaLetiva());	
+				dl.add(new DisciplinaLetiva());	
+				for (DisciplinaLetiva d : disciplinasLetivas){
+						
+					List<DisciplinaLetivaHorario> disciplinaLetivaHorarios = horarioDAO.getDisciplinaLetivaHorarioByIds(h.getId(),d.getId(),2011,1);
+					
+					if (disciplinaLetivaHorarios != null){
+					
+						for (DisciplinaLetivaHorario disciplinaLetivaHorario : disciplinaLetivaHorarios){
+							if(disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().getDiaSemana().toString().equals("SEGUNDA")){						
+								dl.add(0, d);					
+							} else if(disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().getDiaSemana().toString().equals("TERÇA")){						
+								dl.add(1, d);					
+							} else if(disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().getDiaSemana().toString().equals("QUARTA")){						
+								dl.add(2, d);					
+							} else if(disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().getDiaSemana().toString().equals("QUINTA")){						
+								dl.add(3, d);					
+							} else if(disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().getDiaSemana().toString().equals("SEXTA")){						
+								dl.add(4, d);					
+							}
+						}
+						
+					
 					}
 				}
 			}
+			
+			
 		} catch (IntranetException e) {
-			addActionMessage(e.getMessage());
+				
+			e.printStackTrace();
 		}
-		return "grade";
-		*/
 		
-		try {
-			setDisciplinasLetivas(disciplinaDAO.getDisciplinaLetivaByUser(UserData.getLoggedUser().getId()));
-		} catch (IntranetException e) {
-			addActionMessage(e.getMessage());
-		}
+		
+					
+				
 		return "grade";
+	
 	}
 		
 	public String registrar() {	
@@ -367,6 +383,14 @@ public class AlunoAction extends ActionSupport {
 
 	public String getTempoDeResposta() {
 		return tempoDeResposta;
+	}
+
+	public Map<Horario, List<DisciplinaLetiva>> getMapa() {
+		return mapa;
+	}
+
+	public void setMapa(Map<Horario, List<DisciplinaLetiva>> mapa) {
+		this.mapa = mapa;
 	}
 
 

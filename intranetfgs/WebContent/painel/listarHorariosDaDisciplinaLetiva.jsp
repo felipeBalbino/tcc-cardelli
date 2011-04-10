@@ -79,10 +79,10 @@ function deletar(id,idDisciplinaLetiva,idHora,idDisciplinaLetiva){
 <div id="result" >
 	<table width="100%">
 		<tr>
-			<td><b>Id</b></td>
 			<td><b>Dia da Semana</b></td>
 			<td><b>Hora Inicio</b></td>
-			<td><b>Hora Fim</b></td>
+			<td><b>Hora Final</b></td>
+			<td><b>Deletar</b></td>
 		</tr>
 		
 		<s:iterator value="disciplinaLetivaHorario" >

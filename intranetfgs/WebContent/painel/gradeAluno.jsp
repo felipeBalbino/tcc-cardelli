@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="/struts-tags" prefix="s" %>
     <%@taglib uri="/struts-dojo-tags" prefix="sx" %>
-        <%@ taglib uri="/WEB-INF/intranet-core-tags.tld" prefix="intranet" %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <%@taglib uri="/WEB-INF/intranetTags.tld"  prefix="intranet"%>   
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -59,133 +60,5 @@ if(i == j) $(this).hide('slow');
 						</s:if>
 <b>Grade</b>
 <hr></hr>
-<div id="result" >
-	<table width="100%" border="1px">
-		<tr>
-			<th><b>Segunda</b></th>
-			<th><b>Terça</b></th>
-			<th><b>Quarta</b></th>
-			<th><b>Quinta</b></th>
-			<th><b>Sexta</b></th>
-			<th><b>Sábado</b></th>
-			<th><b>Domingo</b></th>
-		</tr>
-		
-		<s:iterator value="disciplinasLetivas" var="disciplinaLetiva">
-			<s:iterator value="horarios" var="horario">
-			
-							<s:property  value="diaSemana" /> - <s:property  value="disciplina.nome" /> - Professor: <s:property  value="disciplinaLetiva.professor.nome" /> - 
-							<s:date format="HH:mm" name="horario.horaInicio" /> / <s:date format="HH:mm" name="horario.horaFim" /> - 
-							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
-							<hr></hr>
-				<tr>
-					<td>
-						<c:if test="${DiaSemana == 'SEGUNDA'}">
-							<s:property  value="disciplina.nome" /><br>
-							<hr></hr>
-							Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
-							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
-							<s:date format="HH:mm" name="horario.horaFim" /><br>
-							<hr></hr>
-							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
-						</c:if>
-							<c:if test="${DiaSemana != 'SEGUNDA'}">
-								N/A
-							</c:if>
-					</td>
-					<td>
-						<c:if test="${DiaSemana == 'TERCA'}">
-							<s:property  value="disciplina.nome" /><br>
-							<hr></hr>
-							Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
-							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
-							<s:date format="HH:mm" name="horario.horaFim" /><br>
-							<hr></hr>
-							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
-						</c:if>
-							<c:if test="${DiaSemana != 'TERCA'}">
-								N/A
-							</c:if>
-						
-					</td>
-					<td>
-						<c:if test="${DiaSemana == 'QUARTA'}">
-							<s:property  value="disciplina.nome" /><br>
-							<hr></hr>
-							Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
-							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
-							<s:date format="HH:mm" name="horario.horaFim" /><br>
-							<hr></hr>
-							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
-						</c:if>
-							<c:if test="${DiaSemana != 'QUARTA'}">
-								N/A
-							</c:if>
-					</td>
-					<td>
-						<c:if test="${DiaSemana == 'QUINTA'}">
-							<s:property  value="disciplina.nome" /><br>
-							<hr></hr>
-							Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
-							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
-							<s:date format="HH:mm" name="horario.horaFim" /><br>
-							<hr></hr>
-							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
-						</c:if>
-							<c:if test="${DiaSemana != 'QUINTA'}">
-								N/A
-							</c:if>
-					</td>
-					<td>
-						<c:if test="${DiaSemana == 'SEXTA'}">
-							<s:property  value="disciplina.nome" /><br>
-							<hr></hr>
-							Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
-							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
-							<s:date format="HH:mm" name="horario.horaFim" /><br>
-							<hr></hr>
-							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
-						</c:if>
-							<c:if test="${DiaSemana != 'SEXTA'}">
-								N/A
-							</c:if>
-					</td>
-					<td>
-						<c:if test="${DiaSemana == 'SABADO'}">
-							<s:property  value="disciplina.nome" /><br>
-							<hr></hr>
-							Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
-							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
-							<s:date format="HH:mm" name="horario.horaFim" /><br>
-							<hr></hr>
-							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
-						</c:if>
-							<c:if test="${DiaSemana != 'SABADO'}">
-								N/A
-							</c:if>
-					</td>
-					<td>
-						<c:if test="${DiaSemana == 'DOMINGO'}">
-							<s:property  value="disciplina.nome" /><br>
-							<hr></hr>
-							Professor: <s:property  value="disciplinaLetiva.professor.nome" /><br>
-							<s:date format="HH:mm" name="horario.horaInicio" /> <br>
-							<s:date format="HH:mm" name="horario.horaFim" /><br>
-							<hr></hr>
-							Sala: <s:property  value="disciplinaLetiva.sala" /><br>
-							
-						</c:if>
-							<c:if test="${DiaSemana != 'DOMINGO'}">
-								N/A
-							</c:if>
-					</td>
-				</tr>
-				
-
-					
-						
-			</s:iterator>
-		</s:iterator>
-	</table>
-</div>
+<intranet:gradeAluno semestre="1" idAluno="2" ano="3" turno="4"/>
 </html>

@@ -153,58 +153,6 @@ public class AlunoAction extends ActionSupport {
 	
 	public String gradeParaAluno() {
 	
-	 mapa = new HashMap<Horario,List<DisciplinaLetiva>>();
-		List<Horario> horarios;
-		
-		try {
-			setDisciplinasLetivas(disciplinaDAO.getDisciplinaLetivaByUser(UserData.getLoggedUser().getId(),2011,1));
-			horarios = horarioDAO.getAllHorarios(2011,1);
-			
-			for (Horario h : horarios){
-				mapa.put(h, new ArrayList<DisciplinaLetiva>());
-			}
-			
-			for (Horario h : horarios){
-				List<DisciplinaLetiva> dl = mapa.get(h);
-				dl.add(new DisciplinaLetiva());
-				dl.add(new DisciplinaLetiva());
-				dl.add(new DisciplinaLetiva());
-				dl.add(new DisciplinaLetiva());	
-				dl.add(new DisciplinaLetiva());	
-				for (DisciplinaLetiva d : disciplinasLetivas){
-						
-					List<DisciplinaLetivaHorario> disciplinaLetivaHorarios = horarioDAO.getDisciplinaLetivaHorarioByIds(h.getId(),d.getId(),2011,1);
-					
-					if (disciplinaLetivaHorarios != null){
-					
-						for (DisciplinaLetivaHorario disciplinaLetivaHorario : disciplinaLetivaHorarios){
-							if(disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().getDiaSemana().toString().equals("SEGUNDA")){						
-								dl.add(0, d);					
-							} else if(disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().getDiaSemana().toString().equals("TERÇA")){						
-								dl.add(1, d);					
-							} else if(disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().getDiaSemana().toString().equals("QUARTA")){						
-								dl.add(2, d);					
-							} else if(disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().getDiaSemana().toString().equals("QUINTA")){						
-								dl.add(3, d);					
-							} else if(disciplinaLetivaHorario.getDisciplinaLetivaHorarioPK().getDiaSemana().toString().equals("SEXTA")){						
-								dl.add(4, d);					
-							}
-						}
-						
-					
-					}
-				}
-			}
-			
-			
-		} catch (IntranetException e) {
-				
-			e.printStackTrace();
-		}
-		
-		
-					
-				
 		return "grade";
 	
 	}

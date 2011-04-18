@@ -163,10 +163,6 @@ width:295px;
 	 }
  }
 
-	function validarMatricula(codigo) {    
-	         location.href = "../painel/aluno!validarmatricula.java?alunoNovoParams.matricula="+ codigo;  
-	 }
-
   
 </script>
 
@@ -213,7 +209,7 @@ width:295px;
 					<div id="contact-form">
 						<s:form name="registra" method="post" action="../painel/aluno!registrar.java"  onSubmit="return validaForm()">
 							<s:textfield id="nome"  required="true" label="Nome Completo" name="alunoNovoParams.nome"></s:textfield>
-							<s:textfield  required="true" onblur="validarMatricula(this.value)" label="Matrícula" maxLength="8" onKeyPress="return Numero(event);"  id="matricula" name="alunoNovoParams.matricula"></s:textfield>
+							<s:textfield  required="true" label="Matrícula" maxLength="8" onKeyPress="return Numero(event);"  id="matricula" name="alunoNovoParams.matricula"></s:textfield>
 							<br>
 							<hr></hr>
 							<br>

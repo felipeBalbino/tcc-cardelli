@@ -164,16 +164,10 @@ if(i == j) $(this).hide('slow');
 
 				</s:iterator>
 			</table>
-		
-		
+			
+			
 		</td>
-	
 	</tr>
-
-
-
 </table>
-
-
 </body>
 </html>

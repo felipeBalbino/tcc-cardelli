@@ -120,6 +120,11 @@
 			<result name="login">/jsp/login.jsp</result>
 		</action>
 		
+		<action name="vaga" method="{1}"
+			class="br.edu.gamaesouza.intranet.action.VagasEmpregoAction">
+			<result name="this">/painel/listarVagas.jsp</result>
+		</action>
+		
 		<action name="noticia" method="{1}"
 			class="br.edu.gamaesouza.intranet.action.NoticiaAction">
 			<result name="this">/painel/adicionarNoticia.jsp</result>

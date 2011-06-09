@@ -65,6 +65,13 @@
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
+	<bean class="br.edu.gamaesouza.intranet.dao.VagaDAO" id="vagaDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean class="br.edu.gamaesouza.intranet.dao.EmpresaDAO" id="empresaDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 
 	<!-- POJOS -->
 	<bean class="br.edu.gamaesouza.intranet.bean.Aluno" id="aluno"></bean>
@@ -83,7 +90,10 @@
 	<bean class="br.edu.gamaesouza.intranet.bean.HoraComplementar" id="horaComplementar"></bean>
 	<bean class="br.edu.gamaesouza.intranet.bean.Horario" id="horario"></bean>
 	<bean class="br.edu.gamaesouza.intranet.bean.DisciplinaLetivaHorario" id="disciplinaLetivaHorario"></bean>
-
+	<bean class="br.edu.gamaesouza.intranet.bean.Vaga" id="vaga"></bean>
+	<bean class="br.edu.gamaesouza.intranet.bean.Empresa" id="empresa"></bean>
+	<bean class="br.edu.gamaesouza.intranet.bean.Endereco" id="endereco"></bean>
+ 
 	<!-- MAIL -->
 
 	<bean class="br.edu.gamaesouza.intranet.mail.EnviarEmail" id="enviarEmail"></bean>

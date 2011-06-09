@@ -33,5 +33,9 @@
   <mapping class="br.edu.gamaesouza.intranet.bean.Atividade"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.Horario"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.DisciplinaLetivaHorario"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Vaga"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Endereco"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Empresa"/>
+  
  </session-factory>
 </hibernate-configuration>

@@ -117,6 +117,7 @@
 										<a href="../painel/upload!lista.java">Arquivos</a> 
 										<a href="../painel/letiva!lista.java">Disciplina Letiva</a> 
 										<a href="../painel/aluno!lista.java">Alunos</a> 
+										<a href="../painel/vaga!lista.java">Vagas de emprego</a> 
 									<% } %>
 									
 									<% if (session.getAttribute("pessoa") instanceof br.edu.gamaesouza.intranet.bean.Aluno){ %>

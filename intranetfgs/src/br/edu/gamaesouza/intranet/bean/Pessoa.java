@@ -50,6 +50,9 @@ public class Pessoa implements Serializable {
 	      joinColumns=@JoinColumn (name="pessoa_id"),
 	      inverseJoinColumns=@JoinColumn (name="regra_id"))
 	private List<Rule> regras ;
+	
+	@ManyToMany
+	private List<AreaProfissional> areasProfissionais;
 
 	@OneToMany(mappedBy="pessoa")
 	private List<Endereco> enderecos;
@@ -74,7 +77,7 @@ public class Pessoa implements Serializable {
 		this.id = id;
 	}
 	
-	// Bug Struts - Só passa parâmetros como String.
+	// Bug Struts - Sï¿½ passa parï¿½metros como String.
 	public void setId(String id) {
 		setId(Integer.parseInt(id));
 	}
@@ -135,6 +138,14 @@ public class Pessoa implements Serializable {
 		}else{
 			return "";
 		}
+	}
+
+	public void setAreasProfissionais(List<AreaProfissional> areasProfissionais) {
+		this.areasProfissionais = areasProfissionais;
+	}
+
+	public List<AreaProfissional> getAreasProfissionais() {
+		return areasProfissionais;
 	}
 
 	public void setEnderecos(List<Endereco> enderecos) {

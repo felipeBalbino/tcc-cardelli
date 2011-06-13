@@ -94,6 +94,80 @@ public class EnviarEmail {
 	    }
 
 	}
+	
+	/*public void enviarEmailComVagaParaAluno(V dl, String fileName,
+			Pessoa professor) throws Throwable {
+
+		configuration = new GmailConfiguration();
+
+		for (Aluno aluno : dl.getAluno()) {
+
+			Session session = Session.getInstance(
+					configuration.getConfiguration(), configuration.getAuth());
+			final MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("intranetfgs@gmail.com",
+					"Intranet FGS"));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
+					aluno.getEmail(), aluno.getNome()));
+
+			String mensagem = "Prezado "
+					+ aluno.getNome()
+					+ ", <br> o professor "
+					+ professor.getNome()
+					+ " adicionou um novo documento em sua disciplina "
+					+ dl.getDisciplina().getNome()
+					+ " intitulado "
+					+ fileName
+					+ ".<br>"
+					+ "Para obter o arquivo acesse a intranet da FGS em um dos computadores da instituiÃ§Ã£o.";
+
+			String emailContent = "<b>Enviado por </b>" + professor.getNome();
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<b>Arquivo: </b>" + fileName;
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<b>Disciplina: </b>"
+					+ dl.getDisciplina().getNome();
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<b>Ao aluno: </b>" + aluno.getNome();
+			emailContent = emailContent + "<br></br>";
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + mensagem;
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent
+					+ "NÃ£o responda este email, ele foi gerado automaticamente.";
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "Att. Equipe CQI";
+
+			message.setSubject("Intranet FGS - Novo arquivo em "
+					+ dl.getDisciplina().getNome());
+			message.setContent(emailContent, "text/html");
+
+			Thread thread = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					try {
+						Transport.send(message);
+					} catch (MessagingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			});
+			thread.start();
+		}
+
+	}*/
+	
+	
 
 	public void sendMailToAluno(DisciplinaLetiva dl, String fileName,
 			Pessoa professor) throws Throwable {
@@ -407,7 +481,7 @@ public class EnviarEmail {
 		msgBody = msgBody + "</tr>";
 		msgBody = msgBody + "<tr style=\"border-style:dotted;\">";
 		msgBody = msgBody
-				+ "	<td width=\"30%\" style=\"border-style:dotted;\"><b>Título: </b></td>";
+				+ "	<td width=\"30%\" style=\"border-style:dotted;\"><b>Tï¿½tulo: </b></td>";
 		msgBody = msgBody
 				+ "<td width=\"70%\" style=\"border-style:dotted;\">"+ horaComplementar.getTitulo() + "</td>";
 
@@ -449,7 +523,7 @@ public class EnviarEmail {
 		msgBody = msgBody + "<tr style=\"border-style:dotted;\">";
 
 		msgBody = msgBody
-				+ "	<td width=\"30%\"  style=\"border-style:dotted;\"><b>Matrícula: </b></td>";
+				+ "	<td width=\"30%\"  style=\"border-style:dotted;\"><b>Matrï¿½cula: </b></td>";
 		msgBody = msgBody
 				+ "<td  width=\"70%\" style=\"border-style:dotted;\">"+aluno.getMatricula()+"</td>";
 
@@ -457,7 +531,7 @@ public class EnviarEmail {
 		msgBody = msgBody + "	<tr style=\"border-style:dotted;\">";
 		msgBody = msgBody
 				+ "<td width=\"30%\"  style=\"border-style:dotted;\">";
-		msgBody = msgBody + "	<b>Período: </b>";
+		msgBody = msgBody + "	<b>Perï¿½odo: </b>";
 		msgBody = msgBody + "</td>";
 		msgBody = msgBody
 				+ "<td  width=\"70%\" style=\"border-style:dotted;\">"+aluno.getPeriodo()+"</td>";
@@ -480,9 +554,9 @@ public class EnviarEmail {
 		msgBody = msgBody + "	<td colspan=\"4\">";
 		msgBody = msgBody + "	<br></br>";
 		msgBody = msgBody
-		+ "* Ao assinar este comprovante você está de acordo com os dados contidos no mesmo.<br>";
+		+ "* Ao assinar este comprovante vocï¿½ estï¿½ de acordo com os dados contidos no mesmo.<br>";
 		msgBody = msgBody
-		+ "** Esse comprovante foi gerado diretamente para seu e-mail em "+ new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime()) +" pelo professor "+ UserData.getLoggedUser().getNome() +", para ele ter valor é necessário que você imprima e leve para o coordenador assinar.";
+		+ "** Esse comprovante foi gerado diretamente para seu e-mail em "+ new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime()) +" pelo professor "+ UserData.getLoggedUser().getNome() +", para ele ter valor ï¿½ necessï¿½rio que vocï¿½ imprima e leve para o coordenador assinar.";
 		
 		msgBody = msgBody + "</td>";
 		msgBody = msgBody + "</tr>";

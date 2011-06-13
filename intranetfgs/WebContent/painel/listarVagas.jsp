@@ -188,7 +188,7 @@ if(i == j) $(this).hide('slow');
 											</tr>
 											
 											<tr>
-												<td><b>Area Profissional:</b> <s:select list="areas" id="areas" name="areas"  headerKey="" headerValue="Nenhuma" value="%{areaProfissional}"/></td>
+												<td><b>Area Profissional:</b> <s:select list="areas" id="areas" name="areas"  listValue="name" headerKey="" headerValue="Nenhuma" value="%{areaProfissional}"/></td>
 											</tr>
 
 											<tr>

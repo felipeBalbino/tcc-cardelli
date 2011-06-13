@@ -244,9 +244,9 @@ INSERT INTO Horario VALUES(3,"2011","20:20","19:40",1);
 INSERT INTO Horario VALUES(4,"2011","21:05","20:25",1);
 INSERT INTO Horario VALUES(5,"2011","21:55","21:15",1);
 INSERT INTO Horario VALUES(6,"2011","22:40","22:00",1);
-INSERT INTO DisciplinaLetivaHorario VALUES  (1,"SEGUNDA",1,1);
-INSERT INTO DisciplinaLetivaHorario VALUES  (2,"QUARTA",2,2);
-INSERT INTO DisciplinaLetivaHorario VALUES  (3,"TERCA",3,3);
+INSERT INTO DisciplinaLetivaHorario VALUES  ("SEGUNDA",1,1);
+INSERT INTO DisciplinaLetivaHorario VALUES  ("QUARTA",2,2);
+INSERT INTO DisciplinaLetivaHorario VALUES  ("TERCA",3,3);
 INSERT INTO Hora values (1,2);
 INSERT INTO Hora values (2,2);
 INSERT INTO Hora values (3,2);
@@ -277,9 +277,15 @@ INSERT INTO HoraComplementar values (30,"Evento 3",6,1);
 INSERT INTO Endereco values (1,"Ramos",22445511,"Rio de Janeiro","apar 201","Rio de janeiro","80","BRASIL","Rua Aurelinao lessa",true);
 INSERT INTO Endereco values (2,"Ramos",22445511,"Rio de Janeiro","apar 201","Rio de janeiro","80","BRASIL","Rua Aurelinao lessa",false);
 INSERT INTO Endereco values (3,"Ramos",22445511,"Rio de Janeiro","apar 201","Rio de janeiro","80","BRASIL","Rua Aurelinao lessa",false);
-INSERT INTO Empresa values (1,"Instituto de matem�tica","Impa","Desenvolvimento","www.impa.br",1);
+INSERT INTO Empresa values (1,"Instituto de matem�tica","Impa","Desenvolvimento","www.impa.br",1);
 INSERT INTO Empresa values (2,"Panasonic","Panasonic","Desenvolvimento","www.impa.br",2);
 INSERT INTO Empresa values (3,"Sao Luiz","Grupo Sao Luiz","Desenvolvimento","www.impa.br",3);
-INSERT INTO Vaga (id,horarioDaVaga,areaProfissional,beneficios,cargo,faixaSalarial,empresa_id) values (1,"10 as 13","TELECOMUNICACAO","CP + CP + DO","Estagiario em sistemas","1200",1);
-INSERT INTO Vaga (id,horarioDaVaga,areaProfissional,beneficios,cargo,faixaSalarial,empresa_id) values (2,"10 as 13","TELECOMUNICACAO","CP + CP + DO","Estagiario em sistemas","1200",2);
-INSERT INTO Vaga (id,horarioDaVaga,areaProfissional,beneficios,cargo,faixaSalarial,empresa_id) values (3,"10 as 13","TELECOMUNICACAO","CP + CP + DO","Estagiario em sistemas","1200",3);
+INSERT INTO AreaProfissional values (1,"Telecomunicação");
+INSERT INTO AreaProfissional values (2,"Redes");
+INSERT INTO AreaProfissional values (3,"Sistemas");
+INSERT INTO Vaga (id,horarioDaVaga,areaProfissional,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (1,"10 as 13","TELECOMUNICACAO","CP + CP + DO","Estagiario em sistemas","1200",1,1);
+INSERT INTO Vaga (id,horarioDaVaga,areaProfissional,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (2,"10 as 13","TELECOMUNICACAO","CP + CP + DO","Estagiario em sistemas","1200",2,2);
+INSERT INTO Vaga (id,horarioDaVaga,areaProfissional,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (3,"10 as 13","TELECOMUNICACAO","CP + CP + DO","Estagiario em sistemas","1200",3,3);
+
+
+

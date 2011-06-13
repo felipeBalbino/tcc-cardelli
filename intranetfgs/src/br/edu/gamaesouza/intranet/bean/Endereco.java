@@ -5,6 +5,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import br.edu.gamaesouza.intranet.utils.PaisEnum;
@@ -26,10 +27,13 @@ public class Endereco {
 	@OneToOne(mappedBy="endereco")
 	private Empresa empresa;
 	
-	
 	@Enumerated(EnumType.STRING)
 	private PaisEnum pais;
 
+	@ManyToOne
+	private Pessoa pessoa;
+	
+	private Boolean sePrincipal;
 
 	public String getRua() {
 		return rua;
@@ -128,6 +132,26 @@ public class Endereco {
 
 	public Long getId() {
 		return id;
+	}
+
+
+	public void setSePrincipal(Boolean sePrincipal) {
+		this.sePrincipal = sePrincipal;
+	}
+
+
+	public Boolean getSePrincipal() {
+		return sePrincipal;
+	}
+
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+
+	public Pessoa getPessoa() {
+		return pessoa;
 	}
 	
 	

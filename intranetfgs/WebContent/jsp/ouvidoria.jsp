@@ -22,7 +22,7 @@ width:340px;
 #telefone {background:transparent url(../images/icon_phone.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
 #matricula {background:transparent url(../images/ico_user.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
 #curso {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 22px;}
-#mensagem {background:transparent  no-repeat 2% 50%; padding:2px 14px 2px 0;}
+#mensagem {background:none repeat scroll 0 0 #CCCCCC; border:medium none !important; -moz-border-radius:2px 2px 2px 2px;}
 
 
 

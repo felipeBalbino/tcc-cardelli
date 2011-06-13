@@ -51,6 +51,13 @@ public class Pessoa implements Serializable {
 	      inverseJoinColumns=@JoinColumn (name="regra_id"))
 	private List<Rule> regras ;
 
+	@OneToMany(mappedBy="pessoa")
+	private List<Endereco> enderecos;
+	
+	@OneToMany(mappedBy="pessoa")
+	private List<Telefone> telefones;
+	
+	
 	public List<Rule> getRegras() {
 		return regras;
 	}
@@ -128,6 +135,22 @@ public class Pessoa implements Serializable {
 		}else{
 			return "";
 		}
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setTelefones(List<Telefone> telefones) {
+		this.telefones = telefones;
+	}
+
+	public List<Telefone> getTelefones() {
+		return telefones;
 	}
 
 	

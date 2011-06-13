@@ -16,8 +16,12 @@ public class SessionListen implements HttpSessionListener {
 	
     public void sessionDestroyed(HttpSessionEvent event) {
 		try {
-			Map<String, Object> sessao = ActionContext.getContext().getSession();
-			Pessoa pessoa = (Pessoa) sessao.get("pessoa");
+			Pessoa pessoa = null;
+		
+			if(ActionContext.getContext() != null && ActionContext.getContext().getSession() != null){
+				Map<String, Object> sessao = ActionContext.getContext().getSession();
+				pessoa = (Pessoa) sessao.get("pessoa");
+			}
 			
 			if(pessoa != null){	
 				pessoa.setDataUltimoAcesso(Calendar.getInstance());

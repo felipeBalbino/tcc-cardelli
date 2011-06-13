@@ -286,6 +286,3 @@ INSERT INTO AreaProfissional values (3,"Sistemas");
 INSERT INTO Vaga (id,horarioDaVaga,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (1,"10 as 13","BOLSA FAMILIA","Estagiario","1200",3,3);
 INSERT INTO Vaga (id,horarioDaVaga,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (2,"10 as 13","BOLSA FAMILIA","Estagiario","1200",3,3);
 INSERT INTO Vaga (id,horarioDaVaga,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (3,"10 as 13","BOLSA FAMILIA","Estagiario","1200",3,3);
-
-
-

@@ -274,18 +274,18 @@ INSERT INTO HoraAEP values ("2010-10-10","14:40","13:20",3);
 INSERT INTO HoraComplementar values (100,"Evento 1",4,1);
 INSERT INTO HoraComplementar values (50,"Evento 2",5,2);
 INSERT INTO HoraComplementar values (30,"Evento 3",6,1);
-INSERT INTO Endereco values (1,"Ramos",22445511,"Rio de Janeiro","apar 201","Rio de janeiro","80","BRASIL","Rua Aurelinao lessa",true);
-INSERT INTO Endereco values (2,"Ramos",22445511,"Rio de Janeiro","apar 201","Rio de janeiro","80","BRASIL","Rua Aurelinao lessa",false);
-INSERT INTO Endereco values (3,"Ramos",22445511,"Rio de Janeiro","apar 201","Rio de janeiro","80","BRASIL","Rua Aurelinao lessa",false);
+INSERT INTO Endereco values (1,"Ramos",22445511,"Rio de Janeiro","apar 201","Rio de janeiro","80","BRASIL","Rua Aurelinao lessa",0,1);
+INSERT INTO Endereco values (2,"Ramos",22445511,"Rio de Janeiro","apar 201","Rio de janeiro","80","BRASIL","Rua Aurelinao lessa",1,1);
+INSERT INTO Endereco values (3,"Ramos",22445511,"Rio de Janeiro","apar 201","Rio de janeiro","80","BRASIL","Rua Aurelinao lessa",0,1);
 INSERT INTO Empresa values (1,"Instituto de matem�tica","Impa","Desenvolvimento","www.impa.br",1);
 INSERT INTO Empresa values (2,"Panasonic","Panasonic","Desenvolvimento","www.impa.br",2);
 INSERT INTO Empresa values (3,"Sao Luiz","Grupo Sao Luiz","Desenvolvimento","www.impa.br",3);
 INSERT INTO AreaProfissional values (1,"Telecomunicação");
 INSERT INTO AreaProfissional values (2,"Redes");
 INSERT INTO AreaProfissional values (3,"Sistemas");
-INSERT INTO Vaga (id,horarioDaVaga,areaProfissional,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (1,"10 as 13","TELECOMUNICACAO","CP + CP + DO","Estagiario em sistemas","1200",1,1);
-INSERT INTO Vaga (id,horarioDaVaga,areaProfissional,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (2,"10 as 13","TELECOMUNICACAO","CP + CP + DO","Estagiario em sistemas","1200",2,2);
-INSERT INTO Vaga (id,horarioDaVaga,areaProfissional,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (3,"10 as 13","TELECOMUNICACAO","CP + CP + DO","Estagiario em sistemas","1200",3,3);
+INSERT INTO Vaga (id,horarioDaVaga,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (1,"10 as 13","BOLSA FAMILIA","Estagiario","1200",3,3);
+INSERT INTO Vaga (id,horarioDaVaga,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (2,"10 as 13","BOLSA FAMILIA","Estagiario","1200",3,3);
+INSERT INTO Vaga (id,horarioDaVaga,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (3,"10 as 13","BOLSA FAMILIA","Estagiario","1200",3,3);
 
 
 

@@ -36,6 +36,7 @@
   <mapping class="br.edu.gamaesouza.intranet.bean.Vaga"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.Endereco"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.Empresa"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.AreaProfissional"/>
   <mapping class="br.edu.gamaesouza.intranet.bean.Telefone"/>
   
  </session-factory>

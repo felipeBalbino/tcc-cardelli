@@ -50,17 +50,7 @@ if(i == j) $(this).hide('slow');
 	     }  
 	 }
 
- 	function desconfirmar(codigo) { 
- 		if (confirm('Deseja marcar como não confirmado?')) {    
-	         location.href = "../painel/vaga!desconfirmar.java?idVaga="+ codigo;
-	     } 
- 	}
 
- 	function confirmar(codigo) { 
- 		if (confirm('Deseja marcar como confirmado?')) {    
-	         location.href = "../painel/vaga!confirmar.java?idVaga="+ codigo;
-	     } 
- 	}
  	function restartTrs(){
  		document.getElementById("titulo").style.backgroundColor = "transparent";
  	 	document.getElementById("coorden").style.backgroundColor = "transparent";
@@ -145,12 +135,12 @@ if(i == j) $(this).hide('slow');
 									
 									<td width="11%" align="right">
 										<s:if test="confirmacao">
-											<a   title="Confirmar e ativar" border="30"href="javascript:desconfirmar(<s:property value="id" />)">
+											<a   title="Status confirmado" border="30">
 												<img border="0" src="../images/ativo.png" />
 											</a>
 										</s:if>
 										<s:else>
-											<a   title="Desconfirmar e desativar" border="30" href="javascript:confirmar(<s:property value="id" />)">
+											<a   title="Status Não Confirmado" border="30">
 												<img border="0" src="../images/inativo.png" />
 											</a>
 										</s:else>
@@ -176,45 +166,67 @@ if(i == j) $(this).hide('slow');
 						<td>
 							<div class="conteudo">
 								<s:form name="alterar" onSubmit="return validaForm()" action="/painel/evento!altera.java"  >
-										<table>
-											<tr>
-												<td><s:hidden name="eventoAlteraParams.id" id="id" value="%{id}"></s:hidden></td>
-											</tr>
-											<tr>
-												<td><b>Cargo:</b> <s:textfield cssStyle="width:80%" id="cargo" name="vagaAlteraParams.cargo" value="%{cargo}" maxLength="40" /></td>
-											</tr>
-											<tr>
-												<td><b>Empresa:</b> <s:select list="empresas" id="empresa.nome" name="vagaAlteraParams.empresa"  headerKey="" headerValue="Nenhuma" value="%{empresa}"/></td>
-											</tr>
-											
-											<tr>
-												<td><b>Area Profissional:</b> <s:select list="areas" id="areas" name="areas"  headerKey="" headerValue="Nenhuma" value="%{areaProfissional}"/></td>
-											</tr>
+										<s:if test="seAtivo">
+											<table>
+												<tr>
+													<td><b>Cargo:</b> <s:property value="%{cargo}"/></td>
+												
+													<td><b>Empresa:</b> <s:property value="%{empresa}"/></td>
+												</tr>
+												<tr>
+													<td><b>Area Profissional:</b> <s:property value="%{areaProfissional}"/></td>
+												
+													<td><b>Faixa Salarial:</b> <s:property value="%{faixaSalarial}"/></td>
+												</tr>
+												<tr>
+													<td><b>Perfil:</b> <s:property value="%{perfil}"/></td>
+												
+													<td><b>Quantidade De Vagas:</b> <s:property value="%{quantidadeDevagas}"/></td>
+												</tr>
+												<tr>
+													<td><b>Regime De Contratação:</b> <s:property value="%{regimeDeContratacao}"/></td>
+												
+													<td><b>Beneficios:</b> <s:property value="%{beneficios}"/></td>
+												</tr>
+												<tr>
+													<td><b>Nivel Hierarquico:</b> <s:property value="%{nivelHierarquico}"/></td>
 
-											<tr>
-												<td><b>Faixa Salarial:</b> <s:textfield id="faixaSalarial"  required="true" name="vaga.faixaSalarial" value="%{faixaSalarial}"></s:textfield></td>
-											</tr>
-											<tr>
-												<td><b>Perfil:</b> <s:textfield id="perfil"  required="true" name="vaga.perfil" value="%{perfil}"></s:textfield></td>
-											</tr>
-											<tr>
-												<td><b>Quantidade De Vagas:</b> <s:textfield id="quantidadeDevagas"  required="true" name="vaga.quantidadeDevagas" value="%{quantidadeDevagas}"></s:textfield></td>
-											</tr>
-											<tr>
-												<td><b>Regime De Contratação:</b> <s:textfield id="regimeDeContratacao"  required="true"  name="vaga.regimeDeContratacao" value="%{regimeDeContratacao}"></s:textfield></td>
-											</tr>
-											<tr>
-												<td><b>Beneficios:</b> <s:textfield id="beneficios"  required="true"  name="vaga.beneficios" value="%{beneficios}"></s:textfield></td>
-											</tr>
-											<tr>
-												<td><b>nivelHierarquico:</b> <s:textfield id="nivelHierarquico"  required="true" name="vaga.nivelHierarquico" value="%{nivelHierarquico}"></s:textfield></td>
-											</tr>
-											
-											<tr>
-												<td><b>Horarios:</b> <s:textfield id="horarioDaVaga"  required="true" name="vaga.horarioDaVaga" value="%{horarioDaVaga}"></s:textfield></td>
-											</tr>
-							
-										</table>
+													<td><b>Horarios:</b> <s:property value="%{horarioDaVaga}"/></td>
+												</tr>
+											</table>
+										</s:if>
+										<s:else>
+											<table>
+												<tr>
+													<td><s:hidden name="eventoAlteraParams.id" id="id" value="%{id}"></s:hidden></td>
+												</tr>
+												<tr>
+													<td><b>Cargo:</b> <s:textfield cssStyle="width:80%" id="cargo" name="vagaAlteraParams.cargo" value="%{cargo}" maxLength="40" /></td>
+												
+													<td><b>Empresa:</b> <s:select list="empresas" id="empresa.nome" name="vagaAlteraParams.empresa"  headerKey="" headerValue="Nenhuma" value="%{empresa}" /></td>
+												</tr>
+												<tr>
+													<td><b>Area Profissional:</b> <s:select list="areas" id="areas" name="areas" listValue="name" headerKey="" headerValue="Nenhuma" value="%{areaProfissional}" /></td>
+												
+													<td><b>Faixa Salarial:</b> <s:textfield id="faixaSalarial"  required="true" name="vaga.faixaSalarial" value="%{faixaSalarial}" size="40"></s:textfield></td>
+												</tr>
+												<tr>
+													<td><b>Perfil:</b> <s:textarea id="perfil" cssStyle="width:80%" required="true" name="vaga.perfil" value="%{perfil}"  rows="5" ></s:textarea></td>
+												
+													<td><b>Beneficios:</b> <s:textarea id="beneficios" cssStyle="width:80%" required="true"  name="vaga.beneficios" value="%{beneficios}" rows="5"></s:textarea></td>
+												</tr>
+												<tr>
+													<td><b>Regime De Contratação:</b> <s:textfield id="regimeDeContratacao"  required="true"  name="vaga.regimeDeContratacao" value="%{regimeDeContratacao}" size="40"></s:textfield></td>
+												
+													<td><b>Quantidade De Vagas:</b> <s:textfield id="quantidadeDevagas"  required="true" name="vaga.quantidadeDevagas" value="%{quantidadeDevagas}" size="10"></s:textfield></td>
+												</tr>
+												<tr>
+													<td><b>Nivel Hierarquico:</b> <s:textfield id="nivelHierarquico"  required="true" name="vaga.nivelHierarquico" value="%{nivelHierarquico}" size="40"></s:textfield></td>
+												
+													<td><b>Horarios:</b> <s:textfield id="horarioDaVaga"  required="true" name="vaga.horarioDaVaga" value="%{horarioDaVaga}" size="40"></s:textfield></td>
+												</tr>
+											</table>
+										</s:else>
 								</s:form>
 							</div>
 						</td>

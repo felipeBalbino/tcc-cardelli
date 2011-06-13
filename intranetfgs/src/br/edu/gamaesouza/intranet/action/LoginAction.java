@@ -44,7 +44,7 @@ public class LoginAction extends ActionSupport {
 	private Pessoa pessoa; 
 	private List<Curso> cursos = new ArrayList<Curso>();
 	
-	@Autowired private AlunoNovoParams alunoNovoParams ;
+	@Autowired private AlunoNovoParams alunoNovoParams;
 	@Autowired private PessoaDAO pessoaDAO;
 	@Autowired private CursoDAO cursoDAO;
 	@Autowired private EnviarEmail enviarEmail;

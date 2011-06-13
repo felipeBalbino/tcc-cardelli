@@ -25,10 +25,9 @@ public class VagaDAO extends HibernateDaoSupport {
 		getHibernateTemplate().update(vaga);
 	}
 	
-	public void merge(Vaga vaga) throws IntranetException{
-		getHibernateTemplate().merge(vaga);
+	public Vaga merge(Vaga vaga) throws IntranetException{
+		return (Vaga)getHibernateTemplate().merge(vaga);
 	}
-	
 	
 	public void delete(Vaga vaga) throws IntranetException{
 		getHibernateTemplate().delete(vaga);	
@@ -56,11 +55,18 @@ public class VagaDAO extends HibernateDaoSupport {
 		return vagasList;
 	}
 	
-	public Vaga getEventoById(Long idVaga) throws IntranetException{
+	public Vaga getVagaById(Long idVaga) throws IntranetException{
 		Criteria vagaById = getSession().createCriteria(Vaga.class);
 		vagaById.add(Restrictions.eq("id", idVaga));
 		Vaga vaga = (Vaga) vagaById.uniqueResult();
 		return vaga;
+	}
+	
+	public List<Vaga> getVagasByIdAluno(Integer idAluno) throws IntranetException{
+		Criteria vagasByAluno = getSession().createCriteria(Vaga.class);
+		vagasByAluno.add(Restrictions.eq("publicador.id", idAluno));
+		List <Vaga> vagas = (List<Vaga>) vagasByAluno.list();
+		return vagas;
 	}
 	
 

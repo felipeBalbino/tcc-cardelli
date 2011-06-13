@@ -25,6 +25,11 @@ public class Empresa {
 	@OneToOne
 	private Endereco endereco;
 
+	@Override
+	public String toString() {
+		return nome;
+	}
+	
 	public String getNome() {
 		return nome;
 	}

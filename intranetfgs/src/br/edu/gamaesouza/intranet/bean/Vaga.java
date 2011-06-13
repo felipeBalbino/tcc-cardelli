@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import br.edu.gamaesouza.intranet.utils.AreaEnum;
 
@@ -29,8 +30,8 @@ public class Vaga {
 	private String horarioDaVaga;
 	private String nivelHierarquico;
 	
-	@Enumerated(EnumType.STRING)
-	private AreaEnum areaProfissional;
+	@ManyToOne
+	private AreaProfissional areaProfissional;
 	
 	@ManyToOne
 	private Empresa empresa;
@@ -41,6 +42,9 @@ public class Vaga {
 	private Boolean confirmacao;
 	
 	private Boolean seAtivo;
+	
+	@Transient
+	private String email;
 	
 	public String getCargo() {
 		return cargo;
@@ -90,13 +94,7 @@ public class Vaga {
 		this.nivelHierarquico = nivelHierarquico;
 	}
 
-	public AreaEnum getAreaProfissional() {
-		return areaProfissional;
-	}
 
-	public void setAreaProfissional(AreaEnum areaProfissional) {
-		this.areaProfissional = areaProfissional;
-	}
 
 	public String getRegimeDeContratacao() {
 		return regimeDeContratacao;
@@ -164,6 +162,22 @@ public class Vaga {
 
 	public Pessoa getPublicador() {
 		return publicador;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setAreaProfissional(AreaProfissional areaProfissional) {
+		this.areaProfissional = areaProfissional;
+	}
+
+	public AreaProfissional getAreaProfissional() {
+		return areaProfissional;
 	}
 	
 	

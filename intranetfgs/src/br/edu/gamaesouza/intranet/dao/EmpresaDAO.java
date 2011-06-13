@@ -50,7 +50,7 @@ public class EmpresaDAO extends HibernateDaoSupport {
 		return empresaList;
 	}
 	
-	public Empresa getEmpresaById(Integer id) throws IntranetException{
+	public Empresa getEmpresaById(Long id) throws IntranetException{
 		Criteria empresaById = getSession().createCriteria(Empresa.class);
 		empresaById.add(Restrictions.eq("id", id));
 		Empresa empresa = (Empresa) empresaById.uniqueResult();

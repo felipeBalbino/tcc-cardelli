@@ -123,6 +123,8 @@
 		<action name="vaga" method="{1}"
 			class="br.edu.gamaesouza.intranet.action.VagasEmpregoAction">
 			<result name="this">/painel/listarVagas.jsp</result>
+			<result name="prepare">/jsp/AdicionarVaga.jsp</result>
+			<result name="listaVagaParaAluno">/jsp/listarVagasParaAluno.jsp</result>
 		</action>
 		
 		<action name="noticia" method="{1}"

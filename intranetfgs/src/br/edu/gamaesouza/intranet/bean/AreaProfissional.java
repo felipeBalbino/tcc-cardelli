@@ -6,9 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+/*@NamedQueries(value={
+		@NamedQuery(name="allAreasByPessoa",query="SELECT dl FROM AreaProfissional dl left join fetch dl.pessoas pessoa WHERE pessoa.id = :pessoa")
+})*/
 public class AreaProfissional {
 	@Id
 	@GeneratedValue
@@ -53,11 +58,6 @@ public class AreaProfissional {
 	public List<Pessoa> getPessoas() {
 		return pessoas;
 	}
-
-
-
-
-	
 	
 }
 	

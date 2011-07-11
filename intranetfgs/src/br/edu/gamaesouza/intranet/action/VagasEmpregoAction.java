@@ -11,15 +11,21 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.edu.gamaesouza.intranet.bean.AreaProfissional;
 import br.edu.gamaesouza.intranet.bean.Empresa;
+import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.bean.Rule;
 import br.edu.gamaesouza.intranet.bean.Vaga;
+import br.edu.gamaesouza.intranet.dao.AreaProfissionalDAO;
 import br.edu.gamaesouza.intranet.dao.EmpresaDAO;
+import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.dao.VagaDAO;
+import br.edu.gamaesouza.intranet.mail.EnviarEmail;
 import br.edu.gamaesouza.intranet.security.UserData;
 import br.edu.gamaesouza.intranet.utils.AreaEnum;
 import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
+import br.edu.gamaesouza.intranet.utils.TiposContratacaoEnum;
 
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -40,17 +46,21 @@ public class VagasEmpregoAction extends ActionSupport {
 	*/
 	private Vaga vaga;
 	private Long empresaId;
+	private Long areaProfissionalId;
 	
-	
-	private List<AreaEnum> areas;
+	private List<TiposContratacaoEnum> tiposDeContratacao;
+	private List<AreaProfissional> areas;
 	private List<Vaga> vagas;
-	private List<Empresa> empresas;
+	private List<Empresa> empresas; 
 	private Long idVaga;
 	Boolean seRegra = false;
 	
 	@Autowired private VagaDAO vagaDAO;
 	@Autowired private EmpresaDAO empresaDAO;
-
+	@Autowired private AreaProfissionalDAO areaProfissionalDAO;
+	@Autowired private EnviarEmail   enviarEmail;
+	@Autowired private PessoaDAO pessoaDAO;	
+	
 	private String tempoDeResposta;
 	
 	public String lista() {
@@ -59,7 +69,8 @@ public class VagasEmpregoAction extends ActionSupport {
 		long inicio = System.currentTimeMillis();  
 		try {
 			empresas = empresaDAO.getAll();
-			setAreas(Arrays.asList(AreaEnum.values()));
+			setAreas(areaProfissionalDAO.getAll());
+			setTiposDeContratacao(Arrays.asList(TiposContratacaoEnum.values()));
 			
 			for (Rule ruleOfPerson : UserData.getLoggedUser().getRegras()){
 				if(ruleOfPerson.getNome().equals(RULE_VAGA_LISTA))
@@ -91,7 +102,8 @@ public class VagasEmpregoAction extends ActionSupport {
 	public String prepare() {		
 		try {
 			setEmpresas(empresaDAO.getAll());
-			setAreas(Arrays.asList(AreaEnum.values()));
+			setAreas(areaProfissionalDAO.getAll());
+			setTiposDeContratacao(Arrays.asList(TiposContratacaoEnum.values()));
 		} catch (IntranetException e) {
 			e.printStackTrace();
 		}
@@ -106,7 +118,17 @@ public class VagasEmpregoAction extends ActionSupport {
 				vaga = vagaDAO.getVagaById(idVaga);
 				vaga.setConfirmacao(true);
 				vaga.setSeAtivo(true);
-				vagaDAO.merge(vaga);
+				
+				vaga  = vagaDAO.merge(vaga);
+				
+				List <Pessoa>  pessoas = pessoaDAO.getAlunosByAreaProfissional(vaga.getAreaProfissional().getId());
+				try {
+					enviarEmail.enviarEmailComVagaParaAluno(vaga, pessoas);
+				} catch (Throwable e) {
+					// COLOCAR VALIDACAO
+					e.printStackTrace();
+				}
+				
 		} catch (IntranetException e) {
 			logger.warning("Erro Metodo confirmar em VagaEmpregoAction.");
 		}		
@@ -164,6 +186,7 @@ public class VagasEmpregoAction extends ActionSupport {
 			this.vaga.setDataDoAnuncio(Calendar.getInstance());
 			this.vaga.setPublicador(UserData.getLoggedUser());
 			this.vaga.setEmpresa(empresaDAO.getEmpresaById(empresaId));
+			this.vaga.setAreaProfissional(areaProfissionalDAO.getAreaProfissionalById(areaProfissionalId));
 			
 			for (Rule ruleOfPerson : UserData.getLoggedUser().getRegras()){
 				if(ruleOfPerson.getNome().equals(RULE_VAGA_NOVO))
@@ -245,15 +268,6 @@ public class VagasEmpregoAction extends ActionSupport {
 		this.vaga = vaga;
 	}
 
-	public List<AreaEnum> getAreas() {
-		return areas;
-	}
-
-	public void setAreas(List<AreaEnum> areas) {
-		this.areas = areas;
-	}
-
-
 	public Boolean getSeRegra() {
 		return seRegra;
 	}
@@ -261,6 +275,76 @@ public class VagasEmpregoAction extends ActionSupport {
 
 	public void setSeRegra(Boolean seRegra) {
 		this.seRegra = seRegra;
+	}
+
+
+	public void setAreaProfissionalId(Long areaProfissionalId) {
+		this.areaProfissionalId = areaProfissionalId;
+	}
+
+
+	public Long getAreaProfissionalId() {
+		return areaProfissionalId;
+	}
+
+
+	public EmpresaDAO getEmpresaDAO() {
+		return empresaDAO;
+	}
+
+
+	public void setEmpresaDAO(EmpresaDAO empresaDAO) {
+		this.empresaDAO = empresaDAO;
+	}
+
+
+	public AreaProfissionalDAO getAreaProfissionalDAO() {
+		return areaProfissionalDAO;
+	}
+
+
+	public void setAreaProfissionalDAO(AreaProfissionalDAO areaProfissionalDAO) {
+		this.areaProfissionalDAO = areaProfissionalDAO;
+	}
+
+
+	public void setAreas(List<AreaProfissional> areas) {
+		this.areas = areas;
+	}
+
+
+	public List<AreaProfissional> getAreas() {
+		return areas;
+	}
+
+
+	public void setTiposDeContratacao(List<TiposContratacaoEnum> tiposDeContratacao) {
+		this.tiposDeContratacao = tiposDeContratacao;
+	}
+
+
+	public List<TiposContratacaoEnum> getTiposDeContratacao() {
+		return tiposDeContratacao;
+	}
+
+
+	public void setEnviarEmail(EnviarEmail enviarEmail) {
+		this.enviarEmail = enviarEmail;
+	}
+
+
+	public EnviarEmail getEnviarEmail() {
+		return enviarEmail;
+	}
+
+
+	public void setPessoaDAO(PessoaDAO pessoaDAO) {
+		this.pessoaDAO = pessoaDAO;
+	}
+
+
+	public PessoaDAO getPessoaDAO() {
+		return pessoaDAO;
 	}
 
 	

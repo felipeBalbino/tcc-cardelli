@@ -17,7 +17,6 @@ padding:17px 0px 0 39px;
 float:left;
 width:340px;
 }
-#curso {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
 #email {background:transparent url(../images/ico_mail.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
 #email2 {background:transparent url(../images/ico_mail.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
 #login {background:transparent url(../images/profile_ico_transparent.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
@@ -210,12 +209,17 @@ width:295px;
 							Curso:<br><sx:autocompleter  headerKey=""  headerValue=""  id="curso" name="alunoNovoParams.cursoId" list="cursos" listValue="nome" listKey="id"/><br>
 							Nome Completo: <s:textfield id="nome" name="alunoNovoParams.nome"></s:textfield><br>
 							Matrícula: <s:textfield  maxLength="8" onKeyPress="return Numero(event);"  id="matricula" name="alunoNovoParams.matricula"></s:textfield><br>
+							<hr></hr>
 							Email: <s:textfield id="email" name="alunoNovoParams.email" ></s:textfield><br>
 							Confirmar Email: <s:textfield id="email2" ></s:textfield><br>
+							<hr></hr>
 							Login: <s:textfield id="login" name="alunoNovoParams.login" maxlength="8"></s:textfield><br>
 							Senha: <s:password id="senha" name="alunoNovoParams.senha"></s:password><br>
 							Confirmar Senha: <s:password id="senha2"></s:password><br>
-							
+							<hr></hr>
+							Area Profissional que deseja receber Vagas de emprego:<br><sx:autocompleter  headerKey=""  headerValue=""  id="area" name="alunoNovoParams.areaProfissionalId" list="areas" listValue="nome" listKey="id"/><br>
+							<hr></hr>
+							 <br>
 							<sx:submit align="left" value="Entrar" label="Log in"></sx:submit>
 						</s:form>
 					</div>		

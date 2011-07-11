@@ -2,12 +2,17 @@ package br.edu.gamaesouza.intranet.params.impl;
 
 
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Aluno;
+import br.edu.gamaesouza.intranet.bean.AreaProfissional;
 import br.edu.gamaesouza.intranet.bean.Curso;
+import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
+import br.edu.gamaesouza.intranet.dao.AreaProfissionalDAO;
 import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.params.AlunoParams;
 
@@ -26,9 +31,11 @@ public class AlunoNovoParams implements AlunoParams {
 	private Integer matricula;
 	private Integer periodo;
 	private StatusMatriculaEnum statusMatricula;
+	private Long areaProfissionalId;
 	
 
 	@Autowired private CursoDAO cursoDAO;
+	@Autowired private AreaProfissionalDAO areaProfissionalDAO;
 	
 	@Override
 	public boolean isEmpty() {
@@ -46,15 +53,23 @@ public class AlunoNovoParams implements AlunoParams {
 		aluno.setMatricula(matricula);
 		aluno.setStatusMatricula(statusMatricula);
 		aluno.setDataUltimoAcesso(Calendar.getInstance());
+		
 		Curso curso = (Curso) SpringUtil.getBean("curso");
+		AreaProfissional areaProfissional = (AreaProfissional) SpringUtil.getBean("areaProfissional");
+		
+	
+		List<AreaProfissional> areas = new ArrayList<AreaProfissional>();
 		try {
 			curso = cursoDAO.getCursoById(cursoId);
+			//Adicionar nova Area profissional.
+			areaProfissional = areaProfissionalDAO.getAreaProfissionalById(areaProfissionalId);
+			areas.add(areaProfissional);
+			
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		aluno.setCurso( curso );
-
+		aluno.setAreasProfissionais(areas);
 		
 		
 		return aluno;
@@ -125,5 +140,23 @@ public class AlunoNovoParams implements AlunoParams {
 		return periodo;
 	}
 
+
+	public void setAreaProfissionalDAO(AreaProfissionalDAO areaProfissionalDAO) {
+		this.areaProfissionalDAO = areaProfissionalDAO;
+	}
+
+	public AreaProfissionalDAO getAreaProfissionalDAO() {
+		return areaProfissionalDAO;
+	}
+
+	public Long getAreaProfissionalId() {
+		return areaProfissionalId;
+	}
+
+	public void setAreaProfissionalId(Long areaProfissionalId) {
+		this.areaProfissionalId = areaProfissionalId;
+	}
+
+	
 
 }

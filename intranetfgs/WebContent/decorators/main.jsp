@@ -123,7 +123,7 @@
 									<% if (session.getAttribute("pessoa") instanceof br.edu.gamaesouza.intranet.bean.Aluno){ %>
 										<a href="../painel/aluno!gradeParaAluno.java">Ver&nbsp;grade</a> 
 									<% } %>
-									<a href="../painel/vaga!lista.java">Gerenciar&nbsp;Vagas</a> 
+									<a href="../painel/vaga!lista.java">Vagas&nbsp;Enviadas</a> 
 									<a href="../painel/trocarsenha.jsp">Alterar&nbsp;Senha</a>	
 								</div>
 							</li>
@@ -180,7 +180,10 @@
 	<table align="center" width="100%" height="30" id="footer" cellspacing="3" id="footer">
 		<tr>
 			<td>
-			<center>© 2011 - Intranet Gama & Souza 1.0 Beta ${sessionScope.pessoa.dataUltimoAcesso} </center>
+			<center>© 2011 - Intranet Gama & Souza 1.0 Beta ${sessionScope.pessoa.dataUltimoAcesso}</br>
+			<a href="http://www.opengti.com.br" >Todos os direito reservados - Http://www.opengti.com.br</a>
+			</center>
+				
 			</td>
 		</tr>
 	</table>

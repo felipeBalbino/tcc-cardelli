@@ -33,13 +33,7 @@ public class Curso implements Serializable {
 	@Column(unique=true)
 	private String nome;
 
-	@ManyToMany(
-			fetch=FetchType.EAGER
-	     ) 
-	    @JoinTable (name="disciplina_curso",
-	            joinColumns={@JoinColumn(name="curso_id")},
-	            inverseJoinColumns={@JoinColumn(name="disciplina_id")}
-	            )
+	@ManyToMany(fetch=FetchType.EAGER)
 	public List<Disciplina> disciplinas; 
 	
 	private Integer cargaHorariaComplementar;

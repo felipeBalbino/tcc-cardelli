@@ -29,6 +29,7 @@ import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
 import br.edu.gamaesouza.intranet.bean.HoraComplementar;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.bean.Rule;
+import br.edu.gamaesouza.intranet.bean.Vaga;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.security.UserData;
@@ -95,12 +96,11 @@ public class EnviarEmail {
 
 	}
 	
-	/*public void enviarEmailComVagaParaAluno(V dl, String fileName,
-			Pessoa professor) throws Throwable {
+	public void enviarEmailComVagaParaAluno(Vaga vaga, List<Pessoa> pessoas) throws Throwable {
 
 		configuration = new GmailConfiguration();
 
-		for (Aluno aluno : dl.getAluno()) {
+		for (Pessoa pessoa : pessoas) {
 
 			Session session = Session.getInstance(
 					configuration.getConfiguration(), configuration.getAuth());
@@ -108,30 +108,27 @@ public class EnviarEmail {
 			message.setFrom(new InternetAddress("intranetfgs@gmail.com",
 					"Intranet FGS"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
-					aluno.getEmail(), aluno.getNome()));
+					pessoa.getEmail(), pessoa.getNome()));
 
 			String mensagem = "Prezado "
-					+ aluno.getNome()
+					+ pessoa.getNome()
 					+ ", <br> o professor "
-					+ professor.getNome()
+					+ pessoa.getNome()
 					+ " adicionou um novo documento em sua disciplina "
-					+ dl.getDisciplina().getNome()
 					+ " intitulado "
-					+ fileName
 					+ ".<br>"
 					+ "Para obter o arquivo acesse a intranet da FGS em um dos computadores da instituição.";
 
-			String emailContent = "<b>Enviado por </b>" + professor.getNome();
+			String emailContent = "<b>Enviado por </b>" + pessoa.getNome();
 			emailContent = emailContent + "<br>";
 			emailContent = emailContent + "<br>";
-			emailContent = emailContent + "<b>Arquivo: </b>" + fileName;
+			emailContent = emailContent + "<b>Arquivo: </b>" + pessoa;
 			emailContent = emailContent + "<br>";
 			emailContent = emailContent + "<br>";
-			emailContent = emailContent + "<b>Disciplina: </b>"
-					+ dl.getDisciplina().getNome();
+			emailContent = emailContent + "<b>Disciplina: </b>";
 			emailContent = emailContent + "<br>";
 			emailContent = emailContent + "<br>";
-			emailContent = emailContent + "<b>Ao aluno: </b>" + aluno.getNome();
+			emailContent = emailContent + "<b>Ao aluno: </b>" + pessoa.getNome();
 			emailContent = emailContent + "<br></br>";
 			emailContent = emailContent + "<br>";
 			emailContent = emailContent + "<br>";
@@ -145,8 +142,7 @@ public class EnviarEmail {
 			emailContent = emailContent + "<br>";
 			emailContent = emailContent + "Att. Equipe CQI";
 
-			message.setSubject("Intranet FGS - Novo arquivo em "
-					+ dl.getDisciplina().getNome());
+			message.setSubject("Intranet FGS - Novo arquivo em ");
 			message.setContent(emailContent, "text/html");
 
 			Thread thread = new Thread(new Runnable() {
@@ -165,7 +161,7 @@ public class EnviarEmail {
 			thread.start();
 		}
 
-	}*/
+	}
 	
 	
 

@@ -17,7 +17,8 @@ import javax.persistence.*;
 @NamedQueries(value={
 		@NamedQuery(name="pessoaByLoginSenha",query="FROM Pessoa WHERE login = :login AND senha = :senha"),
 		@NamedQuery(name="pessoaById",query="FROM Pessoa WHERE id = :id"),
-		@NamedQuery(name="pessoaByEmail",query="FROM Pessoa WHERE email = :email")
+		@NamedQuery(name="pessoaByEmail",query="FROM Pessoa WHERE email = :email"),
+		@NamedQuery(name="pessoaByAreaProfissional",query="SELECT dl FROM Pessoa dl left join fetch dl.areasProfissionais area WHERE area.id = :area")
 })
 public class Pessoa implements Serializable {
 	

@@ -262,6 +262,14 @@ public class PessoaDAO extends HibernateDaoSupport {
 		return alunos;
 		
 	}
+	
+	public List<Pessoa> getAlunosByAreaProfissional(Long id)throws IntranetException{
+		Query c = getSession().getNamedQuery("pessoaByAreaProfissional");
+		c.setLong("area", id);
+		List<Pessoa> pessoas = c.list();
+		return pessoas;
+		
+	}
 
 	public List<Rule> getRuleListByStringList(List<String> paramRules) throws IntranetException{
 		

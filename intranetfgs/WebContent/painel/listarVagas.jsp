@@ -184,11 +184,11 @@ if(i == j) $(this).hide('slow');
 												<td><b>Cargo:</b> <s:textfield cssStyle="width:80%" id="cargo" name="vagaAlteraParams.cargo" value="%{cargo}" maxLength="40" /></td>
 											</tr>
 											<tr>
-												<td><b>Empresa:</b> <s:select list="empresas" id="empresa.nome" name="vagaAlteraParams.empresa"  headerKey="" headerValue="Nenhuma" value="%{empresa}"/></td>
+												<td><b>Empresa:</b> <s:select list="empresas" id="empresa.nome" name="vagaAlteraParams.empresa"  headerKey="" headerValue="" value="%{empresa}"/></td>
 											</tr>
 											
 											<tr>
-												<td><b>Area Profissional:</b> <s:select list="areas" id="areas" name="areas"  listValue="name" headerKey="" headerValue="Nenhuma" value="%{areaProfissional}"/></td>
+												<td><b>Area Profissional:</b> <s:select list="areas" id="areas" name="areas"  listValue="nome" headerKey="" headerValue="" value="%{areaProfissional}"/></td>
 											</tr>
 
 											<tr>
@@ -201,8 +201,9 @@ if(i == j) $(this).hide('slow');
 												<td><b>Quantidade De Vagas:</b> <s:textfield id="quantidadeDevagas"  required="true" name="vaga.quantidadeDevagas" value="%{quantidadeDevagas}"></s:textfield></td>
 											</tr>
 											<tr>
-												<td><b>Regime De Contratação:</b> <s:textfield id="regimeDeContratacao"  required="true"  name="vaga.regimeDeContratacao" value="%{regimeDeContratacao}"></s:textfield></td>
+												<td><b>Regime De Contratação:</b> <s:select list="tiposDeContratacao" id="tipoContratacao"  required="true"  name="tipoContratacao"  headerKey="" headerValue="" value="%{regimeDeContratacao}"/></td>
 											</tr>
+											
 											<tr>
 												<td><b>Beneficios:</b> <s:textfield id="beneficios"  required="true"  name="vaga.beneficios" value="%{beneficios}"></s:textfield></td>
 											</tr>

@@ -10,8 +10,10 @@ import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Aluno;
+import br.edu.gamaesouza.intranet.bean.AreaProfissional;
 import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
+import br.edu.gamaesouza.intranet.dao.AreaProfissionalDAO;
 import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.mail.EnviarEmail;
@@ -28,6 +30,7 @@ public class LoginAction extends ActionSupport {
 	private static final String MSG_LOGIN_DADOS_INVALIDOS = "Dados inv�lidos, email ou senha atual n�o conferem.";
 	private static final String MSG_REGISTRO_SUCESSO = "Registrado com sucesso, insira seu login e senha registrados anteriormente.";
 	private static final String MSG_ALTERA_SENHA_SUCESSO = "Senha editada com sucesso.";
+	private static final String MSG_ERRO = "Ocorreu um erro não esperado, retorne para página anteriormente e tente novamente. Se o mesmo erro persistir entre em contato com os administradores.";
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -43,17 +46,21 @@ public class LoginAction extends ActionSupport {
 	
 	private Pessoa pessoa; 
 	private List<Curso> cursos = new ArrayList<Curso>();
+	private List<AreaProfissional> areas;
 	
 	@Autowired private AlunoNovoParams alunoNovoParams;
 	@Autowired private PessoaDAO pessoaDAO;
 	@Autowired private CursoDAO cursoDAO;
 	@Autowired private EnviarEmail enviarEmail;
+	@Autowired private AreaProfissionalDAO areaProfissionalDAO;
+
 	
 	
 
 	public String prepare(){
 		try {
 			setCursos( cursoDAO.getAllCursos() );
+			setAreas(areaProfissionalDAO.getAll());
 		} catch ( IntranetException e ) {
 			addActionMessage(e.getMessage());
 		}
@@ -116,7 +123,15 @@ public class LoginAction extends ActionSupport {
 					return "register";
 				}
 			} catch (IntranetException e) {
-				addActionMessage(e.getMessage());
+				addActionMessage(MSG_ERRO);
+			}finally{
+				try {
+					setCursos( cursoDAO.getAllCursos() );
+					setAreas(areaProfissionalDAO.getAll());
+				} catch (IntranetException e) {
+					addActionMessage(MSG_ERRO);
+				}
+
 			}
 			return prepare();
 				
@@ -180,7 +195,7 @@ public class LoginAction extends ActionSupport {
 			}catch(IntranetException e){
 				addActionError("Ocorreu um erro interno no Servidor. Um e-mail foi enviado ao administrador reportando o erro.");
 			}catch(Exception e){
-				addActionError("E-mail n�o confere com nenhum email cadastrado em nosso base.");
+				addActionError("E-mail não confere com nenhum email cadastrado em nosso base.");
 				return "recuperar";
 			}
 			
@@ -243,7 +258,6 @@ public class LoginAction extends ActionSupport {
 		return cursos;
 	}
 	
-	
 	public AlunoNovoParams getAlunoNovoParams() {
 		return alunoNovoParams;
 	}
@@ -251,20 +265,24 @@ public class LoginAction extends ActionSupport {
 		this.alunoNovoParams = alunoNovoParams;
 	}
 
-
-
-
-
 	public void setSenhaAtual(String senhaAtual) {
 		this.senhaAtual = senhaAtual;
 	}
 
-
-
-
-
 	public String getSenhaAtual() {
 		return senhaAtual;
+	}
+	public void setAreas(List<AreaProfissional> areas) {
+		this.areas = areas;
+	}
+	public List<AreaProfissional> getAreas() {
+		return areas;
+	}
+	public void setAreaProfissionalDAO(AreaProfissionalDAO areaProfissionalDAO) {
+		this.areaProfissionalDAO = areaProfissionalDAO;
+	}
+	public AreaProfissionalDAO getAreaProfissionalDAO() {
+		return areaProfissionalDAO;
 	}
 
 }

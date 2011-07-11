@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import br.edu.gamaesouza.intranet.utils.AreaEnum;
+import br.edu.gamaesouza.intranet.utils.TiposContratacaoEnum;
 
 @Entity
 public class Vaga {
@@ -25,7 +26,10 @@ public class Vaga {
 	private Calendar dataDoAnuncio;
 	private String perfil;
 	private Long quantidadeDevagas;
-	private String regimeDeContratacao;
+	
+	@Enumerated(EnumType.STRING)
+	private TiposContratacaoEnum regimeDeContratacao;
+	
 	private String beneficios;
 	private String horarioDaVaga;
 	private String nivelHierarquico;
@@ -96,11 +100,11 @@ public class Vaga {
 
 
 
-	public String getRegimeDeContratacao() {
+	public TiposContratacaoEnum getRegimeDeContratacao() {
 		return regimeDeContratacao;
 	}
 
-	public void setRegimeDeContratacao(String regimeDeContratacao) {
+	public void setRegimeDeContratacao(TiposContratacaoEnum regimeDeContratacao) {
 		this.regimeDeContratacao = regimeDeContratacao;
 	}
 

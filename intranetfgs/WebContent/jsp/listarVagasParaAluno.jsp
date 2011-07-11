@@ -168,13 +168,14 @@ if(i == j) $(this).hide('slow');
 								<s:form name="alterar" onSubmit="return validaForm()" action="/painel/evento!altera.java"  >
 										<s:if test="seAtivo">
 											<table>
+											<br><br>
 												<tr>
 													<td><b>Cargo:</b> <s:property value="%{cargo}"/></td>
 												
 													<td><b>Empresa:</b> <s:property value="%{empresa}"/></td>
 												</tr>
 												<tr>
-													<td><b>Area Profissional:</b> <s:property value="%{areaProfissional}"/></td>
+													<td><b>Area Profissional:</b> <s:property value="%{areaProfissional.nome}"/></td>
 												
 													<td><b>Faixa Salarial:</b> <s:property value="%{faixaSalarial}"/></td>
 												</tr>
@@ -184,7 +185,7 @@ if(i == j) $(this).hide('slow');
 													<td><b>Quantidade De Vagas:</b> <s:property value="%{quantidadeDevagas}"/></td>
 												</tr>
 												<tr>
-													<td><b>Regime De Contratação:</b> <s:property value="%{regimeDeContratacao}"/></td>
+													<td><b>Regime De Contratação:</b> <s:property value="%{regimeDeContratacao.nome}"/></td>
 												
 													<td><b>Beneficios:</b> <s:property value="%{beneficios}"/></td>
 												</tr>
@@ -203,10 +204,10 @@ if(i == j) $(this).hide('slow');
 												<tr>
 													<td><b>Cargo:</b> <s:textfield cssStyle="width:80%" id="cargo" name="vagaAlteraParams.cargo" value="%{cargo}" maxLength="40" /></td>
 												
-													<td><b>Empresa:</b> <s:select list="empresas" id="empresa.nome" name="vagaAlteraParams.empresa"  headerKey="" headerValue="Nenhuma" value="%{empresa}" /></td>
+													<td><b>Empresa:</b> <s:select list="empresas" id="empresa.nome" name="vagaAlteraParams.empresa"  headerKey="" headerValue="" value="%{empresa}" /></td>
 												</tr>
 												<tr>
-													<td><b>Area Profissional:</b> <s:select list="areas" id="areas" name="areas" listValue="name" headerKey="" headerValue="Nenhuma" value="%{areaProfissional}" /></td>
+													<td><b>Area Profissional:</b> <s:select list="areas" id="areas" name="areas" listValue="name" headerKey="" headerValue="" value="%{areaProfissional.nome}" /></td>
 												
 													<td><b>Faixa Salarial:</b> <s:textfield id="faixaSalarial"  required="true" name="vaga.faixaSalarial" value="%{faixaSalarial}" size="40"></s:textfield></td>
 												</tr>

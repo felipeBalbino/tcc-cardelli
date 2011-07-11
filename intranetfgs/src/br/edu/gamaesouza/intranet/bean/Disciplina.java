@@ -33,10 +33,7 @@ public class Disciplina implements Serializable {
 	private String nome;
 
 
-    @ManyToMany(
-       fetch=FetchType.EAGER,
-       mappedBy="disciplinas"
-    )
+    @ManyToMany(mappedBy="disciplinas")
 	public List<Curso> cursos;
 	
     

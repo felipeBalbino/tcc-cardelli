@@ -5,6 +5,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript" src="../js/jquery-1.5.1.min.js"></script>
+<script src="../js/jquery.maskedinput-1.3.js" type="text/javascript"></script>
+
 <style type="text/css">
 #experience { 
 padding:30px; 
@@ -42,7 +45,10 @@ width:295px;
 
 
 <script type="text/javascript">
-
+$(document).ready(function(){
+	$("#horainicio").mask("99:99:99");
+	$("#horafinal").mask("99:99:99");
+});
 
 function restartTrs(){
 	document.getElementById("titulo").style.backgroundColor = "transparent";

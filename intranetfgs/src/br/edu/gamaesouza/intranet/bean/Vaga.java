@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import br.edu.gamaesouza.intranet.utils.AreaEnum;
+import br.edu.gamaesouza.intranet.utils.FaixaSalarialEnum;
 import br.edu.gamaesouza.intranet.utils.TiposContratacaoEnum;
 
 @Entity
@@ -22,7 +23,10 @@ public class Vaga {
 	private Long id;
 	
 	private String cargo;
-	private String faixaSalarial;
+	
+	@Enumerated(EnumType.STRING)
+	private FaixaSalarialEnum faixaSalarial;
+	
 	private Calendar dataDoAnuncio;
 	private String perfil;
 	private Long quantidadeDevagas;
@@ -58,13 +62,7 @@ public class Vaga {
 		this.cargo = cargo;
 	}
 
-	public String getFaixaSalarial() {
-		return faixaSalarial;
-	}
 
-	public void setFaixaSalarial(String faixaSalarial) {
-		this.faixaSalarial = faixaSalarial;
-	}
 
 	public Calendar getDataDoAnuncio() {
 		return dataDoAnuncio;
@@ -182,6 +180,14 @@ public class Vaga {
 
 	public AreaProfissional getAreaProfissional() {
 		return areaProfissional;
+	}
+
+	public void setFaixaSalarial(FaixaSalarialEnum faixaSalarial) {
+		this.faixaSalarial = faixaSalarial;
+	}
+
+	public FaixaSalarialEnum getFaixaSalarial() {
+		return faixaSalarial;
 	}
 	
 	

@@ -53,10 +53,9 @@ if(i == j) $(this).hide('slow');
 		<a href="../painel/aluno!lista.java"  style="color:#FF4500;text-align:left;border-style:none;">
 			Listar Alunos
 		</a>
-	
 	<img src="../images/arrow_categ.gif">
-		<a href="../painel/hora!prepareCadastroAEP.java?aluno.id=<s:property value="aluno.id"/>"   style="color:#FF4500;text-align:left;border-style:none;">
-			Adicionar Hora AEP
+		<a href="../painel/hora!prepareCadastroAEP.java?aluno.id=<s:property value="aluno.id"/>" >
+			<img  border="0" src="../images/novo.jpg" />Adicionar Hora AEP</a>
 		</a>
 </div>
 

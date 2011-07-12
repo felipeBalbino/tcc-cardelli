@@ -13,18 +13,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.AreaProfissional;
 import br.edu.gamaesouza.intranet.bean.Empresa;
+import br.edu.gamaesouza.intranet.bean.Endereco;
 import br.edu.gamaesouza.intranet.bean.Pessoa;
 import br.edu.gamaesouza.intranet.bean.Rule;
 import br.edu.gamaesouza.intranet.bean.Vaga;
 import br.edu.gamaesouza.intranet.dao.AreaProfissionalDAO;
 import br.edu.gamaesouza.intranet.dao.EmpresaDAO;
+import br.edu.gamaesouza.intranet.dao.EnderecoDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.dao.VagaDAO;
 import br.edu.gamaesouza.intranet.mail.EnviarEmail;
 import br.edu.gamaesouza.intranet.security.UserData;
 import br.edu.gamaesouza.intranet.utils.AreaEnum;
+import br.edu.gamaesouza.intranet.utils.FaixaSalarialEnum;
 import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
+import br.edu.gamaesouza.intranet.utils.PaisEnum;
 import br.edu.gamaesouza.intranet.utils.TiposContratacaoEnum;
 
 
@@ -40,6 +44,7 @@ public class VagasEmpregoAction extends ActionSupport {
 	private static final String RULE_VAGA_ALTERA = "RULE_VAGA_ALTERA";
 	private static final String RULE_VAGA_DELETA = "RULE_VAGA_DELETA";
 	private static final String RULE_VAGA_LISTA = "RULE_VAGA_LISTA";
+	private static final String RULE_EMPRESA_NOVO = "RULE_EMPRESA_NOVO";
 
 	/*
 	  Parametros vindo da tela para save
@@ -47,16 +52,24 @@ public class VagasEmpregoAction extends ActionSupport {
 	private Vaga vaga;
 	private Long empresaId;
 	private Long areaProfissionalId;
+	private Long enderecoId;
+	
+	private Empresa empresa;
+	private Endereco endereco;
 	
 	private List<TiposContratacaoEnum> tiposDeContratacao;
+	private List<PaisEnum> paises;
+	private List<FaixaSalarialEnum> salarios;
 	private List<AreaProfissional> areas;
 	private List<Vaga> vagas;
 	private List<Empresa> empresas; 
+	private List<Endereco> enderecos; 
 	private Long idVaga;
 	Boolean seRegra = false;
 	
 	@Autowired private VagaDAO vagaDAO;
 	@Autowired private EmpresaDAO empresaDAO;
+	@Autowired private EnderecoDAO enderecoDAO;
 	@Autowired private AreaProfissionalDAO areaProfissionalDAO;
 	@Autowired private EnviarEmail   enviarEmail;
 	@Autowired private PessoaDAO pessoaDAO;	
@@ -71,6 +84,9 @@ public class VagasEmpregoAction extends ActionSupport {
 			empresas = empresaDAO.getAll();
 			setAreas(areaProfissionalDAO.getAll());
 			setTiposDeContratacao(Arrays.asList(TiposContratacaoEnum.values()));
+			setPaises(Arrays.asList(PaisEnum.values()));
+			setEnderecos(enderecoDAO.getAll());
+			setSalarios(Arrays.asList(FaixaSalarialEnum.values()));
 			
 			for (Rule ruleOfPerson : UserData.getLoggedUser().getRegras()){
 				if(ruleOfPerson.getNome().equals(RULE_VAGA_LISTA))
@@ -84,7 +100,7 @@ public class VagasEmpregoAction extends ActionSupport {
 			}
 			
 		} catch (IntranetException e) {
-			addActionError("Erro ao Listar Vagas!");
+			logger.warning("Erro ao Listar Vagas!");
 		}
 		long  end = System.currentTimeMillis();  
 		setTempoDeResposta(FormUtil.tempoResposta(vagas, inicio, end)); 
@@ -104,8 +120,11 @@ public class VagasEmpregoAction extends ActionSupport {
 			setEmpresas(empresaDAO.getAll());
 			setAreas(areaProfissionalDAO.getAll());
 			setTiposDeContratacao(Arrays.asList(TiposContratacaoEnum.values()));
+			setPaises(Arrays.asList(PaisEnum.values()));
+			setEnderecos(enderecoDAO.getAll());
+			setSalarios(Arrays.asList(FaixaSalarialEnum.values()));
 		} catch (IntranetException e) {
-			e.printStackTrace();
+			logger.warning("Erro no prepare em vagasEmpregoAction");
 		}
 		return "prepare";
 	}
@@ -173,7 +192,7 @@ public class VagasEmpregoAction extends ActionSupport {
 			}
 			
 		} catch (IntranetException e) {
-			addActionError("Erro ao cadastrar vaga!");
+			logger.warning("Erro ao cadastrar vaga!");
 		}
 			
 		return lista();
@@ -204,11 +223,40 @@ public class VagasEmpregoAction extends ActionSupport {
 			
 			vagaDAO.save(this.vaga);
 		} catch (IntranetException e) {
-			addActionError("Erro ao cadastrar vaga!");
+			logger.warning("Erro ao cadastrar vaga!");
 		}
 		return lista();
 		
 	}
+	
+	
+	public String saveEmpresa() {	
+		try {
+			
+			this.empresa.setEndereco(enderecoDAO.getEnderecoByid(enderecoId));
+			empresaDAO.save(this.empresa);
+			
+		} catch (IntranetException e) {
+			logger.warning("Erro ao cadastrar Empresa!");
+		}
+		return prepare();
+		
+	}
+	
+	
+	public String saveEndereco() {	
+		try {
+			
+			enderecoDAO.save(this.endereco);
+			
+		} catch (IntranetException e) {
+			logger.warning("Erro ao cadastrar Empresa!");
+		}
+		return prepare();
+		
+	}
+	
+	
 
 	// Gets and Sets
 
@@ -345,6 +393,66 @@ public class VagasEmpregoAction extends ActionSupport {
 
 	public PessoaDAO getPessoaDAO() {
 		return pessoaDAO;
+	}
+
+
+	public void setPaises(List<PaisEnum> paises) {
+		this.paises = paises;
+	}
+
+
+	public List<PaisEnum> getPaises() {
+		return paises;
+	}
+
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+
+	public void setEnderecoId(Long enderecoId) {
+		this.enderecoId = enderecoId;
+	}
+
+
+	public Long getEnderecoId() {
+		return enderecoId;
+	}
+
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+
+	public void setSalarios(List<FaixaSalarialEnum> salarios) {
+		this.salarios = salarios;
+	}
+
+
+	public List<FaixaSalarialEnum> getSalarios() {
+		return salarios;
 	}
 
 	

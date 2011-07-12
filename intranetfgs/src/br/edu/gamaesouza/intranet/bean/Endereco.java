@@ -20,7 +20,7 @@ public class Endereco {
 	private String numero;
 	private String complemento;
 	private String bairro;
-	private Long cep; 
+	private String cep; 
 	private String cidade;
 	private String estado;
 
@@ -30,7 +30,7 @@ public class Endereco {
 	@Enumerated(EnumType.STRING)
 	private PaisEnum pais;
 
-	@ManyToOne
+	@OneToOne(mappedBy="endereco")
 	private Pessoa pessoa;
 	
 	private Boolean sePrincipal;
@@ -39,6 +39,18 @@ public class Endereco {
 		return rua;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder ps = new StringBuilder();
+		ps.append("Rua " + rua);
+		ps.append(", " + numero);
+		ps.append(" - " + complemento);
+		ps.append(" - " + cidade);
+		ps.append(" - " + estado);
+		ps.append(",  " + cep);
+		ps.append(",  " + pais.getName());		
+		return ps.toString();
+	}
 
 	public void setRua(String rua) {
 		this.rua = rua;
@@ -74,15 +86,6 @@ public class Endereco {
 		this.bairro = bairro;
 	}
 
-
-	public Long getCep() {
-		return cep;
-	}
-
-
-	public void setCep(Long cep) {
-		this.cep = cep;
-	}
 
 
 	public String getCidade() {
@@ -152,6 +155,16 @@ public class Endereco {
 
 	public Pessoa getPessoa() {
 		return pessoa;
+	}
+
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+
+	public String getCep() {
+		return cep;
 	}
 	
 	

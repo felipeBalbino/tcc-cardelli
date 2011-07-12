@@ -6,6 +6,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript" src="../js/jquery-1.5.1.min.js"></script>
+<script src="../js/jquery.maskedinput-1.3.js" type="text/javascript"></script>
 <style type="text/css">
 #experience { 
 padding:30px; 
@@ -38,6 +40,12 @@ width:295px;
 
 
 <script type="text/javascript">
+
+jQuery(function($){
+	   $("#matricula").mask("99999999");
+	   $("#login").mask("********");
+	}); 
+
  function restartTrs(){
 	document.getElementById("nome").style.backgroundColor = "transparent";
  	document.getElementById("email").style.backgroundColor = "transparent";
@@ -143,23 +151,7 @@ width:295px;
 
 
 
- function Numero(e)
- {
-	 navegador = /msie/i.test(navigator.userAgent);
-	 if (navegador)
-	 	var tecla = event.keyCode;
-	 else
-	 	var tecla = e.which;
-	 if(tecla > 47 && tecla < 58) // numeros de 0 a 9
-		 return true;
-	 else
-	 {
-	 if (tecla != 8) // backspace
-	 return false;
-	 else
-	 return true;
-	 }
- }
+
 
   
 </script>
@@ -208,7 +200,7 @@ width:295px;
 		
 							Curso:<br><sx:autocompleter  headerKey=""  headerValue=""  id="curso" name="alunoNovoParams.cursoId" list="cursos" listValue="nome" listKey="id"/><br>
 							Nome Completo: <s:textfield id="nome" name="alunoNovoParams.nome"></s:textfield><br>
-							Matrícula: <s:textfield  maxLength="8" onKeyPress="return Numero(event);"  id="matricula" name="alunoNovoParams.matricula"></s:textfield><br>
+							Matrícula: <s:textfield  maxLength="8"  id="matricula" name="alunoNovoParams.matricula"></s:textfield><br>
 							<hr></hr>
 							Email: <s:textfield id="email" name="alunoNovoParams.email" ></s:textfield><br>
 							Confirmar Email: <s:textfield id="email2" ></s:textfield><br>

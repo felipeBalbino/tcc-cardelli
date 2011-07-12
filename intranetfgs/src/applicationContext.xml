@@ -76,6 +76,10 @@
 	<bean class="br.edu.gamaesouza.intranet.dao.AreaProfissionalDAO" id="areaProfissionalDAO">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
+	
+	<bean class="br.edu.gamaesouza.intranet.dao.EnderecoDAO" id="enderecoDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 
 	<!-- POJOS -->
 	<bean class="br.edu.gamaesouza.intranet.bean.Aluno" id="aluno"></bean>

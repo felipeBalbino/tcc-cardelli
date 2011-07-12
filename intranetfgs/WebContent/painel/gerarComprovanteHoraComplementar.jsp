@@ -4,6 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style type="text/css"  media="print">
+   #enviarEmail, #imprimir, #imprimir, #table,  #table2, #footer, #retorno, #alunoscadastrados{display:none;}
+</style>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Intranet - Faculdade Gama & Souza | Gerar Comprovante de Horas</title>
 </head>
@@ -13,7 +17,15 @@
 		<a href="../painel/aluno!lista.java" style="color:#FF4500;text-align:left;border-style:none;">Lista de Alunos</a>
 	</div>
 <div id="comprovante" style="boder:1px;">
-<div id="opcoes" style="text-align:right;"><img src="../images/imprimir.gif" /> <a style="border: 0px;" href="hora!enviarComprovanteEmail.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>&geraComprovanteHoraComplementarParams.horaId=<s:property value="horaComplementar.id"/>"> <img style="border: 0px;" src="../images/email.gif" /></a>
+<div id="opcoes" style="text-align:right;">
+
+<a tyle="border: 0px;" onClick="window.print()" id="imprimir">
+	<img src="../images/imprimir.gif" /> 
+</a>
+
+<a id="enviarEmail" style="border: 0px;" href="hora!enviarComprovanteEmail.java?geraComprovanteHoraComplementarParams.alunoId=<s:property value="aluno.id"/>&geraComprovanteHoraComplementarParams.horaId=<s:property value="horaComplementar.id"/>"> 
+	<img style="border: 0px;" src="../images/email.gif" />
+</a>
   				</div><br>
   						<s:if test="hasActionMessages()">
 				<div class="welcome" >

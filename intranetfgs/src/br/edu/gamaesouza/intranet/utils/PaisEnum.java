@@ -3,8 +3,8 @@ package br.edu.gamaesouza.intranet.utils;
 public enum PaisEnum {
 	BRASIL("Brasil"),
 	BRUNEI("Brunei"),
-	BULGARIA("Bulg·ria"),
-	CANADA("Canad· ");
+	BULGARIA("Bulg√°ria"),
+	CANADA("Canad√°");
 
 	private String name;
 

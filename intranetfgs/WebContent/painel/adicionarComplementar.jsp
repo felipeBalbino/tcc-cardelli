@@ -4,6 +4,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<sx:head/>
+<script type="text/javascript" src="../js/jquery-1.5.1.min.js"></script>
+<script src="../js/jquery.maskedinput-1.3.js" type="text/javascript"></script>
 <style type="text/css">
 	#experience { 
 		padding:30px; 
@@ -28,6 +31,12 @@
 
 </style>
 <script type="text/javascript">
+jQuery(function($){
+	   $("#data").mask("99:99");
+
+	}); 
+
+
 	function restartTrs(){
 		document.getElementById("nome").style.backgroundColor = "transparent";
 	}
@@ -69,7 +78,7 @@
 
 
 </script>
-<s:head/>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Adicionar Hora Complementar</title>
 </head>
@@ -143,7 +152,7 @@
 				<s:hidden value="%{aluno.id}" name="horaComplementarNovoParams.aluno.id" />
 				Título: <br><s:textfield id="data" id="titulo" name="horaComplementarNovoParams.nomeEvento"   /><br>
 				Horas (hh:mm): <br><s:textfield maxlength="5" id="data" name="horaComplementarNovoParams.numeroHoras" onkeypress="dois_pontos(this)" /><br>
-				Atividade:<br><sx:autocompleter headerKey="-1" headerValue=""  id="atividade" list="atividades" name="horaComplementarNovoParams.atividadeId" value="atividade" listKey="id" listValue="nome" /><br>
+				Atividade:<br><sx:autocompleter cssStyle="width:270px;" headerKey="-1" headerValue=""  id="atividade" list="atividades" name="horaComplementarNovoParams.atividadeId"   value="atividade" listKey="id" listValue="nome" /><br>
 						<br>
 				<s:submit align="left" value="Adicionar Hora"></s:submit>
 			</s:form>

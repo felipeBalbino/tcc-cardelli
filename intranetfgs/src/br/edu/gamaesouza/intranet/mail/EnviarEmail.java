@@ -112,21 +112,30 @@ public class EnviarEmail {
 
 			String mensagem = "Prezado "
 					+ pessoa.getNome()
-					+ ", <br> o professor "
-					+ pessoa.getNome()
-					+ " adicionou um novo documento em sua disciplina "
-					+ " intitulado "
-					+ ".<br>"
-					+ "Para obter o arquivo acesse a intranet da FGS em um dos computadores da instituição.";
+					+ ", <br>"
+					+ " Foi adicionado um nova vaga de emprego de sua categoria escolhida no site anteriormente."
+					+ "<br>"
+					+ "Para obter acesse um dos computadores da instituição.";
 
-			String emailContent = "<b>Enviado por </b>" + pessoa.getNome();
+			String emailContent = "<br>";
 			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<b>Cargo: </b>" + vaga.getCargo();
 			emailContent = emailContent + "<br>";
-			emailContent = emailContent + "<b>Arquivo: </b>" + pessoa;
+			emailContent = emailContent + "<b>Beneficios: </b>" + vaga.getBeneficios();
 			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<b>Faixa Salarial: </b>" + vaga.getFaixaSalarial();
 			emailContent = emailContent + "<br>";
-			emailContent = emailContent + "<b>Disciplina: </b>";
+			emailContent = emailContent + "<b>Horário: </b>" + vaga.getHorarioDaVaga();
 			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<b>Nível: </b>" + vaga.getNivelHierarquico();
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<b>Perfil: </b>" + vaga.getPerfil();
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<b>Empresa: </b>" + vaga.getEmpresa().getNome();
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<b>Regime de contratação: </b>" + vaga.getRegimeDeContratacao().getName();
+			emailContent = emailContent + "<br>";
+			emailContent = emailContent + "<b>Publicador: </b>" + vaga.getPublicador().getNome();
 			emailContent = emailContent + "<br>";
 			emailContent = emailContent + "<b>Ao aluno: </b>" + pessoa.getNome();
 			emailContent = emailContent + "<br></br>";
@@ -142,7 +151,7 @@ public class EnviarEmail {
 			emailContent = emailContent + "<br>";
 			emailContent = emailContent + "Att. Equipe CQI";
 
-			message.setSubject("Intranet FGS - Novo arquivo em ");
+			message.setSubject("Intranet FGS - Nova vaga em "+vaga.getAreaProfissional().getNome());
 			message.setContent(emailContent, "text/html");
 
 			Thread thread = new Thread(new Runnable() {

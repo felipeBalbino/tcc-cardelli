@@ -55,8 +55,8 @@ public class Pessoa implements Serializable {
 	@ManyToMany
 	private List<AreaProfissional> areasProfissionais;
 
-	@OneToMany(mappedBy="pessoa")
-	private List<Endereco> enderecos;
+	@OneToOne
+	private Endereco endereco;
 	
 	@OneToMany(mappedBy="pessoa")
 	private List<Telefone> telefones;
@@ -149,13 +149,6 @@ public class Pessoa implements Serializable {
 		return areasProfissionais;
 	}
 
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
-	}
-
-	public List<Endereco> getEnderecos() {
-		return enderecos;
-	}
 
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
@@ -163,6 +156,14 @@ public class Pessoa implements Serializable {
 
 	public List<Telefone> getTelefones() {
 		return telefones;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
 	

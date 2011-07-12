@@ -7,9 +7,8 @@
 <html>
 <head>
 	<link href="style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/slider.js"></script>
-	<script type="text/javascript" src="js/jqModal.js"></script>
+
+
 
 	<title><decorator:title default="Faculdade Gama e Souza | Intranet " /></title>
 	
@@ -17,7 +16,7 @@
 
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/decorators/main.css" />
 
-	<script type="text/javascript" src="<%=request.getContextPath()%>/decorators/js/jquery.js"></script>
+
 
 	<script type="text/javascript">
 

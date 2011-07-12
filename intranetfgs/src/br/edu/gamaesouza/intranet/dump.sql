@@ -46,6 +46,7 @@ INSERT INTO Rule VALUES (40,"RULE_VAGA_NOVO");
 INSERT INTO Rule VALUES (41,"RULE_VAGA_ALTERA");
 INSERT INTO Rule VALUES (42,"RULE_VAGA_DELETA");
 INSERT INTO Rule VALUES (43,"RULE_VAGA_LISTA");
+INSERT INTO Rule VALUES (44,"RULE_EMPRESA_NOVO");
 INSERT INTO pessoa_rule VALUES (1,1);
 INSERT INTO pessoa_rule VALUES (1,2);
 INSERT INTO pessoa_rule VALUES (1,3);
@@ -89,6 +90,8 @@ INSERT INTO pessoa_rule VALUES (1,40);
 INSERT INTO pessoa_rule VALUES (1,41);
 INSERT INTO pessoa_rule VALUES (1,42);
 INSERT INTO pessoa_rule VALUES (1,43);
+INSERT INTO pessoa_rule VALUES (1,44);
+
 INSERT INTO Curso (id,cargaHorariaComplementar,nome) VALUES  (1,220,"Sistema de Informaaao");
 INSERT INTO Curso (id,cargaHorariaComplementar,nome) VALUES  (2,180,"Marketing");
 INSERT INTO Curso (id,cargaHorariaComplementar,nome) VALUES  (3,330,"Direito");

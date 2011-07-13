@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import lombok.Data;
+
 import br.edu.gamaesouza.intranet.bean.Evento;
 import br.edu.gamaesouza.intranet.bean.Professor;
 import br.edu.gamaesouza.intranet.params.EventoParams;
@@ -13,7 +15,7 @@ import br.edu.gamaesouza.intranet.params.Params;
 import br.edu.gamaesouza.intranet.security.UserData;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
-public class EventoNovoParams implements EventoParams {
+public @Data class EventoNovoParams implements EventoParams {
 
 	private String titulo;
 	private String coordenacao;
@@ -51,71 +53,6 @@ public class EventoNovoParams implements EventoParams {
 		return evento;
 	}
 
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	public String getCoordenacao() {
-		return coordenacao;
-	}
-
-	public void setCoordenacao(String coordenacao) {
-		this.coordenacao = coordenacao;
-	}
-
-
-
-	public String getLocal() {
-		return local;
-	}
-
-	public void setLocal(String local) {
-		this.local = local;
-	}
-
-	public String getPublicoAlvo() {
-		return publicoAlvo;
-	}
-
-	public void setPublicoAlvo(String publicoAlvo) {
-		this.publicoAlvo = publicoAlvo;
-	}
-
-	public String getObservacoes() {
-		return observacoes;
-	}
-
-	public void setObservacoes(String observacoes) {
-		this.observacoes = observacoes;
-	}
-
-	public Calendar getDataInicio() {
-		return dataInicio;
-	}
-
-	public void setDataInicio(Calendar dataInicio) {
-		this.dataInicio = dataInicio;
-	}
-
-	public Calendar getDataFim() {
-		return dataFim;
-	}
-
-	public void setDataFim(Calendar dataFim) {
-		this.dataFim = dataFim;
-	}
-
-	public Date getHoraInicio() {
-		return horaInicio;
-	}
-
-	public Date getHoraFim() {
-		return horaFim;
-	}
 	
 	public void setHoraInicio(String horaInicio) {
 		 DateFormat formatter = new SimpleDateFormat("hh:mm:ss");  
@@ -127,8 +64,6 @@ public class EventoNovoParams implements EventoParams {
 		}
 	}
 
-
-
 	public void setHoraFim(String horaFim) {
 		 DateFormat formatter = new SimpleDateFormat("hh:mm:ss");  
 		 try {
@@ -138,9 +73,4 @@ public class EventoNovoParams implements EventoParams {
 			e.printStackTrace();
 		}  
 	}
-
-
-
-	
-	
 }

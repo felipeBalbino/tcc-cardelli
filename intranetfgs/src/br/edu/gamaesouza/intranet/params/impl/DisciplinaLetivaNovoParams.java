@@ -2,6 +2,8 @@ package br.edu.gamaesouza.intranet.params.impl;
 
 import java.util.Calendar;
 
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Disciplina;
@@ -12,7 +14,7 @@ import br.edu.gamaesouza.intranet.params.DisciplinaLetivaParams;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
-public class DisciplinaLetivaNovoParams implements DisciplinaLetivaParams {
+public @Data class DisciplinaLetivaNovoParams implements DisciplinaLetivaParams {
 
 	private Integer id;
 	private Integer materia;
@@ -49,61 +51,4 @@ public class DisciplinaLetivaNovoParams implements DisciplinaLetivaParams {
 		
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setMateria(Integer materia) {
-		this.materia = materia;
-	}
-
-	public Integer getMateria() {
-		return materia;
-	}
-
-	public void setProfessorid(Integer professorid) {
-		this.professorid = professorid;
-	}
-
-	public Integer getProfessorid() {
-		return professorid;
-	}
-
-	public void setSemestre(Integer semestre) {
-		this.semestre = semestre;
-	}
-
-	public Integer getSemestre() {
-		return semestre;
-	}
-
-	public void setTurno(String turno) {
-		this.turno = turno;
-	}
-
-	public String getTurno() {
-		return turno;
-	}
-
-	public void setAno(Integer ano) {
-		this.ano = ano;
-	}
-
-	public Integer getAno() {
-		return ano;
-	}
-
-	public void setSala(String sala) {
-		this.sala = sala;
-	}
-
-	public String getSala() {
-		return sala;
-	}
-
-	
 }

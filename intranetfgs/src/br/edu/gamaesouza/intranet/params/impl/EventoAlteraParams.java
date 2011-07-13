@@ -53,40 +53,6 @@ public class EventoAlteraParams implements EventoParams{
 		return evento;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String titulo) {
-		this.title = titulo;
-	}
-
-	public String getCoordenacao() {
-		return coordenacao;
-	}
-
-	public void setCoordenacao(String coordenacao) {
-		this.coordenacao = coordenacao;
-	}
-
-
-
-	public Calendar getDataInicio() {
-		return dataInicio;
-	}
-
-	public void setDataInicio(Calendar dataInicio) {
-		this.dataInicio = dataInicio;
-	}
-
-	public Calendar getDataFim() {
-		return dataFim;
-	}
-
-	public void setDataFim(Calendar dataFim) {
-		this.dataFim = dataFim;
-	}
-
 	public void setHoraInicio(String horaInicio) {
 		 DateFormat formatter = new SimpleDateFormat("hh:mm:ss");  
 		 try {
@@ -108,47 +74,4 @@ public class EventoAlteraParams implements EventoParams{
 			e.printStackTrace();
 		}  
 	}
-	
-	
-
-	public Date getHoraInicio() {
-		return horaInicio;
-	}
-
-	public Date getHoraFim() {
-		return horaFim;
-	}
-
-	public String getLocal() {
-		return local;
-	}
-
-	public void setLocal(String local) {
-		this.local = local;
-	}
-
-	public String getPublicoAlvo() {
-		return publicoAlvo;
-	}
-
-	public void setPublicoAlvo(String publicoAlvo) {
-		this.publicoAlvo = publicoAlvo;
-	}
-
-	public String getObservacoes() {
-		return observacoes;
-	}
-
-	public void setObservacoes(String observacoes) {
-		this.observacoes = observacoes;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 }

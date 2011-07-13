@@ -1,10 +1,11 @@
 package br.edu.gamaesouza.intranet.params.impl;
 
+import lombok.Data;
 import br.edu.gamaesouza.intranet.params.Params;
 
 
 
-public class DisciplinaLetivaSearchParams implements Params {
+public @Data class DisciplinaLetivaSearchParams implements Params {
 	
 	private Integer ano;
 	private Integer semestre;
@@ -12,44 +13,6 @@ public class DisciplinaLetivaSearchParams implements Params {
 	private String disciplinaNome;
 	private Integer professor;
 	private String sala;
-
-
-
-	public Integer getSemestre() {
-		return semestre;
-	}
-
-
-
-	public void setSemestre( Integer semestre ) {
-		this.semestre = semestre;
-	}
-
-
-
-	public String getTurno() {
-		return turno;
-	}
-
-
-
-	public void setTurno( String turno ) {
-		this.turno = turno;
-	}
-
-
-
-	public String getDisciplinaNome() {
-		return disciplinaNome;
-	}
-
-
-
-	public void setDisciplinaNome( String disciplinaNome ) {
-		this.disciplinaNome = disciplinaNome;
-	}
-
-
 
 	@Override
 	public boolean isEmpty() {
@@ -65,43 +28,5 @@ public class DisciplinaLetivaSearchParams implements Params {
 		}
 		return false;
 	}
-
-
-
-	public void setAno( Integer ano ) {
-		this.ano = ano;
-	}
-
-
-
-	public Integer getAno() {
-		return ano;
-	}
-
-
-
-	public void setProfessor(Integer professor) {
-		this.professor = professor;
-	}
-
-
-
-	public Integer getProfessor() {
-		return professor;
-	}
-
-
-
-	public void setSala(String sala) {
-		this.sala = sala;
-	}
-
-
-
-	public String getSala() {
-		return sala;
-	}
-	
-	
 	
 }

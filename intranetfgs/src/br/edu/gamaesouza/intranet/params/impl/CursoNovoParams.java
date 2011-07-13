@@ -3,6 +3,8 @@ package br.edu.gamaesouza.intranet.params.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Curso;
@@ -12,7 +14,7 @@ import br.edu.gamaesouza.intranet.params.CursoParams;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
-public class CursoNovoParams implements CursoParams{
+public @Data class CursoNovoParams implements CursoParams{
 
 	private String nomeCurso;
 	private Integer cargaHorariaComplementar;
@@ -43,30 +45,6 @@ public class CursoNovoParams implements CursoParams{
 		curso.setNome(nomeCurso);
 		
 		return curso;
-	}
-
-	public String getNomeCurso() {
-		return nomeCurso;
-	}
-
-	public void setNomeCurso(String nomeCurso) {
-		this.nomeCurso = nomeCurso;
-	}
-
-	public List<String> getDisciplinasCurso() {
-		return disciplinasCurso;
-	}
-
-	public void setDisciplinasCurso(List<String> disciplinasCurso) {
-		this.disciplinasCurso = disciplinasCurso;
-	}
-
-	public void setCargaHorariaComplementar(Integer cargaHorariaComplementar) {
-		this.cargaHorariaComplementar = cargaHorariaComplementar;
-	}
-
-	public Integer getCargaHorariaComplementar() {
-		return cargaHorariaComplementar;
 	}
 
 }

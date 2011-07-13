@@ -1,6 +1,8 @@
 package br.edu.gamaesouza.intranet.params.impl;
 
 
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetivaHorario;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
@@ -11,7 +13,7 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 
 
-public class DisciplinaLetivaHorarioNovoParams implements DisciplinaLetivaHorarioParams {
+public @Data class DisciplinaLetivaHorarioNovoParams implements DisciplinaLetivaHorarioParams {
 
 	private DiaSemanaEnum diaSemana;
 	private Integer disciplinaLetivaId;
@@ -37,22 +39,4 @@ public class DisciplinaLetivaHorarioNovoParams implements DisciplinaLetivaHorari
 		return disciplinaLetivaHorario;
 		
 	}
-	public DiaSemanaEnum getDiaSemana() {
-		return diaSemana;
-	}
-	public void setDiaSemana( DiaSemanaEnum diaSemana ) {
-		this.diaSemana = diaSemana;
-	}
-	public Integer getHorarioId() {
-		return horarioId;
-	}
-	public void setHorarioId( Integer horarioId ) {
-		this.horarioId = horarioId;
-	}
-	public Integer getDisciplinaLetivaId() {
-		return disciplinaLetivaId;
-	}
-	public void setDisciplinaLetivaId(Integer disciplinaLetivaId) {
-		this.disciplinaLetivaId = disciplinaLetivaId;
-	}	
 }

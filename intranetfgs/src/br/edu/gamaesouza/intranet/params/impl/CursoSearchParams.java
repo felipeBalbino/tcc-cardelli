@@ -1,8 +1,9 @@
 package br.edu.gamaesouza.intranet.params.impl;
 
+import lombok.Data;
 import br.edu.gamaesouza.intranet.params.Params;
 
-public class CursoSearchParams implements Params {
+public @Data class CursoSearchParams implements Params {
 
 	private String cursoNome;
 	
@@ -16,27 +17,5 @@ public class CursoSearchParams implements Params {
 		}
 		return false;
 	}
-
-
-	public String getCursoNome() {
-		return cursoNome;
-	}
-
-
-	public void setCursoNome(String cursoNome) {
-		this.cursoNome = cursoNome;
-	}
-
-
-	public String getDisciplinaNome() {
-		return disciplinaNome;
-	}
-
-
-	public void setDisciplinaNome(String disciplinaNome) {
-		this.disciplinaNome = disciplinaNome;
-	}
-	
-	
 
 }

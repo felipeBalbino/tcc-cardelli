@@ -1,5 +1,7 @@
 package br.edu.gamaesouza.intranet.params.impl;
 
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Curso;
@@ -7,7 +9,7 @@ import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.params.CursoParams;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 
-public class CursoDeletaParams implements CursoParams{
+public @Data class CursoDeletaParams implements CursoParams{
 
 	private Integer id;
 	@Autowired CursoDAO cursoDAO;
@@ -30,15 +32,4 @@ public class CursoDeletaParams implements CursoParams{
 		
 		return null;
 	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	
-
 }

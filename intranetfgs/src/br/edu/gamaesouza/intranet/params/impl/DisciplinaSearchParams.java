@@ -1,29 +1,13 @@
 package br.edu.gamaesouza.intranet.params.impl;
 
+import lombok.Data;
 import br.edu.gamaesouza.intranet.params.Params;
 
-public class DisciplinaSearchParams implements Params {
+public @Data class DisciplinaSearchParams implements Params {
 	
 	private String cursoNome;
 	
 	private String disciplinaNome;
-
-	public String getCursoNome() {
-		return cursoNome;
-	}
-
-	public void setCursoNome(String cursoNome) {
-		this.cursoNome = cursoNome;
-	}
-
-	public String getDisciplinaNome() {
-		return disciplinaNome;
-	}
-
-	public void setDisciplinaNome(String disciplinaNome) {
-		System.out.println("Disciplina NOME: " + disciplinaNome);
-		this.disciplinaNome = disciplinaNome;
-	}
 
 	@Override
 	public boolean isEmpty() {

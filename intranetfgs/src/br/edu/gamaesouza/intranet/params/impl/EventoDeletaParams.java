@@ -1,5 +1,7 @@
 package br.edu.gamaesouza.intranet.params.impl;
 
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Evento;
@@ -7,7 +9,7 @@ import br.edu.gamaesouza.intranet.dao.EventoDAO;
 import br.edu.gamaesouza.intranet.params.EventoParams;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 
-public class EventoDeletaParams implements EventoParams {
+public @Data class EventoDeletaParams implements EventoParams {
 
 	@Autowired EventoDAO eventoDAO;
 	
@@ -25,16 +27,7 @@ public class EventoDeletaParams implements EventoParams {
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
 		return false;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 }

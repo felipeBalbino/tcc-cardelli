@@ -4,6 +4,8 @@ package br.edu.gamaesouza.intranet.params.impl;
 
 import java.util.Calendar;
 
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Aluno;
@@ -16,7 +18,7 @@ import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
 import br.edu.gamaesouza.intranet.utils.StatusMatriculaEnum;
 
-public class AlunoAlteraParams implements AlunoParams {
+public @Data class AlunoAlteraParams implements AlunoParams {
 
 	private Integer id;
 	private String login;
@@ -63,77 +65,18 @@ public class AlunoAlteraParams implements AlunoParams {
 		return aluno;
 	}
 
-	
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
 
 	public void setSenha(String senha) {
 		this.senha = FormUtil.encripta(senha);
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Integer getCursoId() {
-		return cursoId;
-	}
-
-	public void setCursoId(Integer cursoId) {
-		this.cursoId = cursoId;
-	}
 
 	public void setMatricula(String matricula) {
 		this.matricula = Integer.parseInt(matricula);
 	}
 
-	public Integer getMatricula() {
-		return matricula;
-	}
 
-	public void setId( Integer id ) {
-		this.id = id;
-	}
 
-	public Integer getId() {
-		return id;
-	}
 
-	public void setPeriodo(Integer periodo) {
-		this.periodo = periodo;
-	}
-
-	public Integer getPeriodo() {
-		return periodo;
-	}
-
-	public void setStatusMatricula(StatusMatriculaEnum statusMatricula) {
-		this.statusMatricula = statusMatricula;
-	}
-
-	public StatusMatriculaEnum getStatusMatricula() {
-		return statusMatricula;
-	}
 
 }

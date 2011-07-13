@@ -11,6 +11,7 @@ import br.edu.gamaesouza.intranet.bean.Curso;
 import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.params.AlunoParams;
 
+import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
 import br.edu.gamaesouza.intranet.utils.StatusMatriculaEnum;
@@ -76,7 +77,7 @@ public class AlunoAlteraParams implements AlunoParams {
 	}
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		this.senha = FormUtil.encripta(senha);
 	}
 
 	public String getEmail() {

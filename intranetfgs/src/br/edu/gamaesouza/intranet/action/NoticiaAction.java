@@ -2,6 +2,9 @@ package br.edu.gamaesouza.intranet.action;
 
 import java.util.Calendar;
 import java.util.List;
+
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import br.edu.gamaesouza.intranet.bean.Noticia;
 import br.edu.gamaesouza.intranet.bean.Professor;
@@ -13,7 +16,7 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class NoticiaAction extends ActionSupport {
+public @Data class NoticiaAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -115,28 +118,5 @@ public class NoticiaAction extends ActionSupport {
 	
 	}
 
-	public List<Noticia> getNoticias() {
-		return noticias;
-	}
-
-	public void setNoticias(List<Noticia> noticias) {
-		this.noticias = noticias;
-	}
-
-	public Noticia getNoticia() {
-		return noticia;
-	}
-
-	public void setNoticia(Noticia noticia) {
-		this.noticia = noticia;
-	}
-
-	public void setTempoDeResposta(String tempoDeResposta) {
-		this.tempoDeResposta = tempoDeResposta;
-	}
-
-	public String getTempoDeResposta() {
-		return tempoDeResposta;
-	}
 
 }

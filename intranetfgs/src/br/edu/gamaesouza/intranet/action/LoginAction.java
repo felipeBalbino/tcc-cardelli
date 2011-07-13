@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.mail.MessagingException;
 
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Aluno;
@@ -19,15 +21,16 @@ import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.mail.EnviarEmail;
 import br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams;
 import br.edu.gamaesouza.intranet.params.impl.EventoAlteraParams;
+import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class LoginAction extends ActionSupport {
+public @Data class LoginAction extends ActionSupport {
 	
-	private static final String MSG_LOGIN_DADOS_INVALIDOS = "Dados inv�lidos, email ou senha atual n�o conferem.";
+	private static final String MSG_LOGIN_DADOS_INVALIDOS = "Dados inválidos, email ou senha atual não conferem.";
 	private static final String MSG_REGISTRO_SUCESSO = "Registrado com sucesso, insira seu login e senha registrados anteriormente.";
 	private static final String MSG_ALTERA_SENHA_SUCESSO = "Senha editada com sucesso.";
 	private static final String MSG_ERRO = "Ocorreu um erro não esperado, retorne para página anteriormente e tente novamente. Se o mesmo erro persistir entre em contato com os administradores.";
@@ -53,9 +56,6 @@ public class LoginAction extends ActionSupport {
 	@Autowired private CursoDAO cursoDAO;
 	@Autowired private EnviarEmail enviarEmail;
 	@Autowired private AreaProfissionalDAO areaProfissionalDAO;
-
-	
-	
 
 	public String prepare(){
 		try {
@@ -91,7 +91,7 @@ public class LoginAction extends ActionSupport {
 		public String registrar() {			
 			try {				
 				boolean error = false;
-			
+				
 				
 				if(pessoaDAO.validarLogin(alunoNovoParams.getLogin())){
 					error=true;
@@ -165,11 +165,9 @@ public class LoginAction extends ActionSupport {
 				Map<String, Object> sessao = ActionContext.getContext().getSession();
 				Pessoa pessoa = (Pessoa) sessao.get("pessoa");
 				
-				if(email.equals(pessoa.getEmail()) && 
-				   senhaAtual.equals(pessoa.getSenha()) && 
-				   pessoa != null){
-					
-					pessoa.setSenha(novaSenha);
+				
+				if(email.equals(pessoa.getEmail()) && FormUtil.encripta(senhaAtual).equals(pessoa.getSenha()) && pessoa != null){
+					pessoa.setSenha(FormUtil.encripta(novaSenha));
 					pessoaDAO.merge(pessoa);
 					sessao.put("pessoa", pessoa);
 					pessoa = (Pessoa) SpringUtil.getBean("pessoa");
@@ -190,7 +188,19 @@ public class LoginAction extends ActionSupport {
 		
 		public String recuperarSenha(){
 			try {
-				enviarEmail.sendEmailWithLoginAndPassword(email);
+				
+				Pessoa pessoa = pessoaDAO.getPessoaByEmail(email);
+				
+				//Gerando o password e enviando por Email
+				String randomPass = FormUtil.getRandomPass();
+				pessoa.setSenha(randomPass);
+				enviarEmail.sendEmailWithLoginAndPassword(pessoa);
+				
+
+				//Encriptando, salvando em pessoa e dando merge
+				pessoa.setSenha(FormUtil.encripta(randomPass));
+				pessoaDAO.merge(pessoa);
+								
 				addActionMessage("Seu login e sua senha foram enviados para o e-mail digitado");
 			}catch(IntranetException e){
 				addActionError("Ocorreu um erro interno no Servidor. Um e-mail foi enviado ao administrador reportando o erro.");
@@ -203,86 +213,5 @@ public class LoginAction extends ActionSupport {
 			
 		}
 	
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-	
-
-	public Aluno getAluno() {
-		return aluno;
-	}
-
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
-
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
-
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-	public void setNovaSenha(String novaSenha) {
-		this.novaSenha = novaSenha;
-	}
-
-	public String getNovaSenha() {
-		return novaSenha;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-	public void setCursos( List<Curso> cursos ) {
-		this.cursos = cursos;
-	}
-	public List<Curso> getCursos() {
-		return cursos;
-	}
-	
-	public AlunoNovoParams getAlunoNovoParams() {
-		return alunoNovoParams;
-	}
-	public void setAlunoNovoParams(AlunoNovoParams alunoNovoParams) {
-		this.alunoNovoParams = alunoNovoParams;
-	}
-
-	public void setSenhaAtual(String senhaAtual) {
-		this.senhaAtual = senhaAtual;
-	}
-
-	public String getSenhaAtual() {
-		return senhaAtual;
-	}
-	public void setAreas(List<AreaProfissional> areas) {
-		this.areas = areas;
-	}
-	public List<AreaProfissional> getAreas() {
-		return areas;
-	}
-	public void setAreaProfissionalDAO(AreaProfissionalDAO areaProfissionalDAO) {
-		this.areaProfissionalDAO = areaProfissionalDAO;
-	}
-	public AreaProfissionalDAO getAreaProfissionalDAO() {
-		return areaProfissionalDAO;
-	}
 
 }

@@ -49,12 +49,17 @@ if(i == j) $(this).hide('slow');
 	     }  
 	 }
 
+ 	function gerarNovaSenha(codigo) {    
+	     if (confirm('Gerar e enviar senha para o professor?')) {    
+	         location.href = "../painel/professor!gerarNovaSenha.java?professor.id="+ codigo;
+	     }  
+	 }
+
 
  	function restartTrs(){
  		document.getElementById("nome").style.backgroundColor = "transparent";
  	 	document.getElementById("email").style.backgroundColor = "transparent";
  		document.getElementById("login").style.backgroundColor = "transparent";
- 	 	document.getElementById("senha").style.backgroundColor = "transparent";
  	 	document.getElementById("matricula").style.backgroundColor = "transparent";
  	 }
 
@@ -84,15 +89,6 @@ if(i == j) $(this).hide('slow');
  	                  d.login.focus();
  	                  erro = true;
  	         }
-
- 	         
- 	         //validar senha
- 	         if (d.senha.value == ""){
- 	                   document.getElementById("senha").style.backgroundColor = "#FF6A6A";
- 	                   d.senha.focus();
- 	                   erro = true;
- 	         }
- 	        
 
 
  	         //validar email
@@ -158,8 +154,8 @@ if(i == j) $(this).hide('slow');
 							<table width="100%" bgcolor="#FAFAD2">
 								<tr>
 									<td width="1%"><img src="../images/event_icon.png" /></td>
-									<td width="88%" style="font-size: 10px;font-weight:bold"> <s:property  value="nome" /> </td>
-									<td width="11%" align="right">
+									<td width="80%" style="font-size: 10px;font-weight:bold"> <s:property  value="nome" /> </td>
+									<td width="15%" align="right">
 										<a title="Exibir professor" class="exibir">
 											<img src="../images/open.png" />
 										</a>
@@ -168,6 +164,9 @@ if(i == j) $(this).hide('slow');
 										</a>
 										<a   title="Deletar professor" border="30" href="javascript:del(<s:property value="id" />)">
 											<img border="0" src="../images/lixeira.gif" />
+										</a>
+										<a   title="Gerar senha para professor" border="30" href="javascript:gerarNovaSenha(<s:property value="id" />)">
+											<img border="0" src="../images/key.png" />
 										</a>
 									</td>	
 								</tr>					
@@ -196,10 +195,6 @@ if(i == j) $(this).hide('slow');
 									
 									<tr>
 										<td><b>Login:</b> <s:textfield id="login" name="professorAlteraParams.login" value="%{login}"  /></td>
-									</tr>
-									
-									<tr>
-										<td><b>Senha:</b> <s:textfield id="senha" name="professorAlteraParams.senha" value="%{senha}"  /></td>
 									</tr>
 									
 									<tr>

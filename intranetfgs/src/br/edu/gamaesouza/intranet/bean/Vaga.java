@@ -12,12 +12,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import lombok.Data;
+
 import br.edu.gamaesouza.intranet.utils.AreaEnum;
 import br.edu.gamaesouza.intranet.utils.FaixaSalarialEnum;
 import br.edu.gamaesouza.intranet.utils.TiposContratacaoEnum;
 
 @Entity
-public class Vaga {
+public @Data class Vaga {
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -53,142 +55,6 @@ public class Vaga {
 	
 	@Transient
 	private String email;
-	
-	public String getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
-
-
-
-	public Calendar getDataDoAnuncio() {
-		return dataDoAnuncio;
-	}
-
-	public void setDataDoAnuncio(Calendar dataDoAnuncio) {
-		this.dataDoAnuncio = dataDoAnuncio;
-	}
-
-	public String getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(String perfil) {
-		this.perfil = perfil;
-	}
-
-	public Long getQuantidadeDevagas() {
-		return quantidadeDevagas;
-	}
-
-	public void setQuantidadeDevagas(Long quantidadeDevagas) {
-		this.quantidadeDevagas = quantidadeDevagas;
-	}
-
-	public String getNivelHierarquico() {
-		return nivelHierarquico;
-	}
-
-	public void setNivelHierarquico(String nivelHierarquico) {
-		this.nivelHierarquico = nivelHierarquico;
-	}
-
-
-
-	public TiposContratacaoEnum getRegimeDeContratacao() {
-		return regimeDeContratacao;
-	}
-
-	public void setRegimeDeContratacao(TiposContratacaoEnum regimeDeContratacao) {
-		this.regimeDeContratacao = regimeDeContratacao;
-	}
-
-	public String getBeneficios() {
-		return beneficios;
-	}
-
-	public void setBeneficios(String beneficios) {
-		this.beneficios = beneficios;
-	}
-
-
-
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setHorarioDaVaga(String horarioDaVaga) {
-		this.horarioDaVaga = horarioDaVaga;
-	}
-
-	public String getHorarioDaVaga() {
-		return horarioDaVaga;
-	}
-
-
-
-	public void setConfirmacao(Boolean confirmacao) {
-		this.confirmacao = confirmacao;
-	}
-
-	public Boolean getConfirmacao() {
-		return confirmacao;
-	}
-
-	public void setSeAtivo(Boolean seAtivo) {
-		this.seAtivo = seAtivo;
-	}
-
-	public Boolean getSeAtivo() {
-		return seAtivo;
-	}
-
-	public void setPublicador(Pessoa publicador) {
-		this.publicador = publicador;
-	}
-
-	public Pessoa getPublicador() {
-		return publicador;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setAreaProfissional(AreaProfissional areaProfissional) {
-		this.areaProfissional = areaProfissional;
-	}
-
-	public AreaProfissional getAreaProfissional() {
-		return areaProfissional;
-	}
-
-	public void setFaixaSalarial(FaixaSalarialEnum faixaSalarial) {
-		this.faixaSalarial = faixaSalarial;
-	}
-
-	public FaixaSalarialEnum getFaixaSalarial() {
-		return faixaSalarial;
-	}
 	
 	
 }

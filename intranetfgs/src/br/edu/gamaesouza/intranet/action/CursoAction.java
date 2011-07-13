@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import lombok.Data;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,7 +28,7 @@ import br.edu.gamaesouza.intranet.utils.IntranetException;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class CursoAction extends ActionSupport {
+public @Data class CursoAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 	private static final String MSG_CURSO_NOVO_FAILURE = "Ocorreu um erro interno no servidor. Nï¿½o foi possï¿½vel cadastrar o curso.";
@@ -70,7 +72,7 @@ public class CursoAction extends ActionSupport {
 		UserData.grantAccess(RULE_CURSO_NOVO);	
 			try {
 				if(cursoDAO.getCursoByNome(cursoNovoParams.getNomeCurso())!= null){
-					addActionError("já existe um curso cadastrado com o mesmo nome em nossa base.");
+					addActionError("jï¿½ existe um curso cadastrado com o mesmo nome em nossa base.");
 				}
 				else if(cursoNovoParams.getNomeCurso().equals("") || cursoNovoParams.getCargaHorariaComplementar() == null) {
 					if(cursoNovoParams.getNomeCurso().equals(""))
@@ -95,7 +97,7 @@ public class CursoAction extends ActionSupport {
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			try {
 				if(cursoDAO.getCursoByNome(cursoNovoParams.getNomeCurso())!= null){
-					addActionError("já existe um curso cadastrado com o mesmo nome em nossa base.");
+					addActionError("jï¿½ existe um curso cadastrado com o mesmo nome em nossa base.");
 				}
 				else if(cursoAlteraParams.getNomeCurso().equals("") || cursoAlteraParams.getCargaHorariaComplementar() == null) {
 							if(cursoAlteraParams.getNomeCurso().equals(""))
@@ -154,74 +156,5 @@ public class CursoAction extends ActionSupport {
 		return lista();
 	}
 
-	// Gets and Sets
-
-
-	public List<Curso> getCursos() {
-		return cursos;
-	}
-
-	public void setCursos(List<Curso> cursos) {
-		this.cursos = cursos;
-	}
-
-	public List<Disciplina> getAllDisciplinas() {
-		return allDisciplinas;
-	}
-
-	public void setAllDisciplinas(List<Disciplina> allDisciplinas) {
-		this.allDisciplinas = allDisciplinas;
-	}
-
-	public List<String> getDisciplinasParam() {
-		return disciplinasParam;
-	}
-
-	public void setDisciplinasParam(List<String> disciplinasParam) {
-		this.disciplinasParam = disciplinasParam;
-	}
-
-	public CursoSearchParams getCursoSearchParams() {
-		return cursoSearchParams;
-	}
-
-	public void setCursoSearchParams(CursoSearchParams cursoSearchParams) {
-		this.cursoSearchParams = cursoSearchParams;
-	}
-
-	public CursoNovoParams getCursoNovoParams() {
-		return cursoNovoParams;
-	}
-
-	public void setCursoNovoParams(CursoNovoParams cursoNovoParams) {
-		this.cursoNovoParams = cursoNovoParams;
-	}
-
-	public CursoAlteraParams getCursoAlteraParams() {
-		return cursoAlteraParams;
-	}
-
-	public void setCursoAlteraParams(CursoAlteraParams cursoAlteraParams) {
-		this.cursoAlteraParams = cursoAlteraParams;
-	}
-
-	public CursoDeletaParams getCursoDeletaParams() {
-		return cursoDeletaParams;
-	}
-
-	public void setCursoDeletaParams(CursoDeletaParams cursoDeletaParams) {
-		this.cursoDeletaParams = cursoDeletaParams;
-	}
-
-	public void setTempoDeResposta(String tempoDeResposta) {
-		this.tempoDeResposta = tempoDeResposta;
-	}
-
-	public String getTempoDeResposta() {
-		return tempoDeResposta;
-	}
-	
-	
-	
 
 }

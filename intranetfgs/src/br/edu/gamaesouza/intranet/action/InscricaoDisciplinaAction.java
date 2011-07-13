@@ -3,6 +3,9 @@ package br.edu.gamaesouza.intranet.action;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
@@ -15,7 +18,7 @@ import br.edu.gamaesouza.intranet.bean.Pessoa;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class InscricaoDisciplinaAction extends ActionSupport{
+public @Data class InscricaoDisciplinaAction extends ActionSupport{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -115,124 +118,4 @@ public class InscricaoDisciplinaAction extends ActionSupport{
 		
 	}
 
-	public List<DisciplinaLetiva> getDisciplinasLetivas() {
-		return disciplinasLetivas;
-	}
-
-	public void setDisciplinasLetivas(List<DisciplinaLetiva> disciplinasLetivas) {
-		this.disciplinasLetivas = disciplinasLetivas;
-	}
-
-	public Integer getAno() {
-		return ano;
-	}
-
-	public void setAno(Integer ano) {
-		this.ano = ano;
-	}
-
-	public List<Integer> getSemestres() {
-		return semestres;
-	}
-
-	public void setSemestres(List<Integer> semestres) {
-		this.semestres = semestres;
-	}
-	public Integer getSemestre() {
-		return semestre;
-	}
-
-	public void setSemestre(Integer semestre) {
-		this.semestre = semestre;
-	}
-
-
-
-	public List<DisciplinaLetiva> getDisciplinasLetivasCadastradas() {
-		return disciplinasLetivasCadastradas;
-	}
-
-	public void setDisciplinasLetivasCadastradas(
-			List<DisciplinaLetiva> disciplinasLetivasCadastradas) {
-		this.disciplinasLetivasCadastradas = disciplinasLetivasCadastradas;
-	}
-	
-	public DisciplinaLetiva getDisciplinaLetivaCadastrada() {
-		return disciplinaLetivaCadastrada;
-	}
-
-	public void setDisciplinaLetivaCadastrada(
-			DisciplinaLetiva disciplinaLetivaCadastrada) {
-		this.disciplinaLetivaCadastrada = disciplinaLetivaCadastrada;
-	}
-
-	public void setTurno( String turno ) {
-		this.turno = turno;
-	}
-
-	public String getTurno() {
-		return turno;
-	}
-
-	public void setTurnos( List<String> turnos ) {
-		this.turnos = turnos;
-	}
-
-	public List<String> getTurnos() {
-		return turnos;
-	}
-
-
-	public void setPessoa( Pessoa pessoa ) {
-		this.pessoa = pessoa;
-	}
-
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoaDAO( PessoaDAO pessoaDAO ) {
-		this.pessoaDAO = pessoaDAO;
-	}
-
-	public PessoaDAO getPessoaDAO() {
-		return pessoaDAO;
-	}
-	public Integer getIdAluno() {
-		return idAluno;
-	}
-
-	public void setIdAluno( Integer idAluno ) {
-		this.idAluno = idAluno;
-	}
-
-
-	public void setDisciplinaLetivaSearchParams(
-			DisciplinaLetivaSearchParams disciplinaLetivaSearchParams) {
-		this.disciplinaLetivaSearchParams = disciplinaLetivaSearchParams;
-	}
-
-	public DisciplinaLetivaSearchParams getDisciplinaLetivaSearchParams() {
-		return disciplinaLetivaSearchParams;
-	}
-	
-
-	
-	public DisciplinaLetivaInscricaoSearchParams getDisciplinaLetivaInscricaoSearchParams() {
-		return disciplinaLetivaInscricaoSearchParams;
-	}
-
-	public void setDisciplinaLetivaInscricaoSearchParams(
-			DisciplinaLetivaInscricaoSearchParams disciplinaLetivaInscricaoSearchParams) {
-		this.disciplinaLetivaInscricaoSearchParams = disciplinaLetivaInscricaoSearchParams;
-	}
-
-	public void setDisciplinaLetiva(Integer disciplinaLetiva) {
-		this.disciplinaLetiva = disciplinaLetiva;
-	}
-
-	public Integer getDisciplinaLetiva() {
-		return disciplinaLetiva;
-	}
-	
 }

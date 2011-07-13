@@ -4,6 +4,9 @@ package br.edu.gamaesouza.intranet.action;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import br.edu.gamaesouza.intranet.bean.Arquivo;
 import br.edu.gamaesouza.intranet.bean.Disciplina;
@@ -23,7 +26,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.conversion.annotations.Conversion;
 
 @Conversion
-public class UploadAction extends ActionSupport {
+public @Data class UploadAction extends ActionSupport {
 	
 	private static final long serialVersionUID = -8803364095951231024L;
 	private static final String RULE_UPLOAD_NOVO = "RULE_UPLOAD_NOVO";
@@ -161,115 +164,6 @@ public class UploadAction extends ActionSupport {
 
 			return "modificarArquivo";
 
-	}
-
-	public List<Arquivo> getArquivos() {
-		return arquivos;
-	}
-
-	public void setArquivos(List<Arquivo> arquivos) {
-		this.arquivos = arquivos;
-	}
-
-	public Arquivo getArquivo() {
-		return arquivo;
-	}
-
-	public void setArquivo(Arquivo arquivo) {
-		this.arquivo = arquivo;
-	}
-
-	public List<Disciplina> getDisciplinas() {
-		return disciplinas;
-	}
-
-	public void setDisciplinas(List<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
-	}
-
-	public Integer getMateria() {
-		return materia;
-	}
-
-	public void setMateria(Integer materia) {
-		this.materia = materia;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-
-	public Integer getSemestre() {
-		return semestre;
-	}
-
-	public void setSemestre(Integer semestre) {
-		this.semestre = semestre;
-	}
-
-	public Integer getAno() {
-		return ano;
-	}
-
-	public void setAno(Integer ano) {
-		this.ano = ano;
-	}
-
-	public void setAnos(List<Integer> anos) {
-		this.anos = anos;
-	}
-
-	public List<Integer> getAnos() {
-		return anos;
-	}
-
-	public void setSemestres(List<Integer> semestres) {
-		this.semestres = semestres;
-	}
-
-	public List<Integer> getSemestres() {
-		return semestres;
-	}
-
-	public void setTurnos(List<String> turnos) {
-		this.turnos = turnos;
-	}
-
-	public List<String> getTurnos() {
-		return turnos;
-	}
-
-	public String getTurno() {
-		return turno;
-	}
-
-	public void setTurno(String turno) {
-		this.turno = turno;
-	}
-	public List<DisciplinaLetiva> getDisciplinasLetivas() {
-		return disciplinasLetivas;
-	}
-
-
-
-	public void setDisciplinasLetivas(List<DisciplinaLetiva> disciplinasLetivas) {
-		this.disciplinasLetivas = disciplinasLetivas;
-	}
-	
-	
-	public Integer getIdarquivo() {
-		return idarquivo;
-	}
-
-
-
-	public void setIdarquivo(Integer idarquivo) {
-		this.idarquivo = idarquivo;
 	}
 
 }

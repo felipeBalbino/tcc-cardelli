@@ -6,6 +6,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import lombok.Data;
+
 import br.edu.gamaesouza.intranet.utils.DateUtil;
 
 @Entity
@@ -18,7 +20,7 @@ import br.edu.gamaesouza.intranet.utils.DateUtil;
 
 		
 })
-public class HoraComplementar extends Hora {
+public @Data class HoraComplementar extends Hora {
 	
 	private String titulo;
 	
@@ -28,40 +30,5 @@ public class HoraComplementar extends Hora {
 	
 	@OneToOne
 	private Atividade atividade;
-
-
-	public Atividade getAtividade() {
-		return atividade;
-	}
-
-	public void setAtividade(Atividade atividade) {
-		this.atividade = atividade;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	public Integer getMinutos() {
-		return minutos;
-	}
-
-	public void setMinutos(Integer minutos) {
-		this.minutos = minutos;
-		
-	}
-
-	public String getTotalHoras() {
-		return totalHoras;
-	}
-
-	public void setTotalHoras(String totalHoras) {
-		this.totalHoras = totalHoras;
-	}
-	
 	
 }

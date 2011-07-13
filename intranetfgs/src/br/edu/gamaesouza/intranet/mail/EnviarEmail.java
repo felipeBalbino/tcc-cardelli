@@ -385,15 +385,13 @@ public class EnviarEmail {
 
 	}
 
-	public void sendEmailWithLoginAndPassword(String email)
+	public void sendEmailWithLoginAndPassword(Pessoa pessoa)
 			throws IntranetException, Exception {
 
 		configuration = new GmailConfiguration();
 
-		Pessoa pessoa = pessoaDAO.getPessoaByEmail(email);
-
 		if (pessoa == null) {
-			throw new Exception("E-Mail n�o cadastrado");
+			throw new Exception("E-Mail não cadastrado");
 		}
 
 		Session session = Session.getInstance(configuration.getConfiguration(),
@@ -404,7 +402,7 @@ public class EnviarEmail {
 			message.setFrom(new InternetAddress("intranetfgs@gmail.com",
 					"Intranet FGS"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(
-					email, "Intranet FGS"));
+					pessoa.getEmail(), "Intranet FGS"));
 		} catch (Exception e) {
 			throw new IntranetException(e.getMessage());
 
@@ -418,7 +416,7 @@ public class EnviarEmail {
 
 		msgBody = msgBody + "<br></br>";
 		msgBody = msgBody
-				+ "Intranet FGS <br></br> Desenvolvido pelo Centro de Qualidade da Informa��o.";
+				+ "Intranet FGS <br></br> Desenvolvido pelo Centro de Qualidade da Informação.";
 
 		try {
 			message.setSubject("Recuperar Senha @intranetfgs");

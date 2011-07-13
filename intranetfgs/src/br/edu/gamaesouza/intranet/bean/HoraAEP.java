@@ -10,13 +10,15 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import lombok.Data;
+
 @Entity
 @NamedQueries(value={
 		
 		@NamedQuery(name="horasAEPByAluno",query="SELECT aep FROM HoraAEP aep where aep.aluno.id = :aluno"),
 		@NamedQuery(name="horasAEPByAlunoData",query="SELECT aep FROM HoraAEP aep where aep.aluno.id = :aluno AND data = :data" )
 })
-public class HoraAEP extends Hora {
+public @Data class HoraAEP extends Hora {
 	
 	@Temporal(TemporalType.DATE)
 	private Calendar data;
@@ -29,39 +31,5 @@ public class HoraAEP extends Hora {
 	
 	@Transient
 	private String difHora;
-	
-	public String getDifHora() {
-		return difHora;
-	}
-
-	public void setDifHora(String difHora) {
-		this.difHora = difHora;
-	}
-
-	public Calendar getData() {
-		return data;
-	}
-
-	public void setData(Calendar data) {
-		this.data = data;
-	}
-
-	public Date getHoraInicio() {
-		return horaInicio;
-	}
-
-	public void setHoraInicio(Date horaInicio) {
-		this.horaInicio = horaInicio;
-	}
-
-	public Date getHoraFim() {
-		return horaFim;
-	}
-
-	public void setHoraFim(Date horaFim) {
-		this.horaFim = horaFim;
-	}
-
-	
-	
+		
 }

@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.*;
+
+import lombok.Data;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
@@ -20,7 +22,7 @@ import javax.persistence.*;
 		@NamedQuery(name="pessoaByEmail",query="FROM Pessoa WHERE email = :email"),
 		@NamedQuery(name="pessoaByAreaProfissional",query="SELECT dl FROM Pessoa dl left join fetch dl.areasProfissionais area WHERE area.id = :area")
 })
-public class Pessoa implements Serializable {
+public @Data class Pessoa implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -62,18 +64,6 @@ public class Pessoa implements Serializable {
 	private List<Telefone> telefones;
 	
 	
-	public List<Rule> getRegras() {
-		return regras;
-	}
-
-	public void setRegras(List<Rule> rules) {
-		this.regras = rules;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -83,54 +73,6 @@ public class Pessoa implements Serializable {
 		setId(Integer.parseInt(id));
 	}
 
-	
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	
-	public String getLogin() {
-		return login;
-	}
-	
-	
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setMatricula( Integer matricula ) {
-		this.matricula = matricula;
-	}
-
-	public Integer getMatricula() {
-		return matricula;
-	}
-
-	public void setDataUltimoAcesso(Calendar dataUltimoAcesso) {
-		this.dataUltimoAcesso = dataUltimoAcesso;
-	}
 
 	public String getDataUltimoAcesso() {
 		if (dataUltimoAcesso != null){
@@ -141,30 +83,6 @@ public class Pessoa implements Serializable {
 		}
 	}
 
-	public void setAreasProfissionais(List<AreaProfissional> areasProfissionais) {
-		this.areasProfissionais = areasProfissionais;
-	}
-
-	public List<AreaProfissional> getAreasProfissionais() {
-		return areasProfissionais;
-	}
-
-
-	public void setTelefones(List<Telefone> telefones) {
-		this.telefones = telefones;
-	}
-
-	public List<Telefone> getTelefones() {
-		return telefones;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
 
 	
 	

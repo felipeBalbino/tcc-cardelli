@@ -25,6 +25,7 @@ import br.edu.gamaesouza.intranet.bean.Rule;
 import br.edu.gamaesouza.intranet.other.CustomSession;
 import br.edu.gamaesouza.intranet.params.impl.AlunoSearchParams;
 import br.edu.gamaesouza.intranet.params.impl.CursoSearchParams;
+import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 
 public class PessoaDAO extends HibernateDaoSupport {
@@ -105,6 +106,7 @@ public class PessoaDAO extends HibernateDaoSupport {
 	
 	public Pessoa getPessoa(String login, String senha) throws IntranetException{
 		
+		senha = FormUtil.encripta(senha);
 		
 		Query c = getSession().getNamedQuery("pessoaByLoginSenha");
 		c.setString("login", login);

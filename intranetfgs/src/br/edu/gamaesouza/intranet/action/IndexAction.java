@@ -2,6 +2,8 @@ package br.edu.gamaesouza.intranet.action;
 
 import java.util.List;
 
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Evento;
@@ -13,7 +15,7 @@ import br.edu.gamaesouza.intranet.dao.VagaDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class IndexAction extends ActionSupport {
+public @Data class IndexAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -38,41 +40,4 @@ public class IndexAction extends ActionSupport {
 		
 	}
 
-	public EventoDAO getDao() {
-		return eventoDAO;
-	}
-
-	public void setDao(EventoDAO dao) {
-		this.eventoDAO = dao;
-	}
-
-	public List<Evento> getEventos() {
-		return eventos;
-	}
-
-	public void setEventos(List<Evento> eventos) {
-		this.eventos = eventos;
-	}
-
-	public List<Noticia> getNoticias() {
-		return noticias;
-	}
-
-	public void setNoticias(List<Noticia> noticias) {
-		this.noticias = noticias;
-	}
-
-	public void setVagas(List<Vaga> vagas) {
-		this.vagas = vagas;
-	}
-
-	public List<Vaga> getVagas() {
-		return vagas;
-	}
-	
-	
-	
-	
-	
-	
 }

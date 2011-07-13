@@ -3,6 +3,8 @@ package br.edu.gamaesouza.intranet.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Curso;
@@ -14,7 +16,7 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class OuvidoriaAction extends ActionSupport {
+public @Data class OuvidoriaAction extends ActionSupport {
 
 	private static final long serialVersionUID = 3053722020213888951L;
 	private List<Curso> cursos = new ArrayList<Curso>();
@@ -44,13 +46,5 @@ public class OuvidoriaAction extends ActionSupport {
 		return prepare();	
 	}
 	
-	public List<Curso> getCursos() {return cursos;}
-	public void setCursos(List<Curso> cursos) {this.cursos = cursos;}
-	
-	public CursoDAO getCursoDAO() {return cursoDAO;}
-	public void setCursoDAO(CursoDAO cursoDAO) {this.cursoDAO = cursoDAO;}
-	
-	public OuvidoriaEmailParams getOuvidoriaEmailParams() {return ouvidoriaEmailParams;}
-	public void setOuvidoriaEmailParams(OuvidoriaEmailParams ouvidoriaEmailParams) {this.ouvidoriaEmailParams = ouvidoriaEmailParams;}
 	
 }

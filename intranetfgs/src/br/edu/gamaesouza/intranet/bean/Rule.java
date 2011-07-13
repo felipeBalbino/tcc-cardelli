@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+
+import lombok.Data;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
@@ -18,31 +20,13 @@ import javax.persistence.NamedQuery;
 @NamedQueries(value={
 		@NamedQuery(name="VaziaRule",query="FROM Rule")
 })
-public class Rule implements Serializable{
+public @Data class Rule implements Serializable{
 	
 	@Id
 	@GeneratedValue
 	private Integer id;
 	
 	@Column(nullable=false,unique=true)
-	private String nome;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	
+	private String nome;	
 	
 }

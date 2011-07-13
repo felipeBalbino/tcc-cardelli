@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+
+import lombok.Data;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
@@ -22,7 +24,7 @@ import javax.persistence.NamedQuery;
 @NamedQueries(value={
 		@NamedQuery(name="VaziaCurso",query="FROM Curso")
 })
-public class Curso implements Serializable {
+public @Data class Curso implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,38 +40,4 @@ public class Curso implements Serializable {
 	
 	private Integer cargaHorariaComplementar;
 	
-	public Integer getCargaHorariaComplementar() {
-		return cargaHorariaComplementar;
-	}
-
-	public void setCargaHorariaComplementar(Integer cargaHorariaComplementar) {
-		this.cargaHorariaComplementar = cargaHorariaComplementar;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public List<Disciplina> getDisciplinas() {
-		return disciplinas;
-	}
-
-	public void setDisciplinas(List<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
-	}
-
-
-
 }

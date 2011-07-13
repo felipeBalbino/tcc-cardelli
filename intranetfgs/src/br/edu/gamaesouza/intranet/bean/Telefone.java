@@ -3,6 +3,8 @@ package br.edu.gamaesouza.intranet.bean;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import lombok.Data;
+
 import br.edu.gamaesouza.intranet.utils.EnumTipoTelefone;
 /**
  * @author Felipe Balbino
@@ -10,7 +12,7 @@ import br.edu.gamaesouza.intranet.utils.EnumTipoTelefone;
  */
 
 @Entity
-public class Telefone implements Serializable {
+public @Data class Telefone implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -30,55 +32,6 @@ public class Telefone implements Serializable {
 	
 	@ManyToOne
 	private Pessoa pessoa;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Long getDdd() {
-		return ddd;
-	}
-
-	public void setDdd(Long ddd) {
-		this.ddd = ddd;
-	}
-
-	public Long getNumero() {
-		return numero;
-	}
-
-	public void setNumero(Long numero) {
-		this.numero = numero;
-	}
-
-	public Boolean getSePrincipal() {
-		return sePrincipal;
-	}
-
-	public void setSePrincipal(Boolean sePrincipal) {
-		this.sePrincipal = sePrincipal;
-	}
-
-	public EnumTipoTelefone getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(EnumTipoTelefone tipo) {
-		this.tipo = tipo;
-	}
-
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
-	
 	
 	
 }

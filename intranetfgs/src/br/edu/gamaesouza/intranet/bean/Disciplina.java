@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import lombok.Data;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
@@ -21,7 +23,7 @@ import javax.persistence.Table;
 @NamedQueries(value={
 		@NamedQuery(name="VaziaDisciplina",query="FROM Disciplina")
 })
-public class Disciplina implements Serializable {
+public @Data class Disciplina implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -35,31 +37,6 @@ public class Disciplina implements Serializable {
 
     @ManyToMany(mappedBy="disciplinas")
 	public List<Curso> cursos;
-	
-    
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public List<Curso> getCursos() {
-		return cursos;
-	}
-
-	public void setCursos(List<Curso> cursos) {
-		this.cursos = cursos;
-	}
 	
 	@Override
 	public boolean equals(Object obj) {

@@ -9,6 +9,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Logger;
 
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.AreaProfissional;
@@ -34,7 +36,7 @@ import br.edu.gamaesouza.intranet.utils.TiposContratacaoEnum;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class VagasEmpregoAction extends ActionSupport {
+public @Data class VagasEmpregoAction extends ActionSupport {
 
 	private final Logger logger = Logger.getLogger("br.edu.gamaesouza.intranet.action.VagasEmpregoAction");
 	
@@ -255,206 +257,6 @@ public class VagasEmpregoAction extends ActionSupport {
 		return prepare();
 		
 	}
-	
-	
-
-	// Gets and Sets
-
-	public List<Vaga> getVagas() {
-		return vagas;
-	}
-
-	public void setVagas(List<Vaga> vagas) {
-		this.vagas = vagas;
-	}
-
-	public VagaDAO getVagaDAO() {
-		return vagaDAO;
-	}
-
-	public void setVagaDAO(VagaDAO vagaDAO) {
-		this.vagaDAO = vagaDAO;
-	}
-
-	public void setTempoDeResposta(String tempoDeResposta) {
-		this.tempoDeResposta = tempoDeResposta;
-	}
-
-	public String getTempoDeResposta() {
-		return tempoDeResposta;
-	}
-
-	public void setEmpresas(List<Empresa> empresas) {
-		this.empresas = empresas;
-	}
-
-	public List<Empresa> getEmpresas() {
-		return empresas;
-	}
-
-	public void setIdVaga(Long idVaga) {
-		this.idVaga = idVaga;
-	}
-
-	public Long getIdVaga() {
-		return idVaga;
-	}
-
-	public void setEmpresaId(Long empresaId) {
-		this.empresaId = empresaId;
-	}
-
-	public Long getEmpresaId() {
-		return empresaId;
-	}
-
-	public Vaga getVaga() {
-		return vaga;
-	}
-
-	public void setVaga(Vaga vaga) {
-		this.vaga = vaga;
-	}
-
-	public Boolean getSeRegra() {
-		return seRegra;
-	}
-
-
-	public void setSeRegra(Boolean seRegra) {
-		this.seRegra = seRegra;
-	}
-
-
-	public void setAreaProfissionalId(Long areaProfissionalId) {
-		this.areaProfissionalId = areaProfissionalId;
-	}
-
-
-	public Long getAreaProfissionalId() {
-		return areaProfissionalId;
-	}
-
-
-	public EmpresaDAO getEmpresaDAO() {
-		return empresaDAO;
-	}
-
-
-	public void setEmpresaDAO(EmpresaDAO empresaDAO) {
-		this.empresaDAO = empresaDAO;
-	}
-
-
-	public AreaProfissionalDAO getAreaProfissionalDAO() {
-		return areaProfissionalDAO;
-	}
-
-
-	public void setAreaProfissionalDAO(AreaProfissionalDAO areaProfissionalDAO) {
-		this.areaProfissionalDAO = areaProfissionalDAO;
-	}
-
-
-	public void setAreas(List<AreaProfissional> areas) {
-		this.areas = areas;
-	}
-
-
-	public List<AreaProfissional> getAreas() {
-		return areas;
-	}
-
-
-	public void setTiposDeContratacao(List<TiposContratacaoEnum> tiposDeContratacao) {
-		this.tiposDeContratacao = tiposDeContratacao;
-	}
-
-
-	public List<TiposContratacaoEnum> getTiposDeContratacao() {
-		return tiposDeContratacao;
-	}
-
-
-	public void setEnviarEmail(EnviarEmail enviarEmail) {
-		this.enviarEmail = enviarEmail;
-	}
-
-
-	public EnviarEmail getEnviarEmail() {
-		return enviarEmail;
-	}
-
-
-	public void setPessoaDAO(PessoaDAO pessoaDAO) {
-		this.pessoaDAO = pessoaDAO;
-	}
-
-
-	public PessoaDAO getPessoaDAO() {
-		return pessoaDAO;
-	}
-
-
-	public void setPaises(List<PaisEnum> paises) {
-		this.paises = paises;
-	}
-
-
-	public List<PaisEnum> getPaises() {
-		return paises;
-	}
-
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-
-
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-
-	public void setEnderecoId(Long enderecoId) {
-		this.enderecoId = enderecoId;
-	}
-
-
-	public Long getEnderecoId() {
-		return enderecoId;
-	}
-
-
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
-	}
-
-
-	public List<Endereco> getEnderecos() {
-		return enderecos;
-	}
-
-
-	public void setSalarios(List<FaixaSalarialEnum> salarios) {
-		this.salarios = salarios;
-	}
-
-
-	public List<FaixaSalarialEnum> getSalarios() {
-		return salarios;
-	}
-
 	
 
 }

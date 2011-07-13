@@ -14,6 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
+import lombok.Data;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
@@ -23,7 +25,7 @@ import javax.persistence.Transient;
 @NamedQueries(value={
 		@NamedQuery(name="VaziaEvento",query="FROM Evento")
 })
-public class Evento implements Serializable {
+public @Data class Evento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -71,77 +73,6 @@ public class Evento implements Serializable {
 	private String publicoAlvoComQuebra;
 	
 	
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getCoordenacao() {
-		return coordenacao;
-	}
-
-	public void setCoordenacao(String coordenacao) {
-		this.coordenacao = coordenacao;
-	}
-
-
-
-	public String getLocal() {
-		return local;
-	}
-
-	public void setLocal(String local) {
-		this.local = local;
-	}
-
-	public String getPublicoalvo() {
-		return publicoalvo;
-	}
-
-	public void setPublicoalvo(String publicoalvo) {
-		this.publicoalvo = publicoalvo;
-	}
-
-	public String getObs() {
-		return obs;
-	}
-
-	public void setObs(String obs) {
-		this.obs = obs;
-	}
-
-	public Calendar getDatahoraPublicacao() {
-		return datahoraPublicacao;
-	}
-
-	public void setDatahoraPublicacao(Calendar datahoraPublicacao) {
-		this.datahoraPublicacao = datahoraPublicacao;
-	}
-
-	public Professor getAutor() {
-		return autor;
-	}
-
-	public void setAutor(Professor pessoa) {
-		this.autor = pessoa;
-	}
-
-	public void setObsComQuebra( String obsComQuebra ) {
-		this.obsComQuebra = obsComQuebra;
-	}
-
 	public String getObsComQuebra() {
 		String obsComQuebra = obs.replaceAll("\n", "<br>");
 		return obsComQuebra;
@@ -153,40 +84,5 @@ public class Evento implements Serializable {
 	
 	}
 
-	public void setDataInicio(Calendar dataInicio) {
-		this.dataInicio = dataInicio;
-	}
-
-	public Calendar getDataInicio() {
-		return dataInicio;
-	}
-
-	public void setDataFim(Calendar dataFim) {
-		this.dataFim = dataFim;
-	}
-
-	public Calendar getDataFim() {
-		return dataFim;
-	}
-
-	public Date getHoraInicio() {
-		return horaInicio;
-	}
-
-	public void setHoraInicio(Date horaInicio) {
-		this.horaInicio = horaInicio;
-	}
-
-	public Date getHoraFim() {
-		return horaFim;
-	}
-
-	public void setHoraFim(Date horaFim) {
-		this.horaFim = horaFim;
-	}
-
-
-	
-	
 
 }

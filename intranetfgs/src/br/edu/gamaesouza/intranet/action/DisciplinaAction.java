@@ -3,6 +3,8 @@ package br.edu.gamaesouza.intranet.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Curso;
@@ -20,7 +22,7 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class DisciplinaAction extends ActionSupport{
+public @Data class DisciplinaAction extends ActionSupport{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -140,119 +142,5 @@ public class DisciplinaAction extends ActionSupport{
 			return lista();
 	
 	}
-
-	public List<Curso> getCursos() {
-		return cursos;
-	}
-
-	public void setCursos(List<Curso> cursos) {
-		this.cursos = cursos;
-	}
-
-	public Disciplina getMateria() {
-		return disciplina;
-	}
-
-	public void setMateria(Disciplina materia) {
-		this.disciplina = materia;
-	}
-
-	public Integer[] getCheckBoxSelecionados() {
-		return checkBoxSelecionados;
-	}
-
-	public void setCheckBoxSelecionados(Integer[] checkBoxSelecionados) {
-		this.checkBoxSelecionados = checkBoxSelecionados;
-	}
-
-	public List<Disciplina> getDisciplinas() {
-		return disciplinas;
-	}
-
-	public void setDisciplinas(List<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
-	}
-
-	public Disciplina getDisciplina() {
-		return disciplina;
-	}
-
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
-	}
-
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
-	}
-
-
-	public List<Curso> getAllCursos() {
-		return allCursos;
-	}
-
-
-	public void setAllCursos(List<Curso> allCursos) {
-		this.allCursos = allCursos;
-	}
-
-
-	public List<String> getCursosParam() {
-		return cursosParam;
-	}
-
-
-	public void setCursosParam(List<String> cursosParam) {
-		this.cursosParam = cursosParam;
-	}
-
-
-	public DisciplinaSearchParams getDisciplinaSearchParams() {
-		return disciplinaSearchParams;
-	}
-
-
-	public void setDisciplinaSearchParams(
-			DisciplinaSearchParams disciplinaSearchParams) {
-		this.disciplinaSearchParams = disciplinaSearchParams;
-	}
-
-
-	public DisciplinaDeletaParams getDisciplinaDeletaParams() {
-		return disciplinaDeletaParams;
-	}
-
-
-	public void setDisciplinaDeletaParams(
-			DisciplinaDeletaParams disciplinaDeletaParams) {
-		this.disciplinaDeletaParams = disciplinaDeletaParams;
-	}
-
-
-	public DisciplinaAlteraParams getDisciplinaAlteraParams() {
-		return disciplinaAlteraParams;
-	}
-
-
-	public void setDisciplinaAlteraParams(
-			DisciplinaAlteraParams disciplinaAlteraParams) {
-		this.disciplinaAlteraParams = disciplinaAlteraParams;
-	}
-
-
-	public void setTempoDeResposta(String tempoDeResposta) {
-		this.tempoDeResposta = tempoDeResposta;
-	}
-
-
-	public String getTempoDeResposta() {
-		return tempoDeResposta;
-	}
-	
-	
-	
 	
 }

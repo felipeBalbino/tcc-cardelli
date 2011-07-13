@@ -3,6 +3,8 @@ package br.edu.gamaesouza.intranet.action;
 import java.text.ParseException;
 import java.util.List;
 
+import lombok.Data;
+
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,7 +34,7 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class HoraAction extends ActionSupport {
+public @Data class HoraAction extends ActionSupport {
 
 
 	private static final long serialVersionUID = 1L;
@@ -234,158 +236,4 @@ public class HoraAction extends ActionSupport {
 		return "geraComprovante";	
 	}
 
-	// Gets and Sets
-	
-	public HoraAEPNovoParams getHoraAEPNovoParams() {
-		return horaAEPNovoParams;
-	}
-
-	public void setHoraAEPNovoParams(HoraAEPNovoParams horaAEPNovoParams) {
-		this.horaAEPNovoParams = horaAEPNovoParams;
-	}
-
-	public HoraAEPAlteraParams getHoraAEPAlteraParams() {
-		return horaAEPAlteraParams;
-	}
-
-	public void setHoraAEPAlteraParams(HoraAEPAlteraParams horaAEPAlteraParams) {
-		this.horaAEPAlteraParams = horaAEPAlteraParams;
-	}
-
-	public HoraAEPDeletaParams getHoraAEPDeletaParams() {
-		return horaAEPDeletaParams;
-	}
-
-	public void setHoraAEPDeletaParams(HoraAEPDeletaParams horaAEPDeletaParams) {
-		this.horaAEPDeletaParams = horaAEPDeletaParams;
-	}
-
-	public HoraComplementarNovoParams getHoraComplementarNovoParams() {
-		return horaComplementarNovoParams;
-	}
-
-	public void setHoraComplementarNovoParams(
-			HoraComplementarNovoParams horaComplementarNovoParams) {
-		this.horaComplementarNovoParams = horaComplementarNovoParams;
-	}
-
-	public HoraComplementarAlteraParams getHoraComplementarAlteraParams() {
-		return horaComplementarAlteraParams;
-	}
-
-	public void setHoraComplementarAlteraParams(
-			HoraComplementarAlteraParams horaComplementarAlteraParams) {
-		this.horaComplementarAlteraParams = horaComplementarAlteraParams;
-	}
-
-	public HoraComplementarDeletaParams getHoraComplementarDeletaParams() {
-		return horaComplementarDeletaParams;
-	}
-
-	public void setHoraComplementarDeletaParams(
-			HoraComplementarDeletaParams horaComplementarDeletaParams) {
-		this.horaComplementarDeletaParams = horaComplementarDeletaParams;
-	}
-
-	public List<HoraAEP> getHorasAEP() {
-		return horasAEP;
-	}
-
-	public void setHorasAEP(List<HoraAEP> horasAEP) {
-		this.horasAEP = horasAEP;
-	}
-
-	public List<HoraComplementar> getHorasComplementares() {
-		return horasComplementares;
-	}
-
-	public void setHorasComplementares(List<HoraComplementar> horasComplementares) {
-		this.horasComplementares = horasComplementares;
-	}		
-	public Aluno getAluno() {
-		return aluno;
-	}
-
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
-
-	public AlunoSearchParams getAlunoSearchParams() {
-		return alunoSearchParams;
-	}
-
-	public void setAlunoSearchParams(AlunoSearchParams alunoSearchParams) {
-		this.alunoSearchParams = alunoSearchParams;
-	}
-
-	public HoraAEPListaParams getHoraAEPListaParams() {
-		return horaAEPListaParams;
-	}
-
-	public void setHoraAEPListaParams(HoraAEPListaParams horaAEPListaParams) {
-		this.horaAEPListaParams = horaAEPListaParams;
-	}
-
-	public HoraComplementarListaParams getHoraComplementarListaParams() {
-		return horaComplementarListaParams;
-	}
-
-	public void setHoraComplementarListaParams(
-			HoraComplementarListaParams horaComplementarListaParams) {
-		this.horaComplementarListaParams = horaComplementarListaParams;
-	}
-
-	public List<HorasAtividadeResultBean> getHorasAtividadeResultBean() {
-		return horasAtividadeResultBean;
-	}
-
-	public void setHorasAtividadeResultBean(
-			List<HorasAtividadeResultBean> horasAtividadeResultBean) {
-		this.horasAtividadeResultBean = horasAtividadeResultBean;
-	}
-
-	public HorasCursoResultBean getHorasCursoResultBean() {
-		return horasCursoResultBean;
-	}
-
-	public void setHorasCursoResultBean(HorasCursoResultBean horasCursoResultBean) {
-		this.horasCursoResultBean = horasCursoResultBean;
-	}
-
-	public List<Atividade> getAtividades() {
-		return atividades;
-	}
-
-	public void setAtividades(List<Atividade> atividades) {
-		this.atividades = atividades;
-	}
-
-	public HoraComplementar getHoraComplementar() {
-		return horaComplementar;
-	}
-
-	public void setHoraComplementar(HoraComplementar horaComplementar) {
-		this.horaComplementar = horaComplementar;
-	}
-
-	public GeraComprovanteHoraComplementarParams getGeraComprovanteHoraComplementarParams() {
-		return geraComprovanteHoraComplementarParams;
-	}
-
-	public void setGeraComprovanteHoraComplementarParams(
-			GeraComprovanteHoraComplementarParams geraComprovanteHoraComplementarParams) {
-		this.geraComprovanteHoraComplementarParams = geraComprovanteHoraComplementarParams;
-	}
-
-	public String getTotalHorasAEPAluno() {
-		return totalHorasAEPAluno;
-	}
-
-	public void setTotalHorasAEPAluno(String totalHorasAEPAluno) {
-		this.totalHorasAEPAluno = totalHorasAEPAluno;
-	}
-	
-	
-	
-	
 }

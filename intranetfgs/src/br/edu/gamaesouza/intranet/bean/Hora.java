@@ -8,10 +8,12 @@ import javax.persistence.InheritanceType;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
+import lombok.Data;
+
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED) 
 @NamedQuery(name="horasByAlunoAndIdHora",query="SELECT comp FROM Hora comp where comp.aluno.id = :aluno AND comp.id = :hora")
-public class Hora {
+public @Data class Hora {
 
 	@Id
 	@GeneratedValue
@@ -19,21 +21,5 @@ public class Hora {
 	
 	@OneToOne
 	private Aluno aluno;
-
-	public Aluno getAluno() {
-		return aluno;
-	}
-
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	
 }

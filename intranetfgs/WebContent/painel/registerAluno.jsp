@@ -45,7 +45,6 @@ width:295px;
 
 jQuery(function($){
 	   $("#matricula").mask("99999999");
-	   $("#login").mask("********");
 	}); 
 
  function restartTrs(){

@@ -1,6 +1,6 @@
 SET NAMES UTF8;
 SET GLOBAL table_lock_wait_timeout = 10;
-INSERT INTO Pessoa (id,email,login,matricula,nome,senha) VALUES  (1,"admin@admin.com","admin",123123123,"Administrador","admin");
+INSERT INTO Pessoa (id,email,login,matricula,nome,senha) VALUES  (1,"admin@admin.com","admin",123123123,"Administrador","ISMvKXpXpadDiUoOSoAfww==");
 INSERT INTO Professor VALUES  (1);
 INSERT INTO Rule VALUES (1,"RULE_CURSO_NOVO");
 INSERT INTO Rule VALUES (2,"RULE_CURSO_LISTA");

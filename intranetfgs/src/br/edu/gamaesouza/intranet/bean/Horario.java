@@ -19,10 +19,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Data;
+import lombok.ToString;
+
 import br.edu.gamaesouza.intranet.utils.DiaSemanaEnum;
 
 @Entity
-public class Horario {
+public @Data class Horario {
 
 	@Id
 	@GeneratedValue
@@ -40,47 +43,6 @@ public class Horario {
 	@Column(nullable = false)
 	private Integer semestre;
 	
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-
-	public void setHoraInicio(Date horaInicio) {
-		this.horaInicio = horaInicio;
-	}
-
-	public Date getHoraInicio() {
-		return horaInicio;
-	}
-
-	public void setHoraFim(Date horaFim) {
-		this.horaFim = horaFim;
-	}
-
-	public Date getHoraFim() {
-		return horaFim;
-	}
-
-	public void setAno( Integer ano ) {
-		this.ano = ano;
-	}
-
-	public Integer getAno() {
-		return ano;
-	}
-
-	public void setSemestre( Integer semestre ) {
-		this.semestre = semestre;
-	}
-
-	public Integer getSemestre() {
-		return semestre;
-	}
-
 	
 	public String toString(){
 		Date horaInicio = this.horaInicio;

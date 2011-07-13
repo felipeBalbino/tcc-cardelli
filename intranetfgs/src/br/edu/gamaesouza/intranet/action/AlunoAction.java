@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Aluno;
@@ -19,6 +21,7 @@ import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
 import br.edu.gamaesouza.intranet.dao.HorarioDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
+import br.edu.gamaesouza.intranet.mail.EnviarEmail;
 import br.edu.gamaesouza.intranet.params.impl.AlunoAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams;
 import br.edu.gamaesouza.intranet.params.impl.AlunoSearchParams;
@@ -29,7 +32,7 @@ import br.edu.gamaesouza.intranet.utils.StatusMatriculaEnum;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class AlunoAction extends ActionSupport {
+public @Data class AlunoAction extends ActionSupport {
 	
 
 	private static final String MSG_REGISTRO_SUCESSO = "Registrado com sucesso.";
@@ -61,6 +64,8 @@ public class AlunoAction extends ActionSupport {
 	@Autowired private CursoDAO cursoDAO;
 	@Autowired private HorarioDAO horarioDAO;
 	@Autowired private DisciplinaDAO disciplinaDAO;
+	@Autowired private EnviarEmail enviarEmail;
+	
 	private String tempoDeResposta;
 	
 	Map<Horario,List<DisciplinaLetiva>> mapa;
@@ -90,6 +95,33 @@ public class AlunoAction extends ActionSupport {
 			e.printStackTrace();
 		}
 		return prepare();	
+	}
+	
+	
+	public String gerarNovaSenha(){
+		try {
+			
+			Pessoa pessoa = pessoaDAO.getPessoaById(idAluno);
+			
+			//Gerando o password e enviando por Email
+			String randomPass = FormUtil.getRandomPass();
+			pessoa.setSenha(randomPass);
+			enviarEmail.sendEmailWithLoginAndPassword(pessoa);
+			
+
+			//Encriptando, salvando em pessoa e dando merge
+			pessoa.setSenha(FormUtil.encripta(randomPass));
+			pessoaDAO.merge(pessoa);
+							
+			addActionMessage("login e sua senha foram enviados para o e-mail "+pessoa.getEmail());
+		}catch(IntranetException e){
+			addActionError("Ocorreu um erro interno no Servidor. Um e-mail foi enviado ao administrador reportando o erro.");
+		}catch(Exception e){
+			addActionError("E-mail não confere com nenhum email cadastrado em nosso base.");
+			return "recuperar";
+		}
+		
+		return lista(); 
 	}
 	
 	public String lista() {
@@ -200,149 +232,6 @@ public class AlunoAction extends ActionSupport {
 				
 				
 		}
-
-
-	public AlunoNovoParams getAlunoNovoParams() {
-		return alunoNovoParams;
-	}
-	public void setAlunoNovoParams(AlunoNovoParams alunoNovoParams) {
-		this.alunoNovoParams = alunoNovoParams;
-	}
-
-	public void setAlunos( List<Aluno> alunos ) {
-		this.alunos = alunos;
-	}
-
-	public List<Aluno> getAlunos() {
-		return alunos;
-	}
-
-	public void setCursos( List<Curso> cursos ) {
-		this.cursos = cursos;
-	}
-
-	public List<Curso> getCursos() {
-		return cursos;
-	}
-
-
-	public AlunoAlteraParams getAlunoAlteraParams() {
-		return alunoAlteraParams;
-	}
-
-	public void setAlunoAlteraParams( AlunoAlteraParams alunoAlteraParams ) {
-		this.alunoAlteraParams = alunoAlteraParams;
-	}
-
-	public PessoaDAO getPessoaDAO() {
-		return pessoaDAO;
-	}
-
-	public void setPessoaDAO( PessoaDAO pessoaDAO ) {
-		this.pessoaDAO = pessoaDAO;
-	}
-
-	public CursoDAO getCursoDAO() {
-		return cursoDAO;
-	}
-
-	public void setCursoDAO( CursoDAO cursoDAO ) {
-		this.cursoDAO = cursoDAO;
-	}
-
-	public void setAlunoSearchParams( AlunoSearchParams alunoSearchParams ) {
-		this.alunoSearchParams = alunoSearchParams;
-	}
-
-	public AlunoSearchParams getAlunoSearchParams() {
-		return alunoSearchParams;
-	}
-
-	public void setDisciplinaDAO(DisciplinaDAO disciplinaDAO) {
-		this.disciplinaDAO = disciplinaDAO;
-	}
-
-	public DisciplinaDAO getDisciplinaDAO() {
-		return disciplinaDAO;
-	}
-
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setDisciplinasLetivas(List<DisciplinaLetiva> disciplinasLetivas) {
-		this.disciplinasLetivas = disciplinasLetivas;
-	}
-
-	public List<DisciplinaLetiva> getDisciplinasLetivas() {
-		return disciplinasLetivas;
-	}
-
-
-
-	public void setSenha2( String senha2 ) {
-		this.senha2 = senha2;
-	}
-
-	public String getSenha2() {
-		return senha2;
-	}
-
-	public void setEmail2( String email2 ) {
-		this.email2 = email2;
-	}
-
-	public String getEmail2() {
-		return email2;
-	}
-
-	public List<StatusMatriculaEnum> getAllStatusMatricula() {
-		return allStatusMatricula;
-	}
-
-	public void setAllStatusMatricula(List<StatusMatriculaEnum> allStatusMatricula) {
-		this.allStatusMatricula = allStatusMatricula;
-	}
-
-	public Integer getIdAluno() {
-		return idAluno;
-	}
-
-	public void setIdAluno(Integer idAluno) {
-		this.idAluno = idAluno;
-	}
-
-	public HorarioDAO getHorarioDAO() {
-		return horarioDAO;
-	}
-
-	public void setHorarioDAO(HorarioDAO horarioDAO) {
-		this.horarioDAO = horarioDAO;
-	}
-
-	public void setTempoDeResposta(String tempoDeResposta) {
-		this.tempoDeResposta = tempoDeResposta;
-	}
-
-	public String getTempoDeResposta() {
-		return tempoDeResposta;
-	}
-
-	public Map<Horario, List<DisciplinaLetiva>> getMapa() {
-		return mapa;
-	}
-
-	public void setMapa(Map<Horario, List<DisciplinaLetiva>> mapa) {
-		this.mapa = mapa;
-	}
-
-
-	
 
 	
 }

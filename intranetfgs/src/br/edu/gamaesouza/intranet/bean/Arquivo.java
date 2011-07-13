@@ -17,6 +17,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.servlet.ServletContext;
 
+import lombok.Data;
+
 import org.apache.struts2.ServletActionContext;
 /**
  * @author Gabriel Cardelli
@@ -27,7 +29,7 @@ import org.apache.struts2.ServletActionContext;
 @NamedQueries(value={
 		@NamedQuery(name="VaziaArquivo",query="FROM Arquivo")
 })
-public class Arquivo implements Serializable {
+public @Data class Arquivo implements Serializable {
 
 	@Transient
 	private static final long serialVersionUID = 1976169200921487085L;
@@ -67,78 +69,7 @@ public class Arquivo implements Serializable {
 	@OneToOne
 	private Professor professor;
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public File getUpload() {
-		return upload;
-	}
-
-	public void setUpload(File upload) {
-		this.upload = upload;
-	}
-
-	public String getUploadFileName() {
-		return uploadFileName;
-	}
-
-	public void setUploadFileName(String uploadFileName) {
-		this.uploadFileName = uploadFileName;
-	}
-
-	public String getUploadContentType() {
-		return uploadContentType;
-	}
-
-	public void setUploadContentType(String uploadContentType) {
-		this.uploadContentType = uploadContentType;
-	}
-
-	public DisciplinaLetiva getDisciplinaLetiva() {
-		return disciplinaLetiva;
-	}
-
-	public void setDisciplinaLetiva(DisciplinaLetiva disciplinaLetiva) {
-		this.disciplinaLetiva = disciplinaLetiva;
-	}
-
-	public Professor getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
-
-	public Calendar getDataEnvio() {
-		return dataEnvio;
-	}
-
-	public void setDataEnvio(Calendar dataEnvio) {
-		this.dataEnvio = dataEnvio;
-	}
-
+	
 	public String getUploadFileSize() {
 	    double BASE = 1024, KB = BASE, MB = KB*BASE, GB = MB*BASE;
 	    DecimalFormat df = new DecimalFormat("#.##");

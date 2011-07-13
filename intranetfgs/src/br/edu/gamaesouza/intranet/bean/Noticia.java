@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
+import lombok.Data;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
@@ -24,7 +26,7 @@ import javax.persistence.Transient;
 @NamedQueries(value={
 		@NamedQuery(name="VaziaNoticia",query="FROM Noticia")
 })
-public class Noticia implements Serializable{
+public @Data class Noticia implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -46,52 +48,6 @@ public class Noticia implements Serializable{
 
 	@Transient
 	private String mensagemComQuebra;
-	
-
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getMensagem() {
-		return mensagem;
-	}
-
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
-	}
-
-	public Calendar getDatahoraPublicacao() {
-		return datahoraPublicacao;
-	}
-
-	public void setDatahoraPublicacao(Calendar datahoraPublicacao) {
-		this.datahoraPublicacao = datahoraPublicacao;
-	}
-
-	public Pessoa getAutor() {
-		return autor;
-	}
-
-	public void setAutor(Pessoa pessoa) {
-		this.autor = pessoa;
-	}
-
-	public void setMensagemComQuebra(String mensagemComQuebra) {
-		this.mensagemComQuebra = mensagemComQuebra;
-	}
 
 	public String getMensagemComQuebra() {
 		String mensagemComBr = mensagem.replaceAll("\n", "<br>");

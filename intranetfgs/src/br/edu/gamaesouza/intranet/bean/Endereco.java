@@ -8,10 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import lombok.Data;
+
 import br.edu.gamaesouza.intranet.utils.PaisEnum;
 
 @Entity
-public class Endereco {
+public @Data class Endereco {
 
 	@Id
 	@GeneratedValue
@@ -35,9 +37,6 @@ public class Endereco {
 	
 	private Boolean sePrincipal;
 
-	public String getRua() {
-		return rua;
-	}
 
 	@Override
 	public String toString() {
@@ -51,122 +50,4 @@ public class Endereco {
 		ps.append(",  " + pais.getName());		
 		return ps.toString();
 	}
-
-	public void setRua(String rua) {
-		this.rua = rua;
-	}
-
-
-	public String getNumero() {
-		return numero;
-	}
-
-
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
-
-	public String getBairro() {
-		return bairro;
-	}
-
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-
-
-	public String getCidade() {
-		return cidade;
-	}
-
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-
-	public String getEstado() {
-		return estado;
-	}
-
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-
-	public PaisEnum getPais() {
-		return pais;
-	}
-
-
-	public void setPais(PaisEnum pais) {
-		this.pais = pais;
-	}
-
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-
-
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
-	public Long getId() {
-		return id;
-	}
-
-
-	public void setSePrincipal(Boolean sePrincipal) {
-		this.sePrincipal = sePrincipal;
-	}
-
-
-	public Boolean getSePrincipal() {
-		return sePrincipal;
-	}
-
-
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
-
-
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-
-	public String getCep() {
-		return cep;
-	}
-	
-	
-	
 }

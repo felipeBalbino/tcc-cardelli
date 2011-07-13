@@ -4,6 +4,8 @@ package br.edu.gamaesouza.intranet.action;
 import java.util.List;
 import java.util.logging.Logger;
 
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.Evento;
@@ -19,7 +21,7 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class EventoAction extends ActionSupport {
+public @Data class EventoAction extends ActionSupport {
 
 	private final Logger logger = Logger.getLogger("br.edu.gamaesouza.intranet.action.EventoAction");
 	
@@ -108,47 +110,5 @@ public class EventoAction extends ActionSupport {
 			return lista();
 
 	}
-
-	// Gets and Sets
-
-	public List<Evento> getEventos() {
-		return eventos;
-	}
-
-	public void setEventos(List<Evento> eventos) {
-		this.eventos = eventos;
-	}
-
-	public EventoAlteraParams getEventoAlteraParams() {
-		return eventoAlteraParams;
-	}
-
-	public void setEventoAlteraParams(EventoAlteraParams eventoAlteraParams) {
-		this.eventoAlteraParams = eventoAlteraParams;
-	}
-
-	public EventoDeletaParams getEventoDeletaParams() {
-		return eventoDeletaParams;
-	}
-
-	public void setEventoDeletaParams(EventoDeletaParams eventoDeletaParams) {
-		this.eventoDeletaParams = eventoDeletaParams;
-	}
-
-	public EventoNovoParams getEventoNovoParams() {
-		return eventoNovoParams;
-	}
-
-	public void setEventoNovoParams(EventoNovoParams eventoNovoParams) {
-		this.eventoNovoParams = eventoNovoParams;
-	}
-
-	public void setTempoDeResposta(String tempoDeResposta) {
-		this.tempoDeResposta = tempoDeResposta;
-	}
-
-	public String getTempoDeResposta() {
-		return tempoDeResposta;
-	}	
 
 }

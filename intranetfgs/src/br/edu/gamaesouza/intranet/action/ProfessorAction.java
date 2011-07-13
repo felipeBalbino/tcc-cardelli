@@ -3,6 +3,8 @@ package br.edu.gamaesouza.intranet.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.edu.gamaesouza.intranet.bean.DisciplinaLetiva;
@@ -11,6 +13,7 @@ import br.edu.gamaesouza.intranet.bean.Professor;
 import br.edu.gamaesouza.intranet.bean.Rule;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
+import br.edu.gamaesouza.intranet.mail.EnviarEmail;
 import br.edu.gamaesouza.intranet.params.impl.ProfessorAlteraParams;
 import br.edu.gamaesouza.intranet.params.impl.ProfessorNovoParams;
 import br.edu.gamaesouza.intranet.security.UserData;
@@ -20,7 +23,7 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ProfessorAction extends ActionSupport {
+public @Data class ProfessorAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 
@@ -42,6 +45,7 @@ public class ProfessorAction extends ActionSupport {
 
 	@Autowired private PessoaDAO pessoaDAO;
 	@Autowired private DisciplinaDAO disciplinaDAO;
+	@Autowired private EnviarEmail enviarEmail;
 
 	private String tempoDeResposta;
 	
@@ -93,6 +97,33 @@ public class ProfessorAction extends ActionSupport {
 				
 
 	}
+	
+	public String gerarNovaSenha(){
+		try {
+			
+			Pessoa pessoa = pessoaDAO.getPessoaById(professor.getId());
+			
+			//Gerando o password e enviando por Email
+			String randomPass = FormUtil.getRandomPass();
+			pessoa.setSenha(randomPass);
+			enviarEmail.sendEmailWithLoginAndPassword(pessoa);
+			
+
+			//Encriptando, salvando em pessoa e dando merge
+			pessoa.setSenha(FormUtil.encripta(randomPass));
+			pessoaDAO.merge(pessoa);
+							
+			addActionMessage("login e sua senha foram enviados para o e-mail "+pessoa.getEmail());
+		}catch(IntranetException e){
+			addActionError("Ocorreu um erro interno no Servidor. Um e-mail foi enviado ao administrador reportando o erro.");
+		}catch(Exception e){
+			addActionError("E-mail não confere com nenhum email cadastrado em nosso base.");
+			return "recuperar";
+		}
+		
+		return lista();
+	}
+
 	
 	public String editar() {
 		UserData.grantAccess(RULE_PROFESSOR_ALTERA);
@@ -165,76 +196,5 @@ public class ProfessorAction extends ActionSupport {
 		return "modificarProfessor";
 	}
 
-	public Professor getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
-
-	public List<Professor> getProfessores() {
-		return professores;
-	}
-
-	public void setProfessores(List<Professor> professores) {
-		this.professores = professores;
-	}
-
-	public List<Rule> getRules() {
-		return rules;
-	}
-
-	public void setRules(List<Rule> rules) {
-		this.rules = rules;
-	}
-
-	public List<Rule> getAllRules() {
-		return allRules;
-	}
-
-	public void setAllRules(List<Rule> allRules) {
-		this.allRules = allRules;
-	}
-
-	public List<String> getRulesParam() {
-		return rulesParam;
-	}
-
-	public void setRulesParam(List<String> paramRules) {
-		this.rulesParam = paramRules;
-	}
-
-	public ProfessorNovoParams getProfessorNovoParams() {
-		return professorNovoParams;
-	}
-
-	public void setProfessorNovoParams(ProfessorNovoParams professorNovoParams) {
-		this.professorNovoParams = professorNovoParams;
-	}
-
-	public void setDisciplinaDAO( DisciplinaDAO disciplinaDAO ) {
-		this.disciplinaDAO = disciplinaDAO;
-	}
-
-	public DisciplinaDAO getDisciplinaDAO() {
-		return disciplinaDAO;
-	}	
-
 	
-	public ProfessorAlteraParams getProfessorAlteraParams() {
-		return professorAlteraParams;
-	}
-
-	public void setProfessorAlteraParams( ProfessorAlteraParams professorAlteraParams ) {
-		this.professorAlteraParams = professorAlteraParams;
-	}
-
-	public void setTempoDeResposta(String tempoDeResposta) {
-		this.tempoDeResposta = tempoDeResposta;
-	}
-
-	public String getTempoDeResposta() {
-		return tempoDeResposta;
-	}
 }

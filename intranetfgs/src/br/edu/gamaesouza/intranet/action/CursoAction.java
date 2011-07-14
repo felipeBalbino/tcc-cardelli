@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.java.Log;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,41 +31,42 @@ import br.edu.gamaesouza.intranet.utils.IntranetException;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public @Data class CursoAction extends ActionSupport {
+@Log
+public class CursoAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
-	private static final String MSG_CURSO_NOVO_FAILURE = "Ocorreu um erro interno no servidor. N�o foi poss�vel cadastrar o curso.";
+	
+	private static final String MSG_CURSO_NOVO_FAILURE = "Ocorreu um erro interno no servidor. Não foi possível cadastrar o curso.";
 	private static final String MSG_CURSO_DELETA_SUCESSO = "Curso deletado com sucesso!";
-	private static final String MSG_CURSO_DELETA_INSUCESSO = "Ocorreu um erro interno no servidor. N�o foi poss�vel deletar o curso.";
-	private static final String MSG_CURSO_ALTERA_FAILURE = "Ocorreu um erro interno no servidor. N�o foi poss�vel alterar o curso.";
+	private static final String MSG_CURSO_DELETA_INSUCESSO = "Ocorreu um erro interno no servidor. Não foi possível deletar o curso.";
+	private static final String MSG_CURSO_ALTERA_FAILURE = "Ocorreu um erro interno no servidor. Não foi possível alterar o curso.";
 
 	private static final String RULE_CURSO_NOVO = "RULE_CURSO_NOVO";
 	private static final String RULE_CURSO_LISTA = "RULE_CURSO_LISTA";
 	private static final String RULE_CURSO_DELETA = "RULE_CURSO_DELETA";
 	private static final String RULE_CURSO_ALTERA = "RULE_CURSO_ALTERA";
-
+	
 	private static final String RETURN_CURSO_NOVO = "adicionarCurso";
 	private static final String RETURN_CURSO_LISTA = "cursos";
 	
-	private List<Curso> cursos = new ArrayList<Curso>();	
-	private List<Disciplina> allDisciplinas = new ArrayList<Disciplina>();
-	private List<String> disciplinasParam = new ArrayList<String>();
+	@Getter @Setter private List<Curso> cursos = new ArrayList<Curso>();	
+	@Getter @Setter private List<Disciplina> allDisciplinas = new ArrayList<Disciplina>();
+	@Getter @Setter private List<String> disciplinasParam = new ArrayList<String>();
+	@Getter @Setter private String tempoDeResposta;
 	
-	@Autowired private CursoSearchParams cursoSearchParams;
-	@Autowired private CursoNovoParams cursoNovoParams;
-	@Autowired private CursoAlteraParams cursoAlteraParams;
-	@Autowired private CursoDeletaParams cursoDeletaParams;
-	@Autowired private CursoDAO cursoDAO;
-	@Autowired private DisciplinaDAO disciplinaDAO;
-	@Autowired private PessoaDAO pessoaDAO;
+	@Getter @Setter @Autowired private CursoSearchParams cursoSearchParams;
+	@Getter @Setter @Autowired private CursoNovoParams cursoNovoParams;
+	@Getter @Setter @Autowired private CursoAlteraParams cursoAlteraParams;
+	@Getter @Setter @Autowired private CursoDeletaParams cursoDeletaParams;
+	@Getter @Setter @Autowired private CursoDAO cursoDAO;
+	@Getter @Setter @Autowired private DisciplinaDAO disciplinaDAO;
+	@Getter @Setter @Autowired private PessoaDAO pessoaDAO;
 
-	private String tempoDeResposta;
-	
 	public String execute(){
 		try {	
 			allDisciplinas = disciplinaDAO.getAllDisciplinas();
 		} catch (IntranetException e) {
-			// TODO Falta Implementar
+			log.warning("Erro no método execute na classe CursoAction");
 		}
 		return RETURN_CURSO_NOVO;
 	}
@@ -72,7 +76,7 @@ public @Data class CursoAction extends ActionSupport {
 		UserData.grantAccess(RULE_CURSO_NOVO);	
 			try {
 				if(cursoDAO.getCursoByNome(cursoNovoParams.getNomeCurso())!= null){
-					addActionError("j� existe um curso cadastrado com o mesmo nome em nossa base.");
+					addActionError("já existe um curso cadastrado com o mesmo nome em nossa base.");
 				}
 				else if(cursoNovoParams.getNomeCurso().equals("") || cursoNovoParams.getCargaHorariaComplementar() == null) {
 					if(cursoNovoParams.getNomeCurso().equals(""))
@@ -85,9 +89,9 @@ public @Data class CursoAction extends ActionSupport {
 				addActionMessage(" Curso " + cursoNovoParams.getNomeCurso() + " cadastrado com sucesso em "+sdf.format(Calendar.getInstance().getTime()));
 				}
 			} catch (IntranetException e) {
+				log.warning("Erro no método 'Novo' Curso na classe CursoAction");
 				addActionError(MSG_CURSO_NOVO_FAILURE);
 			}
-		
 		return execute();
 
 	}
@@ -97,7 +101,7 @@ public @Data class CursoAction extends ActionSupport {
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			try {
 				if(cursoDAO.getCursoByNome(cursoNovoParams.getNomeCurso())!= null){
-					addActionError("j� existe um curso cadastrado com o mesmo nome em nossa base.");
+					addActionError("já existe um curso cadastrado com o mesmo nome em nossa base.");
 				}
 				else if(cursoAlteraParams.getNomeCurso().equals("") || cursoAlteraParams.getCargaHorariaComplementar() == null) {
 							if(cursoAlteraParams.getNomeCurso().equals(""))
@@ -110,23 +114,23 @@ public @Data class CursoAction extends ActionSupport {
 					addActionMessage(" Curso " + cursoAlteraParams.getNomeCurso() + " alterado com sucesso em "+sdf.format(Calendar.getInstance().getTime()));
 				}
 			} catch (IntranetException e) {
+				log.warning("Erro no método 'altera' Curso na classe CursoAction");
 				addActionError(MSG_CURSO_ALTERA_FAILURE);
 			}
-		
 		return lista();
 	}
 
 	public String lista() {
 		UserData.grantAccess(RULE_CURSO_LISTA);
- 
 			try{
 				 long inicio = System.currentTimeMillis();  
-				 cursos = cursoDAO.getAllByParams(cursoSearchParams);
-				 allDisciplinas = disciplinaDAO.getAllDisciplinas();
+					 cursos = cursoDAO.getAllByParams(cursoSearchParams);
+					 allDisciplinas = disciplinaDAO.getAllDisciplinas();
 				 long  end = System.currentTimeMillis();  
 				 setTempoDeResposta(FormUtil.tempoResposta(cursos, inicio, end)); 
 				return RETURN_CURSO_LISTA;
 			}catch(IntranetException e){	
+				log.warning("Erro no método 'Lista' Curso na classe CursoAction");
 				return RETURN_CURSO_LISTA;
 			}
 	}
@@ -141,15 +145,16 @@ public @Data class CursoAction extends ActionSupport {
 				cursoDAO.delete(curso);
 				addActionMessage(MSG_CURSO_DELETA_SUCESSO);
 			}else{
-				addActionError("N�o foi poss�vel deletar este curso, "+alunos.size()+" aluno(s) esta(�o) cadastrado(s) nele.");
+				addActionError("Não foi possível deletar este curso, "+alunos.size()+" aluno(s) esta(ão) cadastrado(s) nele.");
 				for(Aluno aluno : alunos) {
 					addActionError("Nome: "+aluno.getNome()+
-							" - Matr�cula: "+aluno.getMatricula()+
+							" - Matrícula: "+aluno.getMatricula()+
 							" - Email: "+aluno.getEmail());
 				}
 			}
 			
 		} catch (IntranetException e) {
+			log.warning("Erro no método 'Delete' Curso na classe CursoAction");
 			addActionError(MSG_CURSO_DELETA_INSUCESSO);
 		}
 	

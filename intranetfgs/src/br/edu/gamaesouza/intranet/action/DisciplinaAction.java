@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,7 +24,7 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public @Data class DisciplinaAction extends ActionSupport{
+public class DisciplinaAction extends ActionSupport{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -33,25 +35,22 @@ public @Data class DisciplinaAction extends ActionSupport{
 	private static final String RULE_DISCIPLINA_DELETE = "RULE_DISCIPLINA_DELETE";
 
 	
-	private List<Curso> cursos;
-	private List<Curso> allCursos;
-	private List<String> cursosParam = new ArrayList<String>();
-	private Integer[]   checkBoxSelecionados;
+	@Getter @Setter private String tempoDeResposta;
+	@Getter @Setter private List<Curso> cursos;
+	@Getter @Setter private List<Curso> allCursos;
+	@Getter @Setter private List<String> cursosParam = new ArrayList<String>();
+	@Getter @Setter private Integer[]   checkBoxSelecionados;
+	@Getter @Setter private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	
-	@Autowired private Disciplina disciplina;
+	@Getter @Setter @Autowired private Disciplina disciplina;
+	@Getter @Setter @Autowired private DisciplinaSearchParams disciplinaSearchParams;
+	@Getter @Setter @Autowired private Curso curso;
+	@Getter @Setter @Autowired private CursoDAO cursoDAO;
+	@Getter @Setter @Autowired private DisciplinaDAO disciplinaDAO;
+	@Getter @Setter @Autowired private DisciplinaDeletaParams disciplinaDeletaParams;
+	@Getter @Setter @Autowired private DisciplinaAlteraParams disciplinaAlteraParams;
 	
-	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
-	
-	@Autowired private DisciplinaSearchParams disciplinaSearchParams;
-	
-	@Autowired private Curso curso;
-	@Autowired private CursoDAO cursoDAO;
-	@Autowired private DisciplinaDAO disciplinaDAO;
-	@Autowired private DisciplinaDeletaParams disciplinaDeletaParams;
-	@Autowired private DisciplinaAlteraParams disciplinaAlteraParams;
-	
-	private String tempoDeResposta;
-	
+
 	public String alterar() {
 		UserData.grantAccess(RULE_DISCIPLINA_ALTERA);
 				

@@ -1,15 +1,22 @@
 package br.edu.gamaesouza.intranet.utils;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import java.util.Random;
+
+import lombok.extern.java.Log;
 
 import sun.misc.BASE64Encoder;
 
+@Log
 public class FormUtil {
 	public static List<Integer> getSemestresList(){
 		List<Integer> semestres = new ArrayList<Integer>();
@@ -27,10 +34,26 @@ public class FormUtil {
 		return turnos;
 	}
 	
+
+	public static String getStringsInternacionalizadas(String key,String locale){
+		Properties properties = null;
+		try {
+		if(locale.equals("pt")){
+				properties = InternacionalizacaoUtil.getBr();
+			}else{
+				properties = InternacionalizacaoUtil.getEn();
+			}
+		} catch (IOException e) {
+			log.warning("Erro ao efetuar a tradução desta palavra");
+			e.printStackTrace();
+		}
+		return properties.getProperty(key);
+	}
+	
 	public static List<String> getDiasSemana(){
 		List<String> dias = new ArrayList<String>();
 		dias.add("SEGUNDA");
-		dias.add("TER�A");
+		dias.add("TERÇA");
 		dias.add("QUARTA");
 		dias.add("QUINTA");
 		dias.add("SEXTA");

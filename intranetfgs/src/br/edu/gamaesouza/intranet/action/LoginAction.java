@@ -1,16 +1,15 @@
 package br.edu.gamaesouza.intranet.action;
 
-import java.io.UnsupportedEncodingException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.java.Log;
 
-import javax.mail.MessagingException;
-
-import lombok.Data;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import br.edu.gamaesouza.intranet.bean.Aluno;
 import br.edu.gamaesouza.intranet.bean.AreaProfissional;
 import br.edu.gamaesouza.intranet.bean.Curso;
@@ -20,7 +19,6 @@ import br.edu.gamaesouza.intranet.dao.CursoDAO;
 import br.edu.gamaesouza.intranet.dao.PessoaDAO;
 import br.edu.gamaesouza.intranet.mail.EnviarEmail;
 import br.edu.gamaesouza.intranet.params.impl.AlunoNovoParams;
-import br.edu.gamaesouza.intranet.params.impl.EventoAlteraParams;
 import br.edu.gamaesouza.intranet.utils.FormUtil;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 import br.edu.gamaesouza.intranet.utils.SpringUtil;
@@ -28,48 +26,47 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public @Data class LoginAction extends ActionSupport {
+@Log
+public class LoginAction extends ActionSupport {
 	
 	private static final String MSG_LOGIN_DADOS_INVALIDOS = "Dados inválidos, email ou senha atual não conferem.";
 	private static final String MSG_REGISTRO_SUCESSO = "Registrado com sucesso, insira seu login e senha registrados anteriormente.";
 	private static final String MSG_ALTERA_SENHA_SUCESSO = "Senha editada com sucesso.";
 	private static final String MSG_ERRO = "Ocorreu um erro não esperado, retorne para página anteriormente e tente novamente. Se o mesmo erro persistir entre em contato com os administradores.";
 	
-	
 	private static final long serialVersionUID = 1L;
 	
-	private Aluno aluno;
+	@Getter @Setter private String lingua; 
 	
+	@Getter @Setter private Aluno aluno;	
+	@Getter @Setter private String login;
+	@Getter @Setter private String senha;
+	@Getter @Setter private String email;
+	@Getter @Setter private String novaSenha;
+	@Getter @Setter private String senhaAtual;
+	@Getter @Setter private Pessoa pessoa; 
+	@Getter @Setter private List<Curso> cursos = new ArrayList<Curso>();
+	@Getter @Setter private List<AreaProfissional> areas;
 	
-	private String login;
-	private String senha;
-	private String email;
-	private String novaSenha;
-	private String senhaAtual;
-	
-	private Pessoa pessoa; 
-	private List<Curso> cursos = new ArrayList<Curso>();
-	private List<AreaProfissional> areas;
-	
-	@Autowired private AlunoNovoParams alunoNovoParams;
-	@Autowired private PessoaDAO pessoaDAO;
-	@Autowired private CursoDAO cursoDAO;
-	@Autowired private EnviarEmail enviarEmail;
-	@Autowired private AreaProfissionalDAO areaProfissionalDAO;
+	@Getter @Setter @Autowired private AlunoNovoParams alunoNovoParams;
+	@Getter @Setter @Autowired private PessoaDAO pessoaDAO;
+	@Getter @Setter @Autowired private CursoDAO cursoDAO;
+	@Getter @Setter @Autowired private EnviarEmail enviarEmail;
+	@Getter @Setter @Autowired private AreaProfissionalDAO areaProfissionalDAO;
 
 	public String prepare(){
 		try {
 			setCursos( cursoDAO.getAllCursos() );
 			setAreas(areaProfissionalDAO.getAll());
 		} catch ( IntranetException e ) {
+			log.warning("Erro no método prepare em LoginAction");
 			addActionMessage(e.getMessage());
 		}
 		return "register";
 		
 		
 	}
-		public String in() {
-
+	public String in() {
 			Pessoa pessoa = null;
 			try {
 				pessoa = pessoaDAO.getPessoa(login, senha);
@@ -86,12 +83,11 @@ public @Data class LoginAction extends ActionSupport {
 				return "logged";
 			}
 
-		}
+	}
 		
-		public String registrar() {			
+	public String registrar() {			
 			try {				
 				boolean error = false;
-				
 				
 				if(pessoaDAO.validarLogin(alunoNovoParams.getLogin())){
 					error=true;

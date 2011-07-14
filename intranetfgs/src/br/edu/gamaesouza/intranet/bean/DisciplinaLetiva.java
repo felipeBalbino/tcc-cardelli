@@ -16,7 +16,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author Gabriel Cardelli
@@ -32,36 +36,46 @@ import lombok.Data;
 })
 
 
-public @Data class DisciplinaLetiva implements Serializable {
+public class DisciplinaLetiva implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
+	@Getter @Setter
 	private Integer id;
 	
-	@Column(nullable = false)
+	@Getter @Setter
+	@NotEmpty
 	private Integer ano;
 	
-	@Column(nullable = false)
+	@Getter @Setter
+	@NotEmpty
 	private Integer semestre;
 
-	@Column(nullable = false)
+	@Getter @Setter
+	@NotEmpty
 	private String turno;
 	
-	@Column(nullable = false)
+	@Getter @Setter
 	private String sala;
 	
 	@ManyToMany
+	@Getter @Setter
 	private List<Aluno> aluno;
 	
 	@ManyToMany(targetEntity=DisciplinaLetivaHorario.class)
+	@Getter @Setter
 	private List<Horario> horarios;
 	
 	@OneToOne
+	@Getter @Setter
+	@NotEmpty
 	private Professor professor;
 	
 	@OneToOne
+	@Getter @Setter
+	@NotEmpty
 	private Disciplina disciplina;
 	
 

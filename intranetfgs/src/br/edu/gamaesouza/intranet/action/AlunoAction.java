@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.java.Log;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,8 +35,10 @@ import br.edu.gamaesouza.intranet.utils.StatusMatriculaEnum;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public @Data class AlunoAction extends ActionSupport {
+@Log
+public class AlunoAction extends ActionSupport {
 	
+	private static final long serialVersionUID = 1L;
 
 	private static final String MSG_REGISTRO_SUCESSO = "Registrado com sucesso.";
 	private static final String MSG_EDITADO_SUCESSO  = "Editado com sucesso";
@@ -43,33 +48,25 @@ public @Data class AlunoAction extends ActionSupport {
 	private static final String RULE_ALUNOS_SAVE   = "RULE_ALUNOS_SAVE";
 	private static final String RULE_ALUNOS_ALTERA = "RULE_ALUNOS_ALTERA";
 
-	private Integer id;
-	private Integer idAluno;
+	@Getter @Setter private Integer id;
+	@Getter @Setter private Integer idAluno;
+	@Getter @Setter private String email2;
+	@Getter @Setter private String senha2;
+	@Getter @Setter private String tempoDeResposta;
+	@Getter @Setter Map<Horario,List<DisciplinaLetiva>> mapa;
+	@Getter @Setter private List<StatusMatriculaEnum> allStatusMatricula = new ArrayList<StatusMatriculaEnum>();
+	@Getter @Setter private List<Aluno> alunos= new ArrayList<Aluno>();
+	@Getter @Setter private List<Curso> cursos = new ArrayList<Curso>();
+	@Getter @Setter private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
 	
-	private String email2;
-	private String senha2;
-	
-	private static final long serialVersionUID = 1L;
-	
-	List<StatusMatriculaEnum> allStatusMatricula = new ArrayList<StatusMatriculaEnum>();
-	private List<Aluno> alunos= new ArrayList<Aluno>();
-	private List<Curso> cursos = new ArrayList<Curso>();
-	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
-	
-
-	@Autowired private AlunoNovoParams alunoNovoParams ;
-	@Autowired private AlunoAlteraParams alunoAlteraParams ;
-	@Autowired private AlunoSearchParams alunoSearchParams;
-	@Autowired private PessoaDAO pessoaDAO;	
-	@Autowired private CursoDAO cursoDAO;
-	@Autowired private HorarioDAO horarioDAO;
-	@Autowired private DisciplinaDAO disciplinaDAO;
-	@Autowired private EnviarEmail enviarEmail;
-	
-	private String tempoDeResposta;
-	
-	Map<Horario,List<DisciplinaLetiva>> mapa;
-
+	@Getter @Setter @Autowired private AlunoNovoParams alunoNovoParams ;
+	@Getter @Setter @Autowired private AlunoAlteraParams alunoAlteraParams ;
+	@Getter @Setter @Autowired private AlunoSearchParams alunoSearchParams;
+	@Getter @Setter @Autowired private PessoaDAO pessoaDAO;	
+	@Getter @Setter @Autowired private CursoDAO cursoDAO;
+	@Getter @Setter @Autowired private HorarioDAO horarioDAO;
+	@Getter @Setter @Autowired private DisciplinaDAO disciplinaDAO;
+	@Getter @Setter @Autowired private EnviarEmail enviarEmail;
 
 	public String prepare(){
 		try {
@@ -91,7 +88,7 @@ public @Data class AlunoAction extends ActionSupport {
 				addActionError("Aluno: "+pessoa.getNome()+ " - " + "Email: "+pessoa.getEmail()+" - " + "Matricula: "+pessoa.getMatricula());					
 			}
 		} catch (IntranetException e) {
-			// TODO Auto-generated catch block
+			log.warning("Erro ao validar matricula.");
 			e.printStackTrace();
 		}
 		return prepare();	
@@ -103,18 +100,18 @@ public @Data class AlunoAction extends ActionSupport {
 			
 			Pessoa pessoa = pessoaDAO.getPessoaById(idAluno);
 			
-			//Gerando o password e enviando por Email
+			log.info("Gerando o password e enviando por Email.");
 			String randomPass = FormUtil.getRandomPass();
 			pessoa.setSenha(randomPass);
 			enviarEmail.sendEmailWithLoginAndPassword(pessoa);
 			
-
-			//Encriptando, salvando em pessoa e dando merge
+			log.info("Encriptando, salvando em pessoa e dando merge.");
 			pessoa.setSenha(FormUtil.encripta(randomPass));
 			pessoaDAO.merge(pessoa);
 							
-			addActionMessage("login e sua senha foram enviados para o e-mail "+pessoa.getEmail());
+			addActionMessage("login e senha foram enviados para o e-mail "+pessoa.getEmail());
 		}catch(IntranetException e){
+			log.warning("Ocorreu um erro interno no Servidor. Um e-mail foi enviado ao administrador reportando o erro.");
 			addActionError("Ocorreu um erro interno no Servidor. Um e-mail foi enviado ao administrador reportando o erro.");
 		}catch(Exception e){
 			addActionError("E-mail não confere com nenhum email cadastrado em nosso base.");
@@ -134,7 +131,9 @@ public @Data class AlunoAction extends ActionSupport {
 			long  end = System.currentTimeMillis();  
 			setTempoDeResposta(FormUtil.tempoResposta(getAlunos(), inicio, end)); 
 			//alunoSearchParams = new AlunoSearchParams();
+			log.info("Listando todos os alunos em "+ tempoDeResposta);
 		} catch (IntranetException e) {
+			log.warning("Erro ao listar alunos");
 			addActionMessage(e.getMessage());
 		}
 		return "listAlunos";
@@ -145,8 +144,9 @@ public @Data class AlunoAction extends ActionSupport {
 		try {
 				pessoaDAO.merge(alunoAlteraParams.getAluno());
 				addActionMessage(MSG_EDITADO_SUCESSO);
-			
+				log.info("Aluno "+ alunoAlteraParams.getNome() +" Alterado com sucesso");
 		} catch (IntranetException e) {
+			log.warning("Erro ao editar aluno");
 			addActionMessage(e.getMessage());
 		}
 		return lista();
@@ -157,6 +157,7 @@ public @Data class AlunoAction extends ActionSupport {
 			disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
 			disciplinasLetivas = disciplinaDAO.getDisciplinaLetivaByUser(id);
 		} catch (IntranetException e) {
+			log.warning("Erro na grade do aluno");
 			addActionMessage(e.getMessage());
 		}
 		return "grade";
@@ -178,6 +179,7 @@ public @Data class AlunoAction extends ActionSupport {
 				addActionError("Delete primeiro suas disciplinas clicando no icone D.");
 			}
 		} catch (IntranetException e) {
+			log.warning("Erro ao deletar aluno");
 			addActionMessage(e.getMessage());
 		}
 		return lista();
@@ -188,7 +190,8 @@ public @Data class AlunoAction extends ActionSupport {
 		return "grade";
 	
 	}
-		
+	
+	
 	public String registrar() {	
 			UserData.grantAccess(RULE_ALUNOS_SAVE);
 			try {
@@ -224,8 +227,10 @@ public @Data class AlunoAction extends ActionSupport {
 				if(error == false){
 					pessoaDAO.saveAluno(alunoNovoParams.getAluno());
 					addActionMessage(MSG_REGISTRO_SUCESSO);
+					
 				}
 			} catch (IntranetException e) {
+				log.warning("Erro ao registrar aluno");
 				addActionMessage(e.getMessage());
 			}
 			return prepare();

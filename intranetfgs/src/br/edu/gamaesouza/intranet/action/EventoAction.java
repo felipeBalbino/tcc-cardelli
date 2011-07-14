@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,7 +23,7 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public @Data class EventoAction extends ActionSupport {
+public class EventoAction extends ActionSupport {
 
 	private final Logger logger = Logger.getLogger("br.edu.gamaesouza.intranet.action.EventoAction");
 	
@@ -41,14 +43,15 @@ public @Data class EventoAction extends ActionSupport {
 
 	private static final String RETURN_EVENTO_LISTA = "modificarEvento";
 
-	private List<Evento> eventos;
+	@Getter @Setter private List<Evento> eventos;
+	@Getter @Setter private String tempoDeResposta;
+	
+	@Getter @Setter @Autowired private EventoDAO eventoDAO;
+	@Getter @Setter @Autowired private EventoAlteraParams eventoAlteraParams;
+	@Getter @Setter @Autowired private EventoDeletaParams eventoDeletaParams;
+	@Getter @Setter @Autowired private EventoNovoParams   eventoNovoParams;
 
-	@Autowired private EventoDAO eventoDAO;
-	@Autowired private EventoAlteraParams eventoAlteraParams;
-	@Autowired private EventoDeletaParams eventoDeletaParams;
-	@Autowired private EventoNovoParams   eventoNovoParams;
-
-	private String tempoDeResposta;
+	
 	public String lista() {
 		
 		UserData.grantAccess(RULE_EVENTO_LISTA);

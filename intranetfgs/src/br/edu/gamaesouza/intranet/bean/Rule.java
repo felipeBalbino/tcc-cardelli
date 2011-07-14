@@ -9,7 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
@@ -20,13 +24,16 @@ import lombok.Data;
 @NamedQueries(value={
 		@NamedQuery(name="VaziaRule",query="FROM Rule")
 })
-public @Data class Rule implements Serializable{
+public class Rule implements Serializable{
 	
 	@Id
 	@GeneratedValue
+	@Getter @Setter
 	private Integer id;
 	
-	@Column(nullable=false,unique=true)
+	@Column(unique=true)
+	@Getter @Setter
+	@NotEmpty
 	private String nome;	
 	
 }

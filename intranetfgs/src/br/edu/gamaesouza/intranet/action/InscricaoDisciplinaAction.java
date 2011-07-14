@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import br.edu.gamaesouza.intranet.dao.DisciplinaDAO;
@@ -28,25 +30,25 @@ public @Data class InscricaoDisciplinaAction extends ActionSupport{
 	private static final String MSG_DELETA_SUCESSO = "Inscri��o deletada com sucesso.";
 	private static final String MSG_NENHUMA_DISCIPLINA = "Voc� n�o tem nenhuma disciplina cadastrada.";
 	
-	@Autowired private DisciplinaDAO disciplinaDAO;
-	@Autowired private PessoaDAO pessoaDAO;	
-	@Autowired private DisciplinaLetivaSearchParams disciplinaLetivaSearchParams;
-	@Autowired private DisciplinaLetivaInscricaoSearchParams disciplinaLetivaInscricaoSearchParams;
+	@Getter @Setter @Autowired private DisciplinaDAO disciplinaDAO;
+	@Getter @Setter @Autowired private PessoaDAO pessoaDAO;	
+	@Getter @Setter @Autowired private DisciplinaLetivaSearchParams disciplinaLetivaSearchParams;
+	@Getter @Setter @Autowired private DisciplinaLetivaInscricaoSearchParams disciplinaLetivaInscricaoSearchParams;
 
 
-	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
-	private List<DisciplinaLetiva> disciplinasLetivasCadastradas = new ArrayList<DisciplinaLetiva>();
+	@Getter @Setter private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
+	@Getter @Setter private List<DisciplinaLetiva> disciplinasLetivasCadastradas = new ArrayList<DisciplinaLetiva>();
 	
-	private DisciplinaLetiva disciplinaLetivaCadastrada;
-	private Integer ano =  Calendar.getInstance().get(Calendar.YEAR);
-	private List<Integer> semestres = new ArrayList<Integer>();
-	private List<String> turnos = new ArrayList<String>();
-	private Pessoa pessoa = new Pessoa();
+	@Getter @Setter private DisciplinaLetiva disciplinaLetivaCadastrada;
+	@Getter @Setter private Integer ano =  Calendar.getInstance().get(Calendar.YEAR);
+	@Getter @Setter private List<Integer> semestres = new ArrayList<Integer>();
+	@Getter @Setter private List<String> turnos = new ArrayList<String>();
+	@Getter @Setter private Pessoa pessoa = new Pessoa();
 	
-	private Integer idAluno;
-	private Integer semestre;
-	private Integer disciplinaLetiva;
-	private String turno;
+	@Getter @Setter private Integer idAluno;
+	@Getter @Setter private Integer semestre;
+	@Getter @Setter private Integer disciplinaLetiva;
+	@Getter @Setter private String turno;
 	
 	
 	public String buscarDisciplinas(){

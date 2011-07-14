@@ -15,8 +15,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
@@ -26,36 +31,40 @@ import lombok.Data;
 @NamedQueries(value={
 		@NamedQuery(name="VaziaNoticia",query="FROM Noticia")
 })
-public @Data class Noticia implements Serializable{
+public class Noticia implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
+	@Getter @Setter
 	private Integer id;
 	
-	@Column(length=1024,nullable = false)
+	@Getter @Setter
+	@NotEmpty @Size(min=10, max=1024)
 	private String title;
 	
-	@Column(length=5000)
+	@Getter @Setter
+	@NotEmpty
+	@Size(min=10, max=5000)
 	private String mensagem;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@Getter @Setter
+	@NotEmpty
 	private Calendar datahoraPublicacao;
 	
 	@OneToOne
+	@Getter @Setter
+	@NotEmpty
 	private Pessoa autor;
 
 	@Transient
+	@Setter
 	private String mensagemComQuebra;
 
 	public String getMensagemComQuebra() {
 		String mensagemComBr = mensagem.replaceAll("\n", "<br>");
 		return mensagemComBr;
-	}
-	
-	
-	
-	
-	
+	}	
 }

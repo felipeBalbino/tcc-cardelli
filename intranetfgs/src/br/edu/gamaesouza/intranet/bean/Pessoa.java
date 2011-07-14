@@ -6,8 +6,17 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
@@ -22,31 +31,42 @@ import lombok.Data;
 		@NamedQuery(name="pessoaByEmail",query="FROM Pessoa WHERE email = :email"),
 		@NamedQuery(name="pessoaByAreaProfissional",query="SELECT dl FROM Pessoa dl left join fetch dl.areasProfissionais area WHERE area.id = :area")
 })
-public @Data class Pessoa implements Serializable {
+public class Pessoa implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
+	@Getter
 	private Integer id;	
 	
-
+	@Getter @Setter
+	@NotEmpty
 	private String nome;
 	
 	@Column(unique = true, nullable = false, length=8)
+	@Getter @Setter
+	@NotEmpty 
 	private String login;
 	
 	@Column(unique = true)
+	@Getter @Setter
 	private Integer matricula;
 
+	@Getter @Setter
+	@NotEmpty
 	private String senha;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@Setter
 	private Calendar dataUltimoAcesso;
 	
 	@Column(unique = true, nullable = false)
+	@Getter @Setter
+	@Email @NotEmpty
 	private String email;
 	
+	@Getter @Setter
 	@ManyToMany(targetEntity=Rule.class) 
 	  @JoinTable (
 	      name="pessoa_rule",
@@ -55,12 +75,15 @@ public @Data class Pessoa implements Serializable {
 	private List<Rule> regras ;
 	
 	@ManyToMany
+	@Getter @Setter
 	private List<AreaProfissional> areasProfissionais;
 
 	@OneToOne
+	@Getter @Setter
 	private Endereco endereco;
 	
 	@OneToMany(mappedBy="pessoa")
+	@Getter @Setter
 	private List<Telefone> telefones;
 	
 	

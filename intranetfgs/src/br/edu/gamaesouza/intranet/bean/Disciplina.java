@@ -13,7 +13,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
@@ -23,19 +27,23 @@ import lombok.Data;
 @NamedQueries(value={
 		@NamedQuery(name="VaziaDisciplina",query="FROM Disciplina")
 })
-public @Data class Disciplina implements Serializable {
+public class Disciplina implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
+	@Getter @Setter
 	private Integer id;
 
 	@Column
+	@Getter @Setter
+	@NotEmpty
 	private String nome;
 
 
     @ManyToMany(mappedBy="disciplinas")
+    @Getter @Setter
 	public List<Curso> cursos;
 	
 	@Override

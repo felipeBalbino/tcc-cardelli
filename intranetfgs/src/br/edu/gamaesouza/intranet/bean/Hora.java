@@ -9,17 +9,21 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED) 
 @NamedQuery(name="horasByAlunoAndIdHora",query="SELECT comp FROM Hora comp where comp.aluno.id = :aluno AND comp.id = :hora")
-public @Data class Hora {
+public class Hora {
 
 	@Id
 	@GeneratedValue
+	@Getter @Setter
 	private Integer id;
 	
 	@OneToOne
+	@Getter @Setter
 	private Aluno aluno;
 	
 }

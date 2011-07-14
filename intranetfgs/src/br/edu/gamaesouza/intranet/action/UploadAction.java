@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import br.edu.gamaesouza.intranet.bean.Arquivo;
@@ -26,7 +28,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.conversion.annotations.Conversion;
 
 @Conversion
-public @Data class UploadAction extends ActionSupport {
+public class UploadAction extends ActionSupport {
 	
 	private static final long serialVersionUID = -8803364095951231024L;
 	private static final String RULE_UPLOAD_NOVO = "RULE_UPLOAD_NOVO";
@@ -34,24 +36,24 @@ public @Data class UploadAction extends ActionSupport {
 	private static final String RULE_UPLOAD_DELETA = "RULE_UPLOAD_DELETA";
 	
 	
-	private Integer materia;
-	private Integer semestre;
-	private Integer idarquivo;
-	private Integer ano =  Calendar.getInstance().get(Calendar.YEAR);
-	private Integer id;
-	private String turno;
+	@Getter @Setter private Integer materia;
+	@Getter @Setter private Integer semestre;
+	@Getter @Setter private Integer idarquivo;
+	@Getter @Setter private Integer ano =  Calendar.getInstance().get(Calendar.YEAR);
+	@Getter @Setter private Integer id;
+	@Getter @Setter private String turno;
 	
-	private List<Arquivo> arquivos;
-	private List<Disciplina> disciplinas;
-	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
-	private List<Integer> anos  = new ArrayList<Integer>();
-	private List<Integer> semestres = new ArrayList<Integer>();
-	private List<String> turnos = new ArrayList<String>();
+	@Getter @Setter private List<Arquivo> arquivos;
+	@Getter @Setter private List<Disciplina> disciplinas;
+	@Getter @Setter private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
+	@Getter @Setter private List<Integer> anos  = new ArrayList<Integer>();
+	@Getter @Setter private List<Integer> semestres = new ArrayList<Integer>();
+	@Getter @Setter private List<String> turnos = new ArrayList<String>();
 
-	@Autowired private ArquivoDAO arquivoDAO;
-	@Autowired private DisciplinaDAO disciplinaDAO;
-	@Autowired private EnviarEmail enviarEmail;
-	@Autowired private Arquivo arquivo;
+	@Getter @Setter @Autowired private ArquivoDAO arquivoDAO;
+	@Getter @Setter @Autowired private DisciplinaDAO disciplinaDAO;
+	@Getter @Setter @Autowired private EnviarEmail enviarEmail;
+	@Getter @Setter @Autowired private Arquivo arquivo;
 	
 	public String prepare() throws Exception {
 		setAnos(FormUtil.getAnosList(1));

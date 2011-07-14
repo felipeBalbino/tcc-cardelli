@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.List;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,45 +36,39 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public @Data class HoraAction extends ActionSupport {
+public class HoraAction extends ActionSupport {
 
 
 	private static final long serialVersionUID = 1L;
 	
 	// Params AEP
-	@Autowired private HoraAEPNovoParams   horaAEPNovoParams;
-	@Autowired private HoraAEPAlteraParams horaAEPAlteraParams;
-	@Autowired private HoraAEPDeletaParams horaAEPDeletaParams;
-	@Autowired private HoraAEPListaParams horaAEPListaParams;
+	@Getter @Setter @Autowired private HoraAEPNovoParams   horaAEPNovoParams;
+	@Getter @Setter @Autowired private HoraAEPAlteraParams horaAEPAlteraParams;
+	@Getter @Setter @Autowired private HoraAEPDeletaParams horaAEPDeletaParams;
+	@Getter @Setter @Autowired private HoraAEPListaParams horaAEPListaParams;
 	
 	// Params Complementar
-	@Autowired private HoraComplementarNovoParams   horaComplementarNovoParams;
-	@Autowired private HoraComplementarAlteraParams horaComplementarAlteraParams;
-	@Autowired private HoraComplementarDeletaParams horaComplementarDeletaParams;
-	@Autowired private HoraComplementarListaParams horaComplementarListaParams;
-	
-	@Autowired private GeraComprovanteHoraComplementarParams geraComprovanteHoraComplementarParams;
-	
-	private AlunoSearchParams alunoSearchParams = new AlunoSearchParams();
-	
-	@Autowired private HoraDAO horaDAO;
-	@Autowired private PessoaDAO pessoaDAO;
+	@Getter @Setter @Autowired private HoraComplementarNovoParams   horaComplementarNovoParams;
+	@Getter @Setter @Autowired private HoraComplementarAlteraParams horaComplementarAlteraParams;
+	@Getter @Setter @Autowired private HoraComplementarDeletaParams horaComplementarDeletaParams;
+	@Getter @Setter @Autowired private HoraComplementarListaParams horaComplementarListaParams;
+	@Getter @Setter @Autowired private GeraComprovanteHoraComplementarParams geraComprovanteHoraComplementarParams;
+	@Getter @Setter private AlunoSearchParams alunoSearchParams = new AlunoSearchParams();
+	@Getter @Setter @Autowired private HoraDAO horaDAO;
+	@Getter @Setter @Autowired private PessoaDAO pessoaDAO;
 	
 	// Aluno retornado pela matr�cula
-	@Autowired private Aluno aluno;
-	
-	@Autowired private HoraComplementar horaComplementar;
-	
-	@Autowired private EnviarEmail enviarEmail;
+	@Getter @Setter @Autowired private Aluno aluno;
+	@Getter @Setter @Autowired private HoraComplementar horaComplementar;
+	@Getter @Setter @Autowired private EnviarEmail enviarEmail;
 
 	// Carrega Lista mostrada ao Usuário
-	private List<HoraAEP> horasAEP;
-	private List<HoraComplementar> horasComplementares;
-	private List<Atividade> atividades;
-	private List<HorasAtividadeResultBean> horasAtividadeResultBean;
-	private HorasCursoResultBean horasCursoResultBean;
-	
-	private String totalHorasAEPAluno;
+	@Getter @Setter private List<HoraAEP> horasAEP;
+	@Getter @Setter private List<HoraComplementar> horasComplementares;
+	@Getter @Setter private List<Atividade> atividades;
+	@Getter @Setter private List<HorasAtividadeResultBean> horasAtividadeResultBean;
+	@Getter @Setter private HorasCursoResultBean horasCursoResultBean;
+	@Getter @Setter private String totalHorasAEPAluno;
 	
 	private final String RETURN_LIST_AEP_SUCCESS = "listAEPSuccess";
 	private final String RETURN_LIST_AEP_FAILURE = "listAEPFailure";

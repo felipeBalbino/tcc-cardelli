@@ -7,6 +7,8 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,32 +26,32 @@ import br.edu.gamaesouza.intranet.utils.IntranetException;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public @Data class BuscarMaterialAction extends ActionSupport {
+public  class BuscarMaterialAction extends ActionSupport {
 	
 	private static final long serialVersionUID = 1L;
 
 	private static final String LOAD_BUSCAR_MATERIAL_FIELDS = "loadFields"; 
 	
-	private List<Disciplina> disciplinas    = new ArrayList<Disciplina>();
-	private List<Integer>    anos     		= new ArrayList<Integer>();
-	private List<Integer>    semestres      = new ArrayList<Integer>();
-	private List<Arquivo>    arquivos 		= new ArrayList<Arquivo>();
-	private List<Professor>  professores    = new ArrayList<Professor>();
-	private List<String>     turnos         = new ArrayList<String>();
+	@Getter @Setter private List<Disciplina> disciplinas    = new ArrayList<Disciplina>();
+	@Getter @Setter private List<Integer>    anos     		= new ArrayList<Integer>();
+	@Getter @Setter private List<Integer>    semestres      = new ArrayList<Integer>();
+	@Getter @Setter private List<Arquivo>    arquivos 		= new ArrayList<Arquivo>();
+	@Getter @Setter private List<Professor>  professores    = new ArrayList<Professor>();
+	@Getter @Setter private List<String>     turnos         = new ArrayList<String>();
 	
-	private Integer curso;
-	private Integer professor;
-	private Integer disciplina;
-	private Integer ano;
-	private Integer semestre;
-	private Integer turno;
+	@Getter @Setter private Integer curso;
+	@Getter @Setter private Integer professor;
+	@Getter @Setter private Integer disciplina;
+	@Getter @Setter private Integer ano;
+	@Getter @Setter private Integer semestre;
+	@Getter @Setter private Integer turno;
 	
-	private Integer idarquivo;
+	@Getter @Setter private Integer idarquivo;
 	
-	@Autowired private EnviarEmail   enviarEmail;
-	@Autowired private ArquivoDAO    arquivoDAO;
-	@Autowired private DisciplinaDAO disciplinaDAO;
-	@Autowired private PessoaDAO     pessoaDAO;
+	@Getter @Setter @Autowired private EnviarEmail   enviarEmail;
+	@Getter @Setter @Autowired private ArquivoDAO    arquivoDAO;
+	@Getter @Setter @Autowired private DisciplinaDAO disciplinaDAO;
+	@Getter @Setter @Autowired private PessoaDAO     pessoaDAO;
 	
 
 	

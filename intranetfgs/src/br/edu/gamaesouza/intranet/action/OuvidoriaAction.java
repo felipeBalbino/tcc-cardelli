@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,14 +18,15 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public @Data class OuvidoriaAction extends ActionSupport {
+public class OuvidoriaAction extends ActionSupport {
 
 	private static final long serialVersionUID = 3053722020213888951L;
-	private List<Curso> cursos = new ArrayList<Curso>();
 	
-	@Autowired private OuvidoriaEmailParams ouvidoriaEmailParams;
-	@Autowired private EnviarEmail enviarEmail;
-	@Autowired private CursoDAO cursoDAO;
+	@Getter @Setter private List<Curso> cursos = new ArrayList<Curso>();
+	
+	@Getter @Setter @Autowired private OuvidoriaEmailParams ouvidoriaEmailParams;
+	@Getter @Setter @Autowired private EnviarEmail enviarEmail;
+	@Getter @Setter @Autowired private CursoDAO cursoDAO;
 	
 	public String prepare(){
 		try {

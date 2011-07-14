@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@taglib uri="/struts-tags" prefix="s" %>
     <%@taglib uri="/struts-dojo-tags" prefix="sx" %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" 				prefix="fmt" 		%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -166,7 +167,9 @@ jQuery(function($){
 <img src="../images/arrow_categ.gif"><a href="../painel/aluno!lista.java" style="color:#FF4500;text-align:right;border-style:none;">Lista de Alunos</a>
 </div>
 <body>
-		
+				<c:if test="${not empty param.lingua}">
+						<fmt:setLocale value="${param.lingua}" scope="session" />
+					</c:if>
 			<div id="experience">
 					<div id="explanation">
 						<h3>
@@ -183,7 +186,7 @@ jQuery(function($){
 							<div id="email2_ocultos" style="display:none;color:red"><p><img src="../images/imgErro.gif"/>  Campo email com caracteres invalidos.</p></div>
 							<div id="senha_nao_confere" style="display:none;color:red"><p><img src="../images/imgErro.gif"/>  As senhas necessitam ser iguais no campo senha e confirmar senha.</p></div>
 							<div id="email_nao_confere" style="display:none;color:red"><p><img src="../images/imgErro.gif"/>  Os emails necessitam ser iguais no campo email e confirmar email.</p></div>
-							<s:if test="hasActionMessages()">
+						<s:if test="hasActionMessages()">
 							<div class="welcome" >
   							 	<s:actionmessage cssStyle="color:green;background-image : url('../images/icon-true.png');background-repeat: no-repeat;padding:3px 0 7px 45px;"/>
   							</div> 			
@@ -199,37 +202,34 @@ jQuery(function($){
 					
 					<div id="contact-form">
 						<s:form name="registra" method="post" action="../painel/aluno!registrar.java"  onSubmit="return validaForm()">
-							<s:textfield id="nome"  required="true" label="Nome Completo" name="alunoNovoParams.nome"></s:textfield>
-							<s:textfield  required="true" label="Matrícula" maxLength="8" id="matricula" name="alunoNovoParams.matricula"></s:textfield>
+							<s:text name="Nome Completo"/><s:textfield id="nome"  required="true" name="alunoNovoParams.nome"></s:textfield>
+							<s:text name="Matrícula"/><s:textfield  required="true"  maxLength="8" id="matricula" name="alunoNovoParams.matricula"></s:textfield>
 							<br>
 							<hr></hr>
 							<br>
-							Curso:<br><sx:autocompleter  headerKey=""  headerValue=""  id="curso" name="alunoNovoParams.cursoId" list="cursos" listValue="nome" listKey="id"/>
-							<s:select label="Período"
-										   id="periodo"
-										   required="true" 
-									       headerKey="" headerValue=""
+							<s:text name="Curso"/><br><sx:autocompleter  headerKey=""  headerValue=""  id="curso" name="alunoNovoParams.cursoId" list="cursos" listValue="nome" listKey="id"/>
+							<s:text name="Período"/><br><s:select id="periodo" required="true"  headerKey="" headerValue=""
 									       list="#{'01':'01', '02':'02','03':'03', '04':'04','05':'05', '06':'06','07':'07', '08':'08','09':'09', '10':'10','11':'11', '12':'12','13':'13','14':'14'}"
 									       name="alunoNovoParams.periodo"
 									></s:select>
-							Status Matrícula:<br><sx:autocompleter  headerKey=""   headerValue=""  id="statusMatricula" list="allStatusMatricula"  name="alunoNovoParams.statusMatricula" />
+							<s:text name="Status Matrícula"/><br><sx:autocompleter  headerKey=""   headerValue=""  id="statusMatricula" list="allStatusMatricula"  name="alunoNovoParams.statusMatricula" />
 							<br>
 							<br>
 							<hr></hr>
 							<br>
-							<s:textfield id="email" required="true" label="Email" name="alunoNovoParams.email" ></s:textfield>
-							<s:textfield id="email2"  required="true" label="Confirmar" name="email2"></s:textfield>
+							<s:text name="Email"/><s:textfield id="email" required="true" name="alunoNovoParams.email" ></s:textfield>
+							<s:text name="Confirmar E-mail"/><s:textfield id="email2"  required="true" name="email2"></s:textfield>
 							<br>
 							<hr></hr>
 							<br>
-							<s:textfield id="login"  required="true"  label="Login"  name="alunoNovoParams.login" maxlength="8"></s:textfield>
+							<s:text name="Login"/><s:textfield id="login"  required="true" name="alunoNovoParams.login" maxlength="8"></s:textfield>
 							<br>
 							<hr></hr>
 							<br>
-							<s:password id="senha" required="true"  label="Senha"   name="alunoNovoParams.senha"></s:password>
-							<s:password id="senha2" required="true"  label="Confirmar" name="senha2"></s:password>
+							<s:text name="Senha"/><s:password id="senha" required="true"     name="alunoNovoParams.senha"></s:password>
+							<s:text name="Confirmar Senha"/><s:password id="senha2" required="true"   name="senha2"></s:password>
 							<br>
-							<sx:submit align="left" value="Entrar" label="Log in"></sx:submit>
+							<sx:submit align="left" value="Registrar" label="Log in"></sx:submit>
 						</s:form>
 					</div>		
 </div>

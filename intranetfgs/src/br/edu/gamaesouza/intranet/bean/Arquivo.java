@@ -18,8 +18,11 @@ import javax.persistence.Transient;
 import javax.servlet.ServletContext;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.validator.constraints.NotEmpty;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
@@ -29,7 +32,7 @@ import org.apache.struts2.ServletActionContext;
 @NamedQueries(value={
 		@NamedQuery(name="VaziaArquivo",query="FROM Arquivo")
 })
-public @Data class Arquivo implements Serializable {
+public class Arquivo implements Serializable {
 
 	@Transient
 	private static final long serialVersionUID = 1976169200921487085L;
@@ -38,35 +41,49 @@ public @Data class Arquivo implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name="arq_id")
+	@Getter @Setter
 	private Integer id;
 
 
-	@Column(name="arq_nome",nullable=false)
+	@Column(name="arq_nome")
+	@Getter @Setter
+	@NotEmpty
 	private String nome;
 
 
-	@Column(name="arq_url",nullable=false)
+	@Column(name="arq_url")
+	@Getter @Setter
+	@NotEmpty
 	private String url;
 	
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@Getter @Setter
+	@NotEmpty
 	private Calendar dataEnvio;
+	
 	@Transient
+	@Getter @Setter
 	private File upload;   
 	
 	@Transient
+	@Getter @Setter
     private String uploadFileName;
 	
 	@Transient
+	@Setter
     private String uploadFileSize;
     
 	@Transient
+	@Getter @Setter
 	private String uploadContentType;
 	
 	@OneToOne
+	@Getter @Setter
 	private DisciplinaLetiva disciplinaLetiva;
 	
 	@OneToOne
+	@Getter @Setter
 	private Professor professor;
 
 	

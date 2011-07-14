@@ -13,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import br.edu.gamaesouza.intranet.utils.DiaSemanaEnum;
 import br.edu.gamaesouza.intranet.utils.StatusMatriculaEnum;
@@ -27,17 +29,18 @@ import br.edu.gamaesouza.intranet.utils.StatusMatriculaEnum;
 		@NamedQuery(name="alunoById",query="FROM Aluno WHERE id = :id"),
 		@NamedQuery(name="totalHorasCursoEAluno",query="SELECT DISTINCT new br.edu.gamaesouza.intranet.bean.result.HorasCursoResultBean(sum(comp.minutos), comp.aluno.curso.cargaHorariaComplementar) FROM HoraComplementar comp  where comp.aluno.id = :aluno GROUP BY comp.aluno.id")
 })
-public @Data class Aluno extends Pessoa implements Serializable {
+public class Aluno extends Pessoa implements Serializable {
 	
-	@OneToOne
+	@OneToOne @Getter @Setter
 	private Curso curso;
 
-	@OneToMany
+	@OneToMany @Getter @Setter
 	private List<Hora> horas;
 	
+	@Getter @Setter
 	private Integer periodo;
 	
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING) @Getter @Setter
 	private StatusMatriculaEnum statusMatricula;
 
 	

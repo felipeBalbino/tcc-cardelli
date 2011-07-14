@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,7 +25,7 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public @Data class ProfessorAction extends ActionSupport {
+public class ProfessorAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,22 +34,20 @@ public @Data class ProfessorAction extends ActionSupport {
 	private static final String RULE_PROFESSOR_ALTERA = "RULE_PROFESSOR_ALTERA";
 	private static final String RULE_PROFESSOR_DELETE = "RULE_PROFESSOR_DELETE";
 
-	@Autowired private Professor professor;
-	
-	@Autowired private ProfessorNovoParams professorNovoParams;
-	@Autowired private ProfessorAlteraParams professorAlteraParams;
-	
+	@Getter @Setter private String tempoDeResposta;
+	@Getter @Setter @Autowired private Professor professor;
+	@Getter @Setter @Autowired private ProfessorNovoParams professorNovoParams;
+	@Getter @Setter @Autowired private ProfessorAlteraParams professorAlteraParams;
+	@Getter @Setter private List<Professor> professores = new ArrayList<Professor>();
+	@Getter @Setter private List<Rule> rules = new ArrayList<Rule>();
+	@Getter @Setter private List<Rule> allRules = new ArrayList<Rule>();
+	@Getter @Setter private List<String> rulesParam = new ArrayList<String>();
 
-	private List<Professor> professores = new ArrayList<Professor>();
-	private List<Rule> rules = new ArrayList<Rule>();
-	private List<Rule> allRules = new ArrayList<Rule>();
-	private List<String> rulesParam = new ArrayList<String>();
+	@Getter @Setter @Autowired private PessoaDAO pessoaDAO;
+	@Getter @Setter @Autowired private DisciplinaDAO disciplinaDAO;
+	@Getter @Setter @Autowired private EnviarEmail enviarEmail;
 
-	@Autowired private PessoaDAO pessoaDAO;
-	@Autowired private DisciplinaDAO disciplinaDAO;
-	@Autowired private EnviarEmail enviarEmail;
 
-	private String tempoDeResposta;
 	
 	public String save() {
 		UserData.grantAccess(RULE_PROFESSOR_SALVA);

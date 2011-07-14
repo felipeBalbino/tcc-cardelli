@@ -19,28 +19,37 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import br.edu.gamaesouza.intranet.utils.DiaSemanaEnum;
 
 @Entity
-public @Data class Horario {
+public class Horario {
 
 	@Id
 	@GeneratedValue
+	@Getter @Setter
 	private Integer id;
 	
 	@Temporal(TemporalType.TIME)
+	@Getter @Setter
 	private Date horaInicio;
 	
 	@Temporal(TemporalType.TIME)
+	@Getter @Setter
 	private Date horaFim;
 	
-	@Column(nullable = false)
+	@Getter @Setter
+	@NotEmpty
 	private Integer ano;
 	
-	@Column(nullable = false)
+	@Getter @Setter
+	@NotEmpty
 	private Integer semestre;
 	
 	
@@ -52,7 +61,4 @@ public @Data class Horario {
 		return "Ano: "+ano+" Hora inicial: "+sdf.format(horaInicio)+" Hora Final: "+sdf.format(horaFim);
 		
 	}
-	
-	
-	
 }

@@ -39,7 +39,7 @@
 		<filter-name>sitemesh</filter-name>
 		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
 	</filter>
-	
+
 	<filter-mapping>
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -48,13 +48,13 @@
 		<dispatcher>ERROR</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
-	
+
 	<servlet>
 		<servlet-name>sitemesh-velocity</servlet-name>
 		<servlet-class>com.opensymphony.module.sitemesh.velocity.VelocityDecoratorServlet</servlet-class>
 		<load-on-startup>10</load-on-startup>
 	</servlet>
-	
+
 	<servlet>
 		<servlet-name>sitemesh-freemarker</servlet-name>
 		<servlet-class>com.opensymphony.module.sitemesh.freemarker.FreemarkerDecoratorServlet</servlet-class>
@@ -72,12 +72,12 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-	
+
 	<filter>
 		<filter-name>grantAccess</filter-name>
 		<filter-class>br.edu.gamaesouza.intranet.security.GrantAccessFilter</filter-class>
 	</filter>
-	
+
 	<filter-mapping>
 		<filter-name>grantAccess</filter-name>
 		<url-pattern>/painel/*</url-pattern>
@@ -86,43 +86,48 @@
 		<dispatcher>ERROR</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
-	
+
 	<filter>
-	  <filter-name>hibernateFilter</filter-name>
-	  <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+		<filter-name>hibernateFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
 	</filter>
 
 	<filter-mapping>
-	  <filter-name>hibernateFilter</filter-name>
-	  <url-pattern>/*</url-pattern> 
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
 	<context-param>
 		<param-name>EmailOuvidoria</param-name>
-		<param-value>gabrielcastilho.cardelli@gmail.com</param-value>	
+		<param-value>gabrielcastilho.cardelli@gmail.com</param-value>
 	</context-param>
-	
-	
+
+
 	<context-param>
 		<param-name>developers</param-name>
 		<param-value>
 			gabrielcastilho.cardelli@gmail.com,phellipe86@gmail.com,benatti77@gmail.com,dudu777@gmail.com
-		</param-value>	
+		</param-value>
 	</context-param>
-	
+
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+		<param-value>messages</param-value>
+	</context-param>
+
 	<context-param>
 		<param-name>systemMail</param-name>
-		<param-value>intranetfgs@gmail.com</param-value>	
+		<param-value>intranetfgs@gmail.com</param-value>
 	</context-param>
-	
+
 	<context-param>
 		<param-name>systemMailPassword</param-name>
-		<param-value>qwe123qwe123</param-value>	
+		<param-value>qwe123qwe123</param-value>
 	</context-param>
-	
+
 	<listener>
 		<listener-class>br.edu.gamaesouza.intranet.utils.SessionListen</listener-class>
 	</listener>
-	
+
 
 </web-app>

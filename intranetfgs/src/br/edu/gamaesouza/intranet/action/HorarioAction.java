@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,31 +34,30 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public @Data class HorarioAction extends ActionSupport{
+public class HorarioAction extends ActionSupport{
 
 	private static final long serialVersionUID = 1L;
 	
-	private List<DisciplinaLetivaHorario> disciplinaLetivaHorario = new ArrayList<DisciplinaLetivaHorario>();
-	private List<Horario> horarios = new ArrayList<Horario>();
-	private List<Integer> anos  = new ArrayList<Integer>();
-	private List<Integer> semestres = new ArrayList<Integer>();
-	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
-	private List<DiaSemanaEnum> diasSemana = new ArrayList<DiaSemanaEnum>();
+	@Getter @Setter private List<DisciplinaLetivaHorario> disciplinaLetivaHorario = new ArrayList<DisciplinaLetivaHorario>();
+	@Getter @Setter private List<Horario> horarios = new ArrayList<Horario>();
+	@Getter @Setter private List<Integer> anos  = new ArrayList<Integer>();
+	@Getter @Setter private List<Integer> semestres = new ArrayList<Integer>();
+	@Getter @Setter private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
+	@Getter @Setter private List<DiaSemanaEnum> diasSemana = new ArrayList<DiaSemanaEnum>();
 	
 		
-	private Integer id;
-	private Integer idDisciplinaLetiva;
-	private DiaSemanaEnum diaSemana;
-	private Integer horarioId;
+	@Getter @Setter private Integer id;
+	@Getter @Setter private Integer idDisciplinaLetiva;
+	@Getter @Setter private DiaSemanaEnum diaSemana;
+	@Getter @Setter private Integer horarioId;
+	@Getter @Setter private Integer idHorario;
 	
-	private Integer idHorario;
-	
-	@Autowired private Horario horario;
-	@Autowired private HorarioDAO horarioDAO;
-	@Autowired private DisciplinaDAO disciplinaDAO;
-	@Autowired private DisciplinaLetiva disciplinaLetiva;
-	@Autowired private HorarioNovoParams horarioNovoParams;
-	@Autowired private DisciplinaLetivaHorarioNovoParams disciplinaLetivaHorarioNovoParams;
+	@Getter @Setter @Autowired private Horario horario;
+	@Getter @Setter @Autowired private HorarioDAO horarioDAO;
+	@Getter @Setter @Autowired private DisciplinaDAO disciplinaDAO;
+	@Getter @Setter @Autowired private DisciplinaLetiva disciplinaLetiva;
+	@Getter @Setter @Autowired private HorarioNovoParams horarioNovoParams;
+	@Getter @Setter @Autowired private DisciplinaLetivaHorarioNovoParams disciplinaLetivaHorarioNovoParams;
 
 	public String prepare()  {
 		//UserData.grantAccess();

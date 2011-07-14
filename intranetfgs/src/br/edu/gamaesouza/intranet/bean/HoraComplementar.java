@@ -7,6 +7,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import br.edu.gamaesouza.intranet.utils.DateUtil;
 
@@ -20,15 +22,19 @@ import br.edu.gamaesouza.intranet.utils.DateUtil;
 
 		
 })
-public @Data class HoraComplementar extends Hora {
+public class HoraComplementar extends Hora {
 	
+	@Getter @Setter
 	private String titulo;
 	
+	@Getter @Setter
 	private Integer minutos;
 	
+	@Getter @Setter
 	@Transient private String totalHoras;
 	
 	@OneToOne
+	@Getter @Setter
 	private Atividade atividade;
 	
 }

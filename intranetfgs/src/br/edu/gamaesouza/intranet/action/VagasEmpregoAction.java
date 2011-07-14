@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,7 +38,7 @@ import br.edu.gamaesouza.intranet.utils.TiposContratacaoEnum;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public @Data class VagasEmpregoAction extends ActionSupport {
+public class VagasEmpregoAction extends ActionSupport {
 
 	private final Logger logger = Logger.getLogger("br.edu.gamaesouza.intranet.action.VagasEmpregoAction");
 	
@@ -51,32 +53,29 @@ public @Data class VagasEmpregoAction extends ActionSupport {
 	/*
 	  Parametros vindo da tela para save
 	*/
-	private Vaga vaga;
-	private Long empresaId;
-	private Long areaProfissionalId;
-	private Long enderecoId;
+	@Getter @Setter private Vaga vaga;
+	@Getter @Setter private Long empresaId;
+	@Getter @Setter private Long areaProfissionalId;
+	@Getter @Setter private Long enderecoId;
+	@Getter @Setter private Empresa empresa;
+	@Getter @Setter private Endereco endereco;
+	@Getter @Setter private List<TiposContratacaoEnum> tiposDeContratacao;
+	@Getter @Setter private List<PaisEnum> paises;
+	@Getter @Setter private List<FaixaSalarialEnum> salarios;
+	@Getter @Setter private List<AreaProfissional> areas;
+	@Getter @Setter private List<Vaga> vagas;
+	@Getter @Setter private List<Empresa> empresas; 
+	@Getter @Setter private List<Endereco> enderecos; 
+	@Getter @Setter private Long idVaga;
+	@Getter @Setter Boolean seRegra = false;
+	@Getter @Setter private String tempoDeResposta;
 	
-	private Empresa empresa;
-	private Endereco endereco;
-	
-	private List<TiposContratacaoEnum> tiposDeContratacao;
-	private List<PaisEnum> paises;
-	private List<FaixaSalarialEnum> salarios;
-	private List<AreaProfissional> areas;
-	private List<Vaga> vagas;
-	private List<Empresa> empresas; 
-	private List<Endereco> enderecos; 
-	private Long idVaga;
-	Boolean seRegra = false;
-	
-	@Autowired private VagaDAO vagaDAO;
-	@Autowired private EmpresaDAO empresaDAO;
-	@Autowired private EnderecoDAO enderecoDAO;
-	@Autowired private AreaProfissionalDAO areaProfissionalDAO;
-	@Autowired private EnviarEmail   enviarEmail;
-	@Autowired private PessoaDAO pessoaDAO;	
-	
-	private String tempoDeResposta;
+	@Getter @Setter @Autowired private VagaDAO vagaDAO;
+	@Getter @Setter @Autowired private EmpresaDAO empresaDAO;
+	@Getter @Setter @Autowired private EnderecoDAO enderecoDAO;
+	@Getter @Setter @Autowired private AreaProfissionalDAO areaProfissionalDAO;
+	@Getter @Setter @Autowired private EnviarEmail   enviarEmail;
+	@Getter @Setter @Autowired private PessoaDAO pessoaDAO;	
 	
 	public String lista() {
 		this.seRegra = false;

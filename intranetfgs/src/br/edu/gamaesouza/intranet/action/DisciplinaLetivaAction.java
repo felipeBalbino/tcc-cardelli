@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,7 +29,7 @@ import br.edu.gamaesouza.intranet.utils.SpringUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public @Data class DisciplinaLetivaAction extends ActionSupport{
+public class DisciplinaLetivaAction extends ActionSupport{
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,28 +38,27 @@ public @Data class DisciplinaLetivaAction extends ActionSupport{
 	private static final String RULE_DISCIPLINA_LETIVA_ALTERA = "RULE_DISCIPLINA_LETIVA_ALTERA";
 	private static final String RULE_DISCIPLINA_LETIVA_DELETE = "RULE_DISCIPLINA_LETIVA_DELETE";
 
-	private Integer id;	
-	private Integer ano;
-	private String sala;
+	@Getter @Setter private Integer id;	
+	@Getter @Setter private Integer ano;
+	@Getter @Setter private String sala;
+	@Getter @Setter private String tempoDeResposta;
 	
-	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
-	private List<Integer> anos  = new ArrayList<Integer>();
-	private List<Integer> semestres = new ArrayList<Integer>();
-	private List<String> turnos = new ArrayList<String>();
-	private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
-	private List<Professor> professores = new ArrayList<Professor>();
+	@Getter @Setter private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+	@Getter @Setter private List<Integer> anos  = new ArrayList<Integer>();
+	@Getter @Setter private List<Integer> semestres = new ArrayList<Integer>();
+	@Getter @Setter private List<String> turnos = new ArrayList<String>();
+	@Getter @Setter private List<DisciplinaLetiva> disciplinasLetivas = new ArrayList<DisciplinaLetiva>();
+	@Getter @Setter private List<Professor> professores = new ArrayList<Professor>();
 	
-	
-	@Autowired private Horario horario;
-	@Autowired private Professor professor;
-	@Autowired private DisciplinaLetiva disciplinaLetiva;
-	@Autowired private PessoaDAO pessoaDao;
-	@Autowired private DisciplinaLetivaNovoParams disciplinaLetivaNovoParams;
-	@Autowired private DisciplinaLetivaSearchParams disciplinaLetivaSearchParams;
-	@Autowired private Disciplina disciplina;
-	@Autowired private DisciplinaDAO disciplinaDAO;
+	@Getter @Setter @Autowired private Horario horario;
+	@Getter @Setter @Autowired private Professor professor;
+	@Getter @Setter @Autowired private DisciplinaLetiva disciplinaLetiva;
+	@Getter @Setter @Autowired private PessoaDAO pessoaDao;
+	@Getter @Setter @Autowired private DisciplinaLetivaNovoParams disciplinaLetivaNovoParams;
+	@Getter @Setter @Autowired private DisciplinaLetivaSearchParams disciplinaLetivaSearchParams;
+	@Getter @Setter @Autowired private Disciplina disciplina;
+	@Getter @Setter @Autowired private DisciplinaDAO disciplinaDAO;
 
-	private String tempoDeResposta;
 	
 	public String prepare()  {
 		UserData.grantAccess(RULE_DISCIPLINA_LETIVA_LISTA);

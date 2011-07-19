@@ -99,12 +99,16 @@ public class DisciplinaAction extends ActionSupport{
 		disciplina.setCursos(cursoDAO.getAllCursosByNome(cursosParam));
 		
 			try{
-				disciplinaDAO.save(disciplina);
-				cursos = cursoDAO.getAllCursos();
-				disciplina = (Disciplina) SpringUtil.getBean("disciplina");
-				checkBoxSelecionados = new Integer[]{};
+				if (disciplinaDAO.getDisciplinaByNomeReturnString(disciplina.getNome()) == true){
+					disciplinaDAO.save(disciplina);
+					cursos = cursoDAO.getAllCursos();
+					disciplina = (Disciplina) SpringUtil.getBean("disciplina");
+					checkBoxSelecionados = new Integer[]{};
+					addActionMessage("Disciplina Adicionada com Sucesso!");
+				}else{
+					addActionError("Nome da disciplina já se encontra na base, tente outro nome para esta disciplina!");
+				}
 				
-				addActionMessage("Disciplina Adicionada com Sucesso!");
 			}catch(IntranetException e){
 				addActionError("Erro ao adicionar a disciplina!");
 			}
@@ -126,7 +130,7 @@ public class DisciplinaAction extends ActionSupport{
 					disciplina = (Disciplina) SpringUtil.getBean("disciplina");
 					addActionMessage("Disciplina deletada com sucesso");
 				}else{
-					addActionError("N�o foi possivel deletar esta disciplina, existe(m) "+disciplinasLetivas.size()+" Disciplina(s) letiva(s) vinculada(s) a essa disciplina.");	
+					addActionError("Não foi possivel deletar esta disciplina, existe(m) "+disciplinasLetivas.size()+" Disciplina(s) letiva(s) vinculada(s) a essa disciplina.");	
 					for(DisciplinaLetiva letiva : disciplinasLetivas) {
 						addActionError("Turno: "+letiva.getTurno()+
 								" - Ano: "+letiva.getAno()+
@@ -136,7 +140,7 @@ public class DisciplinaAction extends ActionSupport{
 					}
 				}
 			} catch (IntranetException e) {	
-				addActionError("N�o foi possivel deletar o disciplina, ocorreu um erro interno no Servidor");
+				addActionError("Não foi possivel deletar o disciplina, ocorreu um erro interno no Servidor");
 			}
 			return lista();
 	

@@ -107,7 +107,7 @@ function restartTrs(){
 	<table>
 	
 		<tr><td>Disciplina:<br></td> </tr>
-		<tr><td><s:textfield id="nome" name="materia.nome" cssStyle="width:200px"></s:textfield><br></td></tr>
+		<tr><td><s:textfield id="nome" name="disciplina.nome" cssStyle="width:200px"></s:textfield><br></td></tr>
 		<tr><td><b><s:text name="Selecione os cursos que possuem esta disciplina"/></b><hr></hr><br></td></tr>
 		<tr><td><select id="cursosParam" name="cursosParam" multiple="multiple" size="10" >
 			<s:iterator value="cursos" status="st" var="curso">

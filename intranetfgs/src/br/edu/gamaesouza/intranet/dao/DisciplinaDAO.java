@@ -93,6 +93,16 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		return disciplina;	
 	}
 	
+	public Boolean getDisciplinaByNomeReturnString(String nome) throws IntranetException{	
+		Criteria disciplinaByNome = getSession().createCriteria(Disciplina.class);	
+		disciplinaByNome.add(Restrictions.eq("nome", nome));
+		
+		if(disciplinaByNome.list().isEmpty()){	
+			return true;
+		}
+		return false;	
+	}
+	
 	
 	public Disciplina getDisciplinaById(Integer id) throws IntranetException{
 		Criteria disciplinaById = getSession().createCriteria(Disciplina.class);

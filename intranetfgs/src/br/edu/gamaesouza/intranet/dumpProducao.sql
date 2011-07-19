@@ -90,11 +90,11 @@ INSERT INTO pessoa_rule VALUES (1,41);
 INSERT INTO pessoa_rule VALUES (1,42);
 INSERT INTO pessoa_rule VALUES (1,43);
 INSERT INTO pessoa_rule VALUES (1,44);
-INSERT INTO Curso (id,nome) VALUES  (1,"Sistema de Informao");
+INSERT INTO Curso (id,nome) VALUES  (1,"Sistema de Informação");
 INSERT INTO Curso (id,nome) VALUES  (2,"Marketing");
 INSERT INTO Curso (id,nome) VALUES  (3,"Direito");
 INSERT INTO Curso (id,nome) VALUES  (4,"Turismo");
-INSERT INTO Curso (id,nome) VALUES  (5,"Negcios Imobilirios");
+INSERT INTO Curso (id,nome) VALUES  (5,"Negócios Imobilirios");
 INSERT INTO Curso (id,nome) VALUES  (6,"Gesto Comercial");
 INSERT INTO Curso (id,nome) VALUES  (7,"Redes de Computadores");
 

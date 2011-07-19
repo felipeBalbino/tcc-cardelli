@@ -66,7 +66,7 @@ public class ArquivoUtil {
 
 		try {
 
-			File file = new File(diretorio + "\\" + fileName); // Caminho que quero salvar
+			File file = new File(diretorio + "/" + fileName); // Caminho que quero salvar
 			byte[] tempBytes = getBytesFromFile(arquivo.getUpload()); // Bytes do Arquivo tempor�rio
 			
 			FileOutputStream ouputStream = new FileOutputStream( file ); 

@@ -113,7 +113,7 @@ public class DisciplinaAction extends ActionSupport{
 				addActionError("Erro ao adicionar a disciplina!");
 			}
 		
-			return "adicionarMateria";
+			return novo();
 
 	}
 	

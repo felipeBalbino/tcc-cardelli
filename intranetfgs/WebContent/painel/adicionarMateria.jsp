@@ -32,6 +32,9 @@ width:295px;
 </style>
 <script type="text/javascript">
 
+jQuery(function($){
+	   $("#matricula").mask("*****");
+	}); 
 
 function restartTrs(){
 	document.getElementById("nome").style.backgroundColor = "transparent";

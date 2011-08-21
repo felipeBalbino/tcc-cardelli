@@ -8,34 +8,6 @@
 <html>
 <head>
 
-<style type="text/css">
-#experience { 
-padding:30px; 
-padding:17px 0px 0 39px;
-}
-
-
-#explanation { 
-float:left;
-width:340px;
-}
-
-#login {background:transparent url(../images/profile_ico_transparent.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-#senha {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-
-
-
-
- 
-#contact-form { 
-border-left:1px solid #313b45; 
-margin-left:370px; 
-padding-left:30px; 
-width:295px; 
-}
-
-
-</style>
 <script type="text/javascript">
  function restartTrs(){
 	document.getElementById("login").style.backgroundColor = "transparent";

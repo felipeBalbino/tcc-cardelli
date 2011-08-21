@@ -9,72 +9,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style type="text/css">
-#email {background:transparent url(../images/ico_mail.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#login {background:transparent url(../images/profile_ico_transparent.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-#nome  {background:transparent url(../images/ico_user.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#senha {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-#matricula {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#periodo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#statusMatricula  {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-#curso  {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
- 
-</style>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Alunos</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
 
 <script type="text/javascript">
- 
-
-$(document).ready(function(){ 
-
-$('.conteudo').hide(); 
-
-$('.exibir').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-	if(i == j) 
-		$(this).show('slow');        
-});    
-});
-});
-$('.ocultar').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-if(i == j) $(this).hide('slow');        
-});    
-});
-});
-});
-
- 	function del(codigo) {    
-	     if (confirm('Excluir o Aluno?')) {    
-	         location.href = "../painel/aluno!delete.java?idAluno="+ codigo;
-	     }  
-	 }
-
- 	function gerarSenha(codigo) {    
-	     if (confirm('Gerar nova senha?')) {    
-	         location.href = "../painel/aluno!gerarNovaSenha.java?idAluno="+ codigo;
-	     }  
-	 }
- 	
- 	function dis(codigo) {       
-	         location.href = "../painel/disciplinaLetiva!list.java?idAluno="+ codigo; 
-	 }
- 	
- 	function aep(codigo) {       
-        location.href = "../painel/hora!listaAEP.java?horaAEPListaParams.id="+ codigo; 
-}
-
- 	function grade(codigo) {       
-        location.href = "../painel/aluno!gradeParaAdmin.java?id="+ codigo; 
-}
- 	
- 	function complementar(codigo) {       
-        location.href = "../painel/hora!listaComplementar.java?horaComplementarListaParams.id="+ codigo;  
-}
 
 
  	function restartTrs(){
@@ -90,8 +30,6 @@ if(i == j) $(this).hide('slow');
  			  		   document.getElementById("email2_ocultos").style.display = "none";
 
  	 }
- 	 
-
  	 
  	 function validaForm(){
  		 restartTrs();
@@ -137,23 +75,6 @@ if(i == j) $(this).hide('slow');
  	         	return false;
  			}
  	}
- 	 function Numero(e)
- 	 {
- 		 navegador = /msie/i.test(navigator.userAgent);
- 		 if (navegador)
- 		 	var tecla = event.keyCode;
- 		 else
- 		 	var tecla = e.which;
- 		 if(tecla > 47 && tecla < 58) // numeros de 0 a 9
- 			 return true;
- 		 else
- 		 {
- 		 if (tecla != 8) // backspace
- 		 return false;
- 		 else
- 		 return true;
- 		 }
- 	 } 
 </script>
 </head>
 <body>
@@ -172,7 +93,7 @@ if(i == j) $(this).hide('slow');
 			<td><s:textfield name="alunoSearchParams.nome" id="alunoSearchParams.nome"></s:textfield></td>
 			
 			<td>Periodo:</td>
-			<td><s:textfield  onKeyPress="return Numero(event);"  maxLength="2" name="alunoSearchParams.periodo" id="alunoSearchParams.periodo"></s:textfield></td>
+			<td><s:textfield  maxLength="2" name="alunoSearchParams.periodo" id="periodo"></s:textfield></td>
 		</tr>
 		<tr>	
 			<td>Curso:</td>
@@ -186,7 +107,7 @@ if(i == j) $(this).hide('slow');
 			<td><s:textfield name="alunoSearchParams.email" id="alunoSearchParams.email"></s:textfield></td>
 			
 			<td>Matrícula:</td>
-			<td><s:textfield  onKeyPress="return Numero(event);" name="alunoSearchParams.matricula" id="searchmatricula" maxLength="8"></s:textfield></td>
+			<td><s:textfield  name="alunoSearchParams.matricula" id="matricula" maxLength="8"></s:textfield></td>
 		</tr>
 		<tr>
 			<td><s:submit value="Pesquisar"></s:submit></td>
@@ -274,11 +195,11 @@ if(i == j) $(this).hide('slow');
 									</tr>
 									
 									<tr>
-										<td><b>Período:</b> <s:textfield onKeyPress="return Numero(event);"  maxLength="2" id="periodo" name="alunoAlteraParams.periodo" value="%{periodo}"  /></td>
+										<td><b>Período:</b> <s:textfield maxLength="2" id="periodo" name="alunoAlteraParams.periodo" value="%{periodo}"  /></td>
 									</tr>
 									
 									<tr>
-										<td><b>Matricula:</b> <s:textfield onKeyPress="return Numero(event);"  maxLength="8" id="matricula" name="alunoAlteraParams.matricula" value="%{matricula}"  /></td>
+										<td><b>Matricula:</b> <s:textfield maxLength="8" id="matricula" name="alunoAlteraParams.matricula" value="%{matricula}"  /></td>
 									</tr>
 									
 									<tr>

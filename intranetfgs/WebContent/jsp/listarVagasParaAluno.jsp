@@ -8,43 +8,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style type="text/css">
-	#titulo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-	#coorden {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-	#local {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-	#alvo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-	#obs {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-</style>
 
 <sx:head/>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Intranet - Faculdade Gama & Souza | Eventos</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
 
 <script type="text/javascript">
- 
 
-$(document).ready(function(){ 
-
-$('.conteudo').hide(); 
-
-$('.exibir').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-	if(i == j) 
-		$(this).show('slow');        
-});    
-});
-});
-$('.ocultar').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-if(i == j) $(this).hide('slow');        
-});    
-});
-});
-});
 
  	function del(codigo) {    
 	     if (confirm('Excluir Vaga?')) {    

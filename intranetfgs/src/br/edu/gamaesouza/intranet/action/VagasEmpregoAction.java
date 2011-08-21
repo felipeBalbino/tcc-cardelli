@@ -77,6 +77,7 @@ public class VagasEmpregoAction extends ActionSupport {
 	@Getter @Setter @Autowired private EnviarEmail   enviarEmail;
 	@Getter @Setter @Autowired private PessoaDAO pessoaDAO;	
 	
+	
 	public String lista() {
 		this.seRegra = false;
 		

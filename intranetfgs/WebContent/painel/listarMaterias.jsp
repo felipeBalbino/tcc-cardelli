@@ -11,39 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Disciplinas</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
-<script type="text/javascript">
- 
-
-$(document).ready(function(){ 
-
-$('.conteudo').hide(); 
-
-$('.exibir').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-	if(i == j) 
-		$(this).show('slow');        
-});    
-});
-});
-$('.ocultar').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-if(i == j) $(this).hide('slow');        
-});    
-});
-});
-});
-
- 	function del(codigo) {    
-	     if (confirm('Excluir a disciplina?')) {    
-	         location.href = "../painel/materia!delete.java?disciplinaDeletaParams.id="+ codigo;
-	     }  
-	 }
-	
-</script>
 </head>
 <body>
 <div align="right">
@@ -98,7 +66,7 @@ if(i == j) $(this).hide('slow');
 										<a  title="Ocultar evento" class="ocultar">
 											<img src="../images/close.png" />
 										</a>
-										<a   title="Deletar evento" href="javascript:del(<s:property value="id" />)">
+										<a   title="Deletar evento" href="javascript:delMaterias(<s:property value="id" />)">
 											<img border="0" src="../images/lixeira.gif" />
 										</a>
 									</td>	

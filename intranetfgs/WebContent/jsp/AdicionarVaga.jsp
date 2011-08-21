@@ -7,180 +7,122 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<link type="text/css" href="../css/south-street/jquery-ui-1.8.14.custom.css" rel="stylesheet" />
-	<script type="text/javascript" src="../js/jquery-1.5.1.min.js"></script>
-	<script type="text/javascript" src="../js/jquery-ui-1.8.14.custom.min.js"></script>
-	<script src="../js/jquery.maskedinput-1.3.js" type="text/javascript"></script>
-	
-	
-	
-	
-	<script src="../js/jquery.maskedinput-1.3.js" type="text/javascript"></script>
-
-
-<style type="text/css">
-#experience {
-	padding: 30px;
-	padding: 17px 0px 0 39px;
-}
-
-#explanation {
-	float: left;
-	width: 340px;
-}
-
-#cargo {
-	background: transparent url(../images/seta_baixo.gif) no-repeat 2% 50%;
-	padding: 2px 0px 2px 25px;
-}
-
-
-
-#perfil {
-	background: transparent url(../images/ico_mail.gif) no-repeat 2% 50%;
-	padding: 2px 60px 2px 25px;
-}
-
-#quantidadeDevagas {
-	background: transparent url(../images/profile_ico_transparent.gif)
-		no-repeat 2% 50%;
-	padding: 2px 0px 2px 25px;
-}
-
-#regimeDeContratacao {
-	background: transparent url(../images/ico_user.gif) no-repeat 2% 50%;ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-	padding: 2px 60px 2px 25px;
-}
-
-#beneficios {
-	background: transparent url(../images/lock.gif) no-repeat 2% 50%;
-	padding: 2px 0px 2px 25px;
-}
-
-#nivelHierarquico {
-	background: transparent url(../images/lock.gif) no-repeat 2% 50%;
-	padding: 2px 0px 2px 25px;
-}
-
-#horarioDaVaga {
-	background: transparent no-repeat 2% 50%;
-	padding: 2px 0px 2px 0px;
-}
-
-#areas {
-	background: transparent no-repeat 2% 50%;
-	padding: 2px 0px 2px 0px;
-}
-
-#empresas {
-	background: transparent url(../images/seta_baixo.gif) no-repeat 2% 50%;
-	padding: 2px 0px 2px 25px;
-}
-
-#contact-form {
-	border-left: 1px solid #313b45;
-	margin-left: 370px;
-	padding-left: 30px;
-	width: 295px;
-}
-
-body {
-	font: 62.5% "Trebuchet MS", sans-serif;
-	margin: 50px;
-}
-
-.demoHeaders {
-	margin-top: 2em;
-}
-
-#dialog_link {
-	padding: .4em 1em .4em 20px;
-	text-decoration: none;
-	position: relative;
-}
-
-#dialog_link span.ui-icon {
-	margin: 0 5px 0 0;
-	position: absolute;
-	left: .2em;
-	top: 50%;
-	margin-top: -8px;
-}
-
-ul#icons {
-	margin: 0;
-	padding: 0;
-}
-
-ul#icons li {
-	margin: 2px;
-	position: relative;
-	padding: 4px 0;
-	cursor: pointer;
-	float: left;
-	list-style: none;
-}
-
-ul#icons span.ui-icon {
-	float: left;
-	margin: 0 4px;
-}
-</style>
-
-
-
-
 <script type="text/javascript">
 
+function validaFormEmpresa(){
+	
+	if($("#nome").val() == ""){
+		alert("Campo 'Nome da Empresa' é requerido.");
+		return false;
+	}
+	if($("#ramo").val() == ""){
+		alert("Campo 'Ramo' é requerido.");
+		return false;
+	}
+	if($("#descricao").val() == ""){
+		alert("Campo 'Descrição' é requerido.");
+		return false;
+	}
+	
+	if($("#endereco option:selected").val() == ""){
+		alert("Campo 'Endereço' é requerido.");
+		return false;
+	}
 
-
+	return true;
+	
+}
  
-
-$(document).ready(function(){
-
-	$("#quantidadeDevagas").mask("9999");
-	$("#horarioDaVaga").mask("**:** às **:**");
-	$("#cep").mask("99999-999");
+function validaFormEndereco(){
 	
-	$('#dialog_emp').dialog({
-		autoOpen: false,
-		width: 600,
-		buttons: {
-			"Cancel": function() { 
-				$(this).dialog("close"); 
-			} 
-		}
-	});
-
-
-	$('#dialog_end').dialog({
-		autoOpen: false,
-		width: 600,
-		buttons: {
-			"Cancel": function() { 
-				$(this).dialog("close"); 
-			} 
-		}
-	});
-	
-	// Dialog Link
-	$('#dialog_link_end').click(function(){
-		$('#dialog_end').dialog('open');
+	if($("#rua").val() == ""){
+		alert("Campo 'Rua' é requerido.");
 		return false;
-	});
-
-	$('#dialog_link_emp').click(function(){
-		$('#dialog_emp').dialog('open');
+	}
+	if($("#numero").val() == ""){
+		alert("Campo 'Número' é requerido.");
 		return false;
-	});
+	}
+	if($("#complemento").val() == ""){
+		alert("Campo 'Complemento' é requerido.");
+		return false;
+	}
 	
-	//hover states on the static widgets
-	$('#dialog_link, ul#icons li').hover(
-		function() { $(this).addClass('ui-state-hover'); }, 
-		function() { $(this).removeClass('ui-state-hover'); }
-	);
+	if($("#bairro").val() == ""){
+		alert("Campo 'Bairro' é requerido.");
+		return false;
+	}
+	if($("#cep").val() == ""){
+		alert("Campo 'Cep' é requerido.");
+		return false;
+	}
+	if($("#cidade").val() == ""){
+		alert("Campo 'Cidade' é requerido.");
+		return false;
+	}
+	
+	if($("#estado").val() == ""){
+		alert("Campo 'Estado' é requerido.");
+		return false;
+	}
+	if($("#paises option:selected").val() == ""){
+		alert("Campo 'Pais' é requerido.");
+		return false;
+	}
+	return true;
+	
+}
 
-});
+
+function validaForm(){
+	
+	if($("#cargo").val() == ""){
+		alert("Campo 'Cargo' é requerido.");
+		return false;
+	}
+	if($("#faixaSalarial").val() == ""){
+		alert("Campo 'Faixa Salarial' é requerido.");
+		return false;
+	}
+	if($("#perfil").val() == ""){
+		alert("Campo 'Perfil' é requerido.");
+		return false;
+	}
+	
+	if($("#quantidadeDevagas").val() == ""){
+		alert("Campo 'Quantidade de Vagas' é requerido.");
+		return false;
+	}
+	if($("#beneficios").val() == ""){
+		alert("Campo 'Beneficios' é requerido.");
+		return false;
+	}
+	if($("#nivelHierarquico").val() == ""){
+		alert("Campo 'Nivel Hierarquico' é requerido.");
+		return false;
+	}
+	
+	if($("#horarioDaVaga").val() == ""){
+		alert("Campo 'Horário da Vaga' é requerido.");
+		return false;
+	}
+	if($("#area option:selected").val() == ""){
+		alert("Campo 'Área' é requerido.");
+		return false;
+	}
+	if($("#empresa option:selected").val() == ""){
+		alert("Campo 'Empresa' é requerido.");
+		return false;
+	}
+	
+	if($("#tipoContratacao option:selected").val() == ""){
+		alert("Campo 'Tipo de contratação' é requerido.");
+		return false;
+	}
+	return true;
+	
+}
+
   
 </script>
 
@@ -204,7 +146,7 @@ $(document).ready(function(){
 			<a  title="Adicionar Empresas" href="#" id="dialog_link_emp">
 			<img  border="0" src="../images/novo.jpg" />Adicionar Empresas</a>
 		
-			<a  title="Adicionar Empresas" href="#" id="dialog_link_end">
+			<a  title="Adicionar Endereços" href="#" id="dialog_link_end">
 			<img border="0" src="../images/novo.jpg" />Adicionar Endereços</a>
 		</td>
 	
@@ -217,7 +159,7 @@ $(document).ready(function(){
 <!-- Nova Empresa -->
 <div id="dialog_emp" title="Dialog Title">
 	<p>
-			<s:form name="registraEmpresa" method="post" action="../painel/vaga!saveEmpresa.java" onSubmit="return validaForm()">
+			<s:form name="registraEmpresa" method="post" action="../painel/vaga!saveEmpresa.java" onSubmit="return validaFormEmpresa()">
 				<table>
 					<tr>
 						<td>
@@ -230,10 +172,12 @@ $(document).ready(function(){
 							<s:text name="Descrição:"/><s:textfield id="descricao" required="true" 
 								name="empresa.descricao"></s:textfield>
 								
-							<s:text name="Endereço:"/><s:select list="enderecos" listKey="id" headerKey="" headerValue="" listValue="toString()" id="endereco" name="enderecoId"></s:select>
-							<s:text name="Se a lista acima estiver vazia é recomendado voltar na tela anterior e clicar no link 'Adicionar Endereços'"></s:text>
+							<s:text name="Endereço:"/><s:select list="enderecos" listKey="id" headerKey="" headerValue="Selecione" listValue="toString()" id="endereco" name="enderecoId"></s:select>
+							<sx:submit align="left" value="Registrar Endereços" id="dialog_link_end2" href="#" label="Log in" cssClass="ui-state-default ui-corner-all"></sx:submit>
+						
+							<s:text name="Se a lista acima estiver vazia é recomendado clicar no link 'Adicionar Endereços' ao lado." ></s:text>
 							<br>				
-							<sx:submit  align="left" value="Registrar Empresa" label="Log in" cssClass="ui-state-default ui-corner-all"></sx:submit>
+							<sx:submit  align="right" value="Registrar Empresa" label="Log in" cssClass="ui-state-default ui-corner-all"></sx:submit>
 						</td>
 					</tr>
 				</table>
@@ -247,7 +191,7 @@ $(document).ready(function(){
 <!-- Novo Endereço -->
 <div id="dialog_end" title="Dialog Title">
 	<p>
-			<s:form name="registraEndereco" method="post" action="../painel/vaga!saveEndereco.java" onSubmit="return validaForm()">
+			<s:form name="registraEndereco" method="post" action="../painel/vaga!saveEndereco.java" onSubmit="return validaFormEndereco()">
 				<table>
 					<tr>
 						<td>
@@ -273,7 +217,7 @@ $(document).ready(function(){
 								name="endereco.estado"></s:textfield>	
 								
 							<s:text name="País:"/><s:select list="paises" listValue="name" headerKey=""
-								headerValue="" id="paises" name="endereco.pais"></s:select>
+								headerValue="Selecione" id="paises" name="endereco.pais"></s:select>
 							<br>				
 							<sx:submit  align="left" value="Registrar Endereço" label="Log				<br> in" cssClass="ui-state-default ui-corner-all"></sx:submit>
 						</td>
@@ -341,7 +285,7 @@ $(document).ready(function(){
 
 				<s:text name="Cargo:"/><s:textfield id="cargo" required="true"
 					name="vaga.cargo"></s:textfield>
-				<s:text name="Faixa Salarial:"/><s:select list="salarios" listValue="name" headerKey=""
+				<s:text name="Faixa Salarial: R$"/><s:select list="salarios" listValue="name" headerKey=""
 					headerValue="" id="faixaSalarial" name="vaga.faixaSalarial"></s:select>
 				<s:text name="Perfil:"/><s:textfield id="perfil" required="true"
 					name="vaga.perfil"></s:textfield>
@@ -354,14 +298,14 @@ $(document).ready(function(){
 				<s:text name="Horários:"/><s:textfield id="horarioDaVaga" required="true"
 					name="vaga.horarioDaVaga"></s:textfield>
 				<br>
-				<s:text name="Área Profissional:"/><s:select list="areas" listKey="id" headerKey="" headerValue=""
+				<s:text name="Área Profissional:"/><s:select list="areas" listKey="id" headerKey="" headerValue="Selecione"
 					listValue="nome" id="area" name="areaProfissionalId"></s:select>
-				<s:text name="Empresa:"/><s:select list="empresas" listKey="id" headerKey="" headerValue=""
+				<s:text name="Empresa:"/><s:select list="empresas" listKey="id" headerKey="" headerValue="Selecione"
 					listValue="nome" id="empresa" name="empresaId"></s:select>
 				<s:text name="Se a lista acima estiver vazia ou não tiver a empresa que procura, é recomendado clicar no link na aba superior em 'Adicionar Empresas'"></s:text>
 				<br><br>
 				<s:text name="Regime de Contratação:"/><s:select list="tiposDeContratacao" listValue="name" headerKey=""
-					headerValue="" id="tipoContratacao" name="vaga.regimeDeContratacao"></s:select>
+					headerValue="Selecione" id="tipoContratacao" name="vaga.regimeDeContratacao"></s:select>
 				<sx:submit  align="left" value="Registrar" label="Log in" cssClass="ui-state-default ui-corner-all"></sx:submit>
 			</s:form>
 		</div>

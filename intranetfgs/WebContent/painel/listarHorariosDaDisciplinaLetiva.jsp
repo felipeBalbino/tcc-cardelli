@@ -10,40 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | HorÃ¡rios</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
-<script type="text/javascript">
- 
-
-$(document).ready(function(){ 
-
-$('.conteudo').hide(); 
-
-$('.exibir').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-	if(i == j) 
-		$(this).show('slow');        
-});    
-});
-});
-$('.ocultar').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-if(i == j) $(this).hide('slow');        
-});    
-});
-});
-});
-
-function deletar(id,idDisciplinaLetiva,idHora,idDisciplinaLetiva){
-
-	  if (confirm('Tem certeza que deseja excluir este horÃ¡rio? Esta operaÃ§Ã£o Ã© irreversÃ­vel.')) {  
-	         location.href ="../painel/horario!deleteDisciplinaLetivaHorario.java?id="+id+"&idDisciplinaLetiva="+idDisciplinaLetiva+"&idHorario="+idHora;
-	     } 
-}
-	
-</script>
 </head>
 <body>
 <div id="retorno" align="right">
@@ -91,7 +58,7 @@ function deletar(id,idDisciplinaLetiva,idHora,idDisciplinaLetiva){
 				<td><s:property value="%{disciplinaLetivaHorarioPK.DiaSemana}"/></td>
 				<td><s:property value="disciplinaLetivaHorarioPK.horario.horaInicio"/></td>
 				<td><s:property value="disciplinaLetivaHorarioPK.horario.horaFim"/></td>
-				<td><a onclick="javascript:deletar('<s:property value='id' />','${idDisciplinaLetiva}',<s:property value='disciplinaLetivaHorarioPK.horario.id' />,<s:property value='disciplinaLetivaHorarioPK.disciplinaLetiva.id' />)" >
+				<td><a onclick="javascript:deletarHorarios('<s:property value='id' />','${idDisciplinaLetiva}',<s:property value='disciplinaLetivaHorarioPK.horario.id' />,<s:property value='disciplinaLetivaHorarioPK.disciplinaLetiva.id' />)" >
 				<img src="../images/lixeira.gif" /></a></td>
 			</tr>
 		</s:iterator>

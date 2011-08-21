@@ -11,45 +11,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Disciplinas letivas</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
-<script type="text/javascript">
- 
-
-$(document).ready(function(){ 
-
-$('.conteudo').hide(); 
-
-$('.exibir').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-	if(i == j) 
-		$(this).show('slow');        
-});    
-});
-});
-$('.ocultar').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-if(i == j) $(this).hide('slow');        
-});    
-});
-});
-});
-
- 	function del(codigo) {    
-	     if (confirm('Excluir a disciplina letiva?')) {    
-	         location.href = "../painel/letiva!delete.java?disciplinaLetiva.id="+ codigo;
-	     }  
-	 }
- 	
- 	function horario(codigo) {       
-        location.href = "../painel/horario!listarHorarioPorDisciplinaLetiva.java?idDisciplinaLetiva="+ codigo; 
-	}	
- 	function listaPresenca(codigo) {       
-        location.href = "../painel/letiva!listaPresenca.java?id="+ codigo; 
-	}
-</script>
 </head>
 <body>
 <div align="right">
@@ -122,7 +84,7 @@ if(i == j) $(this).hide('slow');
 										<a  title="Imprimir lista de presença do Alunos" border="30" href="javascript:listaPresenca(<s:property value="id" />)">
 											<img border="0" src="../images/p_calendario.gif" />
 										</a>
-										<a   title="Deletar evento" href="javascript:del(<s:property value="id" />)">
+										<a   title="Deletar evento" href="javascript:delDisciplinaLetiva(<s:property value="id" />)">
 											<img border="0" src="../images/lixeira.gif" />
 										</a>
 									</td>

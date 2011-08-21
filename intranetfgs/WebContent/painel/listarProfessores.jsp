@@ -8,54 +8,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style type="text/css">
-#email {background:transparent url(../images/ico_mail.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#login {background:transparent url(../images/profile_ico_transparent.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-#nome  {background:transparent url(../images/ico_user.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#senha {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-#matricula {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-</style>
+
 <sx:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Professores</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
 
 <script type="text/javascript">
  
-
-$(document).ready(function(){ 
-
-$('.conteudo').hide(); 
-
-$('.exibir').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-	if(i == j) 
-		$(this).show('slow');        
-});    
-});
-});
-$('.ocultar').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-if(i == j) $(this).hide('slow');        
-});    
-});
-});
-});
-
- 	function del(codigo) {    
-	     if (confirm('Excluir o professor?')) {    
-	         location.href = "../painel/professor!delete.java?professor.id="+ codigo;
-	     }  
-	 }
-
- 	function gerarNovaSenha(codigo) {    
-	     if (confirm('Gerar e enviar senha para o professor?')) {    
-	         location.href = "../painel/professor!gerarNovaSenha.java?professor.id="+ codigo;
-	     }  
-	 }
-
 
  	function restartTrs(){
  		document.getElementById("nome").style.backgroundColor = "transparent";
@@ -163,7 +123,7 @@ if(i == j) $(this).hide('slow');
 										<a  title="Ocultar professor" class="ocultar">
 											<img src="../images/close.png" />
 										</a>
-										<a   title="Deletar professor" border="30" href="javascript:del(<s:property value="id" />)">
+										<a   title="Deletar professor" border="30" href="javascript:delProfessores(<s:property value="id" />)">
 											<img border="0" src="../images/lixeira.gif" />
 										</a>
 										<a   title="Gerar senha para professor" border="30" href="javascript:gerarNovaSenha(<s:property value="id" />)">

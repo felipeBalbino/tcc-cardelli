@@ -6,50 +6,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript" src="../js/jquery-1.5.1.min.js"></script>
-<script src="../js/jquery.maskedinput-1.3.js" type="text/javascript"></script>
-
-<style type="text/css">
-#experience { 
-padding:30px; 
-padding:17px 0px 0 39px;
-}
-
-
-#explanation { 
-float:left;
-width:340px;
-}
-
-
-#titulo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#coorden {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#horainicio {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#horafinal {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#datainicio {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#datafinal {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#local {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#alvo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#obs {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-
-
- 
-#contact-form { 
-border-left:1px solid #313b45; 
-margin-left:370px; 
-padding-left:30px; 
-width:295px; 
-}
-
-
-</style>
-
-
 <script type="text/javascript">
-$(document).ready(function(){
-	$("#horainicio").mask("99:99:99");
-	$("#horafinal").mask("99:99:99");
-});
+
 
 function restartTrs(){
 	document.getElementById("titulo").style.backgroundColor = "transparent";
@@ -60,23 +18,7 @@ function restartTrs(){
  function restartMensagemErro(){
                    document.getElementById("mensagem_ocultos").style.display = "none";
  }
-
-
- function inserirlocal(){
-	 document.getElementById("divlocal").style.display = "inline";
-	 document.getElementById("lilocal").style.display = "none";
- }	
  
- function inserirpublicoalvo(){
-	 document.getElementById("divalvo").style.display = "inline";
-	 document.getElementById("lialvo").style.display = "none";
- }
- 
- function inserirobs(){
-	 document.getElementById("divobs").style.display = "inline";
-	 document.getElementById("liobs").style.display = "none";
- } 
-
  function validaForm(){
 	 restartTrs();
          restartMensagemErro();

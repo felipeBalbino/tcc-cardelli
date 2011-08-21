@@ -6,29 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style type="text/css">
-#experience { 
-padding:30px; 
-padding:17px 0px 0 39px;
-}
-
-
-#explanation { 
-float:left;
-width:340px;
-}
-
-#nome {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#disciplinasCurso {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-
-#contact-form { 
-border-left:1px solid #313b45; 
-margin-left:370px; 
-padding-left:30px; 
-width:295px; 
-}
-
-</style>
+	
 <script type="text/javascript">
 
 

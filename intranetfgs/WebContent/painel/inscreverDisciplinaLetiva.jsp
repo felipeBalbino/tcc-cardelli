@@ -7,22 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style type="text/css">
 
-#semestre {
-	background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; 
-	padding:2px 0px 2px 25px;
-}
-#turno {
-	background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; 
-	padding:2px 0px 2px 25px;
-}
-#disciplina {
-	background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; 
-	padding:2px 0px 2px 25px;
-}
-
-</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Inscrever aluno - Disciplinas letivas</title>
 <script type="text/javascript">

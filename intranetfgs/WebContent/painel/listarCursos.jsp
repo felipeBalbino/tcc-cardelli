@@ -10,32 +10,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Cursos</title>
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
 <script type="text/javascript">
  
 
-$(document).ready(function(){ 
-
-$('.conteudo').hide(); 
-
-$('.exibir').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-	if(i == j) 
-		$(this).show('slow');        
-});    
-});
-});
-$('.ocultar').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-if(i == j) $(this).hide('slow');        
-});    
-});
-});
-});
 
  	function delcurso(codigo) {    
 	     if (confirm('Excluir o curso?')) {    
@@ -84,23 +62,6 @@ if(i == j) $(this).hide('slow');
  			}
  	}
  	 
- 	 function Numero(e)
- 	 {
- 		 navegador = /msie/i.test(navigator.userAgent);
- 		 if (navegador)
- 		 	var tecla = event.keyCode;
- 		 else
- 		 	var tecla = e.which;
- 		 if(tecla > 47 && tecla < 58) // numeros de 0 a 9
- 			 return true;
- 		 else
- 		 {
- 		 if (tecla != 8) // backspace
- 		 return false;
- 		 else
- 		 return true;
- 		 }
- 	 }
 	
 </script>
 </head>
@@ -186,7 +147,7 @@ if(i == j) $(this).hide('slow');
 					</tr>
 					
 					<tr>
-						<td><b>Carga Horário Complementar: </b><s:textfield id="cargaHorariaComplementar" name="cursoAlteraParams.cargaHorariaComplementar" value="%{cargaHorariaComplementar}" maxLength="8"  onKeyPress="return Numero(event);" /></td>
+						<td><b>Carga Horário Complementar: </b><s:textfield id="cargaHorariaComplementar" name="cursoAlteraParams.cargaHorariaComplementar" value="%{cargaHorariaComplementar}" maxLength="8" /></td>
 					</tr>
 				
 					<tr><td>

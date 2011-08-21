@@ -10,40 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Horários</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
-<script type="text/javascript">
- 
-
-$(document).ready(function(){ 
-
-$('.conteudo').hide(); 
-
-$('.exibir').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-	if(i == j) 
-		$(this).show('slow');        
-});    
-});
-});
-$('.ocultar').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-if(i == j) $(this).hide('slow');        
-});    
-});
-});
-});
-
-function deletar(id){
-
-	  if (confirm('Tem certeza que deseja excluir este horário? Esta operação é irreversível.')) {  
-	         location.href ="../painel/horario!delete.java?id="+id;
-	     } 
-}
 	
-</script>
 </head>
 <body>
 <div id="retorno" align="right">
@@ -57,9 +25,9 @@ function deletar(id){
 
 		<tr>
 			<td>Hora Inicio:</td>
-			<td><s:textfield name="horarioNovoParams.horaInicio" size="12" maxlength="8"/></td>
+			<td><s:textfield name="horarioNovoParams.horaInicio" size="12" maxlength="8"  id="horainicio"/></td>
 			<td>Hora Final:</td>
-			<td><s:textfield name="horarioNovoParams.horaFim" size="12" maxlength="8" cssStyle=""/></td>
+			<td><s:textfield  name="horarioNovoParams.horaFim" size="12" maxlength="8" id="horafinal"/></td>
 			<td>Ano:</td>		
 			<td><sx:autocompleter headerKey="-1" headerValue="" id="ano" name="horarioNovoParams.ano" list="anos" /></td>
 			<td>Semestre:</td>

@@ -7,39 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript" src="../js/jquery-1.5.1.min.js"></script>
-<script src="../js/jquery.maskedinput-1.3.js" type="text/javascript"></script>
-<style type="text/css">
-#experience { 
-padding:30px; 
-padding:17px 0px 0 39px;
-}
 
-
-#explanation { 
-float:left;
-width:340px;
-}
-#curso {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-#email {background:transparent url(../images/ico_mail.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#email2 {background:transparent url(../images/ico_mail.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#login {background:transparent url(../images/profile_ico_transparent.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-#nome  {background:transparent url(../images/ico_user.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#senha {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-#senha2 {background:transparent url(../images/lock.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
-#matricula {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#periodo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-#statusMatricula  {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 25px;}
- 
-#contact-form { 
-border-left:1px solid #313b45; 
-margin-left:370px; 
-padding-left:30px; 
-width:295px; 
-}
-
-
-</style>
 
 
 <script type="text/javascript">

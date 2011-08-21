@@ -6,39 +6,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style type="text/css">
-#experience { 
-padding:30px; 
-padding:17px 0px 0 39px;
-}
 
 
-#explanation { 
-float:left;
-width:340px;
-}
-
-#email {background:transparent url(../images/ico_mail.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#nome {background:transparent url(../images/ico_user.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#telefone {background:transparent url(../images/icon_phone.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#matricula {background:transparent url(../images/ico_user.gif) no-repeat 2% 50%; padding:2px 60px 2px 25px;}
-#curso {background:transparent url(../images/seta_baixo.gif) no-repeat 2% 50%; padding:2px 0px 2px 22px;}
-#mensagem {background:none repeat scroll 0 0 #CCCCCC; border:medium none !important; -moz-border-radius:2px 2px 2px 2px;}
-
-
-
-
- 
-#contact-form { 
-border-left:1px solid #313b45; 
-margin-left:370px; 
-padding-left:30px; 
-width:295px; 
-}
-
-
-</style>
 <script type="text/javascript">
+
+
  function restartTrs(){
 	document.getElementById("nome").style.backgroundColor = "transparent";
  	document.getElementById("email").style.backgroundColor = "transparent";
@@ -112,35 +84,6 @@ width:295px;
 		}
 }
 
- function mascara(o,f){
-	 
-	  v_obj=o;
-	 
-	  v_fun=f;
-	 
-	  setTimeout("execmascara()",1);
-	 
-	 }
-	 
-	 
-	 
-	 function execmascara(){
-	 
-	  v_obj.value=v_fun(v_obj.value);
-	 
-	 } 
-	 
- function Telefone(v){
-	 
-	  v=v.replace(/\D/g,""); 
-	 
-	  v=v.replace(/^(\d\d)(\d{4})(\d{4})/g,"($1)$2-$3");
-	 
-	  return v;
-	 
-	 } 
-
-
 
 </script>
 
@@ -195,10 +138,10 @@ Antes de nos enviar sua manifestação leia estes lembretes:<br>
 									<td>
 										<s:text name="Nome:"/><s:textfield id="nome" name="ouvidoriaEmailParams.nome" ></s:textfield><br>
 										<s:text name="Email:"/><s:textfield id="email" name="ouvidoriaEmailParams.email" ></s:textfield><br>
-										<s:text name="Telefone:"/><i style="color:gray;"> 21 2222-2222</i><s:textfield id="telefone" onkeypress="mascara(this,Telefone)" maxlength="13"  name="ouvidoriaEmailParams.telefone" ></s:textfield><br>
+										<s:text name="Telefone:"/><i style="color:gray;"> (21)2222-2222</i><s:textfield id="telefone" maxlength="13"  name="ouvidoriaEmailParams.telefone" ></s:textfield><br>
 										<s:text name="Matricula:"/><br><s:textfield id="matricula" name="ouvidoriaEmailParams.matricula" ></s:textfield><br>
 										<s:text name="Curso:"/><br><sx:autocompleter headerKey=""   headerValue=""  id="curso" name="ouvidoriaEmailParams.cursoId" list="cursos" listValue="nome" listKey="id"/><br>
-										<s:text name="Mensagem:"/><s:textarea id="mensagem" name="ouvidoriaEmailParams.mensagem"  cssStyle="width: 230px;height:170"></s:textarea><br>
+										<s:text name="Mensagem:"/><s:textarea id="mensagemouvidoria" name="ouvidoriaEmailParams.mensagem"  cssStyle="width: 230px;height:170"></s:textarea><br>
 										<s:submit align="left" value="Enviar"></s:submit>
 									</td>
 								</tr>

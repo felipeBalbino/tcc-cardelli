@@ -15,7 +15,7 @@
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Intranet - Faculdade Gama & Souza | Imprimir lista de presença do Aluno</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
 </head>
 <body>
 <div id="retorno" align="right">

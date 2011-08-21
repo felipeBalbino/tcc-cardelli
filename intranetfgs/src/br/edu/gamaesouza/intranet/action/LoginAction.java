@@ -7,7 +7,9 @@ import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.java.Log;
-
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import br.edu.gamaesouza.intranet.bean.Aluno;
@@ -67,6 +69,9 @@ public class LoginAction extends ActionSupport {
 		
 	}
 	public String in() {
+
+		
+		
 			Pessoa pessoa = null;
 			try {
 				pessoa = pessoaDAO.getPessoa(login, senha);
@@ -84,6 +89,7 @@ public class LoginAction extends ActionSupport {
 			}
 
 	}
+		
 		
 	public String registrar() {			
 			try {				

@@ -6,30 +6,7 @@
 	    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" 				prefix="fmt" 		%>
 	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 	<html>
-	<head>
-	
-	<style type="text/css">
-	#experience { 
-	padding:30px; 
-	padding:17px 0px 0 39px;
-	}
-	
-	
-	#explanation { 
-	float:left;
-	width:340px;
-	}
-	 
-	#contact-form { 
-	border-left:1px solid #313b45; 
-	margin-left:370px; 
-	padding-left:30px; 
-	width:295px; 
-	}
-	
-	
-	</style>
-	
+	<head>	
 	<s:head/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Intranet - Faculdade Gama & Souza | Buscar Horas AEP e Complementares</title>

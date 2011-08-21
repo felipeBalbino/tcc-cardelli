@@ -7,61 +7,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style type="text/css">
-	#titulo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-	#coorden {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-	#local {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-	#alvo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-	#obs {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-</style>
 
 <sx:head/>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Intranet - Faculdade Gama & Souza | Eventos</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
-<script type="text/javascript">
- 
 
-$(document).ready(function(){ 
-
-$('.conteudo').hide(); 
-
-$('.exibir').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-	if(i == j) 
-		$(this).show('slow');        
-});    
-});
-});
-$('.ocultar').each(function(i){    
-$(this).click(function(){        
-$('.conteudo').each(function(j){            
-if(i == j) $(this).hide('slow');        
-});    
-});
-});
-});
-
- 	function del(codigo) {    
-	     if (confirm('Excluir Vaga?')) {    
-	         location.href = "../painel/vaga!deleta.java?idVaga="+ codigo;
-	     }  
-	 }
-
- 	function desconfirmar(codigo) { 
- 		if (confirm('Deseja marcar como não confirmado?')) {    
-	         location.href = "../painel/vaga!desconfirmar.java?idVaga="+ codigo;
-	     } 
- 	}
-
- 	function confirmar(codigo) { 
- 		if (confirm('Deseja marcar como confirmado?')) {    
-	         location.href = "../painel/vaga!confirmar.java?idVaga="+ codigo;
-	     } 
- 	}
+<script type="text/javascript"> 	
  	function restartTrs(){
  		document.getElementById("titulo").style.backgroundColor = "transparent";
  	 	document.getElementById("coorden").style.backgroundColor = "transparent";
@@ -162,7 +115,7 @@ if(i == j) $(this).hide('slow');
 										<a  title="Ocultar vaga" class="ocultar">
 											<img src="../images/close.png" />
 										</a>
-										<a   title="Deletar vaga" border="30" href="javascript:del(<s:property value="id" />)">
+										<a   title="Deletar vaga" border="30" href="javascript:delVagas(<s:property value="id" />)">
 											<img border="0" src="../images/lixeira.gif" />
 										</a>
 									</td>	
@@ -189,7 +142,7 @@ if(i == j) $(this).hide('slow');
 											</tr>
 											
 											<tr>
-												<td><b>Area Profissional:</b> <s:select list="areas" id="areas" name="areas"  listValue="nome" headerKey="" headerValue="" value="%{areaProfissional}"/></td>
+												<td><b>Area Profissional:</b> <s:select list="areas" id="areas" name="areas"  listValue="nome" listKey="id" headerKey="" headerValue="Selecione" value="%{areaProfissional}"/></td>
 											</tr>
 
 											<tr>
@@ -202,7 +155,7 @@ if(i == j) $(this).hide('slow');
 												<td><b>Quantidade De Vagas:</b> <s:textfield id="quantidadeDevagas"  required="true" name="vaga.quantidadeDevagas" value="%{quantidadeDevagas}"></s:textfield></td>
 											</tr>
 											<tr>
-												<td><b>Regime De Contratação:</b> <s:select list="tiposDeContratacao" id="tipoContratacao"  required="true"  name="tipoContratacao"  headerKey="" headerValue="" value="%{regimeDeContratacao}"/></td>
+												<td><b>Regime De Contratação:</b> <s:select list="tiposDeContratacao" id="tipoContratacao"  required="true"  name="tipoContratacao"  headerKey="" headerValue="Selecione" value="%{regimeDeContratacao}"/></td>
 											</tr>
 											
 											<tr>

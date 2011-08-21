@@ -6,31 +6,11 @@
 <html>
 <head>
 <sx:head/>
-<script type="text/javascript" src="../js/jquery-1.5.1.min.js"></script>
-<script src="../js/jquery.maskedinput-1.3.js" type="text/javascript"></script>
-<style type="text/css">
-	#experience { 
-		padding:30px; 
-		padding:17px 0px 0 39px;
-	}
+	
+	
+	
+	
 
-
-	#explanation { 
-		float:left;
-		width:340px;
-	}
-
-	#titulo {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px; width:300px;}
-	#data {background:transparent no-repeat 2% 50%; padding:2px 0px 2px 0px;}
-
-	#contact-form { 
-		border-left:1px solid #313b45; 
-		margin-left:370px; 
-		padding-left:30px; 
-		width:295px; 
-	}
-
-</style>
 <script type="text/javascript">
 jQuery(function($){
 	   $("#data").mask("99:99");
@@ -68,14 +48,7 @@ jQuery(function($){
          	return false;
 		}
 }
- 
- function dois_pontos(tempo){
- 
-     if(tempo.value.length==2){
-       tempo.value+=":";
-      }
-     
-}
+
 
 
 </script>
@@ -151,8 +124,8 @@ jQuery(function($){
 			<hr>
 			<s:form action="/painel/hora!salvaComplementar.java" name="adicionar" onSubmit="return validaForm()" >
 				<s:hidden value="%{aluno.id}" name="horaComplementarNovoParams.aluno.id" />
-				Título: <br><s:textfield id="data" id="titulo" name="horaComplementarNovoParams.nomeEvento"   /><br>
-				Horas (hh:mm): <br><s:textfield maxlength="5" id="data" name="horaComplementarNovoParams.numeroHoras" onkeypress="dois_pontos(this)" /><br>
+				Título: <br><s:textfield id="data" id="titulohora" name="horaComplementarNovoParams.nomeEvento"   /><br>
+				Horas (hh:mm): <br><s:textfield maxlength="5" id="data" name="horaComplementarNovoParams.numeroHoras" /><br>
 				Atividade:<br><sx:autocompleter cssStyle="width:270px;" headerKey="-1" headerValue=""  id="atividade" list="atividades" name="horaComplementarNovoParams.atividadeId"   value="atividade" listKey="id" listValue="nome" /><br>
 						<br>
 				<s:submit align="left" value="Adicionar Hora"></s:submit>

@@ -1,0 +1,78 @@
+H1 {
+	MARGIN: 0.4em 0px 0.5em; BACKGROUND: inherit; COLOR: #000; FONT-SIZE: 16pt; FONT-WEIGHT: bold
+}
+H2 {
+	PADDING-BOTTOM: 0.3em; MARGIN: 0.2em 0px 0.5em; PADDING-LEFT: 0px; PADDING-RIGHT: 0.3em; BACKGROUND: inherit; COLOR: #333; FONT-SIZE: 14pt; FONT-WEIGHT: bold; PADDING-TOP: 0.3em
+}
+H3 {
+	MARGIN: 0.4em 0px 0.3em; FONT-SIZE: 12pt; FONT-WEIGHT: bold
+}
+H1 {
+	PAGE-BREAK-AFTER: avoid
+}
+H2 {
+	PAGE-BREAK-AFTER: avoid
+}
+H3 {
+	PAGE-BREAK-AFTER: avoid
+}
+A {
+	COLOR: #93246f; FONT-WEIGHT: bold
+}
+.unsichtbar {
+	DISPLAY: none
+}
+P .u2 {
+	DISPLAY: none
+}
+#header {
+	WIDTH: auto
+}
+.buttonheading {
+	DISPLAY: none
+}
+#header FORM {
+	DISPLAY: none
+}
+.pagination {
+	DISPLAY: none
+}
+#footer {
+	DISPLAY: none
+}
+P.counter {
+	DISPLAY: none
+}
+.unseen {
+	DISPLAY: none
+}
+#header UL {
+	DISPLAY: none
+}
+#right FORM {
+	DISPLAY: none
+}
+#breadcrumbs {
+	DISPLAY: none
+}
+#left {
+	DISPLAY: none
+}
+#fontsize {
+	DISPLAY: none
+}
+#main2 {
+	MARGIN: 0%
+}
+#all {
+	TEXT-ALIGN: left
+}
+#right {
+	POSITION: static !important; DISPLAY: block
+}
+#main2:before {
+	BORDER-BOTTOM: #000 1px solid; BACKGROUND-COLOR: inherit; DISPLAY: block; MARGIN-BOTTOM: 1em; COLOR: #888; FONT-SIZE: 1.5em; CONTENT: " content "; FONT-WEIGHT: bold
+}
+#right:before {
+	BORDER-BOTTOM: #000 1px solid; BACKGROUND-COLOR: inherit; DISPLAY: block; MARGIN-BOTTOM: 1em; COLOR: #888; FONT-SIZE: 1.5em; CONTENT: " additional information "; FONT-WEIGHT: bold
+}

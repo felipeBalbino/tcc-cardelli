@@ -1,0 +1,270 @@
+#titulo {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#titulohora {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+	width: 300px;
+}
+
+#namearquivo {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#arquivo {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#semestre {
+	background: transparent url(../images/seta_baixo.gif) no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+#turno {
+	background: transparent url(../images/seta_baixo.gif) no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+#materia {
+	background: transparent url(../images/seta_baixo.gif) no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+#professorid {
+	background: transparent url(../images/seta_baixo.gif) no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+#disciplinasCurso {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#data {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#coorden {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#alvo {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#obs {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#experience {
+	padding: 30px;
+	padding: 17px 0px 0 39px;
+}
+
+#email2 {
+	background: transparent url(../images/ico_mail.gif) no-repeat 2% 50%;
+	padding: 2px 60px 2px 25px;
+}
+
+#email {
+	background: transparent url(../images/ico_mail.gif) no-repeat 2% 50%;
+	padding: 2px 60px 2px 25px;
+}
+
+#login {
+	background: transparent url(../images/profile_ico_transparent.gif)
+		no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+
+
+#disciplina {
+	background: transparent url(../images/seta_baixo.gif) no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+#nome {
+	background: transparent url(../images/ico_user.gif) no-repeat 2% 50%;
+	padding: 2px 60px 2px 25px;
+}
+
+#senha {
+	background: transparent url(../images/lock.gif) no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+#senha2 {
+	background: transparent url(../images/lock.gif) no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+#matricula {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+
+
+#disciplinasCurso {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+#explanation {
+	float: left;
+	width: 340px;
+}
+
+#cargo {
+	background: transparent url(../images/seta_baixo.gif) no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+#quantidadeDevagas {
+	background: transparent url(../images/profile_ico_transparent.gif)
+		no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+#regimeDeContratacao {
+	background: transparent url(../images/ico_user.gif) no-repeat 2% 50%;
+	padding: 2px 60px 2px 25px;
+}
+
+#horarioDaVaga {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#areas {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#empresas {
+	background: transparent url(../images/seta_baixo.gif) no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+#contact-form {
+	border-left: 1px solid #313b45;
+	margin-left: 370px;
+	padding-left: 30px;
+	width: 295px;
+}
+
+#horainicio {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#horafinal {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#datainicio {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#datafinal {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#cursosParam {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#periodo {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#senhaAtual {
+	background: transparent url(../images/lock.gif) no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+#novaSenha {
+	background: transparent url(../images/lock.gif) no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+#statusMatricula {
+	background: transparent url(../images/seta_baixo.gif) no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+#curso {
+	background: transparent url(../images/seta_baixo.gif) no-repeat 2% 50%;
+	padding: 2px 0px 2px 25px;
+}
+
+#local {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#mensagem {
+	background: transparent no-repeat 2% 50%;
+	padding: 2px 0px 2px 0px;
+}
+
+#mensagemouvidoria {
+	background: none repeat scroll 0 0 #CCCCCC;
+	border: medium none !important;
+	-moz-border-radius: 2px 2px 2px 2px;
+}
+
+body {
+	font: 62.5% "Trebuchet MS", sans-serif;
+	margin: 50px;
+}
+
+.demoHeaders {
+	margin-top: 2em;
+}
+
+#dialog_link {
+	padding: .4em 1em .4em 20px;
+	text-decoration: none;
+	position: relative;
+}
+
+#dialog_link span.ui-icon {
+	margin: 0 5px 0 0;
+	position: absolute;
+	left: .2em;
+	top: 50%;
+	margin-top: -8px;
+}
+
+ul#icons {
+	margin: 0;
+	padding: 0;
+}
+
+ul#icons li {
+	margin: 2px;
+	position: relative;
+	padding: 4px 0;
+	cursor: pointer;
+	float: left;
+	list-style: none;
+}
+
+ul#icons span.ui-icon {
+	float: left;
+	margin: 0 4px;
+}

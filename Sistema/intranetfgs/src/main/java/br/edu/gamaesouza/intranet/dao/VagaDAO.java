@@ -8,6 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import br.edu.gamaesouza.intranet.bean.Evento;
+import br.edu.gamaesouza.intranet.bean.Noticia;
 import br.edu.gamaesouza.intranet.bean.Vaga;
 import br.edu.gamaesouza.intranet.utils.IntranetException;
 
@@ -43,7 +44,7 @@ public class VagaDAO extends HibernateDaoSupport {
 		Criteria allVagas = getSession().createCriteria(Vaga.class);
 		allVagas.add(Restrictions.eq("confirmacao", true));
 		allVagas.add(Restrictions.eq("seAtivo", true));
-		List<Vaga> vagasList = (List<Vaga>)allVagas.list();
+		List<Vaga> vagasList = (List<Vaga>)allVagas.list();		
 		return vagasList;
 	}
 
@@ -51,6 +52,8 @@ public class VagaDAO extends HibernateDaoSupport {
 		Criteria allVagasForIndex = getSession().createCriteria(Vaga.class);
 		allVagasForIndex.setMaxResults(5);
 		allVagasForIndex.addOrder(Order.desc("id"));	
+		allVagasForIndex.add(Restrictions.eq("confirmacao", true));
+		allVagasForIndex.add(Restrictions.eq("seAtivo", true));
 		List<Vaga> vagasList = allVagasForIndex.list();
 		return vagasList;
 	}

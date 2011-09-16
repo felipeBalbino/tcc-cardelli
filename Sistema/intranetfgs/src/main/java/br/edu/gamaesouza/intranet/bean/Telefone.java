@@ -1,13 +1,19 @@
 package br.edu.gamaesouza.intranet.bean;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+import org.hibernate.envers.Audited;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import br.edu.gamaesouza.intranet.utils.EnumTipoTelefone;
 /**
@@ -15,7 +21,7 @@ import br.edu.gamaesouza.intranet.utils.EnumTipoTelefone;
  * @since 11/06/2011
  */
 
-@Entity
+@Entity @Audited
 public class Telefone implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

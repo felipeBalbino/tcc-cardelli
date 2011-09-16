@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import org.hibernate.envers.Audited;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +22,7 @@ import br.edu.gamaesouza.intranet.utils.AreaEnum;
 import br.edu.gamaesouza.intranet.utils.FaixaSalarialEnum;
 import br.edu.gamaesouza.intranet.utils.TiposContratacaoEnum;
 
-@Entity
+@Entity @Audited
 public @Data class Vaga {
 	
 	@Id

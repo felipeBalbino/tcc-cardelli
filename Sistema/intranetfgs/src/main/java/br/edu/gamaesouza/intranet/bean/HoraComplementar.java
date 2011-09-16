@@ -6,13 +6,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import br.edu.gamaesouza.intranet.utils.DateUtil;
+import org.hibernate.envers.Audited;
 
-@Entity
+@Entity @Audited
 @NamedQueries(value={
 		
 		@NamedQuery(name="horasComplementaresByAluno",query="SELECT comp FROM HoraComplementar comp where comp.aluno.id = :aluno"),

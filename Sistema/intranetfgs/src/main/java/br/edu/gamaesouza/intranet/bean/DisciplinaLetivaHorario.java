@@ -3,18 +3,11 @@ package br.edu.gamaesouza.intranet.bean;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 
-import br.edu.gamaesouza.intranet.utils.DiaSemanaEnum;
+import org.hibernate.envers.Audited;
 
 
-@Entity
+@Entity @Audited
 public class DisciplinaLetivaHorario {
 	
 	@EmbeddedId

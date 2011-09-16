@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="">
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.connection.password">dds3@1</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/intranet</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  <property name="hibernate.show_sql">false</property>
+  <property name="hibernate.format_sql">false</property>
+  <property name="c3p0.acquire_increment">1</property>
+  <property name="hibernate.connection.pool_size">1000</property>
+  
+  <property name="c3p0.timeout">15</property>
+  <property name="c3p0.min_size">200</property>
+  <property name="c3p0.max_size">10000</property>
+  <property name="c3p0.max_statements">10000</property>
+  <property name="c3p0.idle_test_period">15</property>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Noticia"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Professor"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Arquivo"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Curso"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Disciplina"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Rule"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Evento"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Aluno"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Pessoa"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.DisciplinaLetiva"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Hora"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.HoraAEP"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.HoraComplementar"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Atividade"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Horario"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.DisciplinaLetivaHorario"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Vaga"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Endereco"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Empresa"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.AreaProfissional"/>
+  <mapping class="br.edu.gamaesouza.intranet.bean.Telefone"/>
+  
+ </session-factory>
+</hibernate-configuration>

@@ -6,18 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+import org.hibernate.envers.Audited;
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity @Audited
 /*@NamedQueries(value={
 		@NamedQuery(name="allAreasByPessoa",query="SELECT dl FROM AreaProfissional dl left join fetch dl.pessoas pessoa WHERE pessoa.id = :pessoa")
 })*/

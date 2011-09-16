@@ -9,18 +9,18 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+import org.hibernate.envers.Audited;
+import org.hibernate.validator.constraints.NotEmpty;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
  * @since 15/03/2011
  */
 
-@Entity
+@Entity @Audited
 @NamedQueries(value={
 		@NamedQuery(name="VaziaRule",query="FROM Rule")
 })

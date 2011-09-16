@@ -3,31 +3,26 @@ package br.edu.gamaesouza.intranet.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+import org.hibernate.envers.Audited;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
  * @since 15/03/2011
  */
-@Entity
+@Entity @Audited
 @NamedQueries(value={
 		@NamedQuery(name="allDLByDisciplinaAnoSemestre",query="SELECT dl FROM DisciplinaLetiva dl WHERE dl.disciplina.id = :disciplina AND ano = :ano AND semestre = :semestre"),
 		@NamedQuery(name="allDLByAnoSemestreTurno",query="SELECT dl FROM DisciplinaLetiva dl WHERE dl.ano = :ano AND semestre = :semestre AND turno = :turno"),

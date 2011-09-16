@@ -10,11 +10,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+import org.hibernate.envers.Audited;
+
+@Entity @Audited
 @NamedQueries(value={
 		
 		@NamedQuery(name="horasAEPByAluno",query="SELECT aep FROM HoraAEP aep where aep.aluno.id = :aluno"),

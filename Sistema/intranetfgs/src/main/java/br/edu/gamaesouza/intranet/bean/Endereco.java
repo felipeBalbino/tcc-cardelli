@@ -5,16 +5,16 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import org.hibernate.envers.Audited;
+
 import br.edu.gamaesouza.intranet.utils.PaisEnum;
 
-@Entity
+@Entity @Audited
 public class Endereco {
 
 	@Id

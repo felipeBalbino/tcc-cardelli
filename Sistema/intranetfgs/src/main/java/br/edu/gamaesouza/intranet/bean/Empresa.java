@@ -8,13 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+import org.hibernate.envers.Audited;
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity @Audited
 public class Empresa {
 	
 	@Id

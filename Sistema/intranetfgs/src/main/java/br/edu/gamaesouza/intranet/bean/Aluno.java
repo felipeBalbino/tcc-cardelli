@@ -12,6 +12,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import org.hibernate.envers.Audited;
+
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +26,7 @@ import br.edu.gamaesouza.intranet.utils.StatusMatriculaEnum;
  * @author Felipe Balbino
  * @since 15/03/2011
  */
-@Entity
+@Entity @Audited
 @NamedQueries(value={
 		@NamedQuery(name="alunosByCurso",query="FROM Aluno a where a.curso.id = :curso"),
 		@NamedQuery(name="alunoById",query="FROM Aluno WHERE id = :id"),

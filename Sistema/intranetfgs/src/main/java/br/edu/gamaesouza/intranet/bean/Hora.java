@@ -8,11 +8,12 @@ import javax.persistence.InheritanceType;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+import org.hibernate.envers.Audited;
+
+@Entity @Audited
 @Inheritance(strategy=InheritanceType.JOINED) 
 @NamedQuery(name="horasByAlunoAndIdHora",query="SELECT comp FROM Hora comp where comp.aluno.id = :aluno AND comp.id = :hora")
 public class Hora {

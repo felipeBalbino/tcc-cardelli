@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,24 +12,23 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.servlet.ServletContext;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 /**
  * @author Gabriel Cardelli
  * @author Felipe Balbino
  * @since 15/03/2011
  */
-@Entity
+@Entity @Audited
 @NamedQueries(value={
 		@NamedQuery(name="VaziaArquivo",query="FROM Arquivo")
 })

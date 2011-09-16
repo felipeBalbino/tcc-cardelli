@@ -105,7 +105,7 @@ public class HoraDAO extends HibernateDaoSupport {
 		Hora hora = (Hora) query.uniqueResult();
 		
 		if(hora == null){
-			throw new IntranetException("[deleteComplementar] N„o foi possÌvel buscar a hora com os par‚metros passados.");
+			throw new IntranetException("[deleteComplementar] N√£o foi poss√≠vel buscar a hora com os par√¢metros passados.");
 		}else{
 			getHibernateTemplate().delete(hora);
 		}
@@ -120,7 +120,7 @@ public class HoraDAO extends HibernateDaoSupport {
 		Hora hora = (Hora) query.uniqueResult();
 		
 		if(hora == null){
-			throw new IntranetException("[deleteAEP] N„o foi possÌvel buscar a hora com os par‚metros passados.");
+			throw new IntranetException("[deleteAEP] N√£o foi poss√≠vel buscar a hora com os par√¢metros passados.");
 		}else{
 			getHibernateTemplate().delete(hora);
 		}

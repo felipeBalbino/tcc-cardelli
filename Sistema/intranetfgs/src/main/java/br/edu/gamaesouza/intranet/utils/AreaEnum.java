@@ -1,9 +1,9 @@
 package br.edu.gamaesouza.intranet.utils;
 
 public enum AreaEnum {
-	TI("Informática/ TI/ Internet"),
-	TELECOMUNICACAO("Telecomunicações"),
-	TECNICOS("Técnicos - Manutenção, Instalação e Reparos"),
+	TI("InformÃ¡tica/ TI/ Internet"),
+	TELECOMUNICACAO("TelecomunicaÃ§Ãµes"),
+	TECNICOS("TÃ©cnicos - ManutenÃ§Ã£o, InstalaÃ§Ã£o e Reparos"),
 	TURISMO("Turismo e Hotelaria"),
 	VENDAS("Vendas"),
 	TELEMARKETING("Telemarketing / Atendimento ao Cliente"),

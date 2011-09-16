@@ -33,7 +33,7 @@ public class IndexAction extends ActionSupport {
 		
 		setEventos(eventoDAO.getAllForIndex());
 		setNoticias(noticiaDAO.getAllForIndex());
-		setVagas(vagaDAO.getAllValidos());
+		setVagas(vagaDAO.getAllForIndex());
 		
 		return "paginaInicial";
 		

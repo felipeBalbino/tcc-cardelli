@@ -101,7 +101,7 @@ public class Pessoa implements Serializable {
 		this.id = id;
 	}
 	
-	// Bug Struts - S� passa par�metros como String.
+	// Bug Struts - Se passa parâmetros como String.
 	public void setId(String id) {
 		setId(Integer.parseInt(id));
 	}
@@ -110,7 +110,7 @@ public class Pessoa implements Serializable {
 	public String getDataUltimoAcesso() {
 		if (dataUltimoAcesso != null){
 		    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-			return "- �ltimo acesso em: "+sdf.format(dataUltimoAcesso.getTime());
+			return "- último acesso em: "+sdf.format(dataUltimoAcesso.getTime());
 		}else{
 			return "";
 		}

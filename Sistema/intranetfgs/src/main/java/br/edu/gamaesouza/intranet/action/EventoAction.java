@@ -30,11 +30,11 @@ public class EventoAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	
 	private static final String MSG_EVENTO_NOVO_SUCESSO = "Evento adicionado com sucesso";
-	private static final String MSG_EVENTO_NOVO_FAILURE = "N�o foi possivel adicionar o evento, ocorreu um erro interno no Servidor";
+	private static final String MSG_EVENTO_NOVO_FAILURE = "Não foi possivel adicionar o evento, ocorreu um erro interno no Servidor";
 	private static final String MSG_EVENTO_ALTERA_SUCESSO = "Evento modificado com sucesso";
-	private static final String MSG_EVENTO_ALTERA_FAILURE = "N�o foi possivel modificar o evento, ocorreu um erro interno no Servidor";
+	private static final String MSG_EVENTO_ALTERA_FAILURE = "Não foi possivel modificar o evento, ocorreu um erro interno no Servidor";
 	private static final String MSG_EVENTO_DELETA_SUCESSO = "Evento deletado com sucesso";
-	private static final String MSG_EVENTO_DELETA_INSUCESSO = "N�o foi possivel deletar o evento, ocorreu um erro interno no Servidor";
+	private static final String MSG_EVENTO_DELETA_INSUCESSO = "Não foi possivel deletar o evento, ocorreu um erro interno no Servidor";
 
 	private static final String RULE_EVENTO_NOVO = "RULE_EVENTO_NOVO";
 	private static final String RULE_EVENTO_ALTERA = "RULE_EVENTO_ALTERA";
@@ -61,7 +61,7 @@ public class EventoAction extends ActionSupport {
 			long  end = System.currentTimeMillis();  
 			setTempoDeResposta(FormUtil.tempoResposta(eventos, inicio, end)); 
 		} catch (IntranetException e) {
-			logger.warning("Erro M�todo lista() em EventoAction.");
+			logger.warning("Erro Método lista() em EventoAction.");
 		}
 		return RETURN_EVENTO_LISTA;
 		

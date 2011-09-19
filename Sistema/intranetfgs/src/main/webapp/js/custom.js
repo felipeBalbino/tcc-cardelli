@@ -37,7 +37,7 @@ $(document).ready(function() {
 
 	$('#dialog_end').dialog({
 		autoOpen: false,
-		title: "Adicionar Endere�os",
+		title: "Adicionar Endereços",
 		width: 600,
 		buttons: {
 			"Cancel": function() { 
@@ -163,7 +163,7 @@ function inserirobs(){
 	
 	function deletar(id){
 
-		  if (confirm('Tem certeza que deseja excluir este hor�rio? Esta opera��o � irrevers�vel.')) {  
+		  if (confirm('Tem certeza que deseja excluir este horário? Esta operação é irreversível.')) {  
 		         location.href ="../painel/horario!delete.java?id="+id;
 		     } 
 	}
@@ -187,7 +187,7 @@ function inserirobs(){
 	 }
 
 	function desconfirmar(codigo) { 
-		if (confirm('Deseja marcar como n�o confirmado?')) {    
+		if (confirm('Deseja marcar como Não confirmado?')) {    
 	         location.href = "../painel/vaga!desconfirmar.java?idVaga="+ codigo;
 	     } 
 	}

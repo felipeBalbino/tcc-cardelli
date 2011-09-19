@@ -91,7 +91,7 @@ public class CursoDAO extends HibernateDaoSupport {
 	}
 
 	public List<Disciplina> getDisciplinaListByStringList(List<String> paramRules) throws IntranetException{
-		// Caso o usu�rio n�o selecione nenhuma disciplina/
+		// Caso o Usuário Não selecione nenhuma disciplina/
 		if(paramRules == null || paramRules.isEmpty()){
 			return new ArrayList<Disciplina>();
 		}
@@ -107,8 +107,8 @@ public class CursoDAO extends HibernateDaoSupport {
 		}
 
 	public List<Curso> getCursoListByStringList(List<String> cursosParam,Disciplina d) throws IntranetException {
-		//TODO Refatorar M�todo
-		// Esse m�todo precisa ser repensado, ele deleta tudo e adiciona dinovo
+		//TODO Refatorar Método
+		// Esse método precisa ser repensado, ele deleta tudo e adiciona dinovo
 		
 		List<Curso> cursos = new ArrayList<Curso>();	
 		List<Curso> cursosDelete = d.getCursos();

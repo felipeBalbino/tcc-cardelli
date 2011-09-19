@@ -88,7 +88,6 @@ INSERT intranet.pessoa_rule VALUES (1,41);
 INSERT intranet.pessoa_rule VALUES (1,42);
 INSERT intranet.pessoa_rule VALUES (1,43);
 INSERT intranet.pessoa_rule VALUES (1,44);
-
 INSERT intranet.Curso (id,cargaHorariaComplementar,nome) VALUES  (1,220,"Sistema de Informaaao");
 INSERT intranet.Curso (id,cargaHorariaComplementar,nome) VALUES  (2,180,"Marketing");
 INSERT intranet.Curso (id,cargaHorariaComplementar,nome) VALUES  (3,330,"Direito");
@@ -283,6 +282,6 @@ INSERT intranet.Empresa values (3,"Sao Luiz","Grupo Sao Luiz","Desenvolvimento",
 INSERT intranet.AreaProfissional values (1,"Telecomunicacao");
 INSERT intranet.AreaProfissional values (2,"Redes");
 INSERT intranet.AreaProfissional values (3,"Sistemas");
-INSERT intranet.Vaga (id,horarioDaVaga,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (1,"10 as 13","BOLSA FAMILIA","Estagiario","1200",3,3);
-INSERT intranet.Vaga (id,horarioDaVaga,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (2,"10 as 13","BOLSA FAMILIA","Estagiario","1200",3,3);
-INSERT intranet.Vaga (id,horarioDaVaga,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (3,"10 as 13","BOLSA FAMILIA","Estagiario","1200",3,3);
+INSERT intranet.Vaga (id,horarioDaVaga,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (1,"10 as 13","BOLSA FAMILIA","Estagiario","FAIXA2",3,3);
+INSERT intranet.Vaga (id,horarioDaVaga,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (2,"10 as 13","BOLSA FAMILIA","Estagiario","FAIXA2",3,3);
+INSERT intranet.Vaga (id,horarioDaVaga,beneficios,cargo,faixaSalarial,areaProfissional_id,empresa_id) values (3,"10 as 13","BOLSA FAMILIA","Estagiario","FAIXA2",3,3);

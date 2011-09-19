@@ -107,7 +107,7 @@ public class DisciplinaLetivaAction extends ActionSupport{
 			disciplinaLetiva = disciplinaDAO.saveOrReturnDisciplinaLetiva(disciplinaLetivaNovoParams.getDisciplinaLetiva());
 			addActionMessage("Disciplina Letiva criada com sucesso");
 		} catch (IntranetException e1) {
-			addActionError("N�o foi possivel adicionar disciplina letiva, ocorreu um erro interno no Servidor");
+			addActionError("Não foi possivel adicionar disciplina letiva, ocorreu um erro interno no Servidor");
 		}
 		
 		return lista();
@@ -125,7 +125,7 @@ public class DisciplinaLetivaAction extends ActionSupport{
 			
 			addActionMessage("Disciplina Letiva alterada com sucesso");
 		} catch (IntranetException e1) {
-			addActionError("N�o foi possivel alterar disciplina letiva, ocorreu um erro interno no Servidor");
+			addActionError("Não foi possivel alterar disciplina letiva, ocorreu um erro interno no Servidor");
 		}	
 		return lista();
 	}
@@ -139,7 +139,7 @@ public class DisciplinaLetivaAction extends ActionSupport{
 				disciplinaLetiva = (DisciplinaLetiva) SpringUtil.getBean("disciplinaLetiva");
 				addActionMessage("Disciplina Letiva deletada com sucesso");			
 			} catch (Exception e) {		
-				addActionError("N�o foi possivel deletar disciplina letiva, ocorreu um erro interno no Servidor");			
+				addActionError("Não foi possivel deletar disciplina letiva, ocorreu um erro interno no Servidor");			
 			}
 			return lista();
 	}

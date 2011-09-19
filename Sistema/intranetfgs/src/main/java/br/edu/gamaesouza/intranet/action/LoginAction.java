@@ -97,25 +97,25 @@ public class LoginAction extends ActionSupport {
 				
 				if(pessoaDAO.validarLogin(alunoNovoParams.getLogin())){
 					error=true;
-					addActionError("Login j� existente em nossa base.");
+					addActionError("Login já existente em nossa base.");
 				}
 
 				
 				if (pessoaDAO.validarEmail(alunoNovoParams.getEmail())){
 					error=true;
-					addActionError("Email j� existente em nossa base.");
+					addActionError("Email já existente em nossa base.");
 				}
 						
 				
 				if (alunoNovoParams.getLogin().length() > 8){
 					error=true;
-					addActionError("Login do Usu�rio precisar tem menos de 8 caracteres.");
+					addActionError("Login do Usuário precisar tem menos de 8 caracteres.");
 				}
 						
 				
 				if(pessoaDAO.validarMatricula(alunoNovoParams.getMatricula())){
 					error=true;
-					addActionError("Matr�cula j� existente em nossa base.");
+					addActionError("Matrícula já existente em nossa base.");
 				}
 					
 					

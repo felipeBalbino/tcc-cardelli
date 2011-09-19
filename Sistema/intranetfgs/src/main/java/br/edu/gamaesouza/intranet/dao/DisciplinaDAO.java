@@ -232,7 +232,7 @@ public class DisciplinaDAO extends HibernateDaoSupport {
 		queryVerify.setParameter("ano", ano);
 		queryVerify.setParameter("semestre", semestre);
 		
-		// Verifica se o Aluno j� est� inscrito na DisciplinaLetiva
+		// Verifica se o Aluno já está inscrito na DisciplinaLetiva
 		DisciplinaLetiva dlVerify = (DisciplinaLetiva) queryVerify.uniqueResult();
 		
 		if(dlVerify == null){			

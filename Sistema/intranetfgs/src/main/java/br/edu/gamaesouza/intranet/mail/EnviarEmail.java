@@ -262,7 +262,7 @@ public class EnviarEmail {
 
 		String mensagem = "Prezado "
 				+ aluno.getNome()
-				+ ",<br>Arquivo em anexo da intranet da FGS, enviado de um dos computadores da institui��o.";
+				+ ",<br>Arquivo em anexo da intranet da FGS, enviado de um dos computadores da instituição.";
 		String emailContent = "<b>Enviado por </b>" + aluno.getNome();
 		emailContent = emailContent + "<br>";
 		emailContent = emailContent + "<br>";
@@ -273,7 +273,7 @@ public class EnviarEmail {
 		emailContent = emailContent + "<br>";
 		emailContent = emailContent + "<br>";
 		emailContent = emailContent
-				+ "N�o responda este email, ele foi gerado automaticamente.";
+				+ "Não responda este email, ele foi gerado automaticamente.";
 		emailContent = emailContent + "<br>";
 		emailContent = emailContent + "Att. Equipe CQI";
 
@@ -354,7 +354,7 @@ public class EnviarEmail {
 		msgBody = msgBody + "<b>Exception Message : </b>" + rex.getMessage()
 				+ "<br><br>";
 		msgBody = msgBody
-				+ "<hr style='border-bottom:1px;border-style:dotted;border-color:#CCCCCC'><center><h3>Dados do Usu�rio</h3></center><hr style='border-bottom:1px;border-style:dotted;border-color:#CCCCCC'><table><tr><td>";
+				+ "<hr style='border-bottom:1px;border-style:dotted;border-color:#CCCCCC'><center><h3>Dados do Usuário</h3></center><hr style='border-bottom:1px;border-style:dotted;border-color:#CCCCCC'><table><tr><td>";
 		msgBody = msgBody + "<b>Id: </b></td><td>" + p.getId() + "</td></tr>";
 		msgBody = msgBody + "<tr><td><b>Nome: </b></td><td>" + p.getNome()
 				+ "</td></tr>";
@@ -376,7 +376,7 @@ public class EnviarEmail {
 		msgBody = msgBody + "<br></br>";
 		msgBody = msgBody + "<br></br>";
 		msgBody = msgBody
-				+ "Intranet FGS <br></br> Desenvolvido pelo Centro de Qualidade da Informa��o.";
+				+ "Intranet FGS <br></br> Desenvolvido pelo Centro de Qualidade da Informação.";
 
 		message.setSubject(rex.getMessage() + " em @intranetfgs");
 		message.setContent(msgBody, "text/html");
@@ -484,7 +484,7 @@ public class EnviarEmail {
 		msgBody = msgBody + "</tr>";
 		msgBody = msgBody + "<tr style=\"border-style:dotted;\">";
 		msgBody = msgBody
-				+ "	<td width=\"30%\" style=\"border-style:dotted;\"><b>T�tulo: </b></td>";
+				+ "	<td width=\"30%\" style=\"border-style:dotted;\"><b>Título: </b></td>";
 		msgBody = msgBody
 				+ "<td width=\"70%\" style=\"border-style:dotted;\">"+ horaComplementar.getTitulo() + "</td>";
 
@@ -526,7 +526,7 @@ public class EnviarEmail {
 		msgBody = msgBody + "<tr style=\"border-style:dotted;\">";
 
 		msgBody = msgBody
-				+ "	<td width=\"30%\"  style=\"border-style:dotted;\"><b>Matr�cula: </b></td>";
+				+ "	<td width=\"30%\"  style=\"border-style:dotted;\"><b>Matrícula: </b></td>";
 		msgBody = msgBody
 				+ "<td  width=\"70%\" style=\"border-style:dotted;\">"+aluno.getMatricula()+"</td>";
 
@@ -534,7 +534,7 @@ public class EnviarEmail {
 		msgBody = msgBody + "	<tr style=\"border-style:dotted;\">";
 		msgBody = msgBody
 				+ "<td width=\"30%\"  style=\"border-style:dotted;\">";
-		msgBody = msgBody + "	<b>Per�odo: </b>";
+		msgBody = msgBody + "	<b>Período: </b>";
 		msgBody = msgBody + "</td>";
 		msgBody = msgBody
 				+ "<td  width=\"70%\" style=\"border-style:dotted;\">"+aluno.getPeriodo()+"</td>";
@@ -557,9 +557,9 @@ public class EnviarEmail {
 		msgBody = msgBody + "	<td colspan=\"4\">";
 		msgBody = msgBody + "	<br></br>";
 		msgBody = msgBody
-		+ "* Ao assinar este comprovante voc� est� de acordo com os dados contidos no mesmo.<br>";
+		+ "* Ao assinar este comprovante você está de acordo com os dados contidos no mesmo.<br>";
 		msgBody = msgBody
-		+ "** Esse comprovante foi gerado diretamente para seu e-mail em "+ new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime()) +" pelo professor "+ UserData.getLoggedUser().getNome() +", para ele ter valor � necess�rio que voc� imprima e leve para o coordenador assinar.";
+		+ "** Esse comprovante foi gerado diretamente para seu e-mail em "+ new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime()) +" pelo professor "+ UserData.getLoggedUser().getNome() +", para ele ter valor é necessário que você imprima e leve para o coordenador assinar.";
 		
 		msgBody = msgBody + "</td>";
 		msgBody = msgBody + "</tr>";

@@ -56,9 +56,9 @@ public class NoticiaAction extends ActionSupport {
 				noticia.setDatahoraPublicacao(Calendar.getInstance());
 				noticiaDAO.save(noticia);
 				noticia = (Noticia) SpringUtil.getBean("noticia");
-				addActionMessage("Not�cia adicionado com sucesso");
+				addActionMessage("Notícia adicionado com sucesso");
 			} catch (Exception e) {
-				addActionError("N�o foi possivel adicionar a not�cia, ocorreu um erro interno no Servidor");
+				addActionError("Não foi possivel adicionar a Notícia, ocorreu um erro interno no Servidor");
 			}
 			return lista();
 	
@@ -75,11 +75,11 @@ public class NoticiaAction extends ActionSupport {
 				noticiaDAO.update(noticia);
 				noticia = (Noticia) SpringUtil.getBean("noticia");
 				
-				addActionMessage("Not�cia alterada com sucesso");
+				addActionMessage("Notícia alterada com sucesso");
 				
 			} catch (Exception e) {
 				
-				addActionError("N�o foi possivel alterar a not�cia, ocorreu um erro interno no Servidor");
+				addActionError("Não foi possivel alterar a Notícia, ocorreu um erro interno no Servidor");
 
 			}
 
@@ -96,11 +96,11 @@ public class NoticiaAction extends ActionSupport {
 				System.out.println(noticia.getMensagem());
 				noticiaDAO.delete(noticia);
 				noticia = (Noticia) SpringUtil.getBean("noticia");
-				addActionMessage("Not�cia deletada com sucesso");
+				addActionMessage("Notícia deletada com sucesso");
 				
 			} catch (Exception e) {
 				
-				addActionError("N�o foi possivel deletar a not�cia, ocorreu um erro interno no Servidor");
+				addActionError("Não foi possivel deletar a Notícia, ocorreu um erro interno no Servidor");
 				
 			}
 			return lista();

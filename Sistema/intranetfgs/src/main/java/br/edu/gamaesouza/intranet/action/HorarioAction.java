@@ -77,16 +77,16 @@ public class HorarioAction extends ActionSupport{
 	
 	public String save() throws Exception{
 		horarioDAO.save(horarioNovoParams.getHorario());
-		addActionMessage("Hor�rio criado com sucesso");
+		addActionMessage("Horário criado com sucesso");
 		return prepare();
 	}
 	
 	public String delete() throws Exception{
 		try{
 		horarioDAO.delete( horarioDAO.getHorarioById( id ) );
-		addActionMessage("Hor�rio deletado com sucesso");			
+		addActionMessage("Horário deletado com sucesso");			
 	} catch (Exception e) {		
-		addActionError("N�o foi possivel deletar Hor�rio, ocorreu um erro interno no Servidor");			
+		addActionError("Não foi possivel deletar Horário, ocorreu um erro interno no Servidor");			
 	}
 		return prepare();
 	}
@@ -95,9 +95,9 @@ public class HorarioAction extends ActionSupport{
 		try{
 		DisciplinaLetivaHorario disciplinaLetivaHorario = horarioDAO.getDisciplinaLetivaHorarioByHorarioAndDisciplinaLetivaId(idDisciplinaLetiva,idHorario);
 		horarioDAO.deleteDisciplinaLetivaHorario( disciplinaLetivaHorario );
-		addActionMessage("Hor�rio deletado com sucesso");			
+		addActionMessage("Horário deletado com sucesso");			
 	} catch (Exception e) {		
-		addActionError("N�o foi possivel deletar Hor�rio, ocorreu um erro interno no Servidor");
+		addActionError("Não foi possivel deletar Horário, ocorreu um erro interno no Servidor");
 		throw new IntranetException(e.getMessage());
 	}
 		return listarHorarioPorDisciplinaLetiva();
@@ -110,7 +110,7 @@ public class HorarioAction extends ActionSupport{
 		horarios = 	horarioDAO.getAllHorarios();
 		disciplinaLetivaHorario = 	horarioDAO.getAllDisciplinaLetivaHorariosById(idDisciplinaLetiva);
 		} catch (Exception e) {		
-			addActionError("N�o foi possivel listar Hor�rios, ocorreu um erro interno no Servidor");		
+			addActionError("Não foi possivel listar Horários, ocorreu um erro interno no Servidor");		
 			e.printStackTrace();
 			throw new IntranetException(e.getMessage());
 		}
@@ -131,10 +131,10 @@ public class HorarioAction extends ActionSupport{
 					horarioDAO.saveDisciplinaLetivaHorario(disciplinaLetivaHorario);
 					addActionMessage("Horario adicionado em disciplina letiva com sucesso");
 				}else{
-					addActionError("N�o foi possivel Adicionar, este horário já existe nesta disciplina. ");		
+					addActionError("Não foi possivel Adicionar, este horário já existe nesta disciplina. ");		
 				}
 		} catch (Exception e) {		
-			addActionError("N�o foi possivel Adicionar, ocorreu um erro interno no Servidor");
+			addActionError("Não foi possivel Adicionar, ocorreu um erro interno no Servidor");
 			e.printStackTrace();
 			throw new IntranetException(e.getMessage());
 		}

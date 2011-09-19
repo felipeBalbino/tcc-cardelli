@@ -98,7 +98,7 @@ public  class BuscarMaterialAction extends ActionSupport {
 					enviarEmail.sendArquivoPeloAluno( arquivo, arquivo.getNome(), UserData.getLoggedUser() );
 					addActionMessage("Arquivo enviado com sucesso - "+UserData.getLoggedUser().getEmail());
 				} catch ( Throwable e ) {
-					addActionError("N�o foi poss�vel enviar o email");
+					addActionError("Não foi possível enviar o email");
 				}			
 			}else{
 				addActionError("O arquivo selecionado precisa ser menor que 25MB.");

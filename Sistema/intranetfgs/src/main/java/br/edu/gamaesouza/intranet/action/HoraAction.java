@@ -57,7 +57,7 @@ public class HoraAction extends ActionSupport {
 	@Getter @Setter @Autowired private HoraDAO horaDAO;
 	@Getter @Setter @Autowired private PessoaDAO pessoaDAO;
 	
-	// Aluno retornado pela matr�cula
+	// Aluno retornado pela matrícula
 	@Getter @Setter @Autowired private Aluno aluno;
 	@Getter @Setter @Autowired private HoraComplementar horaComplementar;
 	@Getter @Setter @Autowired private EnviarEmail enviarEmail;
@@ -164,10 +164,10 @@ public class HoraAction extends ActionSupport {
 				horaDAO.save(horaComplementarNovoParams.getHora());
 				horaComplementar = horaDAO.getHorasComplementares(horaComplementarNovoParams.getHora());
 				if(horaComplementar == null){
-					addActionError("Hora adicionada com sucesso, n�o foi poss�vel gerar o comprovante.");
+					addActionError("Hora adicionada com sucesso, Não foi possíovel gerar o comprovante.");
 				}else{
 				this.aluno = pessoaDAO.getAlunoById(horaComplementarNovoParams.getAluno().getId());
-				addActionMessage("Hora adicionada com sucesso, utilize o links dispon�vel para gerar um comprovante para o aluno.");
+				addActionMessage("Hora adicionada com sucesso, utilize o links disponível para gerar um comprovante para o aluno.");
 				}
 				
 			}catch(HibernateException he){

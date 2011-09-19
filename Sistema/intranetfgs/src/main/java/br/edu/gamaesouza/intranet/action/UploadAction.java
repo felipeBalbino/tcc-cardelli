@@ -154,7 +154,7 @@ public class UploadAction extends ActionSupport {
 				arquivoDAO.delete(id, (Professor)UserData.getLoggedUser());
 				addActionMessage("Arquivo deletado com sucesso!");
 			} catch (Exception e) {
-				addActionMessage("N�o foi possivel remover o arquivo.");
+				addActionMessage("Não foi possivel remover o arquivo.");
 				addActionMessage(e.getMessage());
 			} finally {
 				try {

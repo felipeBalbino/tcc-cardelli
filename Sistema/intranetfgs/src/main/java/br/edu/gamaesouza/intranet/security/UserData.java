@@ -34,7 +34,7 @@ public class UserData {
 			try {
 				response.sendRedirect("../jsp/acessoNegado.jsp");
 			} catch (IOException e) {
-				System.out.println("[LOG] Erro ao redirecionar para p�gina de acesso negado!");
+				System.out.println("[LOG] Erro ao redirecionar para página de acesso negado!");
 			}
 		}
 	}

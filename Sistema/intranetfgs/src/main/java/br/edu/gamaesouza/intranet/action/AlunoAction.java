@@ -83,7 +83,7 @@ public class AlunoAction extends ActionSupport {
 			
 			Aluno aluno = pessoaDAO.getAlunoByMatricula(alunoNovoParams.getMatricula());
 			if(aluno != null){
-				addActionError("Matr�cula j� existente em nossa base.");
+				addActionError("Matrícula já existente em nossa base.");
 				Pessoa pessoa = pessoaDAO.getPessoaByMatricula( alunoNovoParams.getMatricula() );
 				addActionError("Aluno: "+pessoa.getNome()+ " - " + "Email: "+pessoa.getEmail()+" - " + "Matricula: "+pessoa.getMatricula());					
 			}
@@ -172,7 +172,7 @@ public class AlunoAction extends ActionSupport {
 				pessoaDAO.deleteAluno(idAluno);
 				addActionMessage(MSG_DELETADO_SUCESSO);
 			}else{
-				addActionError("N�o � poss�vel efetuar esta opera��o, este aluno tem "+disciplinaLetiva.size()+" Disciplina(s) letiva(s) v�nculada(s)");
+				addActionError("Não é possível efetuar esta operação, este aluno tem "+disciplinaLetiva.size()+" Disciplina(s) letiva(s) vínculada(s)");
 				for(DisciplinaLetiva letiva:disciplinaLetiva){
 					addActionError(letiva.getDisciplina().getNome()+" - "+letiva.getAno()+"/"+letiva.getSemestre()+" -  Ano:"+letiva.getAno()+" -  Sala:"+letiva.getSala());
 				}
@@ -200,25 +200,25 @@ public class AlunoAction extends ActionSupport {
 				
 				if(pessoaDAO.validarLogin(alunoNovoParams.getLogin())){
 					error=true;
-					addActionError("Login j� existente em nossa base.");
+					addActionError("Login já existente em nossa base.");
 				}
 
 				
 				if (pessoaDAO.validarEmail(alunoNovoParams.getEmail())){
 					error=true;
-					addActionError("Email j� existente em nossa base.");
+					addActionError("Email já existente em nossa base.");
 				}
 						
 				
 				if (alunoNovoParams.getLogin().length() > 8){
 					error=true;
-					addActionError("Login do Usu�rio precisar tem menos de 8 caracteres.");
+					addActionError("Login do Usuário precisar tem menos de 8 caracteres.");
 				}
 						
 				
 				if(pessoaDAO.validarMatricula(alunoNovoParams.getMatricula())){
 					error=true;
-					addActionError("Matr�cula j� existente em nossa base.");
+					addActionError("Matrícula já existente em nossa base.");
 					Pessoa pessoa = pessoaDAO.getPessoaByMatricula( alunoNovoParams.getMatricula() );
 					addActionError("Aluno: "+pessoa.getNome()+ " - " + "Email: "+pessoa.getEmail()+" - " + "Matricula: "+pessoa.getMatricula());					
 				}

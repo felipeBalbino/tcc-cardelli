@@ -19,7 +19,7 @@
 		<property name="c3p0.max_size">10000</property>
 		<property name="c3p0.max_statements">10000</property>
 		<property name="c3p0.idle_test_period">15</property>
-		
+
 		<mapping class="br.edu.gamaesouza.intranet.bean.Noticia" />
 		<mapping class="br.edu.gamaesouza.intranet.bean.Professor" />
 		<mapping class="br.edu.gamaesouza.intranet.bean.Arquivo" />
@@ -42,11 +42,19 @@
 		<mapping class="br.edu.gamaesouza.intranet.bean.AreaProfissional" />
 		<mapping class="br.edu.gamaesouza.intranet.bean.Telefone" />
 
-		<listener class="org.hibernate.envers.event.AuditEventListener" type="post-insert"/>
-		<listener class="org.hibernate.envers.event.AuditEventListener" type="post-update"/>
-		<listener class="org.hibernate.envers.event.AuditEventListener" type="post-delete"/>
-		<listener class="org.hibernate.envers.event.AuditEventListener" type="pre-collection-update"/>
-		<listener class="org.hibernate.envers.event.AuditEventListener" type="pre-collection-remove"/>
-		<listener class="org.hibernate.envers.event.AuditEventListener" type="post-collection-recreate"/>
+		<listener class="org.hibernate.envers.event.AuditEventListener"
+			type="post-insert" />
+		<listener class="org.hibernate.envers.event.AuditEventListener"
+			type="post-update" />
+		<listener class="org.hibernate.envers.event.AuditEventListener"
+			type="post-delete" />
+		<listener class="org.hibernate.envers.event.AuditEventListener"
+			type="pre-collection-update" />
+		<listener class="org.hibernate.envers.event.AuditEventListener"
+			type="pre-collection-remove" />
+		<listener class="org.hibernate.envers.event.AuditEventListener"
+			type="post-collection-recreate" />
+
+
 	</session-factory>
 </hibernate-configuration>

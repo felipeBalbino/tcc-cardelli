@@ -103,13 +103,13 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-envers</artifactId>
-			<version>4.0.0.CR3</version>
+			<version>3.5.1-Final</version>
 		</dependency>
-		
+
 	</dependencies>
 	<build>
 		<finalName>IntranetAcademica</finalName>
@@ -139,7 +139,25 @@
 					</additionalProjectnatures>
 				</configuration>
 			</plugin>
-			
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<id>build-dump</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>br.edu.gamaesouza.intranet.tests.GenerateDatabase</mainClass>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>sql-maven-plugin</artifactId>
@@ -176,7 +194,8 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
+
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>

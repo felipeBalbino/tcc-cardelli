@@ -11,8 +11,8 @@ public class GenerateDatabase {
 		configuration.configure();
 		
 		SchemaExport schemaExport = new SchemaExport(configuration);
+		schemaExport.drop(true, true);
 		schemaExport.create(true,true);
-		
 	}
 
 }
